@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 19:45:35 su loka 2 2011-->
+<spirit:design>
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>chip</spirit:library>
+	<spirit:name>arria_ii.design</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:componentInstances>
+		<spirit:componentInstance>
+			<spirit:instanceName>arria_ii_gx_demo_soc_1</spirit:instanceName>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:componentRef spirit:vendor="TUT" spirit:library="soc" spirit:name="arria_ii_gx_demo_soc" spirit:version="1.0"/>
+			<spirit:configurableElementValues/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="250" y="60"/>
+				<kactus2:portPositions>
+					<kactus2:portPosition kactus2:busRef="clk_in">
+						<kactus2:position x="80" y="160"/>
+					</kactus2:portPosition>
+					<kactus2:portPosition kactus2:busRef="ddr2_p">
+						<kactus2:position x="80" y="40"/>
+					</kactus2:portPosition>
+					<kactus2:portPosition kactus2:busRef="pcie_4x_p">
+						<kactus2:position x="-80" y="40"/>
+					</kactus2:portPosition>
+					<kactus2:portPosition kactus2:busRef="rst_n">
+						<kactus2:position x="80" y="80"/>
+					</kactus2:portPosition>
+					<kactus2:portPosition kactus2:busRef="rst_n_1">
+						<kactus2:position x="80" y="100"/>
+					</kactus2:portPosition>
+					<kactus2:portPosition kactus2:busRef="rst_n_2">
+						<kactus2:position x="80" y="120"/>
+					</kactus2:portPosition>
+					<kactus2:portPosition kactus2:busRef="rst_n_3">
+						<kactus2:position x="80" y="140"/>
+					</kactus2:portPosition>
+					<kactus2:portPosition kactus2:busRef="soft_rst_n">
+						<kactus2:position x="80" y="180"/>
+					</kactus2:portPosition>
+				</kactus2:portPositions>
+			</spirit:vendorExtensions>
+		</spirit:componentInstance>
+	</spirit:componentInstances>
+	<spirit:hierConnections>
+		<spirit:hierConnection spirit:interfaceRef="ddr2_p">
+			<spirit:interface spirit:componentRef="arria_ii_gx_demo_soc_1" spirit:busRef="ddr2_p"/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="440" y="100"/>
+				<kactus2:direction x="-1" y="0"/>
+				<kactus2:route>
+					<kactus2:position x="330" y="100"/>
+					<kactus2:position x="430" y="100"/>
+					<kactus2:position x="430" y="100"/>
+					<kactus2:position x="440" y="100"/>
+				</kactus2:route>
+			</spirit:vendorExtensions>
+		</spirit:hierConnection>
+		<spirit:hierConnection spirit:interfaceRef="pcie_4x_p">
+			<spirit:interface spirit:componentRef="arria_ii_gx_demo_soc_1" spirit:busRef="pcie_4x_p"/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="60" y="100"/>
+				<kactus2:direction x="1" y="0"/>
+				<kactus2:route>
+					<kactus2:position x="170" y="100"/>
+					<kactus2:position x="160" y="100"/>
+					<kactus2:position x="160" y="100"/>
+					<kactus2:position x="60" y="100"/>
+				</kactus2:route>
+			</spirit:vendorExtensions>
+		</spirit:hierConnection>
+	</spirit:hierConnections>
+	<spirit:vendorExtensions>
+		<kactus2:columnLayout>
+			<kactus2:column name="IO" contentType="0" allowedItems="1"/>
+			<kactus2:column name="Components" contentType="2" allowedItems="2"/>
+			<kactus2:column name="IO" contentType="0" allowedItems="1"/>
+		</kactus2:columnLayout>
+		<kactus2:routes/>
+	</spirit:vendorExtensions>
+</spirit:design>

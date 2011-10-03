@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 16:50:30 su loka 2 2011-->
+<spirit:designConfiguration>
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>chip</spirit:library>
+	<spirit:name>ddr2_memory.designcfg</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:designRef spirit:vendor="TUT" spirit:library="chip" spirit:name="ddr2_memory.design" spirit:version="1.0"/>
+</spirit:designConfiguration>

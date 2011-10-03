@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 19:45:35 su loka 2 2011-->
+<spirit:designConfiguration>
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>chip</spirit:library>
+	<spirit:name>arria_ii.designcfg</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:designRef spirit:vendor="TUT" spirit:library="chip" spirit:name="arria_ii.design" spirit:version="1.0"/>
+	<spirit:viewConfiguration>
+		<spirit:instanceName>arria_ii_gx_demo_soc_1</spirit:instanceName>
+		<spirit:viewName>kactusHierarchical</spirit:viewName>
+	</spirit:viewConfiguration>
+	<spirit:viewConfiguration>
+		<spirit:instanceName>example_soc_2_1</spirit:instanceName>
+		<spirit:viewName>kactusHierarchical</spirit:viewName>
+	</spirit:viewConfiguration>
+	<spirit:viewConfiguration>
+		<spirit:instanceName>soc_sub_system</spirit:instanceName>
+		<spirit:viewName></spirit:viewName>
+	</spirit:viewConfiguration>
+</spirit:designConfiguration>

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pin_planner>
+	<pin_info>
+		<pin name="clkin_bot_p" direction="Input" source="Hierarchy Database" diff_pair_node="clkin_bot_p(n)" >
+		</pin>
+		<pin name="clkin_top_p" direction="Input" source="Hierarchy Database" diff_pair_node="clkin_top_p(n)" >
+		</pin>
+		<pin name="ddr2_dimm_clk[1]" direction="Bidir" source="Hierarchy Database" diff_pair_node="ddr2_dimm_clk_n[1]" >
+		</pin>
+		<pin name="ddr2_dimm_clk[0]" direction="Bidir" source="Hierarchy Database" diff_pair_node="ddr2_dimm_clk_n[0]" >
+		</pin>
+		<pin name="ddr2_dimm_clk_n[1]" direction="Bidir" source="Hierarchy Database" diff_pair_node="ddr2_dimm_clk[1]" >
+		</pin>
+		<pin name="ddr2_dimm_clk_n[0]" direction="Bidir" source="Hierarchy Database" diff_pair_node="ddr2_dimm_clk[0]" >
+		</pin>
+		<pin name="ddr2_dimm_dqs[7]" direction="Bidir" source="Hierarchy Database" diff_pair_node="ddr2_dimm_dqs_n[7]" >
+		</pin>
+		<pin name="ddr2_dimm_dqs[6]" direction="Bidir" source="Hierarchy Database" diff_pair_node="ddr2_dimm_dqs_n[6]" >
+		</pin>
+		<pin name="ddr2_dimm_dqs[5]" direction="Bidir" source="Hierarchy Database" diff_pair_node="ddr2_dimm_dqs_n[5]" >
+		</pin>
+		<pin name="ddr2_dimm_dqs[4]" direction="Bidir" source="Hierarchy Database" diff_pair_node="ddr2_dimm_dqs_n[4]" >
+		</pin>
+		<pin name="ddr2_dimm_dqs[3]" direction="Bidir" source="Hierarchy Database" diff_pair_node="ddr2_dimm_dqs_n[3]" >
+		</pin>
+		<pin name="ddr2_dimm_dqs[2]" direction="Bidir" source="Hierarchy Database" diff_pair_node="ddr2_dimm_dqs_n[2]" >
+		</pin>
+		<pin name="ddr2_dimm_dqs[1]" direction="Bidir" source="Hierarchy Database" diff_pair_node="ddr2_dimm_dqs_n[1]" >
+		</pin>
+		<pin name="ddr2_dimm_dqs[0]" direction="Bidir" source="Hierarchy Database" diff_pair_node="ddr2_dimm_dqs_n[0]" >
+		</pin>
+		<pin name="ddr2_dimm_dqs_n[7]" direction="Bidir" source="Hierarchy Database" diff_pair_node="ddr2_dimm_dqs[7]" >
+		</pin>
+		<pin name="ddr2_dimm_dqs_n[6]" direction="Bidir" source="Hierarchy Database" diff_pair_node="ddr2_dimm_dqs[6]" >
+		</pin>
+		<pin name="ddr2_dimm_dqs_n[5]" direction="Bidir" source="Hierarchy Database" diff_pair_node="ddr2_dimm_dqs[5]" >
+		</pin>
+		<pin name="ddr2_dimm_dqs_n[4]" direction="Bidir" source="Hierarchy Database" diff_pair_node="ddr2_dimm_dqs[4]" >
+		</pin>
+		<pin name="ddr2_dimm_dqs_n[3]" direction="Bidir" source="Hierarchy Database" diff_pair_node="ddr2_dimm_dqs[3]" >
+		</pin>
+		<pin name="ddr2_dimm_dqs_n[2]" direction="Bidir" source="Hierarchy Database" diff_pair_node="ddr2_dimm_dqs[2]" >
+		</pin>
+		<pin name="ddr2_dimm_dqs_n[1]" direction="Bidir" source="Hierarchy Database" diff_pair_node="ddr2_dimm_dqs[1]" >
+		</pin>
+		<pin name="ddr2_dimm_dqs_n[0]" direction="Bidir" source="Hierarchy Database" diff_pair_node="ddr2_dimm_dqs[0]" >
+		</pin>
+		<pin name="hsma_clk_in_p1" direction="Input" source="Hierarchy Database" diff_pair_node="hsma_clk_in_p1(n)" >
+		</pin>
+		<pin name="hsma_clk_in_p2" direction="Input" source="Hierarchy Database" diff_pair_node="hsma_clk_in_p2(n)" >
+		</pin>
+		<pin name="hsma_clk_out_p1" direction="Output" source="Hierarchy Database" diff_pair_node="hsma_clk_out_p1(n)" >
+		</pin>
+		<pin name="hsma_clk_out_p2" direction="Output" source="Hierarchy Database" diff_pair_node="hsma_clk_out_p2(n)" >
+		</pin>
+		<pin name="hsma_rx_d_p[16]" direction="Input" source="Hierarchy Database" diff_pair_node="hsma_rx_d_p[16](n)" >
+		</pin>
+		<pin name="hsma_rx_d_p[15]" direction="Input" source="Hierarchy Database" diff_pair_node="hsma_rx_d_p[15](n)" >
+		</pin>
+		<pin name="hsma_rx_d_p[14]" direction="Input" source="Hierarchy Database" diff_pair_node="hsma_rx_d_p[14](n)" >
+		</pin>
+		<pin name="hsma_rx_d_p[13]" direction="Input" source="Hierarchy Database" diff_pair_node="hsma_rx_d_p[13](n)" >
+		</pin>
+		<pin name="hsma_rx_d_p[12]" direction="Input" source="Hierarchy Database" diff_pair_node="hsma_rx_d_p[12](n)" >
+		</pin>
+		<pin name="hsma_rx_d_p[11]" direction="Input" source="Hierarchy Database" diff_pair_node="hsma_rx_d_p[11](n)" >
+		</pin>
+		<pin name="hsma_rx_d_p[10]" direction="Input" source="Hierarchy Database" diff_pair_node="hsma_rx_d_p[10](n)" >
+		</pin>
+		<pin name="hsma_rx_d_p[9]" direction="Input" source="Hierarchy Database" diff_pair_node="hsma_rx_d_p[9](n)" >
+		</pin>
+		<pin name="hsma_rx_d_p[8]" direction="Input" source="Hierarchy Database" diff_pair_node="hsma_rx_d_p[8](n)" >
+		</pin>
+		<pin name="hsma_rx_d_p[7]" direction="Input" source="Hierarchy Database" diff_pair_node="hsma_rx_d_p[7](n)" >
+		</pin>
+		<pin name="hsma_rx_d_p[6]" direction="Input" source="Hierarchy Database" diff_pair_node="hsma_rx_d_p[6](n)" >
+		</pin>
+		<pin name="hsma_rx_d_p[5]" direction="Input" source="Hierarchy Database" diff_pair_node="hsma_rx_d_p[5](n)" >
+		</pin>
+		<pin name="hsma_rx_d_p[4]" direction="Input" source="Hierarchy Database" diff_pair_node="hsma_rx_d_p[4](n)" >
+		</pin>
+		<pin name="hsma_rx_d_p[3]" direction="Input" source="Hierarchy Database" diff_pair_node="hsma_rx_d_p[3](n)" >
+		</pin>
+		<pin name="hsma_rx_d_p[2]" direction="Input" source="Hierarchy Database" diff_pair_node="hsma_rx_d_p[2](n)" >
+		</pin>
+		<pin name="hsma_rx_d_p[1]" direction="Input" source="Hierarchy Database" diff_pair_node="hsma_rx_d_p[1](n)" >
+		</pin>
+		<pin name="hsma_rx_d_p[0]" direction="Input" source="Hierarchy Database" diff_pair_node="hsma_rx_d_p[0](n)" >
+		</pin>
+		<pin name="hsma_tx_d_p[16]" direction="Output" source="Hierarchy Database" diff_pair_node="hsma_tx_d_p[16](n)" >
+		</pin>
+		<pin name="hsma_tx_d_p[15]" direction="Output" source="Hierarchy Database" diff_pair_node="hsma_tx_d_p[15](n)" >
+		</pin>
+		<pin name="hsma_tx_d_p[14]" direction="Output" source="Hierarchy Database" diff_pair_node="hsma_tx_d_p[14](n)" >
+		</pin>
+		<pin name="hsma_tx_d_p[13]" direction="Output" source="Hierarchy Database" diff_pair_node="hsma_tx_d_p[13](n)" >
+		</pin>
+		<pin name="hsma_tx_d_p[12]" direction="Output" source="Hierarchy Database" diff_pair_node="hsma_tx_d_p[12](n)" >
+		</pin>
+		<pin name="hsma_tx_d_p[11]" direction="Output" source="Hierarchy Database" diff_pair_node="hsma_tx_d_p[11](n)" >
+		</pin>
+		<pin name="hsma_tx_d_p[10]" direction="Output" source="Hierarchy Database" diff_pair_node="hsma_tx_d_p[10](n)" >
+		</pin>
+		<pin name="hsma_tx_d_p[9]" direction="Output" source="Hierarchy Database" diff_pair_node="hsma_tx_d_p[9](n)" >
+		</pin>
+		<pin name="hsma_tx_d_p[8]" direction="Output" source="Hierarchy Database" diff_pair_node="hsma_tx_d_p[8](n)" >
+		</pin>
+		<pin name="hsma_tx_d_p[7]" direction="Output" source="Hierarchy Database" diff_pair_node="hsma_tx_d_p[7](n)" >
+		</pin>
+		<pin name="hsma_tx_d_p[6]" direction="Output" source="Hierarchy Database" diff_pair_node="hsma_tx_d_p[6](n)" >
+		</pin>
+		<pin name="hsma_tx_d_p[5]" direction="Output" source="Hierarchy Database" diff_pair_node="hsma_tx_d_p[5](n)" >
+		</pin>
+		<pin name="hsma_tx_d_p[4]" direction="Output" source="Hierarchy Database" diff_pair_node="hsma_tx_d_p[4](n)" >
+		</pin>
+		<pin name="hsma_tx_d_p[3]" direction="Output" source="Hierarchy Database" diff_pair_node="hsma_tx_d_p[3](n)" >
+		</pin>
+		<pin name="hsma_tx_d_p[2]" direction="Output" source="Hierarchy Database" diff_pair_node="hsma_tx_d_p[2](n)" >
+		</pin>
+		<pin name="hsma_tx_d_p[1]" direction="Output" source="Hierarchy Database" diff_pair_node="hsma_tx_d_p[1](n)" >
+		</pin>
+		<pin name="hsma_tx_d_p[0]" direction="Output" source="Hierarchy Database" diff_pair_node="hsma_tx_d_p[0](n)" >
+		</pin>
+		<pin name="clkin_ref_q1_1_p" source="Assignments" diff_pair_node="clkin_ref_q1_1_p(n)" >
+		</pin>
+		<pin name="clkin_ref_q1_2_p" source="Assignments" diff_pair_node="clkin_ref_q1_2_p(n)" >
+		</pin>
+		<pin name="clkin_ref_q2_p" source="Assignments" diff_pair_node="clkin_ref_q2_p(n)" >
+		</pin>
+		<pin name="ddr3_ck_n" source="Assignments" diff_pair_node="ddr3_ck_p" >
+		</pin>
+		<pin name="ddr3_ck_p" source="Assignments" diff_pair_node="ddr3_ck_n" >
+		</pin>
+		<pin name="hsma_clk_in_p1(n)" direction="Input" source="Assignments" diff_pair_node="hsma_clk_in_p1" >
+		</pin>
+		<pin name="hsma_clk_in_p2(n)" direction="Input" source="Assignments" diff_pair_node="hsma_clk_in_p2" >
+		</pin>
+		<pin name="hsma_clk_out_p1(n)" direction="Output" source="Assignments" diff_pair_node="hsma_clk_out_p1" >
+		</pin>
+		<pin name="hsma_clk_out_p2(n)" direction="Output" source="Assignments" diff_pair_node="hsma_clk_out_p2" >
+		</pin>
+		<pin name="hsma_rx_d_p[0](n)" direction="Input" source="Assignments" diff_pair_node="hsma_rx_d_p[0]" >
+		</pin>
+		<pin name="hsma_rx_d_p[1](n)" direction="Input" source="Assignments" diff_pair_node="hsma_rx_d_p[1]" >
+		</pin>
+		<pin name="hsma_rx_d_p[2](n)" direction="Input" source="Assignments" diff_pair_node="hsma_rx_d_p[2]" >
+		</pin>
+		<pin name="hsma_rx_d_p[3](n)" direction="Input" source="Assignments" diff_pair_node="hsma_rx_d_p[3]" >
+		</pin>
+		<pin name="hsma_rx_d_p[4](n)" direction="Input" source="Assignments" diff_pair_node="hsma_rx_d_p[4]" >
+		</pin>
+		<pin name="hsma_rx_d_p[5](n)" direction="Input" source="Assignments" diff_pair_node="hsma_rx_d_p[5]" >
+		</pin>
+		<pin name="hsma_rx_d_p[6](n)" direction="Input" source="Assignments" diff_pair_node="hsma_rx_d_p[6]" >
+		</pin>
+		<pin name="hsma_rx_d_p[7](n)" direction="Input" source="Assignments" diff_pair_node="hsma_rx_d_p[7]" >
+		</pin>
+		<pin name="hsma_rx_d_p[8](n)" direction="Input" source="Assignments" diff_pair_node="hsma_rx_d_p[8]" >
+		</pin>
+		<pin name="hsma_rx_d_p[9](n)" direction="Input" source="Assignments" diff_pair_node="hsma_rx_d_p[9]" >
+		</pin>
+		<pin name="hsma_rx_d_p[10](n)" direction="Input" source="Assignments" diff_pair_node="hsma_rx_d_p[10]" >
+		</pin>
+		<pin name="hsma_rx_d_p[11](n)" direction="Input" source="Assignments" diff_pair_node="hsma_rx_d_p[11]" >
+		</pin>
+		<pin name="hsma_rx_d_p[12](n)" direction="Input" source="Assignments" diff_pair_node="hsma_rx_d_p[12]" >
+		</pin>
+		<pin name="hsma_rx_d_p[13](n)" direction="Input" source="Assignments" diff_pair_node="hsma_rx_d_p[13]" >
+		</pin>
+		<pin name="hsma_rx_d_p[14](n)" direction="Input" source="Assignments" diff_pair_node="hsma_rx_d_p[14]" >
+		</pin>
+		<pin name="hsma_rx_d_p[15](n)" direction="Input" source="Assignments" diff_pair_node="hsma_rx_d_p[15]" >
+		</pin>
+		<pin name="hsma_rx_d_p[16](n)" direction="Input" source="Assignments" diff_pair_node="hsma_rx_d_p[16]" >
+		</pin>
+		<pin name="hsma_tx_d_p[0](n)" direction="Output" source="Assignments" diff_pair_node="hsma_tx_d_p[0]" >
+		</pin>
+		<pin name="hsma_tx_d_p[1](n)" direction="Output" source="Assignments" diff_pair_node="hsma_tx_d_p[1]" >
+		</pin>
+		<pin name="hsma_tx_d_p[2](n)" direction="Output" source="Assignments" diff_pair_node="hsma_tx_d_p[2]" >
+		</pin>
+		<pin name="hsma_tx_d_p[3](n)" direction="Output" source="Assignments" diff_pair_node="hsma_tx_d_p[3]" >
+		</pin>
+		<pin name="hsma_tx_d_p[4](n)" direction="Output" source="Assignments" diff_pair_node="hsma_tx_d_p[4]" >
+		</pin>
+		<pin name="hsma_tx_d_p[5](n)" direction="Output" source="Assignments" diff_pair_node="hsma_tx_d_p[5]" >
+		</pin>
+		<pin name="hsma_tx_d_p[6](n)" direction="Output" source="Assignments" diff_pair_node="hsma_tx_d_p[6]" >
+		</pin>
+		<pin name="hsma_tx_d_p[7](n)" direction="Output" source="Assignments" diff_pair_node="hsma_tx_d_p[7]" >
+		</pin>
+		<pin name="hsma_tx_d_p[8](n)" direction="Output" source="Assignments" diff_pair_node="hsma_tx_d_p[8]" >
+		</pin>
+		<pin name="hsma_tx_d_p[9](n)" direction="Output" source="Assignments" diff_pair_node="hsma_tx_d_p[9]" >
+		</pin>
+		<pin name="hsma_tx_d_p[10](n)" direction="Output" source="Assignments" diff_pair_node="hsma_tx_d_p[10]" >
+		</pin>
+		<pin name="hsma_tx_d_p[11](n)" direction="Output" source="Assignments" diff_pair_node="hsma_tx_d_p[11]" >
+		</pin>
+		<pin name="hsma_tx_d_p[12](n)" direction="Output" source="Assignments" diff_pair_node="hsma_tx_d_p[12]" >
+		</pin>
+		<pin name="hsma_tx_d_p[13](n)" direction="Output" source="Assignments" diff_pair_node="hsma_tx_d_p[13]" >
+		</pin>
+		<pin name="hsma_tx_d_p[14](n)" direction="Output" source="Assignments" diff_pair_node="hsma_tx_d_p[14]" >
+		</pin>
+		<pin name="hsma_tx_d_p[15](n)" direction="Output" source="Assignments" diff_pair_node="hsma_tx_d_p[15]" >
+		</pin>
+		<pin name="hsma_tx_d_p[16](n)" direction="Output" source="Assignments" diff_pair_node="hsma_tx_d_p[16]" >
+		</pin>
+		<pin name="pcie_refclk_p" source="Assignments" diff_pair_node="pcie_refclk_p(n)" >
+		</pin>
+		<pin name="pcie_refclk_p(n)" source="Assignments" diff_pair_node="pcie_refclk_p" >
+		</pin>
+		<pin name="ddr3_dqs_n" source="Assignments" diff_pair_node="ddr3_dqs_n(n)" >
+		</pin>
+		<pin name="ddr3_dqs_p" source="Assignments" diff_pair_node="ddr3_dqs_p(n)" >
+		</pin>
+		<pin name="clkin_155_p" source="Assignments" diff_pair_node="clkin_155_p(n)" >
+		</pin>
+		<pin name="hsma_rx_p" source="Assignments" diff_pair_node="hsma_rx_p(n)" >
+		</pin>
+		<pin name="hsma_tx_p" source="Assignments" diff_pair_node="hsma_tx_p(n)" >
+		</pin>
+		<pin name="hsmb_clk_out_p1" source="Assignments" diff_pair_node="hsmb_clk_out_p1(n)" >
+		</pin>
+		<pin name="hsmb_clk_out_p2" source="Assignments" diff_pair_node="hsmb_clk_out_p2(n)" >
+		</pin>
+		<pin name="hsmb_rx_d_p" source="Assignments" diff_pair_node="hsmb_rx_d_p(n)" >
+		</pin>
+		<pin name="hsmb_rx_p" source="Assignments" diff_pair_node="hsmb_rx_p(n)" >
+		</pin>
+		<pin name="hsmb_tx_d_p" source="Assignments" diff_pair_node="hsmb_tx_d_p(n)" >
+		</pin>
+		<pin name="hsmb_tx_p" source="Assignments" diff_pair_node="hsmb_tx_p(n)" >
+		</pin>
+		<pin name="pcie_rx_n" source="Assignments" diff_pair_node="pcie_rx_n(n)" >
+		</pin>
+		<pin name="pcie_rx_p" source="Assignments" diff_pair_node="pcie_rx_p(n)" >
+		</pin>
+		<pin name="pcie_tx_n" source="Assignments" diff_pair_node="pcie_tx_n(n)" >
+		</pin>
+		<pin name="pcie_tx_p" source="Assignments" diff_pair_node="pcie_tx_p(n)" >
+		</pin>
+		<pin name="clkin_bot_p(n)" direction="Input" source="Report Database" diff_pair_node="clkin_bot_p" >
+		</pin>
+		<pin name="clkin_top_p(n)" direction="Input" source="Report Database" diff_pair_node="clkin_top_p" >
+		</pin>
+	</pin_info>
+	<buses>
+	</buses>
+	<group_file_association>
+	</group_file_association>
+	<pin_planner_file_specifies>
+	</pin_planner_file_specifies>
+</pin_planner>

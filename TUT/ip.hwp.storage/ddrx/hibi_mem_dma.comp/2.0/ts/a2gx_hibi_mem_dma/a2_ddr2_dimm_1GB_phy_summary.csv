@@ -1,0 +1,28 @@
+#Core: a2_ddr2_dimm_1GB_phy - Instance: \gen_2:mem_ctrl|a2_ddr2_dimm_1GB_controller_phy_inst|a2_ddr2_dimm_1GB_phy_inst
+#Path, Setup Margin, Hold Margin
+"Address Command (Slow 900mV 85C Model)",2.389,1.071
+"DQS vs CK (Slow 900mV 85C Model)",0.989,0.893
+"Half Rate Address/Command (Slow 900mV 85C Model)",7.404,1.072
+"Phy (Slow 900mV 85C Model)",1.149,0.243
+"Phy Reset (Slow 900mV 85C Model)",1.902,0.492
+"Read Capture (Slow 900mV 85C Model)",0.638,0.644
+"Read Resync (All Conditions)",1.418,1.559
+"Write (Slow 900mV 85C Model)",0.601,0.638
+ 
+"Address Command (Slow 900mV 0C Model)",2.461,1.050
+"DQS vs CK (Slow 900mV 0C Model)",0.999,0.918
+"Half Rate Address/Command (Slow 900mV 0C Model)",7.480,1.050
+"Phy (Slow 900mV 0C Model)",1.251,0.228
+"Phy Reset (Slow 900mV 0C Model)",1.941,0.474
+"Read Capture (Slow 900mV 0C Model)",0.703,0.588
+"Read Resync (All Conditions)",1.418,1.559
+"Write (Slow 900mV 0C Model)",0.608,0.632
+ 
+"Address Command (Fast 900mV 0C Model)",2.746,0.947
+"DQS vs CK (Fast 900mV 0C Model)",1.045,0.994
+"Half Rate Address/Command (Fast 900mV 0C Model)",7.766,0.948
+"Phy (Fast 900mV 0C Model)",1.854,0.101
+"Phy Reset (Fast 900mV 0C Model)",2.370,0.233
+"Read Capture (Fast 900mV 0C Model)",0.690,0.707
+"Read Resync (All Conditions)",1.418,1.559
+"Write (Fast 900mV 0C Model)",0.666,0.690

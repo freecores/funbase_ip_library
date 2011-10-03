@@ -1,0 +1,2298 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title>datasheet for pcie_to_hibi_4x_sopc</title>
+  <style type="text/css">
+body { font-family:arial ;}
+a { text-decoration:none ; color:#003000 ;}
+a:hover { text-decoration:underline ; color:0030f0 ;}
+td { padding : 5px ;}
+table.topTitle { width:100% ;}
+table.topTitle td.l { text-align:left ; font-weight: bold ; font-size:30px ;}
+table.topTitle td.r { text-align:right ; font-weight: bold ; font-size:16px ;}
+table.blueBar { width : 100% ; border-spacing : 0px ;}
+table.blueBar td { background : blue ; font-size:12px ; color : white ; text-align : left ; font-weight : bold ;}
+table.blueBar td.l { text-align : left ;}
+table.blueBar td.r { text-align : right ;}
+table.items { width:100% ; border-collapse:collapse ;}
+table.items td.label { font-weight:bold ; font-size:16px ; vertical-align:top ;}
+table.items td.mono { font-family:courier ; font-size:12px ; white-space:pre ;}
+div.label { font-weight:bold ; font-size:16px ; vertical-align:top ; text-align:center ;}
+table.grid { border-collapse:collapse ;}
+table.grid td { border:1px solid #bbb ; font-size:12px ;}
+body { font-family:arial ;}
+a { text-decoration:none ; color:#003000 ;}
+a:hover { text-decoration:underline ; color:0030f0 ;}
+table.x { font-family:courier ; border-collapse:collapse ; padding:2px ;}
+table.x td { border:1px solid #bbb ;}
+td.tableTitle { font-weight:bold ; text-align:center ;}
+table.grid { border-collapse:collapse ;}
+table.grid td { border:1px solid #bbb ;}
+table.grid td.tableTitle { font-weight:bold ; text-align:center ;}
+table.mmap { border-collapse:collapse ; text-size:11px ; border:1px solid #d8d8d8 ;}
+table.mmap td { border-color:#d8d8d8 ; border-width:1px ; border-style:solid ;}
+table.mmap td.empty { border-style:none ; background-color:#f0f0f0 ;}
+table.mmap td.slavemodule { text-align:left ; font-size:11px ; border-style:solid solid none solid ;}
+table.mmap td.slavem { text-align:right ; font-size:9px ; font-style:italic ; border-style:none solid none solid ;}
+table.mmap td.slaveb { text-align:right ; font-size:9px ; font-style:italic ; border-style:none solid solid solid ;}
+table.mmap td.mastermodule { text-align:center ; font-size:11px ; border-style:solid solid none solid ;}
+table.mmap td.masterlr { text-align:center ; font-size:9px ; font-style:italic ; border-style:none solid solid solid ;}
+table.mmap td.masterl { text-align:center ; font-size:9px ; font-style:italic ; border-style:none none solid solid ;}
+table.mmap td.masterm { text-align:center ; font-size:9px ; font-style:italic ; border-style:none none solid none ;}
+table.mmap td.masterr { text-align:center ; font-size:9px ; font-style:italic ; border-style:none solid solid none ;}
+table.mmap td.addr { font-family:courier ; font-size:9px ; text-align:right ;}
+table.connectionboxes { border-collapse:separate ; border-spacing:0px ; font-family:arial ;}
+table.connectionboxes td.from { border-bottom:1px solid black ; font-size:9px ; font-style:italic ; vertical-align:bottom ; text-align:left ;}
+table.connectionboxes td.to { font-size:9px ; font-style:italic ; vertical-align:top ; text-align:right ;}
+table.connectionboxes td.lefthandwire { border-bottom:1px solid black ; font-size:9px ; font-style:italic ; vertical-align:bottom ; text-align:right ;}
+table.connectionboxes td.righthandwire { border-bottom:1px solid black ; font-size:9px ; font-style:italic ; vertical-align:bottom ; text-align:left ;}
+table.connectionboxes td.righthandlabel { font-size:11px ; vertical-align:bottom ; text-align:left ;}
+table.connectionboxes td.neighbor { padding:3px ; border:1px solid black ; font-size: 11px ; background:#e8e8e8 ; vertical-align:center ; text-align:center ;}
+table.connectionboxes td.main { padding:8px ; border:1px solid black ; font-size: 14px ; font-weight:bold ; background:#ffffff ; vertical-align:center ; text-align:center ;}
+.parametersbox { border:1px solid #d0d0d0 ; display:inline-block ; max-height:160px ; overflow:auto ; width:360px ; font-size:10px ;}
+.flowbox { display:inline-block ;}
+.parametersbox table { font-size:10px ;}
+td.parametername { font-style:italic ;}
+td.parametervalue { font-weight:bold ;}
+div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; border-top:1px solid #707070 ; border-bottom:1px solid #707070 ; padding:20px ; margin:20px ; width:auto ;}</style>
+ </head>
+ <body>
+  <table class="topTitle">
+   <tr>
+    <td class="l">pcie_to_hibi_4x_sopc</td>
+    <td class="r">
+     <br></br>
+     <br></br>
+    </td>
+   </tr>
+  </table>
+  <table class="blueBar">
+   <tr>
+    <td class="l">2010.03.30.17:13:15</td>
+    <td class="r">Datasheet</td>
+   </tr>
+  </table>
+  <div style="width:100% ;  height:10px"> </div>
+  <div class="label">Overview</div>
+  <div class="greydiv">
+   <div style="display:inline-block ; text-align:left">
+    <table class="connectionboxes">
+     <tr>
+      <td class="lefthandwire">&#160;&#160;clk&#160;</td>
+      <td class="main" rowspan="69">pcie_to_hibi_4x_sopc</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandlabel">&#160;&#160;
+       <a href="#module_pcie"><b>pcie</b>
+       </a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;pcie_rstn&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;phystatus_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rx_in0&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxdata1_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxdata2_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxdata3_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxdatak1_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxdatak2_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxdatak3_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxelecidle1_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxelecidle2_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxelecidle3_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;refclk&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxstatus1_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxstatus2_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxstatus3_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxvalid1_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxvalid2_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxvalid3_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rx_in1&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rx_in2&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rx_in3&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxdata0_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;reconfig_clk&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;reconfig_togxb&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;gxb_powerdown&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;pll_powerdown&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxdatak0_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxelecidle0_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxstatus0_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxvalid0_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;test_in&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;pipe_mode&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;clk125_out&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;tx_out0&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxpolarity1_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxpolarity2_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxpolarity3_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;txcompl1_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;txcompl2_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;txcompl3_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;txdata1_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;txdata2_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;powerdown_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;txdata3_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;txdatak1_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;txdatak2_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;txdatak3_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;txelecidle1_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;txelecidle2_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;txelecidle3_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;tx_out1&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;tx_out2&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;tx_out3&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rxpolarity0_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;reconfig_fromgxb&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;clk250_out&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;clk500_out&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;rate_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;test_out&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;txcompl0_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;txdata0_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;txdatak0_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;txdetectrx_ext&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;txelecidle0_ext&#160;&#160;</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+    </table>
+   </div><span style="display:inline-block ; width:28px"> </span>
+   <div style="display:inline-block ; text-align:left"><span>
+     <br></br>Peripherals
+     <br></br>&#160;&#160;
+     <a href="#module_pcie"><b>pcie</b>
+     </a> altera_avalon_pcie_compiler 9.1.304
+     <br></br>&#160;&#160;
+     <a href="#module_dma"><b>dma</b>
+     </a> altera_avalon_dma 9.1
+     <br></br>&#160;&#160;
+     <a href="#module_a2h"><b>a2h</b>
+     </a> Avalon_to_HIBI 0.1</span>
+   </div>
+  </div>
+  <div style="width:100% ;  height:10px"> </div>
+  <div class="label">Memory Map</div>
+  <table class="mmap">
+   <tr>
+    <td class="empty" rowspan="2"></td>
+    <td class="mastermodule" colspan="2">
+     <a href="#module_pcie"><b>pcie</b>
+     </a>
+    </td>
+    <td class="mastermodule" colspan="2">
+     <a href="#module_dma"><b>dma</b>
+     </a>
+    </td>
+   </tr>
+   <tr>
+    <td class="masterl">&#160;bar1_0_Prefetchable</td>
+    <td class="masterr">&#160;bar2_Non_Prefetchable</td>
+    <td class="masterl">&#160;read_master</td>
+    <td class="masterr">&#160;write_master</td>
+   </tr>
+   <tr>
+    <td class="slavemodule">&#160;
+     <a href="#module_pcie"><b>pcie</b>
+     </a>
+    </td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+   </tr>
+   <tr>
+    <td class="slavem">Control_Register_Access&#160;</td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="addr"><span style="color:#989898">0x</span>80004000</td>
+    <td class="addr"><span style="color:#989898">0x</span>80004000</td>
+   </tr>
+   <tr>
+    <td class="slavem">Tx_Interface&#160;</td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="addr"><span style="color:#989898">0x</span>00000000</td>
+    <td class="addr"><span style="color:#989898">0x</span>00000000</td>
+   </tr>
+   <tr>
+    <td class="slavemodule">&#160;
+     <a href="#module_dma"><b>dma</b>
+     </a>
+    </td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+   </tr>
+   <tr>
+    <td class="slaveb">control_port_slave&#160;</td>
+    <td class="empty"></td>
+    <td class="addr"><span style="color:#989898">0x</span>80001000</td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+   </tr>
+   <tr>
+    <td class="slavemodule">&#160;
+     <a href="#module_a2h"><b>a2h</b>
+     </a>
+    </td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+   </tr>
+   <tr>
+    <td class="slaveb">avalon_slave&#160;</td>
+    <td class="addr"><span style="color:#989898">0x</span>00000000</td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+   </tr>
+  </table>
+  <a name="module_clk"> </a>
+  <div>
+   <hr></hr>
+   <h2>clk</h2>clock_source v9.1
+   <br></br>
+   <br></br>
+   <br></br>
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Parameters</h2>
+      <table>
+       <tr>
+        <td class="parametername">clockFrequency</td>
+        <td class="parametervalue">100000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">clockFrequencyKnown</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">inputClockFrequency</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">deviceFamily</td>
+        <td class="parametervalue">UNKNOWN</td>
+       </tr>
+       <tr>
+        <td class="parametername">generateLegacySim</td>
+        <td class="parametervalue">false</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>&#160;&#160;
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Software Assignments</h2>(none)</td>
+    </tr>
+   </table>
+  </div>
+  <a name="module_pcie"> </a>
+  <div>
+   <hr></hr>
+   <h2>pcie</h2>altera_avalon_pcie_compiler v9.1.304
+   <br></br>
+   <div class="greydiv">
+    <table class="connectionboxes">
+     <tr>
+      <td class="neighbor" rowspan="4">
+       <a href="#module_clk">clk</a>
+      </td>
+      <td class="from">clk&#160;&#160;</td>
+      <td class="main" rowspan="20">pcie</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;avalon_clk</td>
+     </tr>
+     <tr>
+      <td class="from">clk&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;cal_blk_clk</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="8">
+       <a href="#module_dma">dma</a>
+      </td>
+      <td class="from">read_master&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;Tx_Interface</td>
+     </tr>
+     <tr>
+      <td class="from">write_master&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;Control_Register_Access</td>
+     </tr>
+     <tr>
+      <td class="from">write_master&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;Tx_Interface</td>
+     </tr>
+     <tr>
+      <td class="from">read_master&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;Control_Register_Access</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">RxmIrq&#160;&#160;</td>
+      <td class="neighbor" rowspan="4">
+       <a href="#module_dma">dma</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;irq</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">bar2_Non_Prefetchable&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;control_port_slave</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">bar1_0_Prefetchable&#160;&#160;</td>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_a2h">a2h</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;avalon_slave</td>
+     </tr>
+    </table>
+   </div>
+   <br></br>
+   <br></br>
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Parameters</h2>
+      <table>
+       <tr>
+        <td class="parametername">SOPCSystemName</td>
+        <td class="parametervalue">pcie_to_hibi_4x_sopc</td>
+       </tr>
+       <tr>
+        <td class="parametername">actualBAR0AvalonAddress</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">actualBAR0Size</td>
+        <td class="parametervalue">25</td>
+       </tr>
+       <tr>
+        <td class="parametername">actualBAR1AvalonAddress</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">actualBAR1Size</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">actualBAR2AvalonAddress</td>
+        <td class="parametervalue">2147487744</td>
+       </tr>
+       <tr>
+        <td class="parametername">actualBAR2Size</td>
+        <td class="parametervalue">7</td>
+       </tr>
+       <tr>
+        <td class="parametername">actualBAR3AvalonAddress</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">actualBAR3Size</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">actualBAR4AvalonAddress</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">actualBAR4Size</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">actualBAR5AvalonAddress</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">actualBAR5Size</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">allowedDeviceFamilies</td>
+        <td class="parametervalue"></td>
+       </tr>
+       <tr>
+        <td class="parametername">altgx_generated</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">clockSource</td>
+        <td class="parametervalue">clk</td>
+       </tr>
+       <tr>
+        <td class="parametername">contextState</td>
+        <td class="parametervalue">SOPCContext</td>
+       </tr>
+       <tr>
+        <td class="parametername">deviceFamily</td>
+        <td class="parametervalue">Arria II GX</td>
+       </tr>
+       <tr>
+        <td class="parametername">ordering_code</td>
+        <td class="parametervalue">IP-PCIE/4</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hardwired_address_map</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_00</td>
+        <td class="parametervalue">0x0000000000000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_00_type</td>
+        <td class="parametervalue">Memory32Bit</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_01</td>
+        <td class="parametervalue">0x0000000000100000</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_01_type</td>
+        <td class="parametervalue">Memory32Bit</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_02</td>
+        <td class="parametervalue">0x0000000000000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_02_type</td>
+        <td class="parametervalue">Memory32Bit</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_03</td>
+        <td class="parametervalue">0x0000000000000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_03_type</td>
+        <td class="parametervalue">Memory32Bit</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_04</td>
+        <td class="parametervalue">0x0000000000000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_04_type</td>
+        <td class="parametervalue">Memory32Bit</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_05</td>
+        <td class="parametervalue">0x0000000000000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_05_type</td>
+        <td class="parametervalue">Memory32Bit</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_06</td>
+        <td class="parametervalue">0x0000000000000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_06_type</td>
+        <td class="parametervalue">Memory32Bit</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_07</td>
+        <td class="parametervalue">0x0000000000000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_07_type</td>
+        <td class="parametervalue">Memory32Bit</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_08</td>
+        <td class="parametervalue">0x0000000000000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_08_type</td>
+        <td class="parametervalue">Memory32Bit</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_09</td>
+        <td class="parametervalue">0x0000000000000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_09_type</td>
+        <td class="parametervalue">Memory32Bit</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_10</td>
+        <td class="parametervalue">0x0000000000000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_10_type</td>
+        <td class="parametervalue">Memory32Bit</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_11</td>
+        <td class="parametervalue">0x0000000000000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_11_type</td>
+        <td class="parametervalue">Memory32Bit</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_12</td>
+        <td class="parametervalue">0x0000000000000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_12_type</td>
+        <td class="parametervalue">Memory32Bit</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_13</td>
+        <td class="parametervalue">0x0000000000000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_13_type</td>
+        <td class="parametervalue">Memory32Bit</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_14</td>
+        <td class="parametervalue">0x0000000000000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_14_type</td>
+        <td class="parametervalue">Memory32Bit</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_15</td>
+        <td class="parametervalue">0x0000000000000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_hw_pci_address_15_type</td>
+        <td class="parametervalue">Memory32Bit</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_pane_count</td>
+        <td class="parametervalue">2</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_avalon_pane_size</td>
+        <td class="parametervalue">20</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_enable_pcie_hip_dprio</td>
+        <td class="parametervalue">N/A</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_64bit_bar</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_64bit_bus</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_66mhz</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_allow_param_readback</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_altera_arbiter</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_arbited_devices</td>
+        <td class="parametervalue">2</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_arbiter</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_0_auto_avalon_address</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_0_auto_sized</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_0_avalon_address</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_0_hardwired</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_0_pci_address</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_0_prefetchable</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_1_auto_avalon_address</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_1_auto_sized</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_1_avalon_address</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_1_hardwired</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_1_pci_address</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_1_prefetchable</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_2_auto_avalon_address</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_2_auto_sized</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_2_avalon_address</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_2_hardwired</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_2_pci_address</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_2_prefetchable</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_3_auto_avalon_address</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_3_auto_sized</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_3_avalon_address</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_3_hardwired</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_3_pci_address</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_3_prefetchable</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_4_auto_avalon_address</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_4_auto_sized</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_4_avalon_address</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_4_hardwired</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_4_pci_address</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_4_prefetchable</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_5_auto_avalon_address</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_5_auto_sized</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_5_avalon_address</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_5_hardwired</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_5_pci_address</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bar_5_prefetchable</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_bus_access_address_width</td>
+        <td class="parametervalue">18</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_global_reset</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_host_bridge</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_impl_cra_av_slave_port</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_master</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_master_bursts</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_master_concurrent_reads</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_master_data_width</td>
+        <td class="parametervalue">64</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_maximum_burst_size</td>
+        <td class="parametervalue">128</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_maximum_burst_size_a2p</td>
+        <td class="parametervalue">128</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_maximum_pending_read_transactions_a2p</td>
+        <td class="parametervalue">8</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_non_pref_av_master_port</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_not_target_only_port</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_pref_av_master_port</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_reqn_gntn_pins</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_single_clock</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_target_bursts</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_target_concurrent_reads</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pci_user_specified_bars</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_L1_exit_latency_common_clock</td>
+        <td class="parametervalue">&gt;64 us</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_L1_exit_latency_separate_clock</td>
+        <td class="parametervalue">&gt;64 us</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_advanced_error_int_num</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_advanced_error_reporting</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_alt2gxb</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_altgx_keyParameters_used</td>
+        <td class="parametervalue">{p_pcie_enable_hip=1, p_pcie_number_of_lanes=x4, p_pcie_phy=Arria II GX, p_pcie_rate=Gen1 (2.5 Gbps)}</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_app_signal_interface</td>
+        <td class="parametervalue">AvalonMM</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_attention_button</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_attention_indicator</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_auto_configure_retry_buffer</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_bar_size_bar_0</td>
+        <td class="parametervalue">Auto</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_bar_size_bar_1</td>
+        <td class="parametervalue">N/A</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_bar_size_bar_2</td>
+        <td class="parametervalue">Auto</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_bar_size_bar_3</td>
+        <td class="parametervalue">N/A</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_bar_size_bar_4</td>
+        <td class="parametervalue">N/A</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_bar_size_bar_5</td>
+        <td class="parametervalue">N/A</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_bar_type_bar_0</td>
+        <td class="parametervalue">64-bit Prefetchable Memory</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_bar_type_bar_1</td>
+        <td class="parametervalue">N/A</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_bar_type_bar_2</td>
+        <td class="parametervalue">32-bit Non-Prefetchable Memory</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_bar_type_bar_3</td>
+        <td class="parametervalue">Disable this and all higher BARs</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_bar_type_bar_4</td>
+        <td class="parametervalue">Disable this and all higher BARs</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_bar_type_bar_5</td>
+        <td class="parametervalue">Disable this and all higher BARs</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_bar_used_bar_0</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_bar_used_bar_1</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_bar_used_bar_2</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_bar_used_bar_3</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_bar_used_bar_4</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_bar_used_bar_5</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_channel_number</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_chk_io</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_class_code</td>
+        <td class="parametervalue">0xFF0000</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_completion_data_credit_vc0</td>
+        <td class="parametervalue">256</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_completion_data_credit_vc1</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_completion_data_credit_vc2</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_completion_data_credit_vc3</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_completion_data_used_space_vc0</td>
+        <td class="parametervalue">4096</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_completion_data_used_space_vc1</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_completion_data_used_space_vc2</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_completion_data_used_space_vc3</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_completion_header_credit_vc0</td>
+        <td class="parametervalue">48</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_completion_header_credit_vc1</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_completion_header_credit_vc2</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_completion_header_credit_vc3</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_completion_header_used_space_vc0</td>
+        <td class="parametervalue">768</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_completion_header_used_space_vc1</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_completion_header_used_space_vc2</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_completion_header_used_space_vc3</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_completion_timeout</td>
+        <td class="parametervalue">NONE</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_custom_phy_x8</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_custom_rx_buffer_xml</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_device_id</td>
+        <td class="parametervalue">0x0005</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_device_init_required</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_dll_active_report_support</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_ecrc_check</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_ecrc_generation</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_eie_b4_nfts_count</td>
+        <td class="parametervalue">4</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_enable_L1_aspm</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_enable_completion_timeout_disable</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_enable_fast_recovery</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_enable_function_msix_support</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_enable_hip</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_enable_hip_core_clk</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_enable_pcie_gen2_x8_es</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_enable_root_port_endpoint_mode</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_enable_simple_dma</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_enable_slot_capability</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_enable_tl_bypass_mode</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_endpoint_L0s_acceptable_latency</td>
+        <td class="parametervalue"><![CDATA[<64 ns]]></td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_endpoint_L1_acceptable_latency</td>
+        <td class="parametervalue"><![CDATA[<1 us]]></td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_exp_rom_bar_size</td>
+        <td class="parametervalue">N/A</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_exp_rom_bar_used</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_gen2_nfts_diff_clock</td>
+        <td class="parametervalue">255</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_gen2_nfts_same_clock</td>
+        <td class="parametervalue">255</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_implement_data_register</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_initiator_performance_preset</td>
+        <td class="parametervalue">High</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_internal_clock</td>
+        <td class="parametervalue">125 MHz</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_io_base_and_limit_register</td>
+        <td class="parametervalue">IODisable</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_lanerev</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_link_common_clock</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_link_port_number</td>
+        <td class="parametervalue">0x01</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_low_priority_virtual_channels</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_max_payload_size</td>
+        <td class="parametervalue">128 Bytes</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_mem_base_and_limit_register</td>
+        <td class="parametervalue">MemDisable</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_msi_message_64bits_address_capable</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_msi_message_requested</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_msix_pba_bir</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_msix_pba_offset</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_msix_table_bir</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_msix_table_offset</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_msix_table_size</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_nfts_common_clock</td>
+        <td class="parametervalue">255</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_nfts_separate_clock</td>
+        <td class="parametervalue">255</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_nonposted_data_credit_vc0</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_nonposted_data_credit_vc1</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_nonposted_data_credit_vc2</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_nonposted_data_credit_vc3</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_nonposted_data_used_space_vc0</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_nonposted_data_used_space_vc1</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_nonposted_data_used_space_vc2</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_nonposted_data_used_space_vc3</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_nonposted_header_credit_vc0</td>
+        <td class="parametervalue">20</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_nonposted_header_credit_vc1</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_nonposted_header_credit_vc2</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_nonposted_header_credit_vc3</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_nonposted_header_used_space_vc0</td>
+        <td class="parametervalue">320</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_nonposted_header_used_space_vc1</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_nonposted_header_used_space_vc2</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_nonposted_header_used_space_vc3</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_number_of_lanes</td>
+        <td class="parametervalue">x4</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_phy</td>
+        <td class="parametervalue">Arria II GX</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_phy_interface</td>
+        <td class="parametervalue">Serial</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_pme_pending</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_pme_reg_id</td>
+        <td class="parametervalue">0x0000</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_port_type</td>
+        <td class="parametervalue">Native Endpoint</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_posted_data_credit_vc0</td>
+        <td class="parametervalue">91</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_posted_data_credit_vc1</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_posted_data_credit_vc2</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_posted_data_credit_vc3</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_posted_data_used_space_vc0</td>
+        <td class="parametervalue">1456</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_posted_data_used_space_vc1</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_posted_data_used_space_vc2</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_posted_data_used_space_vc3</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_posted_header_credit_vc0</td>
+        <td class="parametervalue">17</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_posted_header_credit_vc1</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_posted_header_credit_vc2</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_posted_header_credit_vc3</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_posted_header_used_space_vc0</td>
+        <td class="parametervalue">272</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_posted_header_used_space_vc1</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_posted_header_used_space_vc2</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_posted_header_used_space_vc3</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_power_indicator</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_rate</td>
+        <td class="parametervalue">Gen1 (2.5 Gbps)</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_rate_match_fifo</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_retry_buffer_size</td>
+        <td class="parametervalue">2 KBytes</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_retry_fifo_depth</td>
+        <td class="parametervalue">64</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_revision_id</td>
+        <td class="parametervalue">0x01</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_rx_buffer_preset</td>
+        <td class="parametervalue">Default</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_rx_buffer_size_string_vc0</td>
+        <td class="parametervalue">6912 Bytes</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_rx_buffer_size_string_vc1</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_rx_buffer_size_string_vc2</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_rx_buffer_size_string_vc3</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_rx_buffer_size_vc0</td>
+        <td class="parametervalue">6912</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_rx_buffer_size_vc1</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_rx_buffer_size_vc2</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_rx_buffer_size_vc3</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_slot_capabilities</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_special_phy_gl</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_special_phy_px</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_subsystem_device_id</td>
+        <td class="parametervalue">0x0005</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_subsystem_vendor_id</td>
+        <td class="parametervalue">0x1172</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_surprise_down_error_support</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_tag_supported</td>
+        <td class="parametervalue">32</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_target_performance_preset</td>
+        <td class="parametervalue">High</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_test_out_width</td>
+        <td class="parametervalue">9 bits</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_threshold_for_L0s_entry</td>
+        <td class="parametervalue">8192 ns</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_total_header_credit_vc0</td>
+        <td class="parametervalue">85</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_total_header_credit_vc1</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_total_header_credit_vc2</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_total_header_credit_vc3</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_txrx_clock</td>
+        <td class="parametervalue">100 MHz</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_underSOPCBuilder</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_use_crc_forwarding</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_variation_name</td>
+        <td class="parametervalue">pcie_core</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_vendor_id</td>
+        <td class="parametervalue">0x1172</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_version</td>
+        <td class="parametervalue">1.1</td>
+       </tr>
+       <tr>
+        <td class="parametername">p_pcie_virutal_channels</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">pref_nonp_independent</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">translationTableSizeInfo</td>
+        <td class="parametervalue"><![CDATA[The bridge reserves a contiguous Avalon address range to access
+PCIe devices. This Avalon address range is segmented into one or
+more equal-sized pages that are individually mapped to PCIe
+addresses. Select the number and size of the address pages.]]></td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWAddress0</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWAddress1</td>
+        <td class="parametervalue">0x00100000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWAddress10</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWAddress11</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWAddress12</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWAddress13</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWAddress14</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWAddress15</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWAddress2</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWAddress3</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWAddress4</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWAddress5</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWAddress6</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWAddress7</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWAddress8</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWAddress9</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWPCIAddress0</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWPCIAddress1</td>
+        <td class="parametervalue">0x00100000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWPCIAddress10</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWPCIAddress11</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWPCIAddress12</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWPCIAddress13</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWPCIAddress14</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWPCIAddress15</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWPCIAddress2</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWPCIAddress3</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWPCIAddress4</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWPCIAddress5</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWPCIAddress6</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWPCIAddress7</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWPCIAddress8</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonHWPCIAddress9</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiAvalonTranslationTable</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiBar0PCIAddress</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiBar0Prefetchable</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiBar1PCIAddress</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiBar1Prefetchable</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiBar2PCIAddress</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiBar2Prefetchable</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiBar3PCIAddress</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiBar3Prefetchable</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiBar4PCIAddress</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiBar4Prefetchable</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiBar5PCIAddress</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiBar5Prefetchable</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiCRAInfoPanel</td>
+        <td class="parametervalue">dynamicTable</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiExpROMType</td>
+        <td class="parametervalue">Select to Enable</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiFixedTable</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiPCIBar0Type</td>
+        <td class="parametervalue">64-bit Prefetchable Memory</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiPCIBar1Type</td>
+        <td class="parametervalue">N/A</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiPCIBar2Type</td>
+        <td class="parametervalue">32-bit Non-Prefetchable Memory</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiPCIBar3Type</td>
+        <td class="parametervalue">Disable this and all higher BARs</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiPCIBar4Type</td>
+        <td class="parametervalue">Disable this and all higher BARs</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiPCIBar5Type</td>
+        <td class="parametervalue">Disable this and all higher BARs</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiPCIBarTable</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiPCIBusArbiter</td>
+        <td class="parametervalue">external</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiPCIDeviceMode</td>
+        <td class="parametervalue">masterTarget</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiPCIMasterPerformance</td>
+        <td class="parametervalue">burstSinglePending</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiPCITargetPerformance</td>
+        <td class="parametervalue">burstSinglePending</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiPaneCount</td>
+        <td class="parametervalue">2</td>
+       </tr>
+       <tr>
+        <td class="parametername">uiPaneSize</td>
+        <td class="parametervalue">20</td>
+       </tr>
+       <tr>
+        <td class="parametername">ui_pcie_msix_pba_bir</td>
+        <td class="parametervalue">1:0</td>
+       </tr>
+       <tr>
+        <td class="parametername">ui_pcie_msix_table_bir</td>
+        <td class="parametervalue">1:0</td>
+       </tr>
+       <tr>
+        <td class="parametername">generateLegacySim</td>
+        <td class="parametervalue">false</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>&#160;&#160;
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Software Assignments</h2>(none)</td>
+    </tr>
+   </table>
+  </div>
+  <a name="module_dma"> </a>
+  <div>
+   <hr></hr>
+   <h2>dma</h2>altera_avalon_dma v9.1
+   <br></br>
+   <div class="greydiv">
+    <table class="connectionboxes">
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_clk">clk</a>
+      </td>
+      <td class="from">clk&#160;&#160;</td>
+      <td class="main" rowspan="15">dma</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;clk</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="4">
+       <a href="#module_pcie">pcie</a>
+      </td>
+      <td class="from">RxmIrq&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;irq</td>
+     </tr>
+     <tr>
+      <td class="from">bar2_Non_Prefetchable&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;control_port_slave</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">read_master&#160;&#160;</td>
+      <td class="neighbor" rowspan="8">
+       <a href="#module_pcie">pcie</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;Tx_Interface</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">write_master&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;Control_Register_Access</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">write_master&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;Tx_Interface</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">read_master&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;Control_Register_Access</td>
+     </tr>
+    </table>
+   </div>
+   <br></br>
+   <br></br>
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Parameters</h2>
+      <table>
+       <tr>
+        <td class="parametername">actualDmaTransactionRegisterWidth</td>
+        <td class="parametervalue">21</td>
+       </tr>
+       <tr>
+        <td class="parametername">allowByteTransactions</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">allowDoubleWordTransactions</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">allowHalfWordTransactions</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">allowQuadWordTransactions</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">allowWordTransactions</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">bigEndian</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">burstEnable</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">maxBurstSize</td>
+        <td class="parametervalue">1024</td>
+       </tr>
+       <tr>
+        <td class="parametername">minimumDmaTransactionRegisterWidth</td>
+        <td class="parametervalue">13</td>
+       </tr>
+       <tr>
+        <td class="parametername">minimumNumberOfByteTransfers</td>
+        <td class="parametervalue">8191</td>
+       </tr>
+       <tr>
+        <td class="parametername">readAddressMap</td>
+        <td class="parametervalue"><![CDATA[<address-map><slave name='pcie.Tx_Interface' start='0x0' end='0x200000' /><slave name='pcie.Control_Register_Access' start='0x80004000' end='0x80008000' /></address-map>]]></td>
+       </tr>
+       <tr>
+        <td class="parametername">readSlaveDataWidthMax</td>
+        <td class="parametervalue">64</td>
+       </tr>
+       <tr>
+        <td class="parametername">useRegistersForFIFO</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">writeAddressMap</td>
+        <td class="parametervalue"><![CDATA[<address-map><slave name='pcie.Tx_Interface' start='0x0' end='0x200000' /><slave name='pcie.Control_Register_Access' start='0x80004000' end='0x80008000' /></address-map>]]></td>
+       </tr>
+       <tr>
+        <td class="parametername">writeSlaveDataWidthMax</td>
+        <td class="parametervalue">64</td>
+       </tr>
+       <tr>
+        <td class="parametername">deviceFamily</td>
+        <td class="parametervalue">UNKNOWN</td>
+       </tr>
+       <tr>
+        <td class="parametername">generateLegacySim</td>
+        <td class="parametervalue">false</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>&#160;&#160;
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Software Assignments</h2>
+      <table>
+       <tr>
+        <td class="parametername">LENGTHWIDTH</td>
+        <td class="parametervalue">13</td>
+       </tr>
+       <tr>
+        <td class="parametername">ALLOW_BYTE_TRANSACTIONS</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">ALLOW_HW_TRANSACTIONS</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">ALLOW_WORD_TRANSACTIONS</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">ALLOW_DOUBLEWORD_TRANSACTIONS</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">ALLOW_QUADWORD_TRANSACTIONS</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">MAX_BURST_SIZE</td>
+        <td class="parametervalue">1024</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>
+  </div>
+  <a name="module_a2h"> </a>
+  <div>
+   <hr></hr>
+   <h2>a2h</h2>Avalon_to_HIBI v0.1
+   <br></br>
+   <div class="greydiv">
+    <table class="connectionboxes">
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_clk">clk</a>
+      </td>
+      <td class="from">clk&#160;&#160;</td>
+      <td class="main" rowspan="5">a2h</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;clock_reset</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_pcie">pcie</a>
+      </td>
+      <td class="from">bar1_0_Prefetchable&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;avalon_slave</td>
+     </tr>
+    </table>
+   </div>
+   <br></br>
+   <br></br>
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Parameters</h2>
+      <table>
+       <tr>
+        <td class="parametername">AV_ADDR_SIZE</td>
+        <td class="parametervalue">23</td>
+       </tr>
+       <tr>
+        <td class="parametername">AV_M2H2_ADDR</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">AV_OTHER_HIBI_ADDR</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">HIBI_BASE_ADDR</td>
+        <td class="parametervalue">12</td>
+       </tr>
+       <tr>
+        <td class="parametername">HIBI_M2H2_BASE_ADDR</td>
+        <td class="parametervalue">14</td>
+       </tr>
+       <tr>
+        <td class="parametername">HIBI_M2H2_CONF_ADDR</td>
+        <td class="parametervalue">16</td>
+       </tr>
+       <tr>
+        <td class="parametername">AUTO_CLOCK_RESET_CLOCK_RATE</td>
+        <td class="parametervalue">100000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">deviceFamily</td>
+        <td class="parametervalue">UNKNOWN</td>
+       </tr>
+       <tr>
+        <td class="parametername">generateLegacySim</td>
+        <td class="parametervalue">false</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>&#160;&#160;
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Software Assignments</h2>(none)</td>
+    </tr>
+   </table>
+  </div>
+  <table class="blueBar">
+   <tr>
+    <td class="l">generation took 0,00 seconds</td>
+    <td class="r">rendering took 5,20 seconds</td>
+   </tr>
+  </table>
+ </body>
+</html>

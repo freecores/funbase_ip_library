@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system name="pcie_to_hibi_4x_sopc">
+ <parameter name="bonusData"><![CDATA[bonusData 
+{
+   element pcie.Control_Register_Access
+   {
+      datum baseAddress
+      {
+         value = "2147500032";
+         type = "long";
+      }
+   }
+   element a2h
+   {
+      datum _sortIndex
+      {
+         value = "2";
+         type = "int";
+      }
+   }
+   element clk
+   {
+      datum _sortIndex
+      {
+         value = "3";
+         type = "int";
+      }
+   }
+   element dma.control_port_slave
+   {
+      datum baseAddress
+      {
+         value = "2147487744";
+         type = "long";
+      }
+   }
+   element dma
+   {
+      datum _sortIndex
+      {
+         value = "1";
+         type = "int";
+      }
+      datum megawizard_uipreferences
+      {
+         value = "{}";
+         type = "String";
+      }
+   }
+   element pcie
+   {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
+      datum megawizard_uipreferences
+      {
+         value = "{}";
+         type = "String";
+      }
+   }
+   element pcie_to_hibi_4x_sopc
+   {
+   }
+}
+]]></parameter>
+ <parameter name="deviceFamily" value="ARRIAII" />
+ <parameter name="generateLegacySim" value="false" />
+ <parameter name="hardcopyCompatible" value="false" />
+ <parameter name="hdlLanguage" value="VHDL" />
+ <parameter name="projectName" value="ddr2_sodimm.qpf" />
+ <parameter name="systemHash" value="-18910544222" />
+ <parameter name="timeStamp" value="1269958378004" />
+ <module name="clk" kind="clock_source" version="9.1" enabled="1">
+  <parameter name="clockFrequency" value="100000000" />
+  <parameter name="clockFrequencyKnown" value="true" />
+ </module>
+ <module
+   name="pcie"
+   kind="altera_avalon_pcie_compiler"
+   version="9.1.304"
+   enabled="1">
+  <parameter name="SOPCSystemName">pcie_to_hibi_4x_sopc</parameter>
+  <parameter name="actualBAR0AvalonAddress" value="0" />
+  <parameter name="actualBAR0Size" value="25" />
+  <parameter name="actualBAR1AvalonAddress" value="0" />
+  <parameter name="actualBAR1Size" value="0" />
+  <parameter name="actualBAR2AvalonAddress" value="2147487744" />
+  <parameter name="actualBAR2Size" value="7" />
+  <parameter name="actualBAR3AvalonAddress" value="0" />
+  <parameter name="actualBAR3Size" value="0" />
+  <parameter name="actualBAR4AvalonAddress" value="0" />
+  <parameter name="actualBAR4Size" value="0" />
+  <parameter name="actualBAR5AvalonAddress" value="0" />
+  <parameter name="actualBAR5Size" value="0" />
+  <parameter name="allowedDeviceFamilies" value="" />
+  <parameter name="altgx_generated" value="0" />
+  <parameter name="clockSource" value="clk" />
+  <parameter name="contextState" value="SOPCContext" />
+  <parameter name="deviceFamily" value="Arria II GX" />
+  <parameter name="ordering_code" value="IP-PCIE/4" />
+  <parameter name="p_avalon_hardwired_address_map" value="false" />
+  <parameter name="p_avalon_hw_pci_address_00" value="0x0000000000000000" />
+  <parameter name="p_avalon_hw_pci_address_00_type" value="Memory32Bit" />
+  <parameter name="p_avalon_hw_pci_address_01" value="0x0000000000100000" />
+  <parameter name="p_avalon_hw_pci_address_01_type" value="Memory32Bit" />
+  <parameter name="p_avalon_hw_pci_address_02" value="0x0000000000000000" />
+  <parameter name="p_avalon_hw_pci_address_02_type" value="Memory32Bit" />
+  <parameter name="p_avalon_hw_pci_address_03" value="0x0000000000000000" />
+  <parameter name="p_avalon_hw_pci_address_03_type" value="Memory32Bit" />
+  <parameter name="p_avalon_hw_pci_address_04" value="0x0000000000000000" />
+  <parameter name="p_avalon_hw_pci_address_04_type" value="Memory32Bit" />
+  <parameter name="p_avalon_hw_pci_address_05" value="0x0000000000000000" />
+  <parameter name="p_avalon_hw_pci_address_05_type" value="Memory32Bit" />
+  <parameter name="p_avalon_hw_pci_address_06" value="0x0000000000000000" />
+  <parameter name="p_avalon_hw_pci_address_06_type" value="Memory32Bit" />
+  <parameter name="p_avalon_hw_pci_address_07" value="0x0000000000000000" />
+  <parameter name="p_avalon_hw_pci_address_07_type" value="Memory32Bit" />
+  <parameter name="p_avalon_hw_pci_address_08" value="0x0000000000000000" />
+  <parameter name="p_avalon_hw_pci_address_08_type" value="Memory32Bit" />
+  <parameter name="p_avalon_hw_pci_address_09" value="0x0000000000000000" />
+  <parameter name="p_avalon_hw_pci_address_09_type" value="Memory32Bit" />
+  <parameter name="p_avalon_hw_pci_address_10" value="0x0000000000000000" />
+  <parameter name="p_avalon_hw_pci_address_10_type" value="Memory32Bit" />
+  <parameter name="p_avalon_hw_pci_address_11" value="0x0000000000000000" />
+  <parameter name="p_avalon_hw_pci_address_11_type" value="Memory32Bit" />
+  <parameter name="p_avalon_hw_pci_address_12" value="0x0000000000000000" />
+  <parameter name="p_avalon_hw_pci_address_12_type" value="Memory32Bit" />
+  <parameter name="p_avalon_hw_pci_address_13" value="0x0000000000000000" />
+  <parameter name="p_avalon_hw_pci_address_13_type" value="Memory32Bit" />
+  <parameter name="p_avalon_hw_pci_address_14" value="0x0000000000000000" />
+  <parameter name="p_avalon_hw_pci_address_14_type" value="Memory32Bit" />
+  <parameter name="p_avalon_hw_pci_address_15" value="0x0000000000000000" />
+  <parameter name="p_avalon_hw_pci_address_15_type" value="Memory32Bit" />
+  <parameter name="p_avalon_pane_count" value="2" />
+  <parameter name="p_avalon_pane_size" value="20" />
+  <parameter name="p_enable_pcie_hip_dprio" value="N/A" />
+  <parameter name="p_pci_64bit_bar" value="false" />
+  <parameter name="p_pci_64bit_bus" value="true" />
+  <parameter name="p_pci_66mhz" value="true" />
+  <parameter name="p_pci_allow_param_readback" value="false" />
+  <parameter name="p_pci_altera_arbiter" value="false" />
+  <parameter name="p_pci_arbited_devices" value="2" />
+  <parameter name="p_pci_arbiter" value="false" />
+  <parameter name="p_pci_bar_0_auto_avalon_address" value="true" />
+  <parameter name="p_pci_bar_0_auto_sized" value="true" />
+  <parameter name="p_pci_bar_0_avalon_address" value="0" />
+  <parameter name="p_pci_bar_0_hardwired" value="false" />
+  <parameter name="p_pci_bar_0_pci_address" value="0" />
+  <parameter name="p_pci_bar_0_prefetchable" value="true" />
+  <parameter name="p_pci_bar_1_auto_avalon_address" value="false" />
+  <parameter name="p_pci_bar_1_auto_sized" value="false" />
+  <parameter name="p_pci_bar_1_avalon_address" value="0" />
+  <parameter name="p_pci_bar_1_hardwired" value="false" />
+  <parameter name="p_pci_bar_1_pci_address" value="0" />
+  <parameter name="p_pci_bar_1_prefetchable" value="true" />
+  <parameter name="p_pci_bar_2_auto_avalon_address" value="true" />
+  <parameter name="p_pci_bar_2_auto_sized" value="true" />
+  <parameter name="p_pci_bar_2_avalon_address" value="0" />
+  <parameter name="p_pci_bar_2_hardwired" value="false" />
+  <parameter name="p_pci_bar_2_pci_address" value="0" />
+  <parameter name="p_pci_bar_2_prefetchable" value="false" />
+  <parameter name="p_pci_bar_3_auto_avalon_address" value="false" />
+  <parameter name="p_pci_bar_3_auto_sized" value="false" />
+  <parameter name="p_pci_bar_3_avalon_address" value="0" />
+  <parameter name="p_pci_bar_3_hardwired" value="false" />
+  <parameter name="p_pci_bar_3_pci_address" value="0" />
+  <parameter name="p_pci_bar_3_prefetchable" value="true" />
+  <parameter name="p_pci_bar_4_auto_avalon_address" value="false" />
+  <parameter name="p_pci_bar_4_auto_sized" value="false" />
+  <parameter name="p_pci_bar_4_avalon_address" value="0" />
+  <parameter name="p_pci_bar_4_hardwired" value="false" />
+  <parameter name="p_pci_bar_4_pci_address" value="0" />
+  <parameter name="p_pci_bar_4_prefetchable" value="true" />
+  <parameter name="p_pci_bar_5_auto_avalon_address" value="false" />
+  <parameter name="p_pci_bar_5_auto_sized" value="false" />
+  <parameter name="p_pci_bar_5_avalon_address" value="0" />
+  <parameter name="p_pci_bar_5_hardwired" value="false" />
+  <parameter name="p_pci_bar_5_pci_address" value="0" />
+  <parameter name="p_pci_bar_5_prefetchable" value="true" />
+  <parameter name="p_pci_bus_access_address_width" value="18" />
+  <parameter name="p_pci_global_reset" value="false" />
+  <parameter name="p_pci_host_bridge" value="false" />
+  <parameter name="p_pci_impl_cra_av_slave_port" value="true" />
+  <parameter name="p_pci_master" value="true" />
+  <parameter name="p_pci_master_bursts" value="true" />
+  <parameter name="p_pci_master_concurrent_reads" value="false" />
+  <parameter name="p_pci_master_data_width" value="64" />
+  <parameter name="p_pci_maximum_burst_size" value="128" />
+  <parameter name="p_pci_maximum_burst_size_a2p" value="128" />
+  <parameter name="p_pci_maximum_pending_read_transactions_a2p" value="8" />
+  <parameter name="p_pci_non_pref_av_master_port" value="true" />
+  <parameter name="p_pci_not_target_only_port" value="true" />
+  <parameter name="p_pci_pref_av_master_port" value="true" />
+  <parameter name="p_pci_reqn_gntn_pins" value="true" />
+  <parameter name="p_pci_single_clock" value="false" />
+  <parameter name="p_pci_target_bursts" value="true" />
+  <parameter name="p_pci_target_concurrent_reads" value="false" />
+  <parameter name="p_pci_user_specified_bars" value="false" />
+  <parameter name="p_pcie_L1_exit_latency_common_clock" value="&gt;64 us" />
+  <parameter name="p_pcie_L1_exit_latency_separate_clock" value="&gt;64 us" />
+  <parameter name="p_pcie_advanced_error_int_num" value="0x00000000" />
+  <parameter name="p_pcie_advanced_error_reporting" value="false" />
+  <parameter name="p_pcie_alt2gxb" value="true" />
+  <parameter name="p_pcie_altgx_keyParameters_used">{p_pcie_enable_hip=1, p_pcie_number_of_lanes=x4, p_pcie_phy=Arria II GX, p_pcie_rate=Gen1 (2.5 Gbps)}</parameter>
+  <parameter name="p_pcie_app_signal_interface" value="AvalonMM" />
+  <parameter name="p_pcie_attention_button" value="false" />
+  <parameter name="p_pcie_attention_indicator" value="false" />
+  <parameter name="p_pcie_auto_configure_retry_buffer" value="true" />
+  <parameter name="p_pcie_bar_size_bar_0" value="Auto" />
+  <parameter name="p_pcie_bar_size_bar_1" value="N/A" />
+  <parameter name="p_pcie_bar_size_bar_2" value="Auto" />
+  <parameter name="p_pcie_bar_size_bar_3" value="N/A" />
+  <parameter name="p_pcie_bar_size_bar_4" value="N/A" />
+  <parameter name="p_pcie_bar_size_bar_5" value="N/A" />
+  <parameter name="p_pcie_bar_type_bar_0">64-bit Prefetchable Memory</parameter>
+  <parameter name="p_pcie_bar_type_bar_1" value="N/A" />
+  <parameter name="p_pcie_bar_type_bar_2">32-bit Non-Prefetchable Memory</parameter>
+  <parameter name="p_pcie_bar_type_bar_3">Disable this and all higher BARs</parameter>
+  <parameter name="p_pcie_bar_type_bar_4">Disable this and all higher BARs</parameter>
+  <parameter name="p_pcie_bar_type_bar_5">Disable this and all higher BARs</parameter>
+  <parameter name="p_pcie_bar_used_bar_0" value="true" />
+  <parameter name="p_pcie_bar_used_bar_1" value="true" />
+  <parameter name="p_pcie_bar_used_bar_2" value="true" />
+  <parameter name="p_pcie_bar_used_bar_3" value="false" />
+  <parameter name="p_pcie_bar_used_bar_4" value="false" />
+  <parameter name="p_pcie_bar_used_bar_5" value="false" />
+  <parameter name="p_pcie_channel_number" value="0" />
+  <parameter name="p_pcie_chk_io" value="0" />
+  <parameter name="p_pcie_class_code" value="0xFF0000" />
+  <parameter name="p_pcie_completion_data_credit_vc0" value="256" />
+  <parameter name="p_pcie_completion_data_credit_vc1" value="0" />
+  <parameter name="p_pcie_completion_data_credit_vc2" value="0" />
+  <parameter name="p_pcie_completion_data_credit_vc3" value="0" />
+  <parameter name="p_pcie_completion_data_used_space_vc0" value="4096" />
+  <parameter name="p_pcie_completion_data_used_space_vc1" value="0" />
+  <parameter name="p_pcie_completion_data_used_space_vc2" value="0" />
+  <parameter name="p_pcie_completion_data_used_space_vc3" value="0" />
+  <parameter name="p_pcie_completion_header_credit_vc0" value="48" />
+  <parameter name="p_pcie_completion_header_credit_vc1" value="0" />
+  <parameter name="p_pcie_completion_header_credit_vc2" value="0" />
+  <parameter name="p_pcie_completion_header_credit_vc3" value="0" />
+  <parameter name="p_pcie_completion_header_used_space_vc0" value="768" />
+  <parameter name="p_pcie_completion_header_used_space_vc1" value="0" />
+  <parameter name="p_pcie_completion_header_used_space_vc2" value="0" />
+  <parameter name="p_pcie_completion_header_used_space_vc3" value="0" />
+  <parameter name="p_pcie_completion_timeout" value="NONE" />
+  <parameter name="p_pcie_custom_phy_x8" value="0" />
+  <parameter name="p_pcie_custom_rx_buffer_xml" value="0" />
+  <parameter name="p_pcie_device_id" value="0x0005" />
+  <parameter name="p_pcie_device_init_required" value="false" />
+  <parameter name="p_pcie_dll_active_report_support" value="false" />
+  <parameter name="p_pcie_ecrc_check" value="false" />
+  <parameter name="p_pcie_ecrc_generation" value="false" />
+  <parameter name="p_pcie_eie_b4_nfts_count" value="4" />
+  <parameter name="p_pcie_enable_L1_aspm" value="false" />
+  <parameter name="p_pcie_enable_completion_timeout_disable" value="false" />
+  <parameter name="p_pcie_enable_fast_recovery" value="true" />
+  <parameter name="p_pcie_enable_function_msix_support" value="false" />
+  <parameter name="p_pcie_enable_hip" value="1" />
+  <parameter name="p_pcie_enable_hip_core_clk" value="0" />
+  <parameter name="p_pcie_enable_pcie_gen2_x8_es" value="0" />
+  <parameter name="p_pcie_enable_root_port_endpoint_mode" value="0" />
+  <parameter name="p_pcie_enable_simple_dma" value="0" />
+  <parameter name="p_pcie_enable_slot_capability" value="false" />
+  <parameter name="p_pcie_enable_tl_bypass_mode" value="0" />
+  <parameter name="p_pcie_endpoint_L0s_acceptable_latency" value="&lt;64 ns" />
+  <parameter name="p_pcie_endpoint_L1_acceptable_latency" value="&lt;1 us" />
+  <parameter name="p_pcie_exp_rom_bar_size" value="N/A" />
+  <parameter name="p_pcie_exp_rom_bar_used" value="false" />
+  <parameter name="p_pcie_gen2_nfts_diff_clock" value="255" />
+  <parameter name="p_pcie_gen2_nfts_same_clock" value="255" />
+  <parameter name="p_pcie_implement_data_register" value="false" />
+  <parameter name="p_pcie_initiator_performance_preset" value="High" />
+  <parameter name="p_pcie_internal_clock" value="125 MHz" />
+  <parameter name="p_pcie_io_base_and_limit_register" value="IODisable" />
+  <parameter name="p_pcie_lanerev" value="0" />
+  <parameter name="p_pcie_link_common_clock" value="true" />
+  <parameter name="p_pcie_link_port_number" value="0x01" />
+  <parameter name="p_pcie_low_priority_virtual_channels" value="0" />
+  <parameter name="p_pcie_max_payload_size" value="128 Bytes" />
+  <parameter name="p_pcie_mem_base_and_limit_register" value="MemDisable" />
+  <parameter name="p_pcie_msi_message_64bits_address_capable" value="true" />
+  <parameter name="p_pcie_msi_message_requested" value="1" />
+  <parameter name="p_pcie_msix_pba_bir" value="0" />
+  <parameter name="p_pcie_msix_pba_offset" value="0" />
+  <parameter name="p_pcie_msix_table_bir" value="0" />
+  <parameter name="p_pcie_msix_table_offset" value="0" />
+  <parameter name="p_pcie_msix_table_size" value="0" />
+  <parameter name="p_pcie_nfts_common_clock" value="255" />
+  <parameter name="p_pcie_nfts_separate_clock" value="255" />
+  <parameter name="p_pcie_nonposted_data_credit_vc0" value="0" />
+  <parameter name="p_pcie_nonposted_data_credit_vc1" value="0" />
+  <parameter name="p_pcie_nonposted_data_credit_vc2" value="0" />
+  <parameter name="p_pcie_nonposted_data_credit_vc3" value="0" />
+  <parameter name="p_pcie_nonposted_data_used_space_vc0" value="0" />
+  <parameter name="p_pcie_nonposted_data_used_space_vc1" value="0" />
+  <parameter name="p_pcie_nonposted_data_used_space_vc2" value="0" />
+  <parameter name="p_pcie_nonposted_data_used_space_vc3" value="0" />
+  <parameter name="p_pcie_nonposted_header_credit_vc0" value="20" />
+  <parameter name="p_pcie_nonposted_header_credit_vc1" value="0" />
+  <parameter name="p_pcie_nonposted_header_credit_vc2" value="0" />
+  <parameter name="p_pcie_nonposted_header_credit_vc3" value="0" />
+  <parameter name="p_pcie_nonposted_header_used_space_vc0" value="320" />
+  <parameter name="p_pcie_nonposted_header_used_space_vc1" value="0" />
+  <parameter name="p_pcie_nonposted_header_used_space_vc2" value="0" />
+  <parameter name="p_pcie_nonposted_header_used_space_vc3" value="0" />
+  <parameter name="p_pcie_number_of_lanes" value="x4" />
+  <parameter name="p_pcie_phy" value="Arria II GX" />
+  <parameter name="p_pcie_phy_interface" value="Serial" />
+  <parameter name="p_pcie_pme_pending" value="false" />
+  <parameter name="p_pcie_pme_reg_id" value="0x0000" />
+  <parameter name="p_pcie_port_type" value="Native Endpoint" />
+  <parameter name="p_pcie_posted_data_credit_vc0" value="91" />
+  <parameter name="p_pcie_posted_data_credit_vc1" value="0" />
+  <parameter name="p_pcie_posted_data_credit_vc2" value="0" />
+  <parameter name="p_pcie_posted_data_credit_vc3" value="0" />
+  <parameter name="p_pcie_posted_data_used_space_vc0" value="1456" />
+  <parameter name="p_pcie_posted_data_used_space_vc1" value="0" />
+  <parameter name="p_pcie_posted_data_used_space_vc2" value="0" />
+  <parameter name="p_pcie_posted_data_used_space_vc3" value="0" />
+  <parameter name="p_pcie_posted_header_credit_vc0" value="17" />
+  <parameter name="p_pcie_posted_header_credit_vc1" value="0" />
+  <parameter name="p_pcie_posted_header_credit_vc2" value="0" />
+  <parameter name="p_pcie_posted_header_credit_vc3" value="0" />
+  <parameter name="p_pcie_posted_header_used_space_vc0" value="272" />
+  <parameter name="p_pcie_posted_header_used_space_vc1" value="0" />
+  <parameter name="p_pcie_posted_header_used_space_vc2" value="0" />
+  <parameter name="p_pcie_posted_header_used_space_vc3" value="0" />
+  <parameter name="p_pcie_power_indicator" value="false" />
+  <parameter name="p_pcie_rate" value="Gen1 (2.5 Gbps)" />
+  <parameter name="p_pcie_rate_match_fifo" value="true" />
+  <parameter name="p_pcie_retry_buffer_size" value="2 KBytes" />
+  <parameter name="p_pcie_retry_fifo_depth" value="64" />
+  <parameter name="p_pcie_revision_id" value="0x01" />
+  <parameter name="p_pcie_rx_buffer_preset" value="Default" />
+  <parameter name="p_pcie_rx_buffer_size_string_vc0" value="6912 Bytes" />
+  <parameter name="p_pcie_rx_buffer_size_string_vc1" value="0" />
+  <parameter name="p_pcie_rx_buffer_size_string_vc2" value="0" />
+  <parameter name="p_pcie_rx_buffer_size_string_vc3" value="0" />
+  <parameter name="p_pcie_rx_buffer_size_vc0" value="6912" />
+  <parameter name="p_pcie_rx_buffer_size_vc1" value="0" />
+  <parameter name="p_pcie_rx_buffer_size_vc2" value="0" />
+  <parameter name="p_pcie_rx_buffer_size_vc3" value="0" />
+  <parameter name="p_pcie_slot_capabilities" value="0x00000000" />
+  <parameter name="p_pcie_special_phy_gl" value="0" />
+  <parameter name="p_pcie_special_phy_px" value="1" />
+  <parameter name="p_pcie_subsystem_device_id" value="0x0005" />
+  <parameter name="p_pcie_subsystem_vendor_id" value="0x1172" />
+  <parameter name="p_pcie_surprise_down_error_support" value="false" />
+  <parameter name="p_pcie_tag_supported" value="32" />
+  <parameter name="p_pcie_target_performance_preset" value="High" />
+  <parameter name="p_pcie_test_out_width" value="9 bits" />
+  <parameter name="p_pcie_threshold_for_L0s_entry" value="8192 ns" />
+  <parameter name="p_pcie_total_header_credit_vc0" value="85" />
+  <parameter name="p_pcie_total_header_credit_vc1" value="0" />
+  <parameter name="p_pcie_total_header_credit_vc2" value="0" />
+  <parameter name="p_pcie_total_header_credit_vc3" value="0" />
+  <parameter name="p_pcie_txrx_clock" value="100 MHz" />
+  <parameter name="p_pcie_underSOPCBuilder" value="true" />
+  <parameter name="p_pcie_use_crc_forwarding" value="false" />
+  <parameter name="p_pcie_variation_name" value="pcie_core" />
+  <parameter name="p_pcie_vendor_id" value="0x1172" />
+  <parameter name="p_pcie_version" value="1.1" />
+  <parameter name="p_pcie_virutal_channels" value="1" />
+  <parameter name="pref_nonp_independent" value="false" />
+  <parameter name="uiAvalonHWAddress0" value="0x00000000" />
+  <parameter name="uiAvalonHWAddress1" value="0x00100000" />
+  <parameter name="uiAvalonHWAddress10" value="0x00000000" />
+  <parameter name="uiAvalonHWAddress11" value="0x00000000" />
+  <parameter name="uiAvalonHWAddress12" value="0x00000000" />
+  <parameter name="uiAvalonHWAddress13" value="0x00000000" />
+  <parameter name="uiAvalonHWAddress14" value="0x00000000" />
+  <parameter name="uiAvalonHWAddress15" value="0x00000000" />
+  <parameter name="uiAvalonHWAddress2" value="0x00000000" />
+  <parameter name="uiAvalonHWAddress3" value="0x00000000" />
+  <parameter name="uiAvalonHWAddress4" value="0x00000000" />
+  <parameter name="uiAvalonHWAddress5" value="0x00000000" />
+  <parameter name="uiAvalonHWAddress6" value="0x00000000" />
+  <parameter name="uiAvalonHWAddress7" value="0x00000000" />
+  <parameter name="uiAvalonHWAddress8" value="0x00000000" />
+  <parameter name="uiAvalonHWAddress9" value="0x00000000" />
+  <parameter name="uiBar0Prefetchable" value="true" />
+  <parameter name="uiBar1Prefetchable" value="true" />
+  <parameter name="uiBar2Prefetchable" value="false" />
+  <parameter name="uiBar3Prefetchable" value="true" />
+  <parameter name="uiBar4Prefetchable" value="true" />
+  <parameter name="uiBar5Prefetchable" value="true" />
+  <parameter name="ui_pcie_msix_pba_bir" value="1:0" />
+  <parameter name="ui_pcie_msix_table_bir" value="1:0" />
+ </module>
+ <module name="dma" kind="altera_avalon_dma" version="9.1" enabled="1">
+  <parameter name="allowByteTransactions" value="true" />
+  <parameter name="allowDoubleWordTransactions" value="true" />
+  <parameter name="allowHalfWordTransactions" value="true" />
+  <parameter name="allowQuadWordTransactions" value="true" />
+  <parameter name="allowWordTransactions" value="true" />
+  <parameter name="bigEndian" value="false" />
+  <parameter name="burstEnable" value="true" />
+  <parameter name="maxBurstSize" value="1024" />
+  <parameter name="minimumDmaTransactionRegisterWidth" value="13" />
+  <parameter name="useRegistersForFIFO" value="false" />
+ </module>
+ <module name="a2h" kind="Avalon_to_HIBI" version="0.1" enabled="1">
+  <parameter name="AV_ADDR_SIZE" value="23" />
+  <parameter name="AV_M2H2_ADDR" value="0" />
+  <parameter name="AV_OTHER_HIBI_ADDR" value="1" />
+  <parameter name="HIBI_BASE_ADDR" value="12" />
+  <parameter name="HIBI_M2H2_BASE_ADDR" value="14" />
+  <parameter name="HIBI_M2H2_CONF_ADDR" value="16" />
+ </module>
+ <connection kind="clock" version="9.1" start="clk.clk" end="pcie.avalon_clk" />
+ <connection kind="clock" version="9.1" start="clk.clk" end="dma.clk" />
+ <connection kind="interrupt" version="9.1" start="pcie.RxmIrq" end="dma.irq">
+  <parameter name="irqNumber" value="0" />
+ </connection>
+ <connection kind="clock" version="9.1" start="clk.clk" end="a2h.clock_reset" />
+ <connection
+   kind="avalon"
+   version="6.1"
+   start="pcie.bar1_0_Prefetchable"
+   end="a2h.avalon_slave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+ </connection>
+ <connection kind="clock" version="9.1" start="clk.clk" end="pcie.cal_blk_clk" />
+ <connection
+   kind="avalon"
+   version="6.1"
+   start="pcie.bar2_Non_Prefetchable"
+   end="dma.control_port_slave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x80001000" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="6.1"
+   start="dma.read_master"
+   end="pcie.Tx_Interface">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="6.1"
+   start="dma.write_master"
+   end="pcie.Control_Register_Access">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x80004000" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="6.1"
+   start="dma.write_master"
+   end="pcie.Tx_Interface">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="6.1"
+   start="dma.read_master"
+   end="pcie.Control_Register_Access">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x80004000" />
+ </connection>
+</system>

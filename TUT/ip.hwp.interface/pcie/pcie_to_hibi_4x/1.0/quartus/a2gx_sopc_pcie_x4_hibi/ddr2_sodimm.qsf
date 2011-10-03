@@ -1,0 +1,1753 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2009 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II
+# Version 9.1 Build 222 10/21/2009 SJ Full Version
+# Date created = 13:17:30  January 19, 2010
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		ddr2_sodimm_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Arria II GX"
+set_global_assignment -name DEVICE EP2AGX125EF35C4ES
+set_global_assignment -name TOP_LEVEL_ENTITY a2gx_dev_kit_golden_top
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 9.1
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "13:17:30  JANUARY 19, 2010"
+set_global_assignment -name LAST_QUARTUS_VERSION "9.1 SP1"
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
+set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH ddr2_sodimm_tb -section_id eda_simulation
+set_global_assignment -name USE_GENERATED_PHYSICAL_CONSTRAINTS OFF -section_id eda_blast_fpga
+set_global_assignment -name SEARCH_PATH ./
+set_global_assignment -name SEARCH_PATH testbench/ -tag from_archive
+set_global_assignment -name SEARCH_PATH "C:/altera/81bi160/ip/altera/ddr3_high_perf/lib/"
+set_global_assignment -name SEARCH_PATH "in Q8.1 b160_example_design(31_10_2008_friday)/"
+set_global_assignment -name SEARCH_PATH "altmemphy-library/" -tag from_archive
+set_global_assignment -name SEARCH_PATH "ddr2_high_performance_controller-library/" -tag from_archive
+set_global_assignment -name SEARCH_PATH simulation/modelsim/ -tag from_archive
+set_global_assignment -name OPTIMIZATION_TECHNIQUE SPEED
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name OPTIMIZE_MULTI_CORNER_TIMING ON
+set_global_assignment -name FITTER_EFFORT "STANDARD FIT"
+set_global_assignment -name LL_ROOT_REGION ON -entity ddr2_sodimm -section_id "Root Region"
+set_global_assignment -name LL_MEMBER_STATE LOCKED -entity ddr2_sodimm -section_id "Root Region"
+set_location_assignment PIN_G12 -to termination_blk0~_rup_pad
+set_location_assignment PIN_G11 -to termination_blk0~_rdn_pad
+set_global_assignment -name ENABLE_SIGNALTAP OFF
+set_global_assignment -name USE_SIGNALTAP_FILE stp1.stp
+set_global_assignment -name EDA_TEST_BENCH_NAME ddr2_sodimm_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME dut -section_id ddr2_sodimm_tb
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "500 ns" -section_id ddr2_sodimm_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME ddr2_sodimm_example_top_tb -section_id ddr2_sodimm_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE testbench/ddr2_sodimm_example_top_tb_4.v -section_id ddr2_sodimm_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE testbench/ddr2_sodimm_mem_model.v -section_id ddr2_sodimm_tb
+set_global_assignment -name MISC_FILE ddr2_sodimm.dpf
+set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 0.9V
+set_global_assignment -name POWER_HSSI "Opportunistically power off"
+set_instance_assignment -name IO_STANDARD LVDS -to clkin_bot_p
+set_location_assignment PIN_AJ19 -to clkin_bot_p
+set_instance_assignment -name IO_STANDARD "1.8 V" -to user_pb
+set_location_assignment PIN_AK9 -to user_pb[0]
+set_instance_assignment -name IO_STANDARD "SSTL-18 CLASS I" -to ddr2_dimm_a
+set_location_assignment PIN_AH14 -to ddr2_dimm_a[0]
+set_location_assignment PIN_AK12 -to ddr2_dimm_a[1]
+set_location_assignment PIN_AE12 -to ddr2_dimm_a[2]
+set_location_assignment PIN_AH13 -to ddr2_dimm_a[3]
+set_location_assignment PIN_AF14 -to ddr2_dimm_a[4]
+set_location_assignment PIN_AG12 -to ddr2_dimm_a[5]
+set_location_assignment PIN_AJ18 -to ddr2_dimm_a[6]
+set_location_assignment PIN_AL19 -to ddr2_dimm_a[7]
+set_location_assignment PIN_AG13 -to ddr2_dimm_a[8]
+set_location_assignment PIN_AE13 -to ddr2_dimm_a[9]
+set_location_assignment PIN_AK10 -to ddr2_dimm_a[10]
+set_location_assignment PIN_AH23 -to ddr2_dimm_a[11]
+set_location_assignment PIN_AF13 -to ddr2_dimm_a[12]
+set_location_assignment PIN_AM5 -to ddr2_dimm_a[13]
+set_instance_assignment -name IO_STANDARD "SSTL-18 CLASS I" -to ddr2_dimm_ba
+set_location_assignment PIN_AJ11 -to ddr2_dimm_ba[0]
+set_location_assignment PIN_AJ13 -to ddr2_dimm_ba[1]
+set_location_assignment PIN_AE14 -to ddr2_dimm_ba[2]
+set_instance_assignment -name IO_STANDARD "SSTL-18 CLASS I" -to ddr2_dimm_casn
+set_location_assignment PIN_AL8 -to ddr2_dimm_casn
+set_instance_assignment -name IO_STANDARD "SSTL-18 CLASS I" -to ddr2_dimm_cke
+set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.8-V SSTL CLASS I" -to ddr2_dimm_ck_p
+set_location_assignment PIN_AJ7 -to ddr2_dimm_ck_p[0]
+set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.8-V SSTL CLASS I" -to ddr2_dimm_ck_n
+set_location_assignment PIN_AK7 -to ddr2_dimm_ck_n[0]
+set_instance_assignment -name IO_STANDARD "SSTL-18 CLASS I" -to ddr2_dimm_csn
+set_instance_assignment -name IO_STANDARD "SSTL-18 CLASS I" -to ddr2_dimm_dm
+set_location_assignment PIN_AK22 -to ddr2_dimm_dm[0]
+set_location_assignment PIN_AE19 -to ddr2_dimm_dm[1]
+set_location_assignment PIN_AG19 -to ddr2_dimm_dm[2]
+set_location_assignment PIN_AP20 -to ddr2_dimm_dm[3]
+set_location_assignment PIN_AH18 -to ddr2_dimm_dm[4]
+set_location_assignment PIN_AG16 -to ddr2_dimm_dm[5]
+set_location_assignment PIN_AC15 -to ddr2_dimm_dm[6]
+set_location_assignment PIN_AE15 -to ddr2_dimm_dm[7]
+set_instance_assignment -name IO_STANDARD "SSTL-18 CLASS I" -to ddr2_dimm_dq
+set_location_assignment PIN_AG21 -to ddr2_dimm_dq[0]
+set_location_assignment PIN_AL29 -to ddr2_dimm_dq[1]
+set_location_assignment PIN_AM29 -to ddr2_dimm_dq[2]
+set_location_assignment PIN_AM28 -to ddr2_dimm_dq[3]
+set_location_assignment PIN_AP29 -to ddr2_dimm_dq[4]
+set_location_assignment PIN_AN28 -to ddr2_dimm_dq[5]
+set_location_assignment PIN_AJ24 -to ddr2_dimm_dq[6]
+set_location_assignment PIN_AJ25 -to ddr2_dimm_dq[7]
+set_location_assignment PIN_AP27 -to ddr2_dimm_dq[8]
+set_location_assignment PIN_AM24 -to ddr2_dimm_dq[9]
+set_location_assignment PIN_AM23 -to ddr2_dimm_dq[10]
+set_location_assignment PIN_AP25 -to ddr2_dimm_dq[11]
+set_location_assignment PIN_AJ23 -to ddr2_dimm_dq[12]
+set_location_assignment PIN_AL24 -to ddr2_dimm_dq[13]
+set_location_assignment PIN_AG22 -to ddr2_dimm_dq[14]
+set_location_assignment PIN_AH21 -to ddr2_dimm_dq[15]
+set_location_assignment PIN_AL25 -to ddr2_dimm_dq[16]
+set_location_assignment PIN_AK25 -to ddr2_dimm_dq[17]
+set_location_assignment PIN_AP23 -to ddr2_dimm_dq[18]
+set_location_assignment PIN_AM22 -to ddr2_dimm_dq[19]
+set_location_assignment PIN_AL21 -to ddr2_dimm_dq[20]
+set_location_assignment PIN_AL20 -to ddr2_dimm_dq[21]
+set_location_assignment PIN_AJ21 -to ddr2_dimm_dq[22]
+set_location_assignment PIN_AH20 -to ddr2_dimm_dq[23]
+set_location_assignment PIN_AN21 -to ddr2_dimm_dq[24]
+set_location_assignment PIN_AM21 -to ddr2_dimm_dq[25]
+set_location_assignment PIN_AE18 -to ddr2_dimm_dq[26]
+set_location_assignment PIN_AP18 -to ddr2_dimm_dq[27]
+set_location_assignment PIN_AH19 -to ddr2_dimm_dq[28]
+set_location_assignment PIN_AN19 -to ddr2_dimm_dq[29]
+set_location_assignment PIN_AK18 -to ddr2_dimm_dq[30]
+set_location_assignment PIN_AF18 -to ddr2_dimm_dq[31]
+set_location_assignment PIN_AP15 -to ddr2_dimm_dq[32]
+set_location_assignment PIN_AN15 -to ddr2_dimm_dq[33]
+set_location_assignment PIN_AH17 -to ddr2_dimm_dq[34]
+set_location_assignment PIN_AF17 -to ddr2_dimm_dq[35]
+set_location_assignment PIN_AC18 -to ddr2_dimm_dq[36]
+set_location_assignment PIN_AE17 -to ddr2_dimm_dq[37]
+set_location_assignment PIN_AP14 -to ddr2_dimm_dq[38]
+set_location_assignment PIN_AN13 -to ddr2_dimm_dq[39]
+set_location_assignment PIN_AH16 -to ddr2_dimm_dq[40]
+set_location_assignment PIN_AH15 -to ddr2_dimm_dq[41]
+set_location_assignment PIN_AP10 -to ddr2_dimm_dq[42]
+set_location_assignment PIN_AP9 -to ddr2_dimm_dq[43]
+set_location_assignment PIN_AL16 -to ddr2_dimm_dq[44]
+set_location_assignment PIN_AK16 -to ddr2_dimm_dq[45]
+set_location_assignment PIN_AP12 -to ddr2_dimm_dq[46]
+set_location_assignment PIN_AN12 -to ddr2_dimm_dq[47]
+set_location_assignment PIN_AN7 -to ddr2_dimm_dq[48]
+set_location_assignment PIN_AP7 -to ddr2_dimm_dq[49]
+set_location_assignment PIN_AP6 -to ddr2_dimm_dq[50]
+set_location_assignment PIN_AP5 -to ddr2_dimm_dq[51]
+set_location_assignment PIN_AF16 -to ddr2_dimm_dq[52]
+set_location_assignment PIN_AL14 -to ddr2_dimm_dq[53]
+set_location_assignment PIN_AE16 -to ddr2_dimm_dq[54]
+set_location_assignment PIN_AL11 -to ddr2_dimm_dq[55]
+set_location_assignment PIN_AM10 -to ddr2_dimm_dq[56]
+set_location_assignment PIN_AF15 -to ddr2_dimm_dq[57]
+set_location_assignment PIN_AP2 -to ddr2_dimm_dq[58]
+set_location_assignment PIN_AJ12 -to ddr2_dimm_dq[59]
+set_location_assignment PIN_AJ16 -to ddr2_dimm_dq[60]
+set_location_assignment PIN_AN9 -to ddr2_dimm_dq[61]
+set_location_assignment PIN_AP3 -to ddr2_dimm_dq[62]
+set_location_assignment PIN_AN4 -to ddr2_dimm_dq[63]
+set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.8-V SSTL CLASS I" -to ddr2_dimm_dqs_p
+set_location_assignment PIN_AM25 -to ddr2_dimm_dqs_p[0]
+set_location_assignment PIN_AN24 -to ddr2_dimm_dqs_p[1]
+set_location_assignment PIN_AP21 -to ddr2_dimm_dqs_p[2]
+set_location_assignment PIN_AL18 -to ddr2_dimm_dqs_p[3]
+set_location_assignment PIN_AM16 -to ddr2_dimm_dqs_p[4]
+set_location_assignment PIN_AK15 -to ddr2_dimm_dqs_p[5]
+set_location_assignment PIN_AK13 -to ddr2_dimm_dqs_p[6]
+set_location_assignment PIN_AM7 -to ddr2_dimm_dqs_p[7]
+set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.8-V SSTL CLASS I" -to ddr2_dimm_dqs_n
+set_location_assignment PIN_AM26 -to ddr2_dimm_dqs_n[0]
+set_location_assignment PIN_AP24 -to ddr2_dimm_dqs_n[1]
+set_location_assignment PIN_AP22 -to ddr2_dimm_dqs_n[2]
+set_location_assignment PIN_AM18 -to ddr2_dimm_dqs_n[3]
+set_location_assignment PIN_AM17 -to ddr2_dimm_dqs_n[4]
+set_location_assignment PIN_AL15 -to ddr2_dimm_dqs_n[5]
+set_location_assignment PIN_AL12 -to ddr2_dimm_dqs_n[6]
+set_location_assignment PIN_AM8 -to ddr2_dimm_dqs_n[7]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ddr2_dimm_odt
+set_instance_assignment -name IO_STANDARD "SSTL-18 CLASS I" -to ddr2_dimm_rasn
+set_location_assignment PIN_AH12 -to ddr2_dimm_rasn
+set_instance_assignment -name IO_STANDARD "SSTL-18 CLASS I" -to ddr2_dimm_wen
+set_location_assignment PIN_AM6 -to ddr2_dimm_wen
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
+set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
+set_instance_assignment -name VIRTUAL_PIN ON -to pnf
+set_instance_assignment -name VIRTUAL_PIN ON -to test_complete
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.743 -to mem_addr[12]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.743 -to mem_addr[11]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.743 -to mem_addr[10]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.743 -to mem_addr[9]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.743 -to mem_addr[8]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.743 -to mem_addr[7]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.743 -to mem_addr[6]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.743 -to mem_addr[5]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.743 -to mem_addr[4]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.743 -to mem_addr[3]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.743 -to mem_addr[2]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.743 -to mem_addr[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.743 -to mem_addr[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.743 -to mem_ba[2]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.743 -to mem_ba[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.743 -to mem_ba[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.743 -to mem_cas_n
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.743 -to mem_cke[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.743 -to mem_odt[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.743 -to mem_ras_n
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.743 -to mem_reset_n
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.743 -to mem_we_n
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.0N -to mem_addr[12]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.0N -to mem_addr[11]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.0N -to mem_addr[10]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.0N -to mem_addr[9]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.0N -to mem_addr[8]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.0N -to mem_addr[7]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.0N -to mem_addr[6]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.0N -to mem_addr[5]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.0N -to mem_addr[4]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.0N -to mem_addr[3]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.0N -to mem_addr[2]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.0N -to mem_addr[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.0N -to mem_addr[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.0N -to mem_ba[2]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.0N -to mem_ba[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.0N -to mem_ba[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.0N -to mem_cas_n
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.0N -to mem_cke[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.0N -to mem_odt[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.0N -to mem_ras_n
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.0N -to mem_reset_n
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.0N -to mem_we_n
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_addr[12]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_addr[11]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_addr[10]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_addr[9]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_addr[8]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_addr[7]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_addr[6]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_addr[5]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_addr[4]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_addr[3]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_addr[2]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_addr[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_addr[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_ba[2]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_ba[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_ba[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_cas_n
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_cke[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_odt[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_ras_n
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_reset_n
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_we_n
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_addr[12]
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_addr[11]
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_addr[10]
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_addr[9]
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_addr[8]
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_addr[7]
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_addr[6]
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_addr[5]
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_addr[4]
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_addr[3]
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_addr[2]
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_addr[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_addr[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_ba[2]
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_ba[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_ba[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_cas_n
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_cke[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_odt[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_ras_n
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_reset_n
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_we_n
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 2.230 -to mem_addr[12]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 2.230 -to mem_addr[11]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 2.230 -to mem_addr[10]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 2.230 -to mem_addr[9]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 2.230 -to mem_addr[8]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 2.230 -to mem_addr[7]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 2.230 -to mem_addr[6]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 2.230 -to mem_addr[5]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 2.230 -to mem_addr[4]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 2.230 -to mem_addr[3]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 2.230 -to mem_addr[2]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 2.230 -to mem_addr[1]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 2.230 -to mem_addr[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 2.230 -to mem_ba[2]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 2.230 -to mem_ba[1]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 2.230 -to mem_ba[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 2.230 -to mem_cas_n
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 2.230 -to mem_cke[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 2.230 -to mem_odt[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 2.230 -to mem_ras_n
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 2.230 -to mem_reset_n
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 2.230 -to mem_we_n
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_addr[12]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_addr[11]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_addr[10]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_addr[9]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_addr[8]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_addr[7]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_addr[6]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_addr[5]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_addr[4]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_addr[3]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_addr[2]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_addr[1]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_addr[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_ba[2]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_ba[1]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_ba[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_cas_n
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_cke[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_odt[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_ras_n
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_reset_n
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_we_n
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_addr[12]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_addr[11]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_addr[10]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_addr[9]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_addr[8]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_addr[7]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_addr[6]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_addr[5]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_addr[4]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_addr[3]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_addr[2]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_addr[1]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_addr[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_ba[2]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_ba[1]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_ba[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_cas_n
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_cke[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_odt[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_ras_n
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_reset_n
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_we_n
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_addr[12]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_addr[11]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_addr[10]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_addr[9]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_addr[8]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_addr[7]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_addr[6]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_addr[5]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_addr[4]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_addr[3]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_addr[2]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_addr[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_addr[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_ba[2]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_ba[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_ba[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_cas_n
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_cke[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_odt[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_ras_n
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_reset_n
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_we_n
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_addr[12]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_addr[11]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_addr[10]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_addr[9]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_addr[8]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_addr[7]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_addr[6]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_addr[5]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_addr[4]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_addr[3]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_addr[2]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_addr[1]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_addr[0]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_ba[2]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_ba[1]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_ba[0]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_cas_n
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_cke[0]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_odt[0]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_ras_n
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_reset_n
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_we_n
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_addr[12]
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_addr[11]
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_addr[10]
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_addr[9]
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_addr[8]
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_addr[7]
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_addr[6]
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_addr[5]
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_addr[4]
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_addr[3]
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_addr[2]
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_addr[1]
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_addr[0]
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_ba[2]
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_ba[1]
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_ba[0]
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_cas_n
+set_instance_assignment -name BOARD_MODEL_FAR_C 0.25P -to mem_cke[0]
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_odt[0]
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_ras_n
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_reset_n
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_we_n
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.599 -to mem_cs_n[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_cs_n[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_cs_n[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_cs_n[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.637 -to mem_cs_n[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_cs_n[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_cs_n[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_cs_n[0]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_cs_n[0]
+set_instance_assignment -name BOARD_MODEL_FAR_C 0.25P -to mem_cs_n[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 2.614 -to mem_clk[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.66N -to mem_clk[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 3.74P -to mem_clk[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_clk[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 1.017 -to mem_clk[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_clk[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_clk[0]
+set_instance_assignment -name BOARD_MODEL_FAR_DIFFERENTIAL_R 200 -to mem_clk[0]
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_clk[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.616 -to mem_clk[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.66N -to mem_clk[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 3.74P -to mem_clk[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_clk[1]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 1.020 -to mem_clk[1]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_clk[1]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_clk[1]
+set_instance_assignment -name BOARD_MODEL_FAR_DIFFERENTIAL_R 200 -to mem_clk[1]
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_clk[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.831 -to mem_dm[7]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.677 -to mem_dm[6]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.548 -to mem_dm[5]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.450 -to mem_dm[4]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.457 -to mem_dm[3]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.437 -to mem_dm[2]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.757 -to mem_dm[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.866 -to mem_dm[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.831 -to mem_dq[63]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.831 -to mem_dq[62]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.831 -to mem_dq[61]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.831 -to mem_dq[60]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.831 -to mem_dq[59]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.831 -to mem_dq[58]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.831 -to mem_dq[57]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.831 -to mem_dq[56]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.677 -to mem_dq[55]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.677 -to mem_dq[54]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.677 -to mem_dq[53]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.677 -to mem_dq[52]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.677 -to mem_dq[51]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.677 -to mem_dq[50]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.677 -to mem_dq[49]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.677 -to mem_dq[48]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.548 -to mem_dq[47]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.548 -to mem_dq[46]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.548 -to mem_dq[45]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.548 -to mem_dq[44]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.548 -to mem_dq[43]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.548 -to mem_dq[42]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.548 -to mem_dq[41]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.548 -to mem_dq[40]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.450 -to mem_dq[39]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.450 -to mem_dq[38]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.450 -to mem_dq[37]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.450 -to mem_dq[36]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.450 -to mem_dq[35]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.450 -to mem_dq[34]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.450 -to mem_dq[33]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.450 -to mem_dq[32]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.457 -to mem_dq[31]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.457 -to mem_dq[30]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.457 -to mem_dq[29]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.457 -to mem_dq[28]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.457 -to mem_dq[27]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.457 -to mem_dq[26]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.457 -to mem_dq[25]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.437 -to mem_dq[24]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.437 -to mem_dq[23]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.437 -to mem_dq[22]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.437 -to mem_dq[21]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.437 -to mem_dq[20]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.437 -to mem_dq[19]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.437 -to mem_dq[18]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.437 -to mem_dq[17]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.437 -to mem_dq[16]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.757 -to mem_dq[15]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.757 -to mem_dq[14]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.757 -to mem_dq[13]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.757 -to mem_dq[12]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.757 -to mem_dq[11]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.757 -to mem_dq[10]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.757 -to mem_dq[9]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.757 -to mem_dq[8]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.866 -to mem_dq[7]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.866 -to mem_dq[6]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.866 -to mem_dq[5]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.866 -to mem_dq[4]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.866 -to mem_dq[3]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.866 -to mem_dq[2]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.866 -to mem_dq[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.866 -to mem_dq[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dm[7]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dm[6]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dm[5]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dm[4]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dm[3]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dm[2]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dm[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dm[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[63]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[62]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[61]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[60]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[59]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[58]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[57]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[56]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[55]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[54]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[53]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[52]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[51]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[50]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[49]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[48]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[47]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[46]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[45]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[44]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[43]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[42]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[41]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[40]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[39]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[38]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[37]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[36]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[35]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[34]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[33]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[32]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[31]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[30]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[29]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[28]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[27]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[26]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[25]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[24]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[23]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[22]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[21]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[20]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[19]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[18]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[17]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[16]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[15]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[14]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[13]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[12]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[11]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[10]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[9]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[8]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[7]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[6]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[5]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[4]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[3]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[2]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dq[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dm[7]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dm[6]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dm[5]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dm[4]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dm[3]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dm[2]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dm[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dm[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[63]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[62]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[61]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[60]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[59]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[58]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[57]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[56]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[55]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[54]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[53]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[52]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[51]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[50]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[49]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[48]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[47]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[46]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[45]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[44]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[43]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[42]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[41]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[40]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[39]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[38]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[37]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[36]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[35]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[34]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[33]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[32]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[31]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[30]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[29]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[28]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[27]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[26]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[25]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[24]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[23]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[22]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[21]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[20]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[19]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[18]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[17]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[16]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[15]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[14]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[13]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[12]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[11]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[10]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[9]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[8]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[7]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[6]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[5]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[4]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[3]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[2]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dq[0]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dm[7]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dm[6]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dm[5]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dm[4]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dm[3]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dm[2]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dm[1]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dm[0]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[63]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[62]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[61]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[60]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[59]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[58]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[57]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[56]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[55]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[54]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[53]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[52]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[51]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[50]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[49]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[48]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[47]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[46]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[45]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[44]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[43]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[42]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[41]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[40]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[39]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[38]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[37]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[36]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[35]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[34]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[33]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[32]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[31]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[30]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[29]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[28]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[27]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[26]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[25]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[24]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[23]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[22]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[21]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[20]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[19]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[18]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[17]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[16]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[15]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[14]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[13]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[12]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[11]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[10]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[9]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[8]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[7]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[6]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[5]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[4]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[3]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[2]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[1]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_dq[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.666 -to mem_dm[7]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.665 -to mem_dm[6]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.667 -to mem_dm[5]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.749 -to mem_dm[4]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.761 -to mem_dm[3]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.741 -to mem_dm[2]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.661 -to mem_dm[1]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.637 -to mem_dm[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.666 -to mem_dq[63]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.666 -to mem_dq[62]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.666 -to mem_dq[61]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.666 -to mem_dq[60]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.666 -to mem_dq[59]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.666 -to mem_dq[58]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.666 -to mem_dq[57]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.666 -to mem_dq[56]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.665 -to mem_dq[55]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.665 -to mem_dq[54]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.665 -to mem_dq[53]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.665 -to mem_dq[52]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.665 -to mem_dq[51]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.665 -to mem_dq[50]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.665 -to mem_dq[49]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.665 -to mem_dq[48]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.667 -to mem_dq[47]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.667 -to mem_dq[46]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.667 -to mem_dq[45]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.667 -to mem_dq[44]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.667 -to mem_dq[43]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.667 -to mem_dq[42]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.667 -to mem_dq[41]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.667 -to mem_dq[40]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.749 -to mem_dq[39]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.749 -to mem_dq[38]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.749 -to mem_dq[37]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.749 -to mem_dq[36]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.749 -to mem_dq[35]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.749 -to mem_dq[34]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.749 -to mem_dq[33]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.749 -to mem_dq[32]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.761 -to mem_dq[31]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.761 -to mem_dq[30]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.761 -to mem_dq[29]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.761 -to mem_dq[28]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.761 -to mem_dq[27]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.761 -to mem_dq[26]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.761 -to mem_dq[25]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.761 -to mem_dq[24]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.741 -to mem_dq[23]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.741 -to mem_dq[22]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.741 -to mem_dq[21]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.741 -to mem_dq[20]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.741 -to mem_dq[19]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.741 -to mem_dq[18]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.741 -to mem_dq[17]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.741 -to mem_dq[16]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.661 -to mem_dq[15]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.661 -to mem_dq[14]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.661 -to mem_dq[13]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.661 -to mem_dq[12]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.661 -to mem_dq[11]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.661 -to mem_dq[10]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.661 -to mem_dq[9]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.661 -to mem_dq[8]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.637 -to mem_dq[7]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.637 -to mem_dq[6]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.637 -to mem_dq[5]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.637 -to mem_dq[4]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.637 -to mem_dq[3]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.637 -to mem_dq[2]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.637 -to mem_dq[1]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.637 -to mem_dq[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dm[7]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dm[6]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dm[5]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dm[4]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dm[3]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dm[2]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dm[1]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dm[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[63]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[62]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[61]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[60]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[59]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[58]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[57]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[56]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[55]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[54]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[53]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[52]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[51]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[50]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[49]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[48]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[47]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[46]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[45]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[44]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[43]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[42]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[41]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[40]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[39]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[38]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[37]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[36]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[35]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[34]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[33]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[32]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[31]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[30]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[29]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[28]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[27]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[26]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[25]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[24]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[23]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[22]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[21]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[20]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[19]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[18]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[17]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[16]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[15]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[14]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[13]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[12]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[11]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[10]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[9]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[8]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[7]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[6]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[5]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[4]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[3]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[2]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[1]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dq[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dm[7]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dm[6]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dm[5]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dm[4]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dm[3]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dm[2]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dm[1]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dm[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[63]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[62]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[61]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[60]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[59]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[58]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[57]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[56]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[55]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[54]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[53]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[52]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[51]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[50]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[49]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[48]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[47]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[46]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[45]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[44]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[43]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[42]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[41]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[40]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[39]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[38]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[37]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[36]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[35]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[34]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[33]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[32]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[31]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[30]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[29]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[28]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[27]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[26]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[25]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[24]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[23]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[22]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[21]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[20]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[19]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[18]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[17]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[16]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[15]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[14]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[13]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[12]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[11]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[10]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[9]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[8]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[7]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[6]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[5]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[4]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[3]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[2]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[1]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dq[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dm[7]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dm[6]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dm[5]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dm[4]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dm[3]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dm[2]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dm[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dm[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[63]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[62]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[61]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[60]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[59]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[58]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[57]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[56]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[55]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[54]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[53]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[52]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[51]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[50]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[49]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[48]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[47]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[46]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[45]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[44]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[43]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[42]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[41]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[40]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[39]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[38]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[37]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[36]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[35]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[34]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[33]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[32]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[31]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[30]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[29]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[28]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[27]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[26]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[25]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[24]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[23]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[22]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[21]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[20]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[19]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[18]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[17]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[16]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[15]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[14]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[13]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[12]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[11]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[10]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[9]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[8]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[7]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[6]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[5]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[4]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[3]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[2]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dq[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.831 -to mem_dqs[7]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.677 -to mem_dqs[6]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.548 -to mem_dqs[5]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.450 -to mem_dqs[4]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.457 -to mem_dqs[3]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.437 -to mem_dqs[2]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.757 -to mem_dqs[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.866 -to mem_dqs[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dqs[7]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dqs[6]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dqs[5]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dqs[4]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dqs[3]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dqs[2]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dqs[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8N -to mem_dqs[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dqs[7]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dqs[6]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dqs[5]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dqs[4]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dqs[3]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dqs[2]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dqs[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_dqs[0]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 22 -to mem_dqs[7]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 22 -to mem_dqs[6]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 22 -to mem_dqs[5]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 22 -to mem_dqs[4]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 22 -to mem_dqs[3]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 22 -to mem_dqs[2]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 22 -to mem_dqs[1]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 22 -to mem_dqs[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.666 -to mem_dqs[7]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.665 -to mem_dqs[6]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.667 -to mem_dqs[5]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.749 -to mem_dqs[4]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.761 -to mem_dqs[3]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.741 -to mem_dqs[2]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.661 -to mem_dqs[1]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 0.637 -to mem_dqs[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dqs[7]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dqs[6]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dqs[5]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dqs[4]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dqs[3]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dqs[2]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dqs[1]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_dqs[0]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dqs[7]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dqs[6]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dqs[5]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dqs[4]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dqs[3]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dqs[2]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dqs[1]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_dqs[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dqs[7]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dqs[6]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dqs[5]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dqs[4]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dqs[3]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dqs[2]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dqs[1]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_dqs[0]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dqs[7]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dqs[6]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dqs[5]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dqs[4]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dqs[3]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dqs[2]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dqs[1]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dqs[0]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dm[7]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dm[6]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dm[5]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dm[4]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dm[3]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dm[2]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dm[1]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dm[0]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[63]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[62]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[61]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[60]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[59]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[58]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[57]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[56]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[55]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[54]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[53]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[52]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[51]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[50]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[49]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[48]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[47]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[46]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[45]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[44]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[43]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[42]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[41]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[40]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[39]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[38]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[37]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[36]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[35]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[34]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[33]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[32]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[31]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[30]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[29]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[28]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[27]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[26]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[25]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[24]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[23]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[22]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[21]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[20]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[19]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[18]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[17]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[16]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[15]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[14]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[13]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[12]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[11]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[10]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[9]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[8]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[7]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[6]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[5]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[4]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[3]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[2]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[1]
+set_instance_assignment -name BOARD_MODEL_FAR_C 4P -to mem_dq[0]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_LENGTH 1.743 -to mem_addr[13]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_L_PER_LENGTH 8.0N -to mem_addr[13]
+set_instance_assignment -name BOARD_MODEL_NEAR_TLINE_C_PER_LENGTH 4.04P -to mem_addr[13]
+set_instance_assignment -name BOARD_MODEL_NEAR_SERIES_R SHORT -to mem_addr[13]
+set_instance_assignment -name BOARD_MODEL_TLINE_LENGTH 2.230 -to mem_addr[13]
+set_instance_assignment -name BOARD_MODEL_TLINE_L_PER_LENGTH 10.6N -to mem_addr[13]
+set_instance_assignment -name BOARD_MODEL_TLINE_C_PER_LENGTH 3.06P -to mem_addr[13]
+set_instance_assignment -name BOARD_MODEL_NEAR_PULLUP_R 56 -to mem_addr[13]
+set_instance_assignment -name BOARD_MODEL_FAR_SERIES_R 3 -to mem_addr[13]
+set_instance_assignment -name BOARD_MODEL_FAR_C 2P -to mem_addr[13]
+set_instance_assignment -name VIRTUAL_PIN ON -to pnf_per_byte
+set_instance_assignment -name VIRTUAL_PIN ON -to test_status
+set_instance_assignment -name OUTPUT_TERMINATION "SERIES 50 OHM WITH CALIBRATION" -to ddr2_dimm_ck_p
+set_instance_assignment -name XSTL_INPUT_ALLOW_SE_BUFFER ON -to ddr2_dimm_ck_p[0]
+set_instance_assignment -name TREAT_BIDIR_AS_OUTPUT ON -to ddr2_dimm_ck_p[1]
+set_instance_assignment -name OUTPUT_TERMINATION "SERIES 50 OHM WITH CALIBRATION" -to ddr2_dimm_ck_n
+set_instance_assignment -name MEM_INTERFACE_DELAY_CHAIN_CONFIG FLEXIBLE_TIMING -to ddr2_dimm_dm
+set_instance_assignment -name OUTPUT_ENABLE_GROUP 1383251936 -to ddr2_dimm_dm
+set_instance_assignment -name OUTPUT_TERMINATION "SERIES 50 OHM WITH CALIBRATION" -to ddr2_dimm_dm
+set_instance_assignment -name MEM_INTERFACE_DELAY_CHAIN_CONFIG FLEXIBLE_TIMING -to ddr2_dimm_dq
+set_instance_assignment -name OUTPUT_ENABLE_GROUP 1383251936 -to ddr2_dimm_dq
+set_instance_assignment -name OUTPUT_TERMINATION "SERIES 50 OHM WITH CALIBRATION" -to ddr2_dimm_dq
+set_instance_assignment -name MEM_INTERFACE_DELAY_CHAIN_CONFIG FLEXIBLE_TIMING -to ddr2_dimm_dqs_p
+set_instance_assignment -name OUTPUT_ENABLE_GROUP 1383251936 -to ddr2_dimm_dqs_p
+set_instance_assignment -name OUTPUT_TERMINATION "SERIES 50 OHM WITH CALIBRATION" -to ddr2_dimm_dqs_p
+set_instance_assignment -name MEM_INTERFACE_DELAY_CHAIN_CONFIG FLEXIBLE_TIMING -to ddr2_dimm_dqs_n
+set_instance_assignment -name OUTPUT_ENABLE_GROUP 1383251936 -to ddr2_dimm_dqs_n
+set_instance_assignment -name OUTPUT_TERMINATION "SERIES 50 OHM WITH CALIBRATION" -to ddr2_dimm_dqs_n
+set_instance_assignment -name VIRTUAL_PIN ON -to cal_blk_clk
+set_instance_assignment -name IO_STANDARD LVDS -to clkin_155_p
+set_instance_assignment -name INPUT_TERMINATION DIFFERENTIAL -to clkin_155_p -disable
+set_location_assignment PIN_AK19 -to clkin_bot_n
+set_instance_assignment -name IO_STANDARD LVDS -to clkin_ref_q1_1_p
+set_location_assignment PIN_AA29 -to clkin_ref_q1_1_p
+set_instance_assignment -name IO_STANDARD LVDS -to clkin_ref_q1_2_p
+set_location_assignment PIN_W29 -to clkin_ref_q1_2_p
+set_instance_assignment -name IO_STANDARD LVDS -to clkin_ref_q2_p
+set_location_assignment PIN_U29 -to clkin_ref_q2_p
+set_location_assignment PIN_F17 -to clkin_ref_q3_p
+set_location_assignment PIN_F17 -to clkin_top_n
+set_location_assignment PIN_F18 -to clkin_top_p
+set_instance_assignment -name IO_STANDARD LVDS -to clkin_top_p
+set_instance_assignment -name IO_STANDARD "2.5 V" -to clkout_sma
+set_location_assignment PIN_F23 -to clkout_sma
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to cpu_resetn
+set_instance_assignment -name IO_STANDARD "2.5 V" -to cpu_resetn
+set_location_assignment PIN_N10 -to cpu_resetn
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to ddr3_a
+set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to ddr3_a
+set_location_assignment PIN_G16 -to ddr3_a[0]
+set_location_assignment PIN_A12 -to ddr3_a[1]
+set_location_assignment PIN_H18 -to ddr3_a[2]
+set_location_assignment PIN_F16 -to ddr3_a[3]
+set_location_assignment PIN_A7 -to ddr3_a[4]
+set_location_assignment PIN_G17 -to ddr3_a[5]
+set_location_assignment PIN_C13 -to ddr3_a[6]
+set_location_assignment PIN_K14 -to ddr3_a[7]
+set_location_assignment PIN_D11 -to ddr3_a[8]
+set_location_assignment PIN_M16 -to ddr3_a[9]
+set_location_assignment PIN_A11 -to ddr3_a[10]
+set_location_assignment PIN_E15 -to ddr3_a[11]
+set_location_assignment PIN_A8 -to ddr3_a[12]
+set_location_assignment PIN_M17 -to ddr3_a[13]
+set_location_assignment PIN_B15 -to ddr3_a[14]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to ddr3_ba
+set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to ddr3_ba
+set_location_assignment PIN_D16 -to ddr3_ba[0]
+set_location_assignment PIN_C12 -to ddr3_ba[1]
+set_location_assignment PIN_C16 -to ddr3_ba[2]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to ddr3_casn
+set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to ddr3_casn
+set_location_assignment PIN_D15 -to ddr3_casn
+set_instance_assignment -name OUTPUT_TERMINATION "SERIES 50 OHM WITH CALIBRATION" -to ddr3_ck_n
+set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.5-V SSTL CLASS I" -to ddr3_ck_n
+set_location_assignment PIN_B12 -to ddr3_ck_n
+set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.5-V SSTL CLASS I" -to ddr3_ck_p
+set_location_assignment PIN_B13 -to ddr3_ck_p
+set_instance_assignment -name OUTPUT_TERMINATION "SERIES 50 OHM WITH CALIBRATION" -to ddr3_ck_p
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to ddr3_cke
+set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to ddr3_cke
+set_location_assignment PIN_B10 -to ddr3_cke
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to ddr3_csn
+set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to ddr3_csn
+set_location_assignment PIN_A10 -to ddr3_csn
+set_instance_assignment -name OUTPUT_ENABLE_GROUP 57199071 -to ddr3_dm
+set_instance_assignment -name OUTPUT_TERMINATION "SERIES 50 OHM WITH CALIBRATION" -to ddr3_dm
+set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to ddr3_dm
+set_instance_assignment -name MEM_INTERFACE_DELAY_CHAIN_CONFIG FLEXIBLE_TIMING -to ddr3_dm
+set_location_assignment PIN_B9 -to ddr3_dm[0]
+set_location_assignment PIN_K15 -to ddr3_dm[1]
+set_instance_assignment -name OUTPUT_ENABLE_GROUP 57199071 -to ddr3_dq
+set_instance_assignment -name OUTPUT_TERMINATION "SERIES 50 OHM WITH CALIBRATION" -to ddr3_dq
+set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to ddr3_dq
+set_instance_assignment -name MEM_INTERFACE_DELAY_CHAIN_CONFIG FLEXIBLE_TIMING -to ddr3_dq
+set_location_assignment PIN_J16 -to ddr3_dq[0]
+set_location_assignment PIN_B7 -to ddr3_dq[1]
+set_location_assignment PIN_K17 -to ddr3_dq[2]
+set_location_assignment PIN_A6 -to ddr3_dq[3]
+set_location_assignment PIN_A3 -to ddr3_dq[4]
+set_location_assignment PIN_A4 -to ddr3_dq[5]
+set_location_assignment PIN_L16 -to ddr3_dq[6]
+set_location_assignment PIN_B3 -to ddr3_dq[7]
+set_location_assignment PIN_D13 -to ddr3_dq[8]
+set_location_assignment PIN_F13 -to ddr3_dq[9]
+set_location_assignment PIN_A2 -to ddr3_dq[10]
+set_location_assignment PIN_J15 -to ddr3_dq[11]
+set_location_assignment PIN_D12 -to ddr3_dq[12]
+set_location_assignment PIN_G15 -to ddr3_dq[13]
+set_location_assignment PIN_B4 -to ddr3_dq[14]
+set_location_assignment PIN_G13 -to ddr3_dq[15]
+set_instance_assignment -name OUTPUT_ENABLE_GROUP 57199071 -to ddr3_dqs_n
+set_instance_assignment -name OUTPUT_TERMINATION "SERIES 50 OHM WITH CALIBRATION" -to ddr3_dqs_n
+set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.5-V SSTL CLASS I" -to ddr3_dqs_n
+set_instance_assignment -name MEM_INTERFACE_DELAY_CHAIN_CONFIG FLEXIBLE_TIMING -to ddr3_dqs_n
+set_location_assignment PIN_F15 -to ddr3_dqs_n[0]
+set_location_assignment PIN_E12 -to ddr3_dqs_n[1]
+set_instance_assignment -name OUTPUT_ENABLE_GROUP 57199071 -to ddr3_dqs_p
+set_instance_assignment -name OUTPUT_TERMINATION "SERIES 50 OHM WITH CALIBRATION" -to ddr3_dqs_p
+set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.5-V SSTL CLASS I" -to ddr3_dqs_p
+set_instance_assignment -name MEM_INTERFACE_DELAY_CHAIN_CONFIG FLEXIBLE_TIMING -to ddr3_dqs_p
+set_location_assignment PIN_G14 -to ddr3_dqs_p[0]
+set_location_assignment PIN_F12 -to ddr3_dqs_p[1]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to ddr3_odt
+set_instance_assignment -name IO_STANDARD "1.5 V" -to ddr3_odt
+set_location_assignment PIN_E16 -to ddr3_odt
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to ddr3_rasn
+set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to ddr3_rasn
+set_location_assignment PIN_A13 -to ddr3_rasn
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to ddr3_resetn
+set_instance_assignment -name IO_STANDARD "1.5 V" -to ddr3_resetn
+set_location_assignment PIN_G18 -to ddr3_resetn
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to ddr3_wen
+set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to ddr3_wen
+set_location_assignment PIN_A15 -to ddr3_wen
+set_instance_assignment -name IO_STANDARD "2.5 V" -to enet_gtx_clk
+set_location_assignment PIN_D25 -to enet_gtx_clk
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to enet_intn
+set_instance_assignment -name IO_STANDARD "2.5 V" -to enet_intn
+set_location_assignment PIN_D18 -to enet_intn
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to enet_mdc
+set_instance_assignment -name IO_STANDARD "2.5 V" -to enet_mdc
+set_location_assignment PIN_K20 -to enet_mdc
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to enet_mdio
+set_instance_assignment -name IO_STANDARD "2.5 V" -to enet_mdio
+set_location_assignment PIN_N20 -to enet_mdio
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to enet_resetn
+set_instance_assignment -name IO_STANDARD "2.5 V" -to enet_resetn
+set_location_assignment PIN_M20 -to enet_resetn
+set_instance_assignment -name IO_STANDARD "2.5 V" -to enet_rx_clk
+set_location_assignment PIN_V6 -to enet_rx_clk
+set_instance_assignment -name IO_STANDARD "2.5 V" -to enet_rx_d
+set_location_assignment PIN_E21 -to enet_rx_d[0]
+set_location_assignment PIN_E24 -to enet_rx_d[1]
+set_location_assignment PIN_E22 -to enet_rx_d[2]
+set_location_assignment PIN_F24 -to enet_rx_d[3]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to enet_rx_dv
+set_location_assignment PIN_D17 -to enet_rx_dv
+set_instance_assignment -name IO_STANDARD "2.5 V" -to enet_tx_d
+set_location_assignment PIN_J20 -to enet_tx_d[0]
+set_location_assignment PIN_C25 -to enet_tx_d[1]
+set_location_assignment PIN_G22 -to enet_tx_d[2]
+set_location_assignment PIN_G21 -to enet_tx_d[3]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to enet_tx_en
+set_location_assignment PIN_G20 -to enet_tx_en
+set_instance_assignment -name IO_STANDARD "2.5 V" -to flash_advn
+set_location_assignment PIN_T4 -to flash_advn
+set_instance_assignment -name IO_STANDARD "2.5 V" -to flash_cen
+set_location_assignment PIN_M3 -to flash_cen
+set_instance_assignment -name IO_STANDARD "2.5 V" -to flash_clk
+set_location_assignment PIN_N4 -to flash_clk
+set_instance_assignment -name IO_STANDARD "2.5 V" -to flash_oen
+set_location_assignment PIN_K5 -to flash_oen
+set_instance_assignment -name IO_STANDARD "2.5 V" -to flash_rdybsyn
+set_location_assignment PIN_R3 -to flash_rdybsyn
+set_instance_assignment -name IO_STANDARD "2.5 V" -to flash_resetn
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to flash_resetn
+set_location_assignment PIN_N3 -to flash_resetn
+set_instance_assignment -name IO_STANDARD "2.5 V" -to flash_wen
+set_location_assignment PIN_C7 -to flash_wen
+set_instance_assignment -name IO_STANDARD "2.5 V" -to fsm_a
+set_location_assignment PIN_M21 -to fsm_a[0]
+set_location_assignment PIN_J3 -to fsm_a[1]
+set_location_assignment PIN_D29 -to fsm_a[2]
+set_location_assignment PIN_J21 -to fsm_a[3]
+set_location_assignment PIN_L13 -to fsm_a[4]
+set_location_assignment PIN_C8 -to fsm_a[5]
+set_location_assignment PIN_N9 -to fsm_a[6]
+set_location_assignment PIN_D20 -to fsm_a[7]
+set_location_assignment PIN_A23 -to fsm_a[8]
+set_location_assignment PIN_B24 -to fsm_a[9]
+set_location_assignment PIN_C24 -to fsm_a[10]
+set_location_assignment PIN_E25 -to fsm_a[11]
+set_location_assignment PIN_F21 -to fsm_a[12]
+set_location_assignment PIN_J19 -to fsm_a[13]
+set_location_assignment PIN_H19 -to fsm_a[14]
+set_location_assignment PIN_K21 -to fsm_a[15]
+set_location_assignment PIN_L21 -to fsm_a[16]
+set_location_assignment PIN_F25 -to fsm_a[17]
+set_location_assignment PIN_F26 -to fsm_a[18]
+set_location_assignment PIN_G23 -to fsm_a[19]
+set_location_assignment PIN_H21 -to fsm_a[20]
+set_location_assignment PIN_M13 -to fsm_a[21]
+set_location_assignment PIN_P7 -to fsm_a[22]
+set_location_assignment PIN_F10 -to fsm_a[23]
+set_location_assignment PIN_R4 -to fsm_a[24]
+set_location_assignment PIN_K4 -to fsm_a[25]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to fsm_d
+set_location_assignment PIN_A19 -to fsm_d[0]
+set_location_assignment PIN_C18 -to fsm_d[1]
+set_location_assignment PIN_D28 -to fsm_d[2]
+set_location_assignment PIN_B19 -to fsm_d[3]
+set_location_assignment PIN_E19 -to fsm_d[4]
+set_location_assignment PIN_E18 -to fsm_d[5]
+set_location_assignment PIN_G19 -to fsm_d[6]
+set_location_assignment PIN_F19 -to fsm_d[7]
+set_location_assignment PIN_D21 -to fsm_d[8]
+set_location_assignment PIN_D23 -to fsm_d[9]
+set_location_assignment PIN_D24 -to fsm_d[10]
+set_location_assignment PIN_A25 -to fsm_d[11]
+set_location_assignment PIN_B25 -to fsm_d[12]
+set_location_assignment PIN_A26 -to fsm_d[13]
+set_location_assignment PIN_C26 -to fsm_d[14]
+set_location_assignment PIN_A27 -to fsm_d[15]
+set_location_assignment PIN_R9 -to fsm_d[16]
+set_location_assignment PIN_R10 -to fsm_d[17]
+set_location_assignment PIN_R8 -to fsm_d[18]
+set_location_assignment PIN_A17 -to fsm_d[19]
+set_location_assignment PIN_D22 -to fsm_d[20]
+set_location_assignment PIN_T10 -to fsm_d[21]
+set_location_assignment PIN_P4 -to fsm_d[22]
+set_location_assignment PIN_R11 -to fsm_d[23]
+set_location_assignment PIN_A18 -to fsm_d[24]
+set_location_assignment PIN_B18 -to fsm_d[25]
+set_location_assignment PIN_C19 -to fsm_d[26]
+set_location_assignment PIN_D19 -to fsm_d[27]
+set_location_assignment PIN_B21 -to fsm_d[28]
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to fsm_d[28]
+set_location_assignment PIN_A21 -to fsm_d[29]
+set_location_assignment PIN_C21 -to fsm_d[30]
+set_location_assignment PIN_A22 -to fsm_d[31]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to hsma_clk_in0
+set_location_assignment PIN_AP17 -to hsma_clk_in0
+set_instance_assignment -name IO_STANDARD LVDS -to hsma_clk_in_p1
+set_location_assignment PIN_U6 -to hsma_clk_in_p1
+set_location_assignment PIN_U5 -to "hsma_clk_in_p1(n)"
+set_instance_assignment -name IO_STANDARD LVDS -to hsma_clk_in_p2
+set_location_assignment PIN_K18 -to hsma_clk_in_p2
+set_location_assignment PIN_J18 -to "hsma_clk_in_p2(n)"
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to hsma_clk_out0
+set_instance_assignment -name IO_STANDARD "2.5 V" -to hsma_clk_out0
+set_location_assignment PIN_P10 -to hsma_clk_out0
+set_instance_assignment -name IO_STANDARD LVDS -to hsma_clk_out_p1
+set_location_assignment PIN_AD7 -to hsma_clk_out_p1
+set_location_assignment PIN_AD6 -to "hsma_clk_out_p1(n)"
+set_instance_assignment -name IO_STANDARD LVDS -to hsma_clk_out_p2
+set_location_assignment PIN_V12 -to hsma_clk_out_p2
+set_location_assignment PIN_W12 -to "hsma_clk_out_p2(n)"
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to hsma_d
+set_instance_assignment -name IO_STANDARD "2.5 V" -to hsma_d
+set_location_assignment PIN_L1 -to hsma_d[0]
+set_location_assignment PIN_R6 -to hsma_d[1]
+set_location_assignment PIN_K1 -to hsma_d[2]
+set_location_assignment PIN_M1 -to hsma_d[3]
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to hsma_prsntn
+set_location_assignment PIN_U3 -to hsma_prsntn
+set_instance_assignment -name IO_STANDARD LVDS -to hsma_rx_d_p
+set_instance_assignment -name INPUT_TERMINATION DIFFERENTIAL -to hsma_rx_d_p
+set_location_assignment PIN_AC5 -to hsma_rx_d_p[0]
+set_location_assignment PIN_AC4 -to "hsma_rx_d_p[0](n)"
+set_location_assignment PIN_AE4 -to hsma_rx_d_p[1]
+set_location_assignment PIN_AF4 -to "hsma_rx_d_p[1](n)"
+set_location_assignment PIN_AF1 -to hsma_rx_d_p[2]
+set_location_assignment PIN_AG1 -to "hsma_rx_d_p[2](n)"
+set_location_assignment PIN_AE2 -to hsma_rx_d_p[3]
+set_location_assignment PIN_AE1 -to "hsma_rx_d_p[3](n)"
+set_location_assignment PIN_AC1 -to hsma_rx_d_p[4]
+set_location_assignment PIN_AD1 -to "hsma_rx_d_p[4](n)"
+set_location_assignment PIN_AB2 -to hsma_rx_d_p[5]
+set_location_assignment PIN_AB1 -to "hsma_rx_d_p[5](n)"
+set_location_assignment PIN_Y1 -to hsma_rx_d_p[6]
+set_location_assignment PIN_AA1 -to "hsma_rx_d_p[6](n)"
+set_location_assignment PIN_Y2 -to hsma_rx_d_p[7]
+set_location_assignment PIN_W1 -to "hsma_rx_d_p[7](n)"
+set_location_assignment PIN_V2 -to hsma_rx_d_p[8]
+set_location_assignment PIN_V1 -to "hsma_rx_d_p[8](n)"
+set_location_assignment PIN_W4 -to hsma_rx_d_p[9]
+set_location_assignment PIN_W3 -to "hsma_rx_d_p[9](n)"
+set_location_assignment PIN_U2 -to hsma_rx_d_p[10]
+set_location_assignment PIN_U1 -to "hsma_rx_d_p[10](n)"
+set_location_assignment PIN_Y4 -to hsma_rx_d_p[11]
+set_location_assignment PIN_Y3 -to "hsma_rx_d_p[11](n)"
+set_location_assignment PIN_AB4 -to hsma_rx_d_p[12]
+set_location_assignment PIN_AB3 -to "hsma_rx_d_p[12](n)"
+set_location_assignment PIN_AB6 -to hsma_rx_d_p[13]
+set_location_assignment PIN_AB5 -to "hsma_rx_d_p[13](n)"
+set_location_assignment PIN_U7 -to hsma_rx_d_p[14]
+set_location_assignment PIN_V7 -to "hsma_rx_d_p[14](n)"
+set_location_assignment PIN_AB8 -to hsma_rx_d_p[15]
+set_location_assignment PIN_AB7 -to "hsma_rx_d_p[15](n)"
+set_location_assignment PIN_AC7 -to hsma_rx_d_p[16]
+set_location_assignment PIN_AC6 -to "hsma_rx_d_p[16](n)"
+set_instance_assignment -name IO_STANDARD "2.5 V" -to hsma_rx_led
+set_location_assignment PIN_N5 -to hsma_rx_led
+set_location_assignment PIN_U34 -to hsma_rx_n[0]
+set_location_assignment PIN_R34 -to hsma_rx_n[1]
+set_location_assignment PIN_N34 -to hsma_rx_n[2]
+set_location_assignment PIN_L34 -to hsma_rx_n[3]
+set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to hsma_rx_p
+set_location_assignment PIN_U33 -to hsma_rx_p[0]
+set_location_assignment PIN_R33 -to hsma_rx_p[1]
+set_location_assignment PIN_N33 -to hsma_rx_p[2]
+set_location_assignment PIN_L33 -to hsma_rx_p[3]
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to hsma_scl
+set_location_assignment PIN_T1 -to hsma_scl
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to hsma_sda
+set_location_assignment PIN_R1 -to hsma_sda
+set_instance_assignment -name IO_STANDARD LVDS -to hsma_tx_d_p
+set_location_assignment PIN_AA10 -to hsma_tx_d_p[0]
+set_location_assignment PIN_AA9 -to "hsma_tx_d_p[0](n)"
+set_location_assignment PIN_Y11 -to hsma_tx_d_p[1]
+set_location_assignment PIN_Y10 -to "hsma_tx_d_p[1](n)"
+set_location_assignment PIN_AH2 -to hsma_tx_d_p[2]
+set_location_assignment PIN_AH1 -to "hsma_tx_d_p[2](n)"
+set_location_assignment PIN_AB10 -to hsma_tx_d_p[3]
+set_location_assignment PIN_AB9 -to "hsma_tx_d_p[3](n)"
+set_location_assignment PIN_Y8 -to hsma_tx_d_p[4]
+set_location_assignment PIN_Y7 -to "hsma_tx_d_p[4](n)"
+set_location_assignment PIN_AF3 -to hsma_tx_d_p[5]
+set_location_assignment PIN_AF2 -to "hsma_tx_d_p[5](n)"
+set_location_assignment PIN_AD4 -to hsma_tx_d_p[6]
+set_location_assignment PIN_AE3 -to "hsma_tx_d_p[6](n)"
+set_location_assignment PIN_V4 -to hsma_tx_d_p[7]
+set_location_assignment PIN_V3 -to "hsma_tx_d_p[7](n)"
+set_location_assignment PIN_AA7 -to hsma_tx_d_p[8]
+set_location_assignment PIN_Y6 -to "hsma_tx_d_p[8](n)"
+set_location_assignment PIN_W7 -to hsma_tx_d_p[9]
+set_location_assignment PIN_W6 -to "hsma_tx_d_p[9](n)"
+set_location_assignment PIN_Y5 -to hsma_tx_d_p[10]
+set_location_assignment PIN_AA4 -to "hsma_tx_d_p[10](n)"
+set_location_assignment PIN_AC3 -to hsma_tx_d_p[11]
+set_location_assignment PIN_AC2 -to "hsma_tx_d_p[11](n)"
+set_location_assignment PIN_W10 -to hsma_tx_d_p[12]
+set_location_assignment PIN_Y9 -to "hsma_tx_d_p[12](n)"
+set_location_assignment PIN_R7 -to hsma_tx_d_p[13]
+set_location_assignment PIN_T7 -to "hsma_tx_d_p[13](n)"
+set_location_assignment PIN_R2 -to hsma_tx_d_p[14]
+set_location_assignment PIN_P1 -to "hsma_tx_d_p[14](n)"
+set_location_assignment PIN_V11 -to hsma_tx_d_p[15]
+set_location_assignment PIN_V10 -to "hsma_tx_d_p[15](n)"
+set_location_assignment PIN_U11 -to hsma_tx_d_p[16]
+set_location_assignment PIN_U10 -to "hsma_tx_d_p[16](n)"
+set_instance_assignment -name IO_STANDARD "2.5 V" -to hsma_tx_led
+set_location_assignment PIN_C29 -to hsma_tx_led
+set_location_assignment PIN_T32 -to hsma_tx_n[0]
+set_location_assignment PIN_P32 -to hsma_tx_n[1]
+set_location_assignment PIN_M32 -to hsma_tx_n[2]
+set_location_assignment PIN_K32 -to hsma_tx_n[3]
+set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to hsma_tx_p
+set_location_assignment PIN_T31 -to hsma_tx_p[0]
+set_location_assignment PIN_P31 -to hsma_tx_p[1]
+set_location_assignment PIN_M31 -to hsma_tx_p[2]
+set_location_assignment PIN_K31 -to hsma_tx_p[3]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to hsmb_clk_in0
+set_location_assignment PIN_AP16 -to hsmb_clk_in0
+set_instance_assignment -name IO_STANDARD "2.5 V" -to hsmb_clk_out0
+set_instance_assignment -name IO_STANDARD LVDS -to hsmb_clk_out_p1
+set_instance_assignment -name IO_STANDARD LVDS -to hsmb_clk_out_p2
+set_instance_assignment -name IO_STANDARD "2.5 V" -to hsmb_d
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to hsmb_prsntn
+set_instance_assignment -name IO_STANDARD LVDS -to hsmb_rx_d_p
+set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to hsmb_rx_p
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to hsmb_scl
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to hsmb_sda
+set_instance_assignment -name IO_STANDARD LVDS -to hsmb_tx_d_p
+set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to hsmb_tx_p
+set_instance_assignment -name IO_STANDARD "2.5 V" -to lcd_csn
+set_location_assignment PIN_J2 -to lcd_csn
+set_instance_assignment -name IO_STANDARD "2.5 V" -to lcd_d_cn
+set_location_assignment PIN_J1 -to lcd_d_cn
+set_instance_assignment -name IO_STANDARD "2.5 V" -to lcd_data
+set_location_assignment PIN_F1 -to lcd_data[0]
+set_location_assignment PIN_H3 -to lcd_data[1]
+set_location_assignment PIN_E1 -to lcd_data[2]
+set_location_assignment PIN_F2 -to lcd_data[3]
+set_location_assignment PIN_D2 -to lcd_data[4]
+set_location_assignment PIN_D1 -to lcd_data[5]
+set_location_assignment PIN_C2 -to lcd_data[6]
+set_location_assignment PIN_C1 -to lcd_data[7]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to lcd_wen
+set_location_assignment PIN_H1 -to lcd_wen
+set_instance_assignment -name IO_STANDARD "2.5 V" -to max2_ben
+set_location_assignment PIN_C15 -to max2_ben[0]
+set_location_assignment PIN_H16 -to max2_ben[1]
+set_location_assignment PIN_D14 -to max2_ben[2]
+set_location_assignment PIN_A9 -to max2_ben[3]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to max2_clk
+set_location_assignment PIN_J14 -to max2_clk
+set_instance_assignment -name IO_STANDARD "2.5 V" -to max2_csn
+set_location_assignment PIN_A16 -to max2_csn
+set_instance_assignment -name IO_STANDARD "2.5 V" -to max2_oen
+set_location_assignment PIN_A14 -to max2_oen
+set_instance_assignment -name IO_STANDARD "2.5 V" -to max2_wen
+set_location_assignment PIN_B16 -to max2_wen
+set_instance_assignment -name IO_STANDARD "2.5 V" -to pcie_led_g2
+set_instance_assignment -name IO_STANDARD "2.5 V" -to pcie_led_x1
+set_location_assignment PIN_C28 -to pcie_led_x1
+set_instance_assignment -name IO_STANDARD "2.5 V" -to pcie_led_x4
+set_location_assignment PIN_D26 -to pcie_led_x4
+set_instance_assignment -name IO_STANDARD "2.5 V" -to pcie_led_x8
+set_location_assignment PIN_C27 -to pcie_led_x8
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to pcie_perstn
+set_instance_assignment -name IO_STANDARD "2.5 V" -to pcie_perstn
+set_location_assignment PIN_N1 -to pcie_perstn
+set_instance_assignment -name IO_STANDARD HCSL -to pcie_refclk_p
+set_instance_assignment -name INPUT_TERMINATION DIFFERENTIAL -to pcie_refclk_p -disable
+set_location_assignment PIN_AE29 -to pcie_refclk_p
+set_location_assignment PIN_AE30 -to "pcie_refclk_p(n)"
+set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to pcie_rx_n
+set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to pcie_rx_p
+set_instance_assignment -name INPUT_TERMINATION DIFFERENTIAL -to pcie_rx_p -disable
+set_location_assignment PIN_AN33 -to pcie_rx_p[0]
+set_location_assignment PIN_AN34 -to "pcie_rx_p[0](n)"
+set_location_assignment PIN_AL33 -to pcie_rx_p[1]
+set_location_assignment PIN_AL34 -to "pcie_rx_p[1](n)"
+set_location_assignment PIN_AJ33 -to pcie_rx_p[2]
+set_location_assignment PIN_AJ34 -to "pcie_rx_p[2](n)"
+set_location_assignment PIN_AG33 -to pcie_rx_p[3]
+set_location_assignment PIN_AG34 -to "pcie_rx_p[3](n)"
+set_location_assignment PIN_AE33 -to pcie_rx_p[4]
+set_location_assignment PIN_AE34 -to "pcie_rx_p[4](n)"
+set_location_assignment PIN_AC33 -to pcie_rx_p[5]
+set_location_assignment PIN_AC34 -to "pcie_rx_p[5](n)"
+set_location_assignment PIN_AA33 -to pcie_rx_p[6]
+set_location_assignment PIN_AA34 -to "pcie_rx_p[6](n)"
+set_location_assignment PIN_W33 -to pcie_rx_p[7]
+set_location_assignment PIN_W34 -to "pcie_rx_p[7](n)"
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to pcie_smbclk
+set_instance_assignment -name IO_STANDARD "2.5 V" -to pcie_smbclk
+set_location_assignment PIN_M18 -to pcie_smbclk
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to pcie_smbdat
+set_instance_assignment -name IO_STANDARD "2.5 V" -to pcie_smbdat
+set_location_assignment PIN_D27 -to pcie_smbdat
+set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to pcie_tx_n
+set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to pcie_tx_p
+set_location_assignment PIN_AM31 -to pcie_tx_p[0]
+set_location_assignment PIN_AM32 -to "pcie_tx_p[0](n)"
+set_location_assignment PIN_AK31 -to pcie_tx_p[1]
+set_location_assignment PIN_AK32 -to "pcie_tx_p[1](n)"
+set_location_assignment PIN_AH31 -to pcie_tx_p[2]
+set_location_assignment PIN_AH32 -to "pcie_tx_p[2](n)"
+set_location_assignment PIN_AF31 -to pcie_tx_p[3]
+set_location_assignment PIN_AF32 -to "pcie_tx_p[3](n)"
+set_location_assignment PIN_AD31 -to pcie_tx_p[4]
+set_location_assignment PIN_AD32 -to "pcie_tx_p[4](n)"
+set_location_assignment PIN_AB31 -to pcie_tx_p[5]
+set_location_assignment PIN_AB32 -to "pcie_tx_p[5](n)"
+set_location_assignment PIN_Y31 -to pcie_tx_p[6]
+set_location_assignment PIN_Y32 -to "pcie_tx_p[6](n)"
+set_location_assignment PIN_V31 -to pcie_tx_p[7]
+set_location_assignment PIN_V32 -to "pcie_tx_p[7](n)"
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to pcie_waken
+set_instance_assignment -name IO_STANDARD "2.5 V" -to pcie_waken
+set_location_assignment PIN_C30 -to pcie_waken
+set_instance_assignment -name IO_STANDARD "2.5 V" -to sram_adscn
+set_location_assignment PIN_C10 -to sram_adscn
+set_instance_assignment -name IO_STANDARD "2.5 V" -to sram_adspn
+set_location_assignment PIN_A20 -to sram_adspn
+set_instance_assignment -name IO_STANDARD "2.5 V" -to sram_advn
+set_location_assignment PIN_D9 -to sram_advn
+set_instance_assignment -name IO_STANDARD "2.5 V" -to sram_bwen
+set_location_assignment PIN_J11 -to sram_bwen
+set_instance_assignment -name IO_STANDARD "2.5 V" -to sram_bwn
+set_location_assignment PIN_J13 -to sram_bwn[0]
+set_location_assignment PIN_H12 -to sram_bwn[1]
+set_location_assignment PIN_E9 -to sram_bwn[2]
+set_location_assignment PIN_H13 -to sram_bwn[3]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to sram_cen
+set_location_assignment PIN_E10 -to sram_cen
+set_instance_assignment -name IO_STANDARD "2.5 V" -to sram_clk
+set_location_assignment PIN_J12 -to sram_clk
+set_instance_assignment -name IO_STANDARD "2.5 V" -to sram_dqp
+set_location_assignment PIN_A24 -to sram_dqp[0]
+set_location_assignment PIN_B22 -to sram_dqp[1]
+set_location_assignment PIN_P9 -to sram_dqp[2]
+set_location_assignment PIN_C22 -to sram_dqp[3]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to sram_gwn
+set_location_assignment PIN_K12 -to sram_gwn
+set_instance_assignment -name IO_STANDARD "2.5 V" -to sram_oen
+set_location_assignment PIN_D10 -to sram_oen
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to sram_zz
+set_instance_assignment -name IO_STANDARD "2.5 V" -to sram_zz
+set_location_assignment PIN_B27 -to sram_zz
+set_instance_assignment -name IO_STANDARD "1.5 V" -to termination_blk0~_rdn_pad
+set_instance_assignment -name IO_STANDARD "1.5 V" -to termination_blk0~_rup_pad
+set_instance_assignment -name IO_STANDARD "1.8 V" -to termination_blk1~_rdn_pad
+set_location_assignment PIN_AL27 -to termination_blk1~_rdn_pad
+set_instance_assignment -name IO_STANDARD "1.8 V" -to termination_blk1~_rup_pad
+set_location_assignment PIN_AL26 -to termination_blk1~_rup_pad
+set_instance_assignment -name IO_STANDARD "2.5 V" -to termination_blk2~_rdn_pad
+set_instance_assignment -name IO_STANDARD "2.5 V" -to termination_blk2~_rup_pad
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to user_dipsw
+set_instance_assignment -name IO_STANDARD "2.5 V" -to user_dipsw
+set_location_assignment PIN_N2 -to user_dipsw[0]
+set_location_assignment PIN_U9 -to user_dipsw[1]
+set_location_assignment PIN_V9 -to user_dipsw[2]
+set_location_assignment PIN_U4 -to user_dipsw[3]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to user_led
+set_location_assignment PIN_G1 -to user_led[0]
+set_location_assignment PIN_J4 -to user_led[1]
+set_location_assignment PIN_J5 -to user_led[2]
+set_location_assignment PIN_R5 -to user_led[3]
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to user_pb
+set_location_assignment PIN_AL7 -to user_pb[1]
+set_location_assignment PIN_N6 -to ~ALTERA_DATA1~
+set_location_assignment PIN_G2 -to ~ALTERA_DATA2~
+set_location_assignment PIN_P6 -to ~ALTERA_DATA3~
+set_location_assignment PIN_L4 -to ~ALTERA_DATA4~
+set_location_assignment PIN_K3 -to ~ALTERA_DATA5~
+set_location_assignment PIN_M4 -to ~ALTERA_DATA6~
+set_location_assignment PIN_K2 -to ~ALTERA_DATA7~
+set_location_assignment PIN_AP26 -to ~ALTERA_nCEO~
+set_location_assignment PIN_AJ10 -to ddr2_dimm_odt
+set_global_assignment -name MISC_FILE "D:/fpga/arria_II_gx_board/arria_II_gx_ddr2_test_3/ddr2_sodimm.dpf"
+set_location_assignment PIN_AA30 -to clkin_ref_q1_1_n
+set_location_assignment PIN_W30 -to clkin_ref_q1_2_n
+set_location_assignment PIN_U30 -to clkin_ref_q2_n
+set_location_assignment PIN_U29 -to clkin_ref_q3_n
+set_location_assignment PIN_AL6 -to ddr2_dimm_ck_n[1]
+set_location_assignment PIN_AK6 -to ddr2_dimm_ck_p[1]
+set_location_assignment PIN_AP8 -to ddr2_dimm_cke
+set_location_assignment PIN_AM13 -to ddr2_dimm_csn
+set_global_assignment -name PHYSICAL_SYNTHESIS_EFFORT FAST
+
+
+set_location_assignment PIN_AH24 -to ddr2_dimm_a[14]
+set_location_assignment PIN_AP28 -to ddr2_dimm_a[15]
+set_global_assignment -name VHDL_FILE "../Users/jarvin77/funbase-repo/release_1/lib/hw_lib/ips/computation/memory_to_hibi/alt_mem_ctrl/a2gx_ddr2_1GB/ddr2_sodimm_x32_phy_alt_mem_phy_seq.vhd"
+set_global_assignment -name VERILOG_FILE "../Users/jarvin77/funbase-repo/release_1/lib/hw_lib/ips/computation/memory_to_hibi/alt_mem_ctrl/a2gx_ddr2_1GB/ddr2_sodimm_x32_auk_ddr_hp_controller_wrapper.v"
+set_global_assignment -name VERILOG_FILE "../Users/jarvin77/funbase-repo/release_1/lib/hw_lib/ips/computation/memory_to_hibi/alt_mem_ctrl/a2gx_ddr2_1GB/ddr2_sodimm_x32_phy_alt_mem_phy_seq_wrapper.v"
+set_global_assignment -name VHDL_FILE "../Users/jarvin77/funbase-repo/release_1/lib/hw_lib/ips/computation/memory_to_hibi/vhd/m2h2_port.vhd"
+set_global_assignment -name VERILOG_FILE "../Users/jarvin77/funbase-repo/release_1/lib/hw_lib/ips/computation/memory_to_hibi/alt_mem_ctrl/a2gx_ddr2_1GB/alt_mem_phy_defines.v"
+set_global_assignment -name VERILOG_FILE "../Users/jarvin77/funbase-repo/release_1/lib/hw_lib/ips/computation/memory_to_hibi/alt_mem_ctrl/a2gx_ddr2_1GB/ddr2_sodimm_x32_phy_alt_mem_phy_dq_dqs.v"
+set_global_assignment -name VHDL_FILE "../Users/jarvin77/funbase-repo/release_1/lib/hw_lib/ips/computation/memory_to_hibi/alt_mem_ctrl/a2gx_ddr2_1GB/auk_ddr_hp_controller.vhd"
+set_global_assignment -name VERILOG_FILE "../Users/jarvin77/funbase-repo/release_1/lib/hw_lib/ips/computation/memory_to_hibi/alt_mem_ctrl/a2gx_ddr2_1GB/ddr2_sodimm_x32.v"
+set_global_assignment -name VHDL_FILE "../Users/jarvin77/funbase-repo/release_1/lib/hw_lib/ips/computation/memory_to_hibi/vhd/m2h2.vhd"
+set_global_assignment -name VERILOG_FILE "../Users/jarvin77/funbase-repo/release_1/lib/hw_lib/ips/computation/memory_to_hibi/alt_mem_ctrl/a2gx_ddr2_1GB/ddr2_sodimm_x32_controller_phy.v"
+set_global_assignment -name VERILOG_FILE "../Users/jarvin77/funbase-repo/release_1/lib/hw_lib/ips/computation/memory_to_hibi/alt_mem_ctrl/a2gx_ddr2_1GB/ddr2_sodimm_x32_phy.v"
+set_global_assignment -name VERILOG_FILE "../Users/jarvin77/funbase-repo/release_1/lib/hw_lib/ips/computation/memory_to_hibi/alt_mem_ctrl/a2gx_ddr2_1GB/ddr2_sodimm_x32_phy_alt_mem_phy.v"
+set_global_assignment -name VHDL_FILE ../Users/jarvin77/koski/lib/hw_lib/ips/adapters/pcie_to_hibi/hdl/pcie_to_hibi_4x.vhd
+set_global_assignment -name VERILOG_FILE "../Users/jarvin77/funbase-repo/release_1/lib/hw_lib/ips/computation/memory_to_hibi/alt_mem_ctrl/a2gx_ddr2_1GB/ddr2_sodimm_x32_phy_alt_mem_phy_pll.v"
+set_global_assignment -name VERILOG_FILE ../Users/jarvin77/koski/lib/hw_lib/ips/adapters/avalon_to_hibi/verilog/avalon_to_hibi.v
+set_global_assignment -name VHDL_FILE ../Users/jarvin77/koski/lib/hw_lib/ips/interconnections/hibi/vhd/tx_ctrl.vhd
+set_global_assignment -name VHDL_FILE ../Users/jarvin77/koski/lib/hw_lib/ips/interconnections/hibi/vhd/cfg_init_pkg.vhd
+set_global_assignment -name VHDL_FILE ../Users/jarvin77/koski/lib/hw_lib/ips/interconnections/hibi/vhd/cfg_mem.vhd
+set_global_assignment -name VHDL_FILE ../Users/jarvin77/koski/lib/hw_lib/ips/interconnections/hibi/vhd/copy_of_multiclk_fifo.vhd
+set_global_assignment -name VHDL_FILE ../Users/jarvin77/koski/lib/hw_lib/ips/interconnections/hibi/vhd/double_fifo_demux_wr.vhd
+set_global_assignment -name VHDL_FILE ../Users/jarvin77/koski/lib/hw_lib/ips/interconnections/hibi/vhd/double_fifo_mux_rd.vhd
+set_global_assignment -name VHDL_FILE ../Users/jarvin77/koski/lib/hw_lib/ips/interconnections/hibi/vhd/dyn_arb.vhd
+set_global_assignment -name VHDL_FILE ../Users/jarvin77/koski/lib/hw_lib/ips/interconnections/hibi/vhd/fifo.vhd
+set_global_assignment -name VHDL_FILE ../Users/jarvin77/koski/lib/hw_lib/ips/interconnections/hibi/vhd/fifo_muxes.vhd
+set_global_assignment -name VHDL_FILE ../Users/jarvin77/koski/lib/hw_lib/ips/interconnections/hibi/vhd/Hibi_segment.vhd
+set_global_assignment -name VHDL_FILE ../Users/jarvin77/koski/lib/hw_lib/ips/interconnections/hibi/vhd/hibi_wrapper_r1.vhd
+set_global_assignment -name VHDL_FILE ../Users/jarvin77/koski/lib/hw_lib/ips/interconnections/hibi/vhd/hibi_wrapper_r4.vhd
+set_global_assignment -name VHDL_FILE ../Users/jarvin77/koski/lib/hw_lib/ips/interconnections/hibi/vhd/hibiv2_pkg.vhd
+set_global_assignment -name VHDL_FILE ../Users/jarvin77/koski/lib/hw_lib/ips/interconnections/hibi/vhd/lfsr.vhd
+set_global_assignment -name VHDL_FILE ../Users/jarvin77/koski/lib/hw_lib/ips/interconnections/hibi/vhd/receiver.vhd
+set_global_assignment -name VHDL_FILE ../Users/jarvin77/koski/lib/hw_lib/ips/interconnections/hibi/vhd/rx_ctrl.vhd
+set_global_assignment -name VHDL_FILE ../Users/jarvin77/koski/lib/hw_lib/ips/interconnections/hibi/vhd/transmitter.vhd
+set_global_assignment -name VHDL_FILE ../Users/jarvin77/koski/lib/hw_lib/ips/interconnections/hibi/vhd/addr_decoder.vhd
+set_global_assignment -name VHDL_FILE ../Users/jarvin77/koski/lib/hw_lib/ips/interconnections/hibi/vhd/addr_data_demuxes.vhd
+set_global_assignment -name VHDL_FILE ../Users/jarvin77/koski/lib/hw_lib/ips/interconnections/hibi/vhd/addr_data_muxes.vhd
+set_global_assignment -name VERILOG_FILE a2gx_dev_kit_golden_top.v
+set_global_assignment -name QIP_FILE pcie_to_hibi_4x_sopc.qip
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

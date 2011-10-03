@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 17:27:21 su loka 2 2011-->
+<spirit:designConfiguration>
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>product</spirit:library>
+	<spirit:name>pc_arria_ii_gx.designcfg</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:designRef spirit:vendor="TUT" spirit:library="product" spirit:name="pc_arria_ii_gx.design" spirit:version="1.0"/>
+	<spirit:viewConfiguration>
+		<spirit:instanceName>arria_ii_gx_board</spirit:instanceName>
+		<spirit:viewName>kactusHierarchical</spirit:viewName>
+	</spirit:viewConfiguration>
+	<spirit:viewConfiguration>
+		<spirit:instanceName>pc_board</spirit:instanceName>
+		<spirit:viewName></spirit:viewName>
+	</spirit:viewConfiguration>
+</spirit:designConfiguration>

@@ -1,0 +1,542 @@
+// TimingDraw design save file
+// TimingDraw by Antti Terävä and Tomi Jäntti, 2007
+TimingDraw_design_file 1.0
+
+BASE_CYCLE_HALF_COUNT 30
+FIRST_INDEX 0
+CYCLE_DURATION_UNIT "ns"
+CYCLE_DURATION_VALUE 10.0
+LINE_ON_CYCLE_MIDDLE false
+LINE_ON_CYCLE_START true
+NUMBERING true
+SIGNAL_NAMES true
+
+Signal CLOCK
+    ARROW_ON_FALLING_EDGE false
+    ARROW_ON_RISING_EDGE false
+    CYCLE_LENGTH 1
+    DELAY 0.0
+    FALL_TIME 10.0
+    IDEAL false
+    INITIAL_STATE "0"
+    LINE_ON_FALLING_EDGE false
+    LINE_ON_RISING_EDGE false
+    NAME "clk"
+    RISE_TIME 10.0
+endSignal
+
+Signal BINARY
+    ARROW_ON_FALLING_EDGE false
+    ARROW_ON_RISING_EDGE false
+    DELAY 0.0
+    FALL_TIME 10.0
+    IDEAL false
+    NAME "hibi_msg_rd_req"
+    RISE_TIME 10.0
+    States "111111000011001100110011111111"
+endSignal
+
+Signal BINARY
+    ARROW_ON_FALLING_EDGE false
+    ARROW_ON_RISING_EDGE false
+    DELAY 0.0
+    FALL_TIME 10.0
+    IDEAL false
+    NAME "hibi_msg_re"
+    RISE_TIME 10.0
+    States "001111000011001100110000000000"
+endSignal
+
+Signal BUS
+    DELAY 0.0
+    ENUM_LABEL_VALUES "0:IDLE:1:WR_CONF_0"
+    ENUM_LABELS true
+    FALL_TIME 10.0
+    IDEAL false
+    NAME "hibi_msg_rd_addr"
+    RISE_TIME 10.0
+    VALUE_LABELS true
+    VALUE_NUMBER_SYSTEM "hexadecimal"
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU111111111111111111"
+    endSignal
+endSignal
+
+Signal BUS
+    DELAY 0.0
+    ENUM_LABEL_VALUES ""
+    ENUM_LABELS false
+    FALL_TIME 10.0
+    IDEAL false
+    NAME "hibi_msg_rd_data"
+    RISE_TIME 10.0
+    VALUE_LABELS false
+    VALUE_NUMBER_SYSTEM "hexadecimal"
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "000000000000000000000000000000"
+    endSignal
+endSignal
+
+Signal BINARY
+    ARROW_ON_FALLING_EDGE false
+    ARROW_ON_RISING_EDGE false
+    DELAY 0.0
+    FALL_TIME 10.0
+    IDEAL false
+    NAME "wr_conf_v"
+    RISE_TIME 10.0
+    States "000011000000000000000000000000"
+endSignal
+
+Signal BINARY
+    ARROW_ON_FALLING_EDGE false
+    ARROW_ON_RISING_EDGE false
+    DELAY 0.0
+    FALL_TIME 10.0
+    IDEAL false
+    NAME "rw_conf_load_index_v"
+    RISE_TIME 10.0
+    States "000011000000000000000000000000"
+endSignal
+
+Signal BINARY
+    ARROW_ON_FALLING_EDGE false
+    ARROW_ON_RISING_EDGE false
+    DELAY 0.0
+    FALL_TIME 10.0
+    IDEAL false
+    NAME "wr_conf_delayed"
+    RISE_TIME 10.0
+    States "000000110000000000000000000000"
+endSignal
+
+Signal BINARY
+    ARROW_ON_FALLING_EDGE false
+    ARROW_ON_RISING_EDGE false
+    DELAY 0.0
+    FALL_TIME 10.0
+    IDEAL false
+    NAME "read_prev_hibi_msg"
+    RISE_TIME 10.0
+    States "000000110000000000000000000000UUUUUU"
+endSignal
+
+Signal BINARY
+    ARROW_ON_FALLING_EDGE false
+    ARROW_ON_RISING_EDGE false
+    DELAY 0.0
+    FALL_TIME 10.0
+    IDEAL false
+    NAME "rw_conf_load_state"
+    RISE_TIME 10.0
+    States "000000001100110011001100000000"
+endSignal
+
+Signal BUS
+    DELAY 0.0
+    ENUM_LABEL_VALUES ""
+    ENUM_LABELS false
+    FALL_TIME 10.0
+    IDEAL false
+    NAME "rw_chan_conf_index"
+    RISE_TIME 10.0
+    VALUE_LABELS true
+    VALUE_NUMBER_SYSTEM "hexadecimal"
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU00000000000000000011111111"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU00000000001111111100000000"
+    endSignal
+
+    Signal BINARY
+        ARROW_ON_FALLING_EDGE false
+        ARROW_ON_RISING_EDGE false
+        States "UUUU00000011110000111100000000"
+    endSignal
+endSignal
+

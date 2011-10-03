@@ -1,0 +1,6 @@
+set_global_assignment -name VERILOG_FILE D:/svn/koski/trunk/lib/hw_lib/ips/adapters/avalon_to_hibi/verilog/avalon_to_hibi.v
+ set_global_assignment -name VERILOG_FILE a2h.v
+ set_global_assignment -name QIP_FILE pcie.qip
+set_global_assignment -name TCL_FILE D:/svn/koski/trunk/lib/hw_lib/ips/adapters/avalon_to_hibi/verilog/avalon_to_hibi_hw.tcl
+set_global_assignment -name SOPC_BUILDER_SIGNATURE_ID 001E4FF5C40E00000127AF6B4567 
+ 

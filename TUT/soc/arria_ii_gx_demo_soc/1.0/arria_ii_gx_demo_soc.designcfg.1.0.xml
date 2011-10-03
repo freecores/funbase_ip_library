@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 19:47:26 su loka 2 2011-->
+<spirit:designConfiguration>
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>soc</spirit:library>
+	<spirit:name>arria_ii_gx_demo_soc.designcfg</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:designRef spirit:vendor="TUT" spirit:library="soc" spirit:name="arria_ii_gx_demo_soc.design" spirit:version="1.0"/>
+</spirit:designConfiguration>

@@ -1,0 +1,721 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 18:17:30 su loka 2 2011-->
+<spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>ip.hwp.interface</spirit:library>
+	<spirit:name>pcie_to_hibi_4x</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:busInterfaces>
+		<spirit:busInterface>
+			<spirit:name>clk_in</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="clock.busdef" spirit:version="1.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="clock.absDef" spirit:version="1.0"/>
+			<spirit:slave/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>CLK</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>clk_in</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+		<spirit:busInterface>
+			<spirit:name>hibi_p</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.communication" spirit:name="hibi_ip_r4.busdef" spirit:version="2.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.communication" spirit:name="hibi_ip_r4.absdef" spirit:version="2.0"/>
+			<spirit:master/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>AV_FROM_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_av_out</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>ONE_D_TO_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_one_d_in</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>DATA_TO_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_data_in</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>DATA_FROM_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_data_out</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>AV_TO_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_av_in</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>FULL_TO_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_full_in</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>COMM_FROM_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_comm_out</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>WE_FROM_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_we_out</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>COMM_TO_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_comm_in</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>EMPTY_TO_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_empty_in</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>RE_FROM_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_re_out</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>ONE_P_TO_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_one_p_in</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+		<spirit:busInterface>
+			<spirit:name>pcie_4x_p</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="pcie_4x.busdef" spirit:version="1.1"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="pcie_4x.absdef" spirit:version="1.1"/>
+			<spirit:mirroredMaster/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>TX_TO_PCIE</spirit:name>
+						<spirit:vector>
+							<spirit:left>3</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>pcie_tx</spirit:name>
+						<spirit:vector>
+							<spirit:left>3</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>RX_FROM_PCIE</spirit:name>
+						<spirit:vector>
+							<spirit:left>3</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>pcie_rx</spirit:name>
+						<spirit:vector>
+							<spirit:left>3</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>RST_N_FROM_PCIE</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>pcie_rst_n</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>REF_CLK_FROM_PCIE</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>pcie_ref_clk</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+		<spirit:busInterface>
+			<spirit:name>rst_n</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.busdef" spirit:version="1.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.absDef" spirit:version="1.0"/>
+			<spirit:slave/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>RESETn</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>rst_n</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+	</spirit:busInterfaces>
+	<spirit:model>
+		<spirit:ports>
+			<spirit:port>
+				<spirit:name>clk_in</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_av_in</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_av_out</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_comm_in</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+					<spirit:vector>
+						<spirit:left>4</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_comm_out</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+					<spirit:vector>
+						<spirit:left>4</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_data_in</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+					<spirit:vector>
+						<spirit:left>31</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_data_out</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+					<spirit:vector>
+						<spirit:left>31</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_empty_in</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_full_in</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_one_d_in</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_one_p_in</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_re_out</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_we_out</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>pcie_ref_clk</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>pcie_rst_n</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>pcie_rx</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+					<spirit:vector>
+						<spirit:left>3</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>pcie_tx</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+					<spirit:vector>
+						<spirit:left>3</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>rst_n</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+		</spirit:ports>
+		<spirit:modelParameters>
+			<spirit:modelParameter spirit:dataType="integer" spirit:usageType="nontyped">
+				<spirit:name>HIBI_DATA_WIDTH</spirit:name>
+				<spirit:value>32</spirit:value>
+			</spirit:modelParameter>
+		</spirit:modelParameters>
+	</spirit:model>
+	<spirit:fileSets>
+		<spirit:fileSet>
+			<spirit:name>hdlSources</spirit:name>
+			<spirit:file>
+				<spirit:name>hdl/pcie_to_hibi_4x.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pcie_to_hibi_4x_sopc.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pcie_to_hibi_4x_sopc_burst_0.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pcie_to_hibi_4x_sopc_burst_1.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pcie_to_hibi_4x_sopc_burst_2.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pcie_to_hibi_4x_sopc_burst_3.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pcie_to_hibi_4x_sopc_burst_4.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pcie_to_hibi_4x_sopc_burst_5.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pcie.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/dma.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pcie_core.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pcie_serdes.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/a2h.v</spirit:name>
+				<spirit:userFileType>verilogSource</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pci_express_compiler-library/altpcie_64b_x4_pipen1b.v</spirit:name>
+				<spirit:userFileType>verilogSource</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pci_express_compiler-library/altpcie_hip_pipen1b.v</spirit:name>
+				<spirit:userFileType>verilogSource</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pci_express_compiler-library/altpcie_pclk_align.v</spirit:name>
+				<spirit:userFileType>verilogSource</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pci_express_compiler-library/altpcie_pclk_pll.v</spirit:name>
+				<spirit:userFileType>verilogSource</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pci_express_compiler-library/altpcie_phasefifo.v</spirit:name>
+				<spirit:userFileType>verilogSource</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pci_express_compiler-library/altpcie_pll_100_125.v</spirit:name>
+				<spirit:userFileType>verilogSource</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pci_express_compiler-library/altpcie_pll_100_250.v</spirit:name>
+				<spirit:userFileType>verilogSource</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pci_express_compiler-library/altpcie_pll_125_250.v</spirit:name>
+				<spirit:userFileType>verilogSource</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pci_express_compiler-library/altpcie_pll_15625_125.v</spirit:name>
+				<spirit:userFileType>verilogSource</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pci_express_compiler-library/altpcie_pll_250_100.v</spirit:name>
+				<spirit:userFileType>verilogSource</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pci_express_compiler-library/altpcie_pll_phy0.v</spirit:name>
+				<spirit:userFileType>verilogSource</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pci_express_compiler-library/altpcie_pll_phy1_62p5.v</spirit:name>
+				<spirit:userFileType>verilogSource</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pci_express_compiler-library/altpcie_pll_phy2.v</spirit:name>
+				<spirit:userFileType>verilogSource</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pci_express_compiler-library/altpcie_pll_phy3_62p5.v</spirit:name>
+				<spirit:userFileType>verilogSource</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pci_express_compiler-library/altpcie_pll_phy4_62p5.v</spirit:name>
+				<spirit:userFileType>verilogSource</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pci_express_compiler-library/altpcie_pll_phy5_62p5.v</spirit:name>
+				<spirit:userFileType>verilogSource</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pci_express_compiler-library/altpcie_serdes_2agx_x4d_gen1_08p.v</spirit:name>
+				<spirit:userFileType>verilogSource</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pci_express_compiler-library/altpcie_serdes_2agx_x4d_gen1_16p.v</spirit:name>
+				<spirit:userFileType>verilogSource</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pci_express_compiler-library/pciexp64_dlink.v</spirit:name>
+				<spirit:userFileType>verilogSource</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pci_express_compiler-library/pciexp64_trans.v</spirit:name>
+				<spirit:userFileType>verilogSource</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pci_express_compiler-library/pciexp_dcram.v</spirit:name>
+				<spirit:userFileType>verilogSource</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/pci_express_compiler-library/pciexpx8f_confctrl.v</spirit:name>
+				<spirit:userFileType>verilogSource</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>../../../../ip.hwp.communication/avalon_to_hibi/1.0/verilog/avalon_to_hibi.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pcie_to_hibi_4x</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:defaultFileBuilder>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:command>vlog</spirit:command>
+				<spirit:flags>-quiet -work pcie_to_hibi_4x</spirit:flags>
+				<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+			</spirit:defaultFileBuilder>
+			<spirit:defaultFileBuilder>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:command>vcom</spirit:command>
+				<spirit:flags>-quiet -check_synthesis -work pcie_to_hibi_4x</spirit:flags>
+				<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+			</spirit:defaultFileBuilder>
+		</spirit:fileSet>
+	</spirit:fileSets>
+	<spirit:vendorExtensions>
+		<kactus2:extensions>
+			<kactus2:kts_attributes>
+				<kactus2:kts_productHier>IP</kactus2:kts_productHier>
+				<kactus2:kts_firmness>Parameterizable</kactus2:kts_firmness>
+			</kactus2:kts_attributes>
+		</kactus2:extensions>
+	</spirit:vendorExtensions>
+</spirit:component>

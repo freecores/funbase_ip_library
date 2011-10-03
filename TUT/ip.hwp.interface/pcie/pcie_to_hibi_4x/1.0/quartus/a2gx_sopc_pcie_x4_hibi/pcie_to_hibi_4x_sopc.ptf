@@ -1,0 +1,2449 @@
+SYSTEM pcie_to_hibi_4x_sopc
+{
+   System_Wizard_Version = "9.11";
+   System_Wizard_Build = "304";
+   Builder_Application = "sopc_builder_ca";
+   WIZARD_SCRIPT_ARGUMENTS 
+   {
+      hdl_language = "vhdl";
+      device_family = "ARRIAII";
+      device_family_id = "ARRIAII";
+      generate_sdk = "0";
+      do_build_sim = "0";
+      hardcopy_compatible = "0";
+      CLOCKS 
+      {
+         CLOCK clk
+         {
+            frequency = "100000000";
+            source = "External";
+            Is_Clock_Source = "0";
+            display_name = "clk";
+            pipeline = "0";
+            clock_module_connection_point_for_c2h = "clk.clk";
+         }
+      }
+      clock_freq = "100000000";
+      clock_freq = "100000000";
+      board_class = "";
+      view_master_columns = "1";
+      view_master_priorities = "0";
+      generate_hdl = "";
+      bustype_column_width = "0";
+      clock_column_width = "80";
+      name_column_width = "75";
+      desc_column_width = "75";
+      base_column_width = "75";
+      end_column_width = "75";
+      do_log_history = "0";
+   }
+   MODULE pcie
+   {
+      MASTER bar1_0_Prefetchable
+      {
+         PORT_WIRING 
+         {
+            PORT AvlClk_i
+            {
+               type = "clk";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT reset_n
+            {
+               type = "reset_n";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT RxmIrqNum_i
+            {
+               type = "irqnumber";
+               width = "6";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT RxmIrq_i
+            {
+               type = "irq";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT RxmAddress_o
+            {
+               type = "address";
+               width = "32";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT RxmBurstCount_o
+            {
+               type = "burstcount";
+               width = "10";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT RxmByteEnable_o
+            {
+               type = "byteenable";
+               width = "8";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT RxmRead_o
+            {
+               type = "read";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT RxmReadData_i
+            {
+               type = "readdata";
+               width = "64";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT RxmReadDataValid_i
+            {
+               type = "readdatavalid";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT RxmWaitRequest_i
+            {
+               type = "waitrequest";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT RxmWrite_o
+            {
+               type = "write";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT RxmWriteData_o
+            {
+               type = "writedata";
+               width = "64";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT RxmResetRequest_o
+            {
+               type = "resetrequest";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+         }
+         SYSTEM_BUILDER_INFO 
+         {
+            Has_IRQ = "1";
+            Irq_Scheme = "priority_encoded";
+            Bus_Type = "avalon";
+            Is_Asynchronous = "0";
+            DBS_Big_Endian = "0";
+            Adapts_To = "";
+            Do_Stream_Reads = "0";
+            Do_Stream_Writes = "0";
+            Max_Address_Width = "32";
+            Data_Width = "64";
+            Address_Width = "32";
+            Maximum_Burst_Size = "512";
+            Register_Incoming_Signals = "0";
+            Register_Outgoing_Signals = "0";
+            Interleave_Bursts = "0";
+            Linewrap_Bursts = "0";
+            Burst_On_Burst_Boundaries_Only = "0";
+            Always_Burst_Max_Burst = "0";
+            Is_Big_Endian = "0";
+            Is_Enabled = "0";
+            Clock_Source = "clk";
+            Has_Clock = "1";
+         }
+         MEMORY_MAP 
+         {
+            Entry a2h/avalon_slave
+            {
+               address = "0x00000000";
+               span = "0x02000000";
+               is_bridge = "0";
+            }
+         }
+      }
+      PORT_WIRING 
+      {
+         PORT cal_blk_clk
+         {
+            type = "clk";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+         }
+         PORT pcie_rstn
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "pcie_rstn_pcie";
+         }
+         PORT phystatus_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "phystatus_ext_pcie";
+         }
+         PORT rx_in0
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rx_in0_pcie";
+         }
+         PORT rxdata1_ext
+         {
+            type = "export";
+            width = "8";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rxdata1_ext_pcie";
+         }
+         PORT rxdata2_ext
+         {
+            type = "export";
+            width = "8";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rxdata2_ext_pcie";
+         }
+         PORT rxdata3_ext
+         {
+            type = "export";
+            width = "8";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rxdata3_ext_pcie";
+         }
+         PORT rxdatak1_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rxdatak1_ext_pcie";
+         }
+         PORT rxdatak2_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rxdatak2_ext_pcie";
+         }
+         PORT rxdatak3_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rxdatak3_ext_pcie";
+         }
+         PORT rxelecidle1_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rxelecidle1_ext_pcie";
+         }
+         PORT rxelecidle2_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rxelecidle2_ext_pcie";
+         }
+         PORT rxelecidle3_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rxelecidle3_ext_pcie";
+         }
+         PORT refclk
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "refclk_pcie";
+         }
+         PORT rxstatus1_ext
+         {
+            type = "export";
+            width = "3";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rxstatus1_ext_pcie";
+         }
+         PORT rxstatus2_ext
+         {
+            type = "export";
+            width = "3";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rxstatus2_ext_pcie";
+         }
+         PORT rxstatus3_ext
+         {
+            type = "export";
+            width = "3";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rxstatus3_ext_pcie";
+         }
+         PORT rxvalid1_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rxvalid1_ext_pcie";
+         }
+         PORT rxvalid2_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rxvalid2_ext_pcie";
+         }
+         PORT rxvalid3_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rxvalid3_ext_pcie";
+         }
+         PORT rx_in1
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rx_in1_pcie";
+         }
+         PORT rx_in2
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rx_in2_pcie";
+         }
+         PORT rx_in3
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rx_in3_pcie";
+         }
+         PORT rxdata0_ext
+         {
+            type = "export";
+            width = "8";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rxdata0_ext_pcie";
+         }
+         PORT reconfig_clk
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "reconfig_clk_pcie";
+         }
+         PORT reconfig_togxb
+         {
+            type = "export";
+            width = "4";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "reconfig_togxb_pcie";
+         }
+         PORT gxb_powerdown
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "gxb_powerdown_pcie";
+         }
+         PORT pll_powerdown
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "pll_powerdown_pcie";
+         }
+         PORT rxdatak0_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rxdatak0_ext_pcie";
+         }
+         PORT rxelecidle0_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rxelecidle0_ext_pcie";
+         }
+         PORT rxstatus0_ext
+         {
+            type = "export";
+            width = "3";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rxstatus0_ext_pcie";
+         }
+         PORT rxvalid0_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "rxvalid0_ext_pcie";
+         }
+         PORT test_in
+         {
+            type = "export";
+            width = "40";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "test_in_pcie";
+         }
+         PORT pipe_mode
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+            _exclusive_name = "pipe_mode_pcie";
+         }
+         PORT clk125_out
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "clk125_out_pcie";
+         }
+         PORT tx_out0
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "tx_out0_pcie";
+         }
+         PORT rxpolarity1_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "rxpolarity1_ext_pcie";
+         }
+         PORT rxpolarity2_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "rxpolarity2_ext_pcie";
+         }
+         PORT rxpolarity3_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "rxpolarity3_ext_pcie";
+         }
+         PORT txcompl1_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "txcompl1_ext_pcie";
+         }
+         PORT txcompl2_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "txcompl2_ext_pcie";
+         }
+         PORT txcompl3_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "txcompl3_ext_pcie";
+         }
+         PORT txdata1_ext
+         {
+            type = "export";
+            width = "8";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "txdata1_ext_pcie";
+         }
+         PORT txdata2_ext
+         {
+            type = "export";
+            width = "8";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "txdata2_ext_pcie";
+         }
+         PORT powerdown_ext
+         {
+            type = "export";
+            width = "2";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "powerdown_ext_pcie";
+         }
+         PORT txdata3_ext
+         {
+            type = "export";
+            width = "8";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "txdata3_ext_pcie";
+         }
+         PORT txdatak1_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "txdatak1_ext_pcie";
+         }
+         PORT txdatak2_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "txdatak2_ext_pcie";
+         }
+         PORT txdatak3_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "txdatak3_ext_pcie";
+         }
+         PORT txelecidle1_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "txelecidle1_ext_pcie";
+         }
+         PORT txelecidle2_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "txelecidle2_ext_pcie";
+         }
+         PORT txelecidle3_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "txelecidle3_ext_pcie";
+         }
+         PORT tx_out1
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "tx_out1_pcie";
+         }
+         PORT tx_out2
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "tx_out2_pcie";
+         }
+         PORT tx_out3
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "tx_out3_pcie";
+         }
+         PORT rxpolarity0_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "rxpolarity0_ext_pcie";
+         }
+         PORT reconfig_fromgxb
+         {
+            type = "export";
+            width = "17";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "reconfig_fromgxb_pcie";
+         }
+         PORT clk250_out
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "clk250_out_pcie";
+         }
+         PORT clk500_out
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "clk500_out_pcie";
+         }
+         PORT rate_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "rate_ext_pcie";
+         }
+         PORT test_out
+         {
+            type = "export";
+            width = "9";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "test_out_pcie";
+         }
+         PORT txcompl0_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "txcompl0_ext_pcie";
+         }
+         PORT txdata0_ext
+         {
+            type = "export";
+            width = "8";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "txdata0_ext_pcie";
+         }
+         PORT txdatak0_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "txdatak0_ext_pcie";
+         }
+         PORT txdetectrx_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "txdetectrx_ext_pcie";
+         }
+         PORT txelecidle0_ext
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+            _exclusive_name = "txelecidle0_ext_pcie";
+         }
+      }
+      SLAVE Tx_Interface
+      {
+         SYSTEM_BUILDER_INFO 
+         {
+            Bus_Type = "avalon";
+            Read_Wait_States = "peripheral_controlled";
+            Write_Wait_States = "peripheral_controlled";
+            Hold_Time = "0cycles";
+            Setup_Time = "0cycles";
+            Is_Printable_Device = "0";
+            Address_Alignment = "dynamic";
+            Well_Behaved_Waitrequest = "0";
+            Is_Nonvolatile_Storage = "0";
+            Address_Span = "2097152";
+            Read_Latency = "0";
+            Is_Memory_Device = "0";
+            Maximum_Pending_Read_Transactions = "32";
+            Minimum_Uninterrupted_Run_Length = "1";
+            Accepts_Internal_Connections = "1";
+            Write_Latency = "0";
+            Is_Flash = "0";
+            Data_Width = "64";
+            Address_Width = "18";
+            Maximum_Burst_Size = "512";
+            Register_Incoming_Signals = "0";
+            Register_Outgoing_Signals = "0";
+            Interleave_Bursts = "0";
+            Linewrap_Bursts = "0";
+            Burst_On_Burst_Boundaries_Only = "0";
+            Always_Burst_Max_Burst = "0";
+            Is_Big_Endian = "0";
+            Is_Enabled = "1";
+            Clock_Source = "clk";
+            Has_Clock = "1";
+            MASTERED_BY dma/read_master
+            {
+               priority = "1";
+               Offset_Address = "0x00000000";
+            }
+            MASTERED_BY dma/write_master
+            {
+               priority = "1";
+               Offset_Address = "0x00000000";
+            }
+            Base_Address = "0x00000000";
+            Address_Group = "0";
+         }
+         PORT_WIRING 
+         {
+            PORT TxsChipSelect_i
+            {
+               type = "chipselect";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT TxsByteEnable_i
+            {
+               type = "byteenable";
+               width = "8";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT TxsReadData_o
+            {
+               type = "readdata";
+               width = "64";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT TxsWriteData_i
+            {
+               type = "writedata";
+               width = "64";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT TxsAddress_i
+            {
+               type = "address";
+               width = "18";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT TxsRead_i
+            {
+               type = "read";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT TxsWrite_i
+            {
+               type = "write";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT TxsReadDataValid_o
+            {
+               type = "readdatavalid";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT TxsWaitRequest_o
+            {
+               type = "waitrequest";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT TxsBurstCount_i
+            {
+               type = "burstcount";
+               width = "10";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+         }
+      }
+      SLAVE Control_Register_Access
+      {
+         SYSTEM_BUILDER_INFO 
+         {
+            Has_IRQ = "1";
+            Bus_Type = "avalon";
+            Read_Wait_States = "peripheral_controlled";
+            Write_Wait_States = "peripheral_controlled";
+            Hold_Time = "0cycles";
+            Setup_Time = "0cycles";
+            Is_Printable_Device = "0";
+            Address_Alignment = "dynamic";
+            Well_Behaved_Waitrequest = "0";
+            Is_Nonvolatile_Storage = "0";
+            Address_Span = "16384";
+            Read_Latency = "0";
+            Is_Memory_Device = "0";
+            Maximum_Pending_Read_Transactions = "0";
+            Minimum_Uninterrupted_Run_Length = "1";
+            Accepts_Internal_Connections = "1";
+            Write_Latency = "0";
+            Is_Flash = "0";
+            Data_Width = "32";
+            Address_Width = "12";
+            Maximum_Burst_Size = "1";
+            Register_Incoming_Signals = "0";
+            Register_Outgoing_Signals = "0";
+            Interleave_Bursts = "0";
+            Linewrap_Bursts = "0";
+            Burst_On_Burst_Boundaries_Only = "0";
+            Always_Burst_Max_Burst = "0";
+            Is_Big_Endian = "0";
+            Is_Enabled = "1";
+            Clock_Source = "clk";
+            Has_Clock = "1";
+            MASTERED_BY dma/write_master
+            {
+               priority = "1";
+               Offset_Address = "0x80004000";
+            }
+            MASTERED_BY dma/read_master
+            {
+               priority = "1";
+               Offset_Address = "0x80004000";
+            }
+            Base_Address = "0x80004000";
+            Address_Group = "1";
+         }
+         PORT_WIRING 
+         {
+            PORT CraIrq_o
+            {
+               type = "irq";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT CraChipSelect_i
+            {
+               type = "chipselect";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT CraAddress_i
+            {
+               type = "address";
+               width = "12";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT CraByteEnable_i
+            {
+               type = "byteenable";
+               width = "4";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT CraRead
+            {
+               type = "read";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT CraReadData_o
+            {
+               type = "readdata";
+               width = "32";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT CraWrite
+            {
+               type = "write";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT CraWriteData_i
+            {
+               type = "writedata";
+               width = "32";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT CraWaitRequest_o
+            {
+               type = "waitrequest";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+         }
+      }
+      MASTER bar2_Non_Prefetchable
+      {
+         SYSTEM_BUILDER_INFO 
+         {
+            Bus_Type = "avalon";
+            Is_Asynchronous = "0";
+            DBS_Big_Endian = "0";
+            Adapts_To = "";
+            Do_Stream_Reads = "0";
+            Do_Stream_Writes = "0";
+            Max_Address_Width = "32";
+            Data_Width = "64";
+            Address_Width = "32";
+            Maximum_Burst_Size = "512";
+            Register_Incoming_Signals = "0";
+            Register_Outgoing_Signals = "0";
+            Interleave_Bursts = "0";
+            Linewrap_Bursts = "0";
+            Burst_On_Burst_Boundaries_Only = "0";
+            Always_Burst_Max_Burst = "0";
+            Is_Big_Endian = "0";
+            Is_Enabled = "0";
+            Clock_Source = "clk";
+            Has_Clock = "1";
+         }
+         PORT_WIRING 
+         {
+            PORT RxmAddress_o
+            {
+               type = "address";
+               width = "32";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT RxmBurstCount_o
+            {
+               type = "burstcount";
+               width = "10";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT RxmByteEnable_o
+            {
+               type = "byteenable";
+               width = "8";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT RxmRead_o
+            {
+               type = "read";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT RxmReadData_i
+            {
+               type = "readdata";
+               width = "64";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT RxmReadDataValid_i
+            {
+               type = "readdatavalid";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT RxmWaitRequest_i
+            {
+               type = "waitrequest";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT RxmWrite_o
+            {
+               type = "write";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT RxmWriteData_o
+            {
+               type = "writedata";
+               width = "64";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT RxmResetRequest_o
+            {
+               type = "resetrequest";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+         }
+         MEMORY_MAP 
+         {
+            Entry dma/control_port_slave
+            {
+               address = "0x80001000";
+               span = "0x00000040";
+               is_bridge = "0";
+            }
+         }
+      }
+      SYSTEM_BUILDER_INFO 
+      {
+         Do_Not_Generate = "1";
+         Instantiate_In_System_Module = "1";
+         Is_Enabled = "1";
+         Clock_Source = "clk";
+         Has_Clock = "1";
+         Pins_Assigned_Automatically = "1";
+         View 
+         {
+            MESSAGES 
+            {
+            }
+         }
+      }
+      SIMULATION 
+      {
+         Module_Name = "pcie_testbench";
+         PORT_WIRING 
+         {
+            preserve = "1";
+            PORT pcie_rstn
+            {
+               direction = "output";
+               width = "1";
+               __exclusive_name = "pcie_rstn_pcie";
+               Is_Enabled = "1";
+            }
+            PORT phystatus_ext
+            {
+               direction = "output";
+               width = "1";
+               __exclusive_name = "phystatus_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rx_in0
+            {
+               direction = "output";
+               width = "1";
+               __exclusive_name = "rx_in0_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxdata1_ext
+            {
+               direction = "output";
+               width = "8";
+               __exclusive_name = "rxdata1_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxdata2_ext
+            {
+               direction = "output";
+               width = "8";
+               __exclusive_name = "rxdata2_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxdata3_ext
+            {
+               direction = "output";
+               width = "8";
+               __exclusive_name = "rxdata3_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxdatak1_ext
+            {
+               direction = "output";
+               width = "1";
+               __exclusive_name = "rxdatak1_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxdatak2_ext
+            {
+               direction = "output";
+               width = "1";
+               __exclusive_name = "rxdatak2_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxdatak3_ext
+            {
+               direction = "output";
+               width = "1";
+               __exclusive_name = "rxdatak3_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxelecidle1_ext
+            {
+               direction = "output";
+               width = "1";
+               __exclusive_name = "rxelecidle1_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxelecidle2_ext
+            {
+               direction = "output";
+               width = "1";
+               __exclusive_name = "rxelecidle2_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxelecidle3_ext
+            {
+               direction = "output";
+               width = "1";
+               __exclusive_name = "rxelecidle3_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT refclk
+            {
+               direction = "output";
+               width = "1";
+               __exclusive_name = "refclk_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxstatus1_ext
+            {
+               direction = "output";
+               width = "3";
+               __exclusive_name = "rxstatus1_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxstatus2_ext
+            {
+               direction = "output";
+               width = "3";
+               __exclusive_name = "rxstatus2_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxstatus3_ext
+            {
+               direction = "output";
+               width = "3";
+               __exclusive_name = "rxstatus3_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxvalid1_ext
+            {
+               direction = "output";
+               width = "1";
+               __exclusive_name = "rxvalid1_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxvalid2_ext
+            {
+               direction = "output";
+               width = "1";
+               __exclusive_name = "rxvalid2_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxvalid3_ext
+            {
+               direction = "output";
+               width = "1";
+               __exclusive_name = "rxvalid3_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rx_in1
+            {
+               direction = "output";
+               width = "1";
+               __exclusive_name = "rx_in1_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rx_in2
+            {
+               direction = "output";
+               width = "1";
+               __exclusive_name = "rx_in2_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rx_in3
+            {
+               direction = "output";
+               width = "1";
+               __exclusive_name = "rx_in3_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxdata0_ext
+            {
+               direction = "output";
+               width = "8";
+               __exclusive_name = "rxdata0_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT reconfig_clk
+            {
+               direction = "output";
+               width = "1";
+               __exclusive_name = "reconfig_clk_pcie";
+               Is_Enabled = "1";
+            }
+            PORT reconfig_togxb
+            {
+               direction = "output";
+               width = "4";
+               __exclusive_name = "reconfig_togxb_pcie";
+               Is_Enabled = "1";
+            }
+            PORT gxb_powerdown
+            {
+               direction = "output";
+               width = "1";
+               __exclusive_name = "gxb_powerdown_pcie";
+               Is_Enabled = "1";
+            }
+            PORT pll_powerdown
+            {
+               direction = "output";
+               width = "1";
+               __exclusive_name = "pll_powerdown_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxdatak0_ext
+            {
+               direction = "output";
+               width = "1";
+               __exclusive_name = "rxdatak0_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxelecidle0_ext
+            {
+               direction = "output";
+               width = "1";
+               __exclusive_name = "rxelecidle0_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxstatus0_ext
+            {
+               direction = "output";
+               width = "3";
+               __exclusive_name = "rxstatus0_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxvalid0_ext
+            {
+               direction = "output";
+               width = "1";
+               __exclusive_name = "rxvalid0_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT test_in
+            {
+               direction = "output";
+               width = "40";
+               __exclusive_name = "test_in_pcie";
+               Is_Enabled = "1";
+            }
+            PORT pipe_mode
+            {
+               direction = "output";
+               width = "1";
+               __exclusive_name = "pipe_mode_pcie";
+               Is_Enabled = "1";
+            }
+            PORT clk125_out
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "clk125_out_pcie";
+               Is_Enabled = "1";
+            }
+            PORT tx_out0
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "tx_out0_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxpolarity1_ext
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "rxpolarity1_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxpolarity2_ext
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "rxpolarity2_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxpolarity3_ext
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "rxpolarity3_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT txcompl1_ext
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "txcompl1_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT txcompl2_ext
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "txcompl2_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT txcompl3_ext
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "txcompl3_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT txdata1_ext
+            {
+               direction = "input";
+               width = "8";
+               __exclusive_name = "txdata1_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT txdata2_ext
+            {
+               direction = "input";
+               width = "8";
+               __exclusive_name = "txdata2_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT powerdown_ext
+            {
+               direction = "input";
+               width = "2";
+               __exclusive_name = "powerdown_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT txdata3_ext
+            {
+               direction = "input";
+               width = "8";
+               __exclusive_name = "txdata3_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT txdatak1_ext
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "txdatak1_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT txdatak2_ext
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "txdatak2_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT txdatak3_ext
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "txdatak3_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT txelecidle1_ext
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "txelecidle1_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT txelecidle2_ext
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "txelecidle2_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT txelecidle3_ext
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "txelecidle3_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT tx_out1
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "tx_out1_pcie";
+               Is_Enabled = "1";
+            }
+            PORT tx_out2
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "tx_out2_pcie";
+               Is_Enabled = "1";
+            }
+            PORT tx_out3
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "tx_out3_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rxpolarity0_ext
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "rxpolarity0_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT reconfig_fromgxb
+            {
+               direction = "input";
+               width = "17";
+               __exclusive_name = "reconfig_fromgxb_pcie";
+               Is_Enabled = "1";
+            }
+            PORT clk250_out
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "clk250_out_pcie";
+               Is_Enabled = "1";
+            }
+            PORT clk500_out
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "clk500_out_pcie";
+               Is_Enabled = "1";
+            }
+            PORT rate_ext
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "rate_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT test_out
+            {
+               direction = "input";
+               width = "9";
+               __exclusive_name = "test_out_pcie";
+               Is_Enabled = "1";
+            }
+            PORT txcompl0_ext
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "txcompl0_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT txdata0_ext
+            {
+               direction = "input";
+               width = "8";
+               __exclusive_name = "txdata0_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT txdatak0_ext
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "txdatak0_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT txdetectrx_ext
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "txdetectrx_ext_pcie";
+               Is_Enabled = "1";
+            }
+            PORT txelecidle0_ext
+            {
+               direction = "input";
+               width = "1";
+               __exclusive_name = "txelecidle0_ext_pcie";
+               Is_Enabled = "1";
+            }
+         }
+      }
+      HDL_INFO 
+      {
+         Synthesis_Only_Files = "__PROJECT__DIRECTORY__/pcie.vhd";
+         Simulation_HDL_Files = "c:/altera/91/quartus/eda/sim_lib/stratixgx_mf.vhd,c:/altera/91/quartus/eda/sim_lib/stratixgx_mf_components.vhd,c:/altera/91/quartus/eda/sim_lib/stratixiigx_hssi_components.vhd,c:/altera/91/quartus/eda/sim_lib/stratixiigx_hssi_atoms.vhd,c:/altera/91/quartus/eda/sim_lib/altera_primitives_components.vhd,c:/altera/91/quartus/eda/sim_lib/altera_primitives.vhd,c:/altera/91/quartus/eda/sim_lib/stratixiv_atoms.vhd,c:/altera/91/quartus/eda/sim_lib/stratixiv_components.vhd,c:/altera/91/quartus/eda/sim_lib/stratixiv_hssi_components.vhd,c:/altera/91/quartus/eda/sim_lib/stratixiv_hssi_atoms.vhd,c:/altera/91/quartus/eda/sim_lib/stratixiv_pcie_hip_components.vhd,c:/altera/91/quartus/eda/sim_lib/stratixiv_pcie_hip_atoms.vhd,c:/altera/91/quartus/eda/sim_lib/cycloneiv_atoms.vhd,c:/altera/91/quartus/eda/sim_lib/cycloneiv_components.vhd,c:/altera/91/quartus/eda/sim_lib/cycloneiv_hssi_components.vhd,c:/altera/91/quartus/eda/sim_lib/cycloneiv_hssi_atoms.vhd,c:/altera/91/quartus/eda/sim_lib/cycloneiv_pcie_hip_components.vhd,c:/altera/91/quartus/eda/sim_lib/cycloneiv_pcie_hip_atoms.vhd,c:/altera/91/quartus/eda/sim_lib/hardcopyiv_atoms.vhd,c:/altera/91/quartus/eda/sim_lib/hardcopyiv_components.vhd,c:/altera/91/quartus/eda/sim_lib/hardcopyiv_hssi_components.vhd,c:/altera/91/quartus/eda/sim_lib/hardcopyiv_hssi_atoms.vhd,c:/altera/91/quartus/eda/sim_lib/hardcopyiv_pcie_hip_components.vhd,c:/altera/91/quartus/eda/sim_lib/hardcopyiv_pcie_hip_atoms.vhd,c:/altera/91/quartus/eda/sim_lib/arriaii_atoms.vhd,c:/altera/91/quartus/eda/sim_lib/arriaii_components.vhd,c:/altera/91/quartus/eda/sim_lib/arriaii_hssi_components.vhd,c:/altera/91/quartus/eda/sim_lib/arriaii_hssi_atoms.vhd,c:/altera/91/quartus/eda/sim_lib/arriaii_pcie_hip_components.vhd,c:/altera/91/quartus/eda/sim_lib/arriaii_pcie_hip_atoms.vhd,../pcie_core.vho,../pcie.vhd,../pcie_serdes.vhd,../pcie_examples/common/testbench/altpcie_phasefifo.vhd,../pcie_examples/common/testbench/altpcie_pll_125_250.vhd,../pcie_examples/common/testbench/altpcie_pll_100_125.vhd,../pcie_examples/common/testbench/altpcie_pll_100_250.vhd,../pcie_examples/common/testbench/altpcie_pll_phy0.vhd,../pcie_examples/common/testbench/altpcie_pll_phy1_62p5.vhd,../pcie_examples/common/testbench/altpcie_pll_phy2.vhd,../pcie_examples/common/testbench/altpcie_pll_phy3_62p5.vhd,../pcie_examples/common/testbench/altpcie_pll_phy4_62p5.vhd,../pcie_examples/common/testbench/altpcie_pll_phy5_62p5.vhd,../pcie_examples/common/testbench/altpcietb_bfm_constants.vhd,../pcie_examples/common/testbench/altpcietb_bfm_log.vhd,../pcie_examples/common/testbench/altpcietb_bfm_common.vhd,../pcie_examples/common/testbench/altpcietb_bfm_shmem.vhd,../pcie_examples/common/testbench/altpcietb_bfm_req_intf.vhd,../pcie_examples/common/testbench/altpcietb_bfm_rdwr.vhd,../pcie_examples/common/testbench/altpcietb_bfm_configure.vhd,../pcie_examples/sopc/testbench/altpcietb_bfm_driver.vhd,../pcie_examples/sopc/testbench/pcie_testbench.vhd,../pcie_examples/common/testbench/altpcietb_bfm_vc_intf.vhd,../pcie_examples/common/testbench/altpcietb_bfm_rp_top_x8_pipen1b.vhd,../pcie_examples/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen1_pipen1b.vho,../pcie_examples/common/testbench/altpcietb_pipe_xtx2yrx.vhd,../pcie_examples/common/testbench/altpcietb_pipe_phy.vhd,../pcie_examples/common/testbench/altpcietb_rst_clk.vhd,../pcie_examples/common/testbench/altpcietb_ltssm_mon.vhd";
+      }
+      class = "altera_avalon_pcie_compiler";
+      class_version = "9.1";
+      WIZARD_SCRIPT_ARGUMENTS 
+      {
+      }
+      MASTER Rx_Interface
+      {
+         PORT_WIRING 
+         {
+            PORT AvlClk_i
+            {
+               type = "clk";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT reset_n
+            {
+               type = "reset_n";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT RxmIrqNum_i
+            {
+               type = "irqnumber";
+               width = "6";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT RxmIrq_i
+            {
+               type = "irq";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT RxmAddress_o
+            {
+               type = "address";
+               width = "32";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT RxmBurstCount_o
+            {
+               type = "burstcount";
+               width = "10";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT RxmByteEnable_o
+            {
+               type = "byteenable";
+               width = "8";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT RxmRead_o
+            {
+               type = "read";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT RxmReadData_i
+            {
+               type = "readdata";
+               width = "64";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT RxmReadDataValid_i
+            {
+               type = "readdatavalid";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT RxmWaitRequest_i
+            {
+               type = "waitrequest";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT RxmWrite_o
+            {
+               type = "write";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT RxmWriteData_o
+            {
+               type = "writedata";
+               width = "64";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT RxmResetRequest_o
+            {
+               type = "resetrequest";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+         }
+         SYSTEM_BUILDER_INFO 
+         {
+            Has_IRQ = "1";
+            Irq_Scheme = "priority_encoded";
+            Bus_Type = "avalon";
+            Is_Asynchronous = "0";
+            DBS_Big_Endian = "0";
+            Adapts_To = "";
+            Do_Stream_Reads = "0";
+            Do_Stream_Writes = "0";
+            Max_Address_Width = "32";
+            Data_Width = "64";
+            Address_Width = "32";
+            Maximum_Burst_Size = "512";
+            Register_Incoming_Signals = "0";
+            Register_Outgoing_Signals = "0";
+            Interleave_Bursts = "0";
+            Linewrap_Bursts = "0";
+            Burst_On_Burst_Boundaries_Only = "0";
+            Always_Burst_Max_Burst = "0";
+            Is_Big_Endian = "0";
+            Is_Enabled = "1";
+            Clock_Source = "clk";
+            Has_Clock = "1";
+         }
+         MEMORY_MAP 
+         {
+            Entry a2h/avalon_slave
+            {
+               address = "0x00000000";
+               span = "0x02000000";
+               is_bridge = "0";
+            }
+            Entry dma/control_port_slave
+            {
+               address = "0x80001000";
+               is_bridge = "0";
+               span = "0x00000040";
+            }
+         }
+      }
+   }
+   MODULE dma
+   {
+      SLAVE control_port_slave
+      {
+         PORT_WIRING 
+         {
+            PORT clk
+            {
+               type = "clk";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT reset_n
+            {
+               type = "reset_n";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "0";
+            }
+            PORT dma_ctl_irq
+            {
+               type = "irq";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT dma_ctl_address
+            {
+               type = "address";
+               width = "3";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT dma_ctl_chipselect
+            {
+               type = "chipselect";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT dma_ctl_readdata
+            {
+               type = "readdata";
+               width = "32";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT dma_ctl_readyfordata
+            {
+               type = "readyfordata";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT dma_ctl_write_n
+            {
+               type = "write_n";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT dma_ctl_writedata
+            {
+               type = "writedata";
+               width = "32";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT system_reset_n
+            {
+               Is_Enabled = "1";
+               direction = "input";
+               type = "reset_n";
+               width = "1";
+            }
+         }
+         SYSTEM_BUILDER_INFO 
+         {
+            Has_IRQ = "1";
+            Bus_Type = "avalon";
+            Write_Wait_States = "1cycles";
+            Read_Wait_States = "1cycles";
+            Hold_Time = "0cycles";
+            Setup_Time = "0cycles";
+            Is_Printable_Device = "0";
+            Address_Alignment = "native";
+            Well_Behaved_Waitrequest = "0";
+            Is_Nonvolatile_Storage = "0";
+            Read_Latency = "0";
+            Is_Memory_Device = "0";
+            Maximum_Pending_Read_Transactions = "0";
+            Minimum_Uninterrupted_Run_Length = "1";
+            Accepts_Internal_Connections = "1";
+            Write_Latency = "0";
+            Is_Flash = "0";
+            Data_Width = "32";
+            Address_Width = "3";
+            Maximum_Burst_Size = "1";
+            Register_Incoming_Signals = "0";
+            Register_Outgoing_Signals = "0";
+            Interleave_Bursts = "0";
+            Linewrap_Bursts = "0";
+            Burst_On_Burst_Boundaries_Only = "0";
+            Always_Burst_Max_Burst = "0";
+            Is_Big_Endian = "0";
+            Is_Enabled = "1";
+            MASTERED_BY pcie/Rx_Interface
+            {
+               priority = "1";
+               Offset_Address = "0x80001000";
+            }
+            Base_Address = "0x80001000";
+            Address_Group = "0";
+            IRQ_MASTER pcie/Rx_Interface
+            {
+               IRQ_Number = "NC";
+            }
+         }
+      }
+      MASTER write_master
+      {
+         SYSTEM_BUILDER_INFO 
+         {
+            Bus_Type = "avalon";
+            Is_Asynchronous = "0";
+            DBS_Big_Endian = "0";
+            Adapts_To = "";
+            Do_Stream_Reads = "0";
+            Do_Stream_Writes = "1";
+            Max_Address_Width = "32";
+            Data_Width = "64";
+            Address_Width = "32";
+            Maximum_Burst_Size = "1024";
+            Register_Incoming_Signals = "0";
+            Register_Outgoing_Signals = "0";
+            Interleave_Bursts = "0";
+            Linewrap_Bursts = "0";
+            Burst_On_Burst_Boundaries_Only = "0";
+            Always_Burst_Max_Burst = "0";
+            Is_Big_Endian = "0";
+            Is_Enabled = "1";
+            Is_Readable = "0";
+            Is_Writable = "1";
+         }
+         PORT_WIRING 
+         {
+            PORT write_address
+            {
+               type = "address";
+               width = "32";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT write_byteenable
+            {
+               type = "byteenable";
+               width = "8";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT write_chipselect
+            {
+               type = "chipselect";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT write_endofpacket
+            {
+               type = "endofpacket";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT write_waitrequest
+            {
+               type = "waitrequest";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT write_write_n
+            {
+               type = "write_n";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT write_writedata
+            {
+               type = "writedata";
+               width = "64";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT write_burstcount
+            {
+               type = "burstcount";
+               width = "11";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+         }
+         MEMORY_MAP 
+         {
+            Entry pcie/Control_Register_Access
+            {
+               address = "0x80004000";
+               span = "0x00004000";
+               is_bridge = "0";
+            }
+            Entry pcie/Tx_Interface
+            {
+               address = "0x00000000";
+               span = "0x00200000";
+               is_bridge = "0";
+            }
+         }
+      }
+      MASTER read_master
+      {
+         SYSTEM_BUILDER_INFO 
+         {
+            Bus_Type = "avalon";
+            Is_Asynchronous = "0";
+            DBS_Big_Endian = "0";
+            Adapts_To = "";
+            Do_Stream_Reads = "1";
+            Do_Stream_Writes = "0";
+            Max_Address_Width = "32";
+            Data_Width = "64";
+            Address_Width = "32";
+            Maximum_Burst_Size = "1024";
+            Register_Incoming_Signals = "0";
+            Register_Outgoing_Signals = "0";
+            Interleave_Bursts = "0";
+            Linewrap_Bursts = "0";
+            Burst_On_Burst_Boundaries_Only = "0";
+            Always_Burst_Max_Burst = "0";
+            Is_Big_Endian = "0";
+            Is_Enabled = "1";
+            Is_Readable = "1";
+            Is_Writable = "0";
+         }
+         PORT_WIRING 
+         {
+            PORT read_address
+            {
+               type = "address";
+               width = "32";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT read_chipselect
+            {
+               type = "chipselect";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT read_endofpacket
+            {
+               type = "endofpacket";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT read_flush
+            {
+               type = "flush";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT read_read_n
+            {
+               type = "read_n";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT read_readdata
+            {
+               type = "readdata";
+               width = "64";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT read_readdatavalid
+            {
+               type = "readdatavalid";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT read_waitrequest
+            {
+               type = "waitrequest";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT read_burstcount
+            {
+               type = "burstcount";
+               width = "11";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+         }
+         MEMORY_MAP 
+         {
+            Entry pcie/Tx_Interface
+            {
+               address = "0x00000000";
+               span = "0x00200000";
+               is_bridge = "0";
+            }
+            Entry pcie/Control_Register_Access
+            {
+               address = "0x80004000";
+               span = "0x00004000";
+               is_bridge = "0";
+            }
+         }
+      }
+      WIZARD_SCRIPT_ARGUMENTS 
+      {
+         readaddress_reset_value = "0x000";
+         writeaddress_reset_value = "0x000";
+         length_reset_value = "0x000";
+         control_byte_reset_value = "0";
+         control_hw_reset_value = "0";
+         control_word_reset_value = "1";
+         control_doubleword_reset_value = "0";
+         control_quadword_reset_value = "0";
+         control_softwarereset_reset_value = "0";
+         control_go_reset_value = "0";
+         control_i_en_reset_value = "0";
+         control_reen_reset_value = "0";
+         control_ween_reset_value = "0";
+         control_leen_reset_value = "1";
+         control_rcon_reset_value = "0";
+         control_wcon_reset_value = "0";
+         lengthwidth = "13";
+         burst_enable = "1";
+         fifo_in_logic_elements = "0";
+         allow_byte_transactions = "1";
+         allow_hw_transactions = "1";
+         allow_word_transactions = "1";
+         allow_doubleword_transactions = "1";
+         allow_quadword_transactions = "1";
+         max_burst_size = "1024";
+         big_endian = "0";
+         control_byte_access_reset_value = "0";
+         altera_show_unpublished_features = "0";
+      }
+      class = "altera_avalon_dma";
+      class_version = "7.080911";
+      SYSTEM_BUILDER_INFO 
+      {
+         Is_Enabled = "1";
+         Clock_Source = "clk";
+         Has_Clock = "1";
+         Instantiate_In_System_Module = "1";
+         Top_Level_Ports_Are_Enumerated = "1";
+         View 
+         {
+            MESSAGES 
+            {
+            }
+         }
+      }
+      HDL_INFO 
+      {
+         Precompiled_Simulation_Library_Files = "";
+         Simulation_HDL_Files = "";
+         Synthesis_HDL_Files = "__PROJECT_DIRECTORY__/dma.vhd";
+         Synthesis_Only_Files = "";
+      }
+      PORT_WIRING 
+      {
+      }
+      SIMULATION 
+      {
+         DISPLAY 
+         {
+            SIGNAL aaa
+            {
+               format = "Logic";
+               name = "busy";
+               radix = "hexadecimal";
+            }
+            SIGNAL aab
+            {
+               format = "Logic";
+               name = "done";
+               radix = "hexadecimal";
+            }
+            SIGNAL aac
+            {
+               format = "Logic";
+               name = "length";
+               radix = "hexadecimal";
+            }
+            SIGNAL aad
+            {
+               format = "Logic";
+               name = "fifo_empty";
+               radix = "hexadecimal";
+            }
+            SIGNAL aae
+            {
+               format = "Logic";
+               name = "p1_fifo_full";
+               radix = "hexadecimal";
+            }
+            SIGNAL aaf
+            {
+               format = "Divider";
+               name = "dma read_master";
+               radix = "";
+            }
+            SIGNAL aag
+            {
+               format = "Literal";
+               name = "read_address";
+               radix = "hexadecimal";
+            }
+            SIGNAL aah
+            {
+               format = "Logic";
+               name = "read_burstcount";
+               radix = "hexadecimal";
+            }
+            SIGNAL aai
+            {
+               format = "Logic";
+               name = "read_chipselect";
+               radix = "hexadecimal";
+            }
+            SIGNAL aaj
+            {
+               format = "Logic";
+               name = "read_endofpacket";
+               radix = "hexadecimal";
+            }
+            SIGNAL aak
+            {
+               format = "Logic";
+               name = "read_flush";
+               radix = "hexadecimal";
+            }
+            SIGNAL aal
+            {
+               format = "Logic";
+               name = "read_read_n";
+               radix = "hexadecimal";
+            }
+            SIGNAL aam
+            {
+               format = "Literal";
+               name = "read_readdata";
+               radix = "hexadecimal";
+            }
+            SIGNAL aan
+            {
+               format = "Logic";
+               name = "read_readdatavalid";
+               radix = "hexadecimal";
+            }
+            SIGNAL aao
+            {
+               format = "Logic";
+               name = "read_waitrequest";
+               radix = "hexadecimal";
+            }
+            SIGNAL aap
+            {
+               format = "Divider";
+               name = "dma write_master";
+               radix = "";
+            }
+            SIGNAL aaq
+            {
+               format = "Literal";
+               name = "write_address";
+               radix = "hexadecimal";
+            }
+            SIGNAL aar
+            {
+               format = "Logic";
+               name = "write_burstcount";
+               radix = "hexadecimal";
+            }
+            SIGNAL aas
+            {
+               format = "Logic";
+               name = "write_byteenable";
+               radix = "hexadecimal";
+            }
+            SIGNAL aat
+            {
+               format = "Logic";
+               name = "write_chipselect";
+               radix = "hexadecimal";
+            }
+            SIGNAL aau
+            {
+               format = "Logic";
+               name = "write_endofpacket";
+               radix = "hexadecimal";
+            }
+            SIGNAL aav
+            {
+               format = "Logic";
+               name = "write_waitrequest";
+               radix = "hexadecimal";
+            }
+            SIGNAL aaw
+            {
+               format = "Logic";
+               name = "write_write_n";
+               radix = "hexadecimal";
+            }
+            SIGNAL aax
+            {
+               format = "Literal";
+               name = "write_writedata";
+               radix = "hexadecimal";
+            }
+         }
+      }
+   }
+   MODULE a2h
+   {
+      SLAVE avalon_slave
+      {
+         PORT_WIRING 
+         {
+            PORT clk
+            {
+               type = "clk";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT rst_n
+            {
+               type = "reset_n";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT av_wr_data_in
+            {
+               type = "writedata";
+               width = "32";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT av_rd_data_out
+            {
+               type = "readdata";
+               width = "32";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT av_addr_in
+            {
+               type = "address";
+               width = "23";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT av_we_in
+            {
+               type = "write";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT av_re_in
+            {
+               type = "read";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT av_byte_en_in
+            {
+               type = "byteenable";
+               width = "4";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT av_wait_req_out
+            {
+               type = "waitrequest";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+         }
+         SYSTEM_BUILDER_INFO 
+         {
+            Bus_Type = "avalon";
+            Read_Wait_States = "peripheral_controlled";
+            Write_Wait_States = "peripheral_controlled";
+            Hold_Time = "0cycles";
+            Setup_Time = "0cycles";
+            Is_Printable_Device = "0";
+            Address_Alignment = "dynamic";
+            Well_Behaved_Waitrequest = "0";
+            Is_Nonvolatile_Storage = "0";
+            Address_Span = "33554432";
+            Read_Latency = "0";
+            Is_Memory_Device = "0";
+            Maximum_Pending_Read_Transactions = "0";
+            Minimum_Uninterrupted_Run_Length = "1";
+            Accepts_Internal_Connections = "1";
+            Write_Latency = "0";
+            Is_Flash = "0";
+            Data_Width = "32";
+            Address_Width = "23";
+            Maximum_Burst_Size = "1";
+            Register_Incoming_Signals = "0";
+            Register_Outgoing_Signals = "0";
+            Interleave_Bursts = "0";
+            Linewrap_Bursts = "0";
+            Burst_On_Burst_Boundaries_Only = "0";
+            Always_Burst_Max_Burst = "0";
+            Is_Big_Endian = "0";
+            Is_Enabled = "1";
+            MASTERED_BY pcie/Rx_Interface
+            {
+               priority = "1";
+               Offset_Address = "0x00000000";
+            }
+            Base_Address = "0x00000000";
+            Address_Group = "0";
+            IRQ_MASTER pcie/Rx_Interface
+            {
+               IRQ_Number = "NC";
+            }
+         }
+      }
+      PORT_WIRING 
+      {
+         PORT hibi_av_in
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+         }
+         PORT hibi_full_in
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+         }
+         PORT hibi_data_in
+         {
+            type = "export";
+            width = "32";
+            direction = "input";
+            Is_Enabled = "1";
+         }
+         PORT hibi_one_p_in
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+         }
+         PORT hibi_empty_in
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+         }
+         PORT hibi_one_d_in
+         {
+            type = "export";
+            width = "1";
+            direction = "input";
+            Is_Enabled = "1";
+         }
+         PORT hibi_comm_out
+         {
+            type = "export";
+            width = "3";
+            direction = "output";
+            Is_Enabled = "1";
+         }
+         PORT hibi_data_out
+         {
+            type = "export";
+            width = "32";
+            direction = "output";
+            Is_Enabled = "1";
+         }
+         PORT hibi_av_out
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+         }
+         PORT hibi_we_out
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+         }
+         PORT hibi_re_out
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+         }
+         PORT hibi_comm_in
+         {
+            type = "export";
+            width = "3";
+            direction = "input";
+            Is_Enabled = "1";
+         }
+      }
+      class = "no_legacy_module";
+      class_version = "7.080911";
+      gtf_class_name = "Avalon_to_HIBI";
+      gtf_class_version = "0.1";
+      SYSTEM_BUILDER_INFO 
+      {
+         Do_Not_Generate = "1";
+         Instantiate_In_System_Module = "1";
+         Is_Bridge = "0";
+         Is_Enabled = "1";
+         Clock_Source = "clk";
+         Has_Clock = "1";
+         View 
+         {
+            MESSAGES 
+            {
+            }
+         }
+      }
+      HDL_INFO 
+      {
+         Simulation_HDL_Files = "D:/svn/koski/trunk/lib/hw_lib/ips/adapters/avalon_to_hibi/verilog/avalon_to_hibi.v,__PROJECT_DIRECTORY__/a2h.v";
+      }
+      WIZARD_SCRIPT_ARGUMENTS 
+      {
+      }
+   }
+}

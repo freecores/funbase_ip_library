@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 17:50:37 su loka 2 2011-->
+<spirit:component>
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>board</spirit:library>
+	<spirit:name>pc_board</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:busInterfaces>
+		<spirit:busInterface>
+			<spirit:name>pcie_4x</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="pcie_4x.busdef" spirit:version="1.1"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="pcie_4x.absdef" spirit:version="1.1"/>
+			<spirit:master/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+	</spirit:busInterfaces>
+	<spirit:model>
+		<spirit:views>
+			<spirit:view>
+				<spirit:name>kactusHierarchical</spirit:name>
+				<spirit:envIdentifier></spirit:envIdentifier>
+				<spirit:hierarchyRef spirit:vendor="TUT" spirit:library="board" spirit:name="pc_board.designcfg" spirit:version="1.0"/>
+			</spirit:view>
+		</spirit:views>
+	</spirit:model>
+	<spirit:vendorExtensions>
+		<kactus2:extensions>
+			<kactus2:kts_attributes>
+				<kactus2:kts_productHier>Board</kactus2:kts_productHier>
+				<kactus2:kts_implementation>HW</kactus2:kts_implementation>
+				<kactus2:kts_firmness>Parameterizable</kactus2:kts_firmness>
+			</kactus2:kts_attributes>
+		</kactus2:extensions>
+	</spirit:vendorExtensions>
+</spirit:component>

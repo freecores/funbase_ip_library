@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 17:27:21 su loka 2 2011-->
+<spirit:component>
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>product</spirit:library>
+	<spirit:name>pc_arria_ii_gx</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:model>
+		<spirit:views>
+			<spirit:view>
+				<spirit:name>kactusHierarchical</spirit:name>
+				<spirit:envIdentifier></spirit:envIdentifier>
+				<spirit:hierarchyRef spirit:vendor="TUT" spirit:library="product" spirit:name="pc_arria_ii_gx.designcfg" spirit:version="1.0"/>
+			</spirit:view>
+		</spirit:views>
+	</spirit:model>
+	<spirit:vendorExtensions>
+		<kactus2:extensions>
+			<kactus2:kts_attributes>
+				<kactus2:kts_productHier>Product</kactus2:kts_productHier>
+				<kactus2:kts_implementation>HW</kactus2:kts_implementation>
+				<kactus2:kts_firmness>Mutable</kactus2:kts_firmness>
+			</kactus2:kts_attributes>
+		</kactus2:extensions>
+	</spirit:vendorExtensions>
+</spirit:component>

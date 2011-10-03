@@ -1,0 +1,980 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 19:26:52 su loka 2 2011-->
+<spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>ip.hwp.storage</spirit:library>
+	<spirit:name>a2_ddr2_dimm_1GB</spirit:name>
+	<spirit:version>2.0</spirit:version>
+	<spirit:busInterfaces>
+		<spirit:busInterface>
+			<spirit:name>alt_ddr2_p</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.storage" spirit:name="alt_ddr2_a2.busdef" spirit:version="1.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.storage" spirit:name="alt_ddr2_a2.absdef" spirit:version="1.0"/>
+			<spirit:mirroredMaster/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>MEM_INIT_DONE_FROM_ALT_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>local_init_done</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>MEM_WR_REQ_TO_ALT_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>local_write_req</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>MEM_RD_REQ_TO_ALT_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>local_read_req</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>MEM_ADDR_TO_ALT_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>local_address</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>MEM_READY_FROM_ALT_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>local_ready</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>MEM_RDATA_VALID_FROM_ALT_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>local_rdata_valid</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>MEM_WDATA_TO_ALT_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>local_wdata</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>MEM_RDATA_FROM_ALT_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>local_rdata</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>MEM_BE_TO_ALT_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>local_be</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>MEM_BURST_BEGIN_TO_ALT_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>local_burstbegin</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>MEM_BURST_SIZE_TO_ALT_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>local_size</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+		<spirit:busInterface>
+			<spirit:name>clk_in</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="clock.busdef" spirit:version="1.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="clock.absDef" spirit:version="1.0"/>
+			<spirit:slave/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>CLK</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>pll_ref_clk</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+		<spirit:busInterface>
+			<spirit:name>ddr2_p</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="ddr2_a2.busdef" spirit:version="1.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="ddr2_a2.absdef" spirit:version="1.0"/>
+			<spirit:master/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>CLK_TO_AND_FROM_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_clk</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>CLK_N_TO_AND_FROM_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_clk_n</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>CKE_TO_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_cke</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>CS_N_TO_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_cs_n</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>CAS_N_TO_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_cas_n</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>RAS_N_TO_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_ras_n</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>ODT_TO_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_odt</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>WE_N_TO_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_we_n</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>BA_TO_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_ba</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>ADDR_TO_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_addr</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>DQ_M_TO_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_dm</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>DQS_TO_AND_FROM_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_dqs</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>DQS_N_TO_AND_FROM_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_dqsn</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>DQ_TO_AND_FROM_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_dq</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+		<spirit:busInterface>
+			<spirit:name>phy_clk_out</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="clock.busdef" spirit:version="1.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="clock.absDef" spirit:version="1.0"/>
+			<spirit:master/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>CLK</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>phy_clk</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+		<spirit:busInterface>
+			<spirit:name>rst_n</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.busdef" spirit:version="1.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.absDef" spirit:version="1.0"/>
+			<spirit:slave/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>RESETn</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>global_reset_n</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+		<spirit:busInterface>
+			<spirit:name>soft_rst_n</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.busdef" spirit:version="1.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.absDef" spirit:version="1.0"/>
+			<spirit:slave/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>RESETn</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>soft_reset_n</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+	</spirit:busInterfaces>
+	<spirit:model>
+		<spirit:ports>
+			<spirit:port>
+				<spirit:name>aux_full_rate_clk</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>aux_half_rate_clk</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>dll_reference_clk</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>dqs_delay_ctrl_export</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+					<spirit:vector>
+						<spirit:left>5</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>global_reset_n</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>local_address</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+					<spirit:vector>
+						<spirit:left>24</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>local_be</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+					<spirit:vector>
+						<spirit:left>31</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>local_burstbegin</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>local_init_done</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>local_rdata</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+					<spirit:vector>
+						<spirit:left>255</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>local_rdata_valid</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>local_read_req</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>local_ready</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>local_refresh_ack</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>local_size</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+					<spirit:vector>
+						<spirit:left>2</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>local_wdata</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+					<spirit:vector>
+						<spirit:left>255</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>local_write_req</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>mem_addr</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+					<spirit:vector>
+						<spirit:left>13</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>mem_ba</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+					<spirit:vector>
+						<spirit:left>2</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>mem_cas_n</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>mem_cke</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>mem_clk</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>inout</spirit:direction>
+					<spirit:vector>
+						<spirit:left>1</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>mem_clk_n</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>inout</spirit:direction>
+					<spirit:vector>
+						<spirit:left>1</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>mem_cs_n</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>mem_dm</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+					<spirit:vector>
+						<spirit:left>7</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>mem_dq</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>inout</spirit:direction>
+					<spirit:vector>
+						<spirit:left>63</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>mem_dqs</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>inout</spirit:direction>
+					<spirit:vector>
+						<spirit:left>7</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>mem_dqsn</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>inout</spirit:direction>
+					<spirit:vector>
+						<spirit:left>7</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>mem_odt</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>mem_ras_n</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>mem_we_n</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>phy_clk</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>pll_ref_clk</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>reset_phy_clk_n</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>reset_request_n</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>soft_reset_n</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+		</spirit:ports>
+	</spirit:model>
+	<spirit:fileSets>
+		<spirit:fileSet>
+			<spirit:name>hdlSources</spirit:name>
+			<spirit:file>
+				<spirit:name>hdl/a2_ddr2_dimm_1GB.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/a2_ddr2_dimm_1GB_alt_ddrx_controller_wrapper.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/a2_ddr2_dimm_1GB_controller_phy.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/a2_ddr2_dimm_1GB_phy.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/a2_ddr2_dimm_1GB_phy_alt_mem_phy.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/a2_ddr2_dimm_1GB_phy_alt_mem_phy_dq_dqs.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/a2_ddr2_dimm_1GB_phy_alt_mem_phy_pll.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/a2_ddr2_dimm_1GB_phy_alt_mem_phy_seq.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/a2_ddr2_dimm_1GB_phy_alt_mem_phy_seq_wrapper.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:flags>+incdir+D:/user/matilail/funbase/svn/release_2/lib/TUT/ip.hwp/stor.alt_ddr2_a2/1.0/hdl</spirit:flags>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_addr_cmd.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_afi_block.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_avalon_if.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_bank_timer.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_bank_timer_info.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_bank_timer_wrapper.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_bank_tracking.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_bypass.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_cache.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_clock_and_reset.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_cmd_gen.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_cmd_queue.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_controller.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_csr.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_ddr2_odt_gen.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_ddr3_odt_gen.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_decoder.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_decoder_40.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_decoder_72.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_ecc.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_encoder.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_encoder_40.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_encoder_72.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_input_if.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_odt_gen.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_rank_monitor.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_state_machine.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_timers.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_timers_fsm.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_timing_param.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_ddrx_wdata_fifo.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/alt_mem_phy_defines.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/altera_avalon_half_rate_bridge.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">alt_ddr2_a2</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:defaultFileBuilder>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:command>vlog</spirit:command>
+				<spirit:flags>-quiet -work alt_ddr2_a2</spirit:flags>
+				<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+			</spirit:defaultFileBuilder>
+			<spirit:defaultFileBuilder>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:command>vcom</spirit:command>
+				<spirit:flags>-quiet -check_synthesis -work alt_ddr2_a2</spirit:flags>
+				<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+			</spirit:defaultFileBuilder>
+		</spirit:fileSet>
+	</spirit:fileSets>
+</spirit:component>

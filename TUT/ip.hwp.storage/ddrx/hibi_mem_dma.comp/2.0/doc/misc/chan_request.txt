@@ -1,0 +1,19 @@
+
+write chan requests:
+
+ free chan fifo: 7 6 5 4 3 2 1 0   
+ free chan fifo: - 7 6 5 4 3 2 1   reserve chan
+ free chan fifo: - - 7 6 5 4 3 2   reserve chan
+ free chan fifo: - 1 7 6 5 4 3 2   release chan 1
+ free chan fifo: - - 1 7 6 5 4 3   reserve chan
+ free chan fifo: - 0 1 7 6 5 4 3   release chan 0
+
+
+read chan requests:
+
+ free chan: 0   |   cur chan: x
+ free chan: 1   |   cur chan: 0   reserve chan
+ free chan: 2   |   cur chan: 0   reserve chan
+ free chan: 2   |   cur chan: 1   release chan
+ free chan: 3   |   cur chan: 1   reserve chan
+ free chan: 3   |   cur chan: 2   release chan

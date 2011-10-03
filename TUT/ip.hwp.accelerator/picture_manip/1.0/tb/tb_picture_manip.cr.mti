@@ -1,0 +1,107 @@
+../vhd/picture_manip.vhd {2 {vcom -work work -2002 -explicit C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/vhd/picture_manip.vhd
+Model Technology ModelSim ALTERA vcom 6.4a Compiler 2008.08 Oct 22 2008
+-- Loading package standard
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package std_logic_unsigned
+-- Loading package math_real
+-- Loading package picture_manip_pkg
+-- Compiling entity picture_manip
+** Warning: C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/vhd/picture_manip.vhd(44): (vcom-135) Based literal has negative value.
+** Warning: C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/vhd/picture_manip.vhd(45): (vcom-135) Based literal has negative value.
+** Warning: C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/vhd/picture_manip.vhd(46): (vcom-135) Based literal has negative value.
+-- Compiling architecture arch_pic_man of picture_manip
+
+} {} {}} ./testbench.vhd {2 {vcom -work work -2002 -explicit C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/tb/testbench.vhd
+Model Technology ModelSim ALTERA vcom 6.4a Compiler 2008.08 Oct 22 2008
+-- Loading package standard
+-- Loading package std_logic_1164
+-- Loading package numeric_std
+-- Loading package std_logic_arith
+-- Loading package std_logic_unsigned
+-- Loading package math_real
+-- Compiling entity testbench
+-- Compiling architecture behavior of testbench
+** Warning: C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/tb/testbench.vhd(49): (vcom-135) Based literal has negative value.
+** Warning: C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/tb/testbench.vhd(50): (vcom-135) Based literal has negative value.
+** Warning: C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/tb/testbench.vhd(51): (vcom-135) Based literal has negative value.
+** Warning: C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/tb/testbench.vhd(127): (vcom-135) Based literal has negative value.
+** Warning: C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/tb/testbench.vhd(128): (vcom-135) Based literal has negative value.
+** Warning: C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/tb/testbench.vhd(129): (vcom-135) Based literal has negative value.
+
+} {} {}} ../vhd/manip_memory.vhd {1 {vcom -work work -2002 -explicit C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/vhd/manip_memory.vhd
+Model Technology ModelSim ALTERA vcom 6.4a Compiler 2008.08 Oct 22 2008
+-- Loading package standard
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package std_logic_unsigned
+-- Loading package math_real
+-- Loading package picture_manip_pkg
+-- Compiling entity manip_memory
+-- Compiling architecture arch_manib_mem of manip_memory
+
+} {} {}} ../vhd/picture_manip_pkg.vhd {1 {vcom -work work -2002 -explicit C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/vhd/picture_manip_pkg.vhd
+Model Technology ModelSim ALTERA vcom 6.4a Compiler 2008.08 Oct 22 2008
+-- Loading package standard
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package std_logic_unsigned
+-- Loading package math_real
+-- Compiling package picture_manip_pkg
+-- Compiling package body picture_manip_pkg
+-- Loading package picture_manip_pkg
+
+} {} {}} C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/vhd/picture_manip.vhd {2 {vcom -work work -2002 -explicit C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/vhd/picture_manip.vhd
+Model Technology ModelSim ALTERA vcom 6.4a Compiler 2008.08 Oct 22 2008
+-- Loading package standard
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package std_logic_unsigned
+-- Loading package math_real
+-- Loading package picture_manip_pkg
+-- Compiling entity picture_manip
+** Warning: C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/vhd/picture_manip.vhd(44): (vcom-135) Based literal has negative value.
+** Warning: C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/vhd/picture_manip.vhd(45): (vcom-135) Based literal has negative value.
+** Warning: C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/vhd/picture_manip.vhd(46): (vcom-135) Based literal has negative value.
+-- Compiling architecture arch_pic_man of picture_manip
+
+} {} {}} C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/tb/testbench.vhd {2 {vcom -work work -2002 -explicit C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/tb/testbench.vhd
+Model Technology ModelSim ALTERA vcom 6.4a Compiler 2008.08 Oct 22 2008
+-- Loading package standard
+-- Loading package std_logic_1164
+-- Loading package numeric_std
+-- Loading package std_logic_arith
+-- Loading package std_logic_unsigned
+-- Loading package math_real
+-- Compiling entity testbench
+-- Compiling architecture behavior of testbench
+** Warning: C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/tb/testbench.vhd(49): (vcom-135) Based literal has negative value.
+** Warning: C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/tb/testbench.vhd(50): (vcom-135) Based literal has negative value.
+** Warning: C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/tb/testbench.vhd(51): (vcom-135) Based literal has negative value.
+** Warning: C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/tb/testbench.vhd(127): (vcom-135) Based literal has negative value.
+** Warning: C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/tb/testbench.vhd(128): (vcom-135) Based literal has negative value.
+** Warning: C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/tb/testbench.vhd(129): (vcom-135) Based literal has negative value.
+
+} {} {}} C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/vhd/picture_manip_pkg.vhd {1 {vcom -work work -2002 -explicit C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/vhd/picture_manip_pkg.vhd
+Model Technology ModelSim ALTERA vcom 6.4a Compiler 2008.08 Oct 22 2008
+-- Loading package standard
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package std_logic_unsigned
+-- Loading package math_real
+-- Compiling package picture_manip_pkg
+-- Compiling package body picture_manip_pkg
+-- Loading package picture_manip_pkg
+
+} {} {}} C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/vhd/manip_memory.vhd {1 {vcom -work work -2002 -explicit C:/svn_funbase/shared_lib/hw_lib/ips/computation/picture_manip/vhd/manip_memory.vhd
+Model Technology ModelSim ALTERA vcom 6.4a Compiler 2008.08 Oct 22 2008
+-- Loading package standard
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package std_logic_unsigned
+-- Loading package math_real
+-- Loading package picture_manip_pkg
+-- Compiling entity manip_memory
+-- Compiling architecture arch_manib_mem of manip_memory
+
+} {} {}}

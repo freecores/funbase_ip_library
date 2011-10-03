@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 17:27:21 su loka 2 2011-->
+<spirit:design>
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>product</spirit:library>
+	<spirit:name>pc_arria_ii_gx.design</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:componentInstances>
+		<spirit:componentInstance>
+			<spirit:instanceName>pc_board</spirit:instanceName>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:componentRef spirit:vendor="TUT" spirit:library="board" spirit:name="pc_board" spirit:version="1.0"/>
+			<spirit:configurableElementValues/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="130" y="60"/>
+				<kactus2:portPositions>
+					<kactus2:portPosition kactus2:busRef="pcie_4x">
+						<kactus2:position x="80" y="40"/>
+					</kactus2:portPosition>
+				</kactus2:portPositions>
+			</spirit:vendorExtensions>
+		</spirit:componentInstance>
+		<spirit:componentInstance>
+			<spirit:instanceName>arria_ii_gx_board</spirit:instanceName>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:componentRef spirit:vendor="TUT" spirit:library="board" spirit:name="arria_ii_board" spirit:version="1.0"/>
+			<spirit:configurableElementValues/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="390" y="60"/>
+				<kactus2:portPositions>
+					<kactus2:portPosition kactus2:busRef="pcie_4x_p">
+						<kactus2:position x="-80" y="40"/>
+					</kactus2:portPosition>
+				</kactus2:portPositions>
+			</spirit:vendorExtensions>
+		</spirit:componentInstance>
+	</spirit:componentInstances>
+	<spirit:interconnections>
+		<spirit:interconnection>
+			<spirit:name>arria_ii_gx_board_pcie_4x_p_to_pc_board_1_pcie_4x</spirit:name>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:activeInterface spirit:componentRef="arria_ii_gx_board" spirit:busRef="pcie_4x_p"/>
+			<spirit:activeInterface spirit:componentRef="pc_board" spirit:busRef="pcie_4x"/>
+		</spirit:interconnection>
+	</spirit:interconnections>
+	<spirit:vendorExtensions>
+		<kactus2:columnLayout>
+			<kactus2:column name="Components" contentType="2" allowedItems="2"/>
+			<kactus2:column name="Components" contentType="2" allowedItems="2"/>
+		</kactus2:columnLayout>
+		<kactus2:routes>
+			<kactus2:route kactus2:connRef="arria_ii_gx_board_pcie_4x_p_to_pc_board_1_pcie_4x">
+				<kactus2:position x="310" y="100"/>
+				<kactus2:position x="220" y="100"/>
+				<kactus2:position x="220" y="100"/>
+				<kactus2:position x="210" y="100"/>
+			</kactus2:route>
+		</kactus2:routes>
+	</spirit:vendorExtensions>
+</spirit:design>

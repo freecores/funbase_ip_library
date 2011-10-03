@@ -1,0 +1,3 @@
+insmod /home/toor/pcie_to_hibi/altpciechdma.ko
+mknod /dev/altpciechdma0 c `grep altpciechdma /proc/devices | cut -c 1-3` 0
+chmod a+w /dev/altpciechdma0

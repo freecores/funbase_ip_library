@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 13:54:20 to syys 29 2011-->
+<spirit:component  xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>ip.hwp.accelerator</spirit:library>
+	<spirit:name>picture_manip</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:busInterfaces>
+		<spirit:busInterface>
+			<spirit:name>clk</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="clock.busdef" spirit:version="1.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="clock.absDef" spirit:version="1.0"/>
+			<spirit:slave/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>CLK</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>clk</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+		<spirit:busInterface>
+			<spirit:name>hibi_p</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.communication" spirit:name="hibi_ip_r4.busdef" spirit:version="2.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.communication" spirit:name="hibi_ip_r4.absdef" spirit:version="2.0"/>
+			<spirit:master/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>AV_FROM_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_av_out</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>ONE_D_TO_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_one_d_in</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>DATA_TO_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_data_in</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>DATA_FROM_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_data_out</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>AV_TO_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_av_in</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>FULL_TO_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_full_in</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>COMM_FROM_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_comm_out</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>WE_FROM_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_we_out</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>COMM_TO_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_comm_in</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>EMPTY_TO_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_empty_in</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>RE_FROM_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_re_out</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>ONE_P_TO_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_one_p_in</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+		<spirit:busInterface>
+			<spirit:name>rst_n</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.busdef" spirit:version="1.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.absDef" spirit:version="1.0"/>
+			<spirit:slave/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>RESETn</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>rst_n</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+	</spirit:busInterfaces>
+	<spirit:model>
+		<spirit:ports>
+			<spirit:port>
+				<spirit:name>clk</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_av_in</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_av_out</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_comm_in</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+					<spirit:vector>
+						<spirit:left>4</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_comm_out</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+					<spirit:vector>
+						<spirit:left>4</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_data_in</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+					<spirit:vector>
+						<spirit:left>31</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_data_out</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+					<spirit:vector>
+						<spirit:left>31</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_empty_in</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_full_in</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_one_d_in</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_one_p_in</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_re_out</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_we_out</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>rst_n</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+		</spirit:ports>
+	</spirit:model>
+	<spirit:fileSets>
+		<spirit:fileSet>
+			<spirit:name>hdlSources</spirit:name>
+			<spirit:file>
+				<spirit:name>vhd/manip_memory.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">picture_manip</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>vhd/picture_manip_pkg.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">picture_manip</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>vhd/picture_manip.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">pciture_manip</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+		</spirit:fileSet>
+	</spirit:fileSets>
+</spirit:component>

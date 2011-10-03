@@ -1,0 +1,143 @@
+<spirit:abstractionDefinition xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
+  <spirit:vendor>TUT</spirit:vendor>
+  <spirit:library>ip.hwp.communication</spirit:library>
+  <spirit:name>hibi_bus.absdef</spirit:name>
+  <spirit:version>3.0</spirit:version>
+  <spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.communication" spirit:name="hibi_bus.busdef	" spirit:version="3.0"/>
+  <spirit:ports>
+
+
+    <spirit:port>
+		<spirit:logicalName>COMM_FROM_BUS</spirit:logicalName>
+		<spirit:wire>
+			<spirit:onMaster>
+				<spirit:width>5</spirit:width>
+				<spirit:direction>in</spirit:direction>
+			</spirit:onMaster>
+		</spirit:wire>
+	</spirit:port>
+	<spirit:port>
+		<spirit:logicalName>AV_FROM_BUS</spirit:logicalName>
+		<spirit:wire>
+			<spirit:onMaster>
+				<spirit:width>1</spirit:width>
+				<spirit:direction>in</spirit:direction>
+			</spirit:onMaster>
+		</spirit:wire>
+	</spirit:port>
+	<spirit:port>
+		<spirit:logicalName>DATA_FROM_BUS</spirit:logicalName>
+		<spirit:wire>
+			<spirit:onMaster>
+				<spirit:width>32</spirit:width>
+				<spirit:direction>in</spirit:direction>
+			</spirit:onMaster>
+		</spirit:wire>
+	</spirit:port>
+
+	
+	<spirit:port>
+		<spirit:logicalName>ADDR_FROM_BUS</spirit:logicalName>
+		<spirit:wire>
+			<spirit:onMaster>
+				<spirit:width>32</spirit:width>
+				<spirit:direction>in</spirit:direction>
+			</spirit:onMaster>
+		</spirit:wire>
+	</spirit:port>
+	
+	
+	<spirit:port>
+		<spirit:logicalName>FULL_FROM_BUS</spirit:logicalName>
+		<spirit:wire>
+			<spirit:onMaster>
+				<spirit:width>1</spirit:width>
+				<spirit:direction>in</spirit:direction>
+			</spirit:onMaster>
+			<spirit:defaultValue>0</spirit:defaultValue>  
+		</spirit:wire>
+	</spirit:port>
+	
+	<spirit:port>
+		<spirit:logicalName>LOCK_FROM_BUS</spirit:logicalName>
+		<spirit:wire>
+			<spirit:onMaster>
+				<spirit:width>1</spirit:width>
+				<spirit:direction>in</spirit:direction>
+			</spirit:onMaster>
+			<spirit:defaultValue>0</spirit:defaultValue>  
+		</spirit:wire>
+	</spirit:port>
+    
+	<spirit:port>
+		<spirit:logicalName>COMM_TO_BUS</spirit:logicalName>
+		<spirit:wire>
+			<spirit:onMaster>
+				<spirit:width>5</spirit:width>
+				<spirit:direction>out</spirit:direction>
+			</spirit:onMaster>
+		</spirit:wire>
+	</spirit:port>
+
+
+	<spirit:port>
+		<spirit:logicalName>AV_TO_BUS</spirit:logicalName>
+		<spirit:wire>
+			<spirit:onMaster>
+				<spirit:width>1</spirit:width>
+				<spirit:direction>out</spirit:direction>
+			</spirit:onMaster>
+		</spirit:wire>
+	</spirit:port>
+
+	<spirit:port>
+		<spirit:logicalName>DATA_TO_BUS</spirit:logicalName>
+		<spirit:wire>
+			<spirit:onMaster>
+				<spirit:width>32</spirit:width>
+				<spirit:direction>out</spirit:direction>
+			</spirit:onMaster>
+		</spirit:wire>
+	</spirit:port>
+	
+	
+	<spirit:port>
+		<spirit:logicalName>ADDR_TO_BUS</spirit:logicalName>
+		<spirit:wire>
+			<spirit:onMaster>
+				<spirit:width>32</spirit:width>
+				<spirit:direction>out</spirit:direction>
+			</spirit:onMaster>
+		</spirit:wire>
+	</spirit:port>
+	
+
+	
+	<spirit:port>
+		<spirit:logicalName>FULL_TO_BUS</spirit:logicalName>
+		<spirit:wire>
+			<spirit:onMaster>
+				<spirit:width>1</spirit:width>
+				<spirit:direction>out</spirit:direction>
+			</spirit:onMaster>
+			<spirit:defaultValue>0</spirit:defaultValue>  
+		</spirit:wire>
+	</spirit:port>
+	
+	<spirit:port>
+		<spirit:logicalName>LOCK_TO_BUS</spirit:logicalName>
+		<spirit:wire>
+			<spirit:onMaster>
+				<spirit:width>1</spirit:width>
+				<spirit:direction>out</spirit:direction>
+			</spirit:onMaster>
+			<spirit:defaultValue>0</spirit:defaultValue>  
+		</spirit:wire>
+	</spirit:port>
+	
+  </spirit:ports>
+  
+  
+ </spirit:abstractionDefinition>
+  
+  

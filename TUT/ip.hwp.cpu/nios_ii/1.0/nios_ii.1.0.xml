@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 09:59:10 to syys 29 2011-->
+<spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>ip.hwp.cpu</spirit:library>
+	<spirit:name>nios_ii</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:busInterfaces>
+		<spirit:busInterface>
+			<spirit:name>clk_in</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="clock.busdef" spirit:version="1.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="clock.absDef" spirit:version="1.0"/>
+			<spirit:slave/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>CLK</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>clk</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+		<spirit:busInterface>
+			<spirit:name>hibi_p</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.communication" spirit:name="hibi_ip_r4.busdef" spirit:version="3.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.communication" spirit:name="hibi_ip_r4.absdef" spirit:version="3.0"/>
+			<spirit:master/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>COMM_FROM_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_comm_out_from_the_hpd</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>DATA_FROM_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_data_out_from_the_hpd</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>AV_FROM_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_av_out_from_the_hpd</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>WE_FROM_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_we_out_from_the_hpd</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>RE_FROM_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_re_out_from_the_hpd</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>COMM_TO_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_comm_in_to_the_hpd</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>DATA_TO_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_data_in_to_the_hpd</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>AV_TO_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_av_in_to_the_hpd</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>FULL_TO_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_full_in_to_the_hpd</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>EMPTY_TO_IP</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_empty_in_to_the_hpd</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+		<spirit:busInterface>
+			<spirit:name>rst_n</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.busdef" spirit:version="1.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.absDef" spirit:version="1.0"/>
+			<spirit:slave/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>RESETn</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>rst_n</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+	</spirit:busInterfaces>
+	<spirit:addressSpaces>
+		<spirit:addressSpace>
+			<spirit:name>program_mem</spirit:name>
+			<spirit:range>1</spirit:range>
+			<spirit:width>32</spirit:width>
+			<spirit:addressUnitBits>8</spirit:addressUnitBits>
+			<spirit:localMemoryMap>
+				<spirit:name>prg_mem_block</spirit:name>
+			</spirit:localMemoryMap>
+		</spirit:addressSpace>
+	</spirit:addressSpaces>
+	<spirit:model>
+		<spirit:ports>
+			<spirit:port>
+				<spirit:name>clk</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_av_in_to_the_hpd</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_av_out_from_the_hpd</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_comm_in_to_the_hpd</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+					<spirit:vector>
+						<spirit:left>4</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_comm_out_from_the_hpd</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+					<spirit:vector>
+						<spirit:left>4</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_data_in_to_the_hpd</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+					<spirit:vector>
+						<spirit:left>31</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_data_out_from_the_hpd</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+					<spirit:vector>
+						<spirit:left>31</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_empty_in_to_the_hpd</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_full_in_to_the_hpd</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_re_out_from_the_hpd</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>hibi_we_out_from_the_hpd</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>rst_n</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+		</spirit:ports>
+	</spirit:model>
+	
+	<spirit:cpus>
+		<spirit:cpu>
+			<spirit:name>nios</spirit:name>
+			<spirit:addressSpaceRef spirit:addressSpaceRef="program_mem"/>
+		</spirit:cpu>
+	</spirit:cpus>
+</spirit:component>

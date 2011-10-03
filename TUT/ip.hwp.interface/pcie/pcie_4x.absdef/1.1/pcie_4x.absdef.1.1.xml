@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 18:17:13 su loka 2 2011-->
+<spirit:abstractionDefinition xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>ip.hwp.interface</spirit:library>
+	<spirit:name>pcie_4x.absdef</spirit:name>
+	<spirit:version>1.1</spirit:version>
+	<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="pcie_4x.busdef" spirit:version="1.1"/>
+	<spirit:ports>
+		<spirit:port>
+			<spirit:logicalName>REF_CLK_FROM_PCIE</spirit:logicalName>
+			<spirit:wire>
+				<spirit:onMaster>
+					<spirit:presence>optional</spirit:presence>
+					<spirit:width>1</spirit:width>
+					<spirit:direction>out</spirit:direction>
+				</spirit:onMaster>
+				<spirit:requiresDriver spirit:driverType="any"/>false</spirit:wire>
+		</spirit:port>
+		<spirit:port>
+			<spirit:logicalName>RST_N_FROM_PCIE</spirit:logicalName>
+			<spirit:wire>
+				<spirit:onMaster>
+					<spirit:presence>optional</spirit:presence>
+					<spirit:width>1</spirit:width>
+					<spirit:direction>out</spirit:direction>
+				</spirit:onMaster>
+				<spirit:requiresDriver spirit:driverType="any"/>false</spirit:wire>
+		</spirit:port>
+		<spirit:port>
+			<spirit:logicalName>RX_FROM_PCIE</spirit:logicalName>
+			<spirit:wire>
+				<spirit:onMaster>
+					<spirit:presence>optional</spirit:presence>
+					<spirit:width>4</spirit:width>
+					<spirit:direction>out</spirit:direction>
+				</spirit:onMaster>
+				<spirit:requiresDriver spirit:driverType="any"/>false</spirit:wire>
+		</spirit:port>
+		<spirit:port>
+			<spirit:logicalName>TX_TO_PCIE</spirit:logicalName>
+			<spirit:wire>
+				<spirit:onMaster>
+					<spirit:presence>optional</spirit:presence>
+					<spirit:width>4</spirit:width>
+					<spirit:direction>in</spirit:direction>
+				</spirit:onMaster>
+				<spirit:requiresDriver spirit:driverType="any"/>false</spirit:wire>
+		</spirit:port>
+	</spirit:ports>
+</spirit:abstractionDefinition>

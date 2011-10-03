@@ -1,0 +1,145 @@
+#!/bin/sh
+#
+# Skripti kaantaa kaikki vhdl-tiedostot ja tekee niista makefilen
+# Ymparistomuuttjat 
+#	TMP_DIR 	kertoo mihin hakemistoon kaannetyt fiilut laitetaan.
+#	
+
+clear
+
+if [ "$QUARTUS_ROOTDIR" = "" ]; then
+  echo "Env variable QUARTUS_ROOTDIR, which defines the location of Quartus install directory, is not set"
+	echo "In cygwin, you must use Windows style such as D:/user/Xavier... and not /cygdrive/d/user..."
+	echo "->Exit"
+	exit
+fi
+
+if test -z $TMP_DIR
+then
+	echo "Env variable TMP_DIR, which defines the location of Modelsim's work dir, is not set"
+	echo "In cygwin, you must use Windows style such as D:/user/Xavier... and not /cygdrive/d/user..."
+	echo "->Exit"
+	exit
+fi
+
+mkdir $TMP_DIR
+
+#Poistetaan vanha codelib ja tehdaan ja mapataan uusi
+echo "Removing old vhdl library "
+rm -rf $TMP_DIR/codelib
+rm -rf $TMP_DIR/st
+
+
+echo; echo "Creating a new library at"
+echo $TMP_DIR; echo
+#ls -la $TMP_DIR/..
+
+vlib $TMP_DIR/codelib
+vmap work $TMP_DIR/codelib
+
+# vlib $TMP_DIR/st
+# vmap st $TMP_DIR/st
+
+
+# ST:n kirjastokomponenttien simulointimallit
+# echo 'Compliling ST synthesis libraries'
+# vcom -quiet -work st /export/prog/IC/st/hcmos9/HCMOS9SIGE_8.0/CORE9GPLL_SNPS_AVT_4.1_1.1/VHDL_FUNCT/CORE9GPLL_COMPONENTS.vhd
+# vcom -quiet -work st /export/prog/IC/st/hcmos9/HCMOS9SIGE_8.0/CORE9GPLL_SNPS_AVT_4.1_1.1/VHDL_FUNCT/CORE9GPLL_VHDL_FUNCT.vhd
+
+#vcom -quiet -work st /export/prog/IC/st/hcmos9/HCMOS9SIGE_8.0/CORE9GPLL_SNPS_AVT_4.1_1.1/VHDL_FUNCT/CORE9GPLL_COMPONENTS.vhd
+#vcom -quiet -work st /export/prog/IC/st/hcmos9/HCMOS9SIGE_8.0/CORE9GPLL_SNPS_AVT_4.1_1.1/VHDL_FUNCT/CORE9GPLL_VHDL_FUNCT.vhd
+
+
+
+echo; echo "Compiling vhdl codes"; echo
+
+echo; echo "Compiling HIBI"; echo
+
+HIBI_DIR="../../../../../../release_1/lib/hw_lib/ips/communication/hibi/vhd"
+
+
+vcom -quiet -check_synthesis -pedanticerrors $HIBI_DIR/hibiv2_pkg.vhd
+
+vcom -quiet -check_synthesis -pedanticerrors $HIBI_DIR/addr_decoder.vhd
+vcom -quiet -check_synthesis -pedanticerrors $HIBI_DIR/addr_data_demuxes.vhd
+vcom -quiet -check_synthesis -pedanticerrors $HIBI_DIR/addr_data_muxes.vhd
+
+vcom -quiet -check_synthesis -pedanticerrors $HIBI_DIR/cfg_init_pkg.vhd
+vcom -quiet -check_synthesis -pedanticerrors $HIBI_DIR/cfg_mem.vhd
+vcom -quiet -check_synthesis -pedanticerrors $HIBI_DIR/copy_of_multiclk_fifo.vhd
+vcom -quiet -check_synthesis -pedanticerrors $HIBI_DIR/dyn_arb.vhd
+vcom -quiet -check_synthesis -pedanticerrors $HIBI_DIR/lfsr.vhd
+vcom -quiet -check_synthesis -pedanticerrors $HIBI_DIR/fifo.vhd
+vcom -quiet -check_synthesis -pedanticerrors $HIBI_DIR/double_fifo_demux_wr.vhd
+vcom -quiet -check_synthesis -pedanticerrors $HIBI_DIR/double_fifo_mux_rd.vhd
+vcom -quiet -check_synthesis -pedanticerrors $HIBI_DIR/fifo_muxes.vhd
+
+vcom -quiet -check_synthesis -pedanticerrors $HIBI_DIR/rx_ctrl.vhd
+vcom -quiet -check_synthesis -pedanticerrors $HIBI_DIR/tx_ctrl.vhd
+vcom -quiet -check_synthesis -pedanticerrors $HIBI_DIR/receiver.vhd
+vcom -quiet -check_synthesis -pedanticerrors $HIBI_DIR/transmitter.vhd
+
+vcom -quiet -check_synthesis -pedanticerrors $HIBI_DIR/hibi_wrapper_r1.vhd
+vcom -quiet -check_synthesis -pedanticerrors $HIBI_DIR/hibi_wrapper_r3.vhd
+vcom -quiet -check_synthesis -pedanticerrors $HIBI_DIR/hibi_wrapper_r4.vhd
+
+echo
+echo "Compiling Altera libraries"
+vlog -quiet -work work -L mtiAvm -L mtiOvm -L mtiUPF $QUARTUS_ROOTDIR/eda/sim_lib/arriaii_atoms.v
+vlog -quiet -work work -L mtiAvm -L mtiOvm -L mtiUPF $QUARTUS_ROOTDIR/eda/sim_lib/altera_mf.v
+vlog -quiet -work work -L mtiAvm -L mtiOvm -L mtiUPF $QUARTUS_ROOTDIR/eda/sim_lib/altera_primitives.v
+vlog -quiet -work work -L mtiAvm -L mtiOvm -L mtiUPF $QUARTUS_ROOTDIR/eda/sim_lib/sgate.v
+vlog -quiet -work work -L mtiAvm -L mtiOvm -L mtiUPF $QUARTUS_ROOTDIR/eda/sim_lib/220model.v
+
+ALT_MEM_CTRL=a2_ddr2_dimm_1GB
+ALT_MEM_CTRL_DIR="../alt_mem_ctrl/$ALT_MEM_CTRL"
+
+echo
+echo "Compiling Altera DDR2 controller"
+vlog -quiet +incdir+$ALT_MEM_CTRL_DIR -work work -L mtiAvm -L mtiOvm -L mtiUPF $ALT_MEM_CTRL_DIR/alt_ddrx_*.v
+vlog -quiet +incdir+$ALT_MEM_CTRL_DIR -work work -L mtiAvm -L mtiOvm -L mtiUPF $ALT_MEM_CTRL_DIR/${ALT_MEM_CTRL}.v
+vlog -quiet +incdir+$ALT_MEM_CTRL_DIR -work work -L mtiAvm -L mtiOvm -L mtiUPF $ALT_MEM_CTRL_DIR/${ALT_MEM_CTRL}_alt_ddrx_controller_wrapper.v
+vlog -quiet +incdir+$ALT_MEM_CTRL_DIR -work work -L mtiAvm -L mtiOvm -L mtiUPF $ALT_MEM_CTRL_DIR/${ALT_MEM_CTRL}_controller_phy.v
+vlog -quiet +incdir+$ALT_MEM_CTRL_DIR -work work -L mtiAvm -L mtiOvm -L mtiUPF $ALT_MEM_CTRL_DIR/${ALT_MEM_CTRL}_phy.v
+vlog -quiet +incdir+$ALT_MEM_CTRL_DIR -work work -L mtiAvm -L mtiOvm -L mtiUPF $ALT_MEM_CTRL_DIR/${ALT_MEM_CTRL}_phy_alt_mem_phy.v
+vlog -quiet +incdir+$ALT_MEM_CTRL_DIR -work work -L mtiAvm -L mtiOvm -L mtiUPF $ALT_MEM_CTRL_DIR/${ALT_MEM_CTRL}_phy_alt_mem_phy_dq_dqs.v
+vlog -quiet +incdir+$ALT_MEM_CTRL_DIR -work work -L mtiAvm -L mtiOvm -L mtiUPF $ALT_MEM_CTRL_DIR/${ALT_MEM_CTRL}_phy_alt_mem_phy_pll.v
+vlog -quiet +incdir+$ALT_MEM_CTRL_DIR -work work -L mtiAvm -L mtiOvm -L mtiUPF $ALT_MEM_CTRL_DIR/${ALT_MEM_CTRL}_phy_alt_mem_phy_seq_wrapper.vo
+vlog -quiet +incdir+$ALT_MEM_CTRL_DIR -work work -L mtiAvm -L mtiOvm -L mtiUPF $ALT_MEM_CTRL_DIR/testbench/${ALT_MEM_CTRL}_full_mem_model.v
+
+echo
+echo "Compiling alt_mem modules"
+vlog -quiet -work work -L mtiAvm -L mtiOvm -L mtiUPF ../ts/a2gx_hibi_mem_dma_perf_test/alt_mem.v
+vlog -quiet -work work -L mtiAvm -L mtiOvm -L mtiUPF ../ts/a2gx_hibi_mem_dma_perf_test/alt_mem_2.v
+
+echo
+echo "Compile MEM_DMA"
+TESTER_DIR="../vhd"
+vcom -quiet -check_synthesis -pedanticerrors ../hdl/txt_util.vhd
+
+vcom -quiet -check_synthesis -pedanticerrors ../hdl/dual_port_ram_u.vhd
+vcom -quiet -check_synthesis -pedanticerrors ../hdl/dual_ram_async_read.vhd
+vcom -quiet -check_synthesis -pedanticerrors ../hdl/fifo_ram.vhd
+vcom -quiet -check_synthesis -pedanticerrors ../hdl/fifo_u.vhd
+
+vcom -quiet -check_synthesis -pedanticerrors ../hdl/onchip_ram_u.vhd
+vcom -quiet -check_synthesis ../hdl/hibi_mem_dma.vhd
+
+
+# Testipenkki
+echo; echo "Compiling vhdl testbenches";echo
+vcom -quiet ../../../misc/pseudo_rand_gen/vhd/pseudo_rand_gen_r2.vhd
+vcom -quiet ./hibi_seg.vhd
+vcom -quiet ./hibi_mem_dma_tester.vhd
+vcom -quiet ./hibi_mem_dma_tb.vhd
+vcom -quiet ./hibi_mem_dma_perf_test_tb.vhd
+
+
+echo;echo "Creating a new makefile"
+rm -f makefile
+vmake $TMP_DIR/codelib > makefile
+
+echo " --------Create_Makefile done------------- "
+
+
+

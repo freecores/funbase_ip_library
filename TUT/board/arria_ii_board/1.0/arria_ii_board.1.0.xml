@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 19:45:01 su loka 2 2011-->
+<spirit:component>
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>board</spirit:library>
+	<spirit:name>arria_ii_board</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:busInterfaces>
+		<spirit:busInterface>
+			<spirit:name>pcie_4x_p</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="pcie_4x.busdef" spirit:version="1.1"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="pcie_4x.absdef" spirit:version="1.1"/>
+			<spirit:mirroredMaster/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>RST_N_FROM_PCIE</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>pcie_4x_p_RST_N_FROM_PCIE</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>REF_CLK_FROM_PCIE</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>pcie_4x_p_REF_CLK_FROM_PCIE</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>RX_FROM_PCIE</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>pcie_4x_p_RX_FROM_PCIE</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>TX_TO_PCIE</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>pcie_4x_p_TX_TO_PCIE</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+	</spirit:busInterfaces>
+	<spirit:model>
+		<spirit:views>
+			<spirit:view>
+				<spirit:name>kactusHierarchical</spirit:name>
+				<spirit:envIdentifier></spirit:envIdentifier>
+				<spirit:hierarchyRef spirit:vendor="TUT" spirit:library="board" spirit:name="arria_ii_board.designcfg" spirit:version="1.0"/>
+			</spirit:view>
+		</spirit:views>
+		<spirit:ports>
+			<spirit:port>
+				<spirit:name>pcie_4x_p_REF_CLK_FROM_PCIE</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>pcie_4x_p_RST_N_FROM_PCIE</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>pcie_4x_p_RX_FROM_PCIE</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+					<spirit:vector>
+						<spirit:left>3</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>pcie_4x_p_TX_TO_PCIE</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+					<spirit:vector>
+						<spirit:left>3</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+				</spirit:wire>
+			</spirit:port>
+		</spirit:ports>
+	</spirit:model>
+	<spirit:vendorExtensions>
+		<kactus2:extensions>
+			<kactus2:kts_attributes>
+				<kactus2:kts_productHier>Global</kactus2:kts_productHier>
+				<kactus2:kts_implementation>HW</kactus2:kts_implementation>
+				<kactus2:kts_firmness>Mutable</kactus2:kts_firmness>
+			</kactus2:kts_attributes>
+		</kactus2:extensions>
+	</spirit:vendorExtensions>
+</spirit:component>
