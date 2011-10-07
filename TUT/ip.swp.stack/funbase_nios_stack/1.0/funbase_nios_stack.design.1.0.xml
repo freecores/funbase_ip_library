@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 11:25:48 pe loka 7 2011-->
+<!--Created by Kactus 2 document generator 13:01:29 pe loka 7 2011-->
 <spirit:design>
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>ip.swp.stack</spirit:library>
@@ -10,7 +10,7 @@
 			<spirit:instanceName>mcapi_top_1</spirit:instanceName>
 			<spirit:displayName></spirit:displayName>
 			<spirit:description></spirit:description>
-			<spirit:componentRef spirit:vendor="TUT" spirit:library="ip.swp" spirit:name="mcapi_top" spirit:version="1.0"/>
+			<spirit:componentRef spirit:vendor="TUT" spirit:library="ip.swp.api" spirit:name="mcapi_top" spirit:version="1.0"/>
 			<spirit:configurableElementValues/>
 			<spirit:vendorExtensions>
 				<kactus2:position x="650" y="60"/>
@@ -28,7 +28,7 @@
 			<spirit:instanceName>mcapi_transport_nios_1</spirit:instanceName>
 			<spirit:displayName></spirit:displayName>
 			<spirit:description></spirit:description>
-			<spirit:componentRef spirit:vendor="TUT" spirit:library="ip.swp" spirit:name="mcapi_transport_nios" spirit:version="1.0"/>
+			<spirit:componentRef spirit:vendor="TUT" spirit:library="ip.swp.api" spirit:name="mcapi_transport_nios" spirit:version="1.0"/>
 			<spirit:configurableElementValues/>
 			<spirit:vendorExtensions>
 				<kactus2:position x="390" y="60"/>
@@ -82,8 +82,6 @@
 				<kactus2:direction x="-1" y="0"/>
 				<kactus2:route>
 					<kactus2:position x="730" y="100"/>
-					<kactus2:position x="830" y="100"/>
-					<kactus2:position x="830" y="100"/>
 					<kactus2:position x="840" y="100"/>
 				</kactus2:route>
 			</spirit:vendorExtensions>

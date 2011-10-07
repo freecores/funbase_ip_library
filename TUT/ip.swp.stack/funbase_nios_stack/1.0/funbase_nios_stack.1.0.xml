@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 11:25:48 pe loka 7 2011-->
+<!--Created by Kactus 2 document generator 13:01:29 pe loka 7 2011-->
 <spirit:component>
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>ip.swp.stack</spirit:library>
