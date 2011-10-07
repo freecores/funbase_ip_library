@@ -2,7 +2,7 @@
 <!--Created by Kactus 2 document generator 11:21:11 pe loka 7 2011-->
 <spirit:component>
 	<spirit:vendor>TUT</spirit:vendor>
-	<spirit:library>ip.swp</spirit:library>
+	<spirit:library>ip.swp.api</spirit:library>
 	<spirit:name>mcapi_top</spirit:name>
 	<spirit:version>1.0</spirit:version>
 	<spirit:busInterfaces>
