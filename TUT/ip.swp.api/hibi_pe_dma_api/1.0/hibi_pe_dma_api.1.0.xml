@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 11:21:59 pe loka 7 2011-->
+<spirit:busDefinition>
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>ip.swp.api</spirit:library>
+	<spirit:name>hibi_pe_dma_api</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:directConnection>true</spirit:directConnection>
+	<spirit:isAddressable>true</spirit:isAddressable>
+	<spirit:vendorExtensions>
+		<kactus2:extensions>
+			<kactus2:kts_attributes>
+				<kactus2:kts_busdef_type>BusAPI</kactus2:kts_busdef_type>
+			</kactus2:kts_attributes>
+		</kactus2:extensions>
+	</spirit:vendorExtensions>
+</spirit:busDefinition>
