@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 11:25:48 pe loka 7 2011-->
+<spirit:design>
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>ip.swp.stack</spirit:library>
+	<spirit:name>funbase_nios_stack.design</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:componentInstances>
+		<spirit:componentInstance>
+			<spirit:instanceName>mcapi_top_1</spirit:instanceName>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:componentRef spirit:vendor="TUT" spirit:library="ip.swp" spirit:name="mcapi_top" spirit:version="1.0"/>
+			<spirit:configurableElementValues/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="650" y="60"/>
+				<kactus2:portPositions>
+					<kactus2:portPosition kactus2:busRef="mcapi_top">
+						<kactus2:position x="80" y="40"/>
+					</kactus2:portPosition>
+					<kactus2:portPosition kactus2:busRef="mcapi_transport">
+						<kactus2:position x="-80" y="40"/>
+					</kactus2:portPosition>
+				</kactus2:portPositions>
+			</spirit:vendorExtensions>
+		</spirit:componentInstance>
+		<spirit:componentInstance>
+			<spirit:instanceName>mcapi_transport_nios_1</spirit:instanceName>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:componentRef spirit:vendor="TUT" spirit:library="ip.swp" spirit:name="mcapi_transport_nios" spirit:version="1.0"/>
+			<spirit:configurableElementValues/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="390" y="60"/>
+				<kactus2:portPositions>
+					<kactus2:portPosition kactus2:busRef="hibi_pe_dma_api">
+						<kactus2:position x="-80" y="40"/>
+					</kactus2:portPosition>
+					<kactus2:portPosition kactus2:busRef="mcapi_transport">
+						<kactus2:position x="80" y="40"/>
+					</kactus2:portPosition>
+				</kactus2:portPositions>
+			</spirit:vendorExtensions>
+		</spirit:componentInstance>
+		<spirit:componentInstance>
+			<spirit:instanceName>hibi_pe_dma_1</spirit:instanceName>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:componentRef spirit:vendor="TUT" spirit:library="ip.swp.driver" spirit:name="hibi_pe_dma" spirit:version="1.0"/>
+			<spirit:configurableElementValues/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="130" y="60"/>
+				<kactus2:portPositions>
+					<kactus2:portPosition kactus2:busRef="hibi_pe_dma">
+						<kactus2:position x="80" y="40"/>
+					</kactus2:portPosition>
+				</kactus2:portPositions>
+			</spirit:vendorExtensions>
+		</spirit:componentInstance>
+	</spirit:componentInstances>
+	<spirit:interconnections>
+		<spirit:interconnection>
+			<spirit:name>mcapi_transport_nios_1_mcapi_transport_to_mcapi_top_1_mcapi_transport</spirit:name>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:activeInterface spirit:componentRef="mcapi_transport_nios_1" spirit:busRef="mcapi_transport"/>
+			<spirit:activeInterface spirit:componentRef="mcapi_top_1" spirit:busRef="mcapi_transport"/>
+		</spirit:interconnection>
+		<spirit:interconnection>
+			<spirit:name>hibi_pe_dma_1_hibi_pe_dma_to_mcapi_transport_nios_1_hibi_pe_dma_api</spirit:name>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:activeInterface spirit:componentRef="hibi_pe_dma_1" spirit:busRef="hibi_pe_dma"/>
+			<spirit:activeInterface spirit:componentRef="mcapi_transport_nios_1" spirit:busRef="hibi_pe_dma_api"/>
+		</spirit:interconnection>
+	</spirit:interconnections>
+	<spirit:hierConnections>
+		<spirit:hierConnection spirit:interfaceRef="mcapi_top">
+			<spirit:interface spirit:componentRef="mcapi_top_1" spirit:busRef="mcapi_top"/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="840" y="100"/>
+				<kactus2:direction x="-1" y="0"/>
+				<kactus2:route>
+					<kactus2:position x="730" y="100"/>
+					<kactus2:position x="830" y="100"/>
+					<kactus2:position x="830" y="100"/>
+					<kactus2:position x="840" y="100"/>
+				</kactus2:route>
+			</spirit:vendorExtensions>
+		</spirit:hierConnection>
+	</spirit:hierConnections>
+	<spirit:vendorExtensions>
+		<kactus2:columnLayout>
+			<kactus2:column name="Low-level" contentType="2" allowedItems="2"/>
+			<kactus2:column name="Middle-level" contentType="2" allowedItems="2"/>
+			<kactus2:column name="High-level" contentType="2" allowedItems="2"/>
+			<kactus2:column name="Out" contentType="0" allowedItems="1"/>
+		</kactus2:columnLayout>
+		<kactus2:routes>
+			<kactus2:route kactus2:connRef="mcapi_transport_nios_1_mcapi_transport_to_mcapi_top_1_mcapi_transport">
+				<kactus2:position x="470" y="100"/>
+				<kactus2:position x="570" y="100"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="hibi_pe_dma_1_hibi_pe_dma_to_mcapi_transport_nios_1_hibi_pe_dma_api">
+				<kactus2:position x="210" y="100"/>
+				<kactus2:position x="310" y="100"/>
+			</kactus2:route>
+		</kactus2:routes>
+	</spirit:vendorExtensions>
+</spirit:design>
