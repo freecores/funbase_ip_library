@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 11:10:34 pe loka 7 2011-->
+<spirit:component>
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>ip.swp.application</spirit:library>
+	<spirit:name>video_gen</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:busInterfaces>
+		<spirit:busInterface>
+			<spirit:name>app_link</spirit:name>
+			<spirit:busType spirit:vendor="Kactus" spirit:library="internal" spirit:name="app_link" spirit:version="1.0"/>
+			<spirit:master/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+	</spirit:busInterfaces>
+	<spirit:model/>
+	<spirit:fileSets>
+		<spirit:fileSet>
+			<spirit:name>cSources</spirit:name>
+		</spirit:fileSet>
+	</spirit:fileSets>
+	<spirit:vendorExtensions>
+		<kactus2:extensions>
+			<kactus2:kts_attributes>
+				<kactus2:kts_implementation>SW</kactus2:kts_implementation>
+				<kactus2:kts_sw_type>Application</kactus2:kts_sw_type>
+			</kactus2:kts_attributes>
+		</kactus2:extensions>
+	</spirit:vendorExtensions>
+</spirit:component>
