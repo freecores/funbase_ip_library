@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 11:21:11 pe loka 7 2011-->
+<spirit:component>
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>ip.swp</spirit:library>
+	<spirit:name>mcapi_top</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:busInterfaces>
+		<spirit:busInterface>
+			<spirit:name>mcapi_top</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.swp.api" spirit:name="mcapi_top_api" spirit:version="1.0"/>
+			<spirit:master/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+		<spirit:busInterface>
+			<spirit:name>mcapi_transport</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.swp.api" spirit:name="mcapi_transport" spirit:version="1.0"/>
+			<spirit:slave/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+	</spirit:busInterfaces>
+	<spirit:model/>
+	<spirit:fileSets>
+		<spirit:fileSet>
+			<spirit:name>cSources</spirit:name>
+			<spirit:file>
+				<spirit:name>src/mcapi.h</spirit:name>
+				<spirit:fileType>cSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>src/mcapi.c</spirit:name>
+				<spirit:fileType>cSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+		</spirit:fileSet>
+	</spirit:fileSets>
+	<spirit:vendorExtensions>
+		<kactus2:extensions>
+			<kactus2:kts_attributes>
+				<kactus2:kts_implementation>SW</kactus2:kts_implementation>
+				<kactus2:kts_sw_type>Platform</kactus2:kts_sw_type>
+			</kactus2:kts_attributes>
+		</kactus2:extensions>
+	</spirit:vendorExtensions>
+</spirit:component>
