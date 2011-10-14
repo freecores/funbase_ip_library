@@ -1,0 +1,25 @@
+PACKAGE install
+{
+   version = "4.01:213";
+   COMPONENT vga_lcd_latency
+   {
+      VERSION 2.0
+      {
+         local = "D:/svn/tutwlan/trunk/hardware_lib/Platform_vhdl_lib/Vga_controller";
+      }
+   }
+   COMPONENT n2h2_ver02
+   {
+      VERSION 0.2
+      {
+         local = "D:/svn/koski/trunk/lib/hw_lib/ips/adapters/n2h2/Sopc_64b";
+      }
+   }
+   COMPONENT n2h2_str
+   {
+      VERSION 0.1
+      {
+         local = "D:/svn/koski/trunk/lib/hw_lib/ips/adapters/n2h2/Sopc_component";
+      }
+   }
+}
