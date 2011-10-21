@@ -1,0 +1,4 @@
+fifo_im_case - ok
+fifo_casev4 - toimii, data_outissa heittoa verrattuna in-muxiin, kun fifo 
+tyhja (tama kun tyhjentaa, in-mux ei)
+fifo_casev5 -  kuten v4.
