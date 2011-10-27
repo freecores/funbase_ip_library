@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 10:49:55 pe loka 21 2011-->
+<spirit:design>
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>soc</spirit:library>
+	<spirit:name>altera_de_II_demo.design</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:componentInstances>
+		<spirit:componentInstance>
+			<spirit:instanceName>sig_gen_1</spirit:instanceName>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:componentRef spirit:vendor="TUT" spirit:library="ip.hwp.accelerator" spirit:name="sig_gen" spirit:version="1.0"/>
+			<spirit:configurableElementValues/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="250" y="60"/>
+				<kactus2:portPositions>
+					<kactus2:portPosition kactus2:busRef="clk">
+						<kactus2:position x="-80" y="40"/>
+					</kactus2:portPosition>
+					<kactus2:portPosition kactus2:busRef="rst_n">
+						<kactus2:position x="80" y="70"/>
+					</kactus2:portPosition>
+					<kactus2:portPosition kactus2:busRef="signal_gen_if">
+						<kactus2:position x="-80" y="70"/>
+					</kactus2:portPosition>
+					<kactus2:portPosition kactus2:busRef="toggle_in">
+						<kactus2:position x="80" y="40"/>
+					</kactus2:portPosition>
+				</kactus2:portPositions>
+			</spirit:vendorExtensions>
+		</spirit:componentInstance>
+		<spirit:componentInstance>
+			<spirit:instanceName>port_blinker_1</spirit:instanceName>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:componentRef spirit:vendor="TUT" spirit:library="ip.hwp.accelerator" spirit:name="port_blinker" spirit:version="1.0"/>
+			<spirit:configurableElementValues/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="250" y="180"/>
+				<kactus2:portPositions>
+					<kactus2:portPosition kactus2:busRef="clk">
+						<kactus2:position x="-80" y="70"/>
+					</kactus2:portPosition>
+					<kactus2:portPosition kactus2:busRef="port_out">
+						<kactus2:position x="80" y="60"/>
+					</kactus2:portPosition>
+					<kactus2:portPosition kactus2:busRef="rst_n">
+						<kactus2:position x="80" y="40"/>
+					</kactus2:portPosition>
+					<kactus2:portPosition kactus2:busRef="signal_gen_if">
+						<kactus2:position x="-80" y="40"/>
+					</kactus2:portPosition>
+				</kactus2:portPositions>
+			</spirit:vendorExtensions>
+		</spirit:componentInstance>
+	</spirit:componentInstances>
+	<spirit:interconnections>
+		<spirit:interconnection>
+			<spirit:name>port_blinker_1_signal_gen_if_to_sig_gen_1_signal_gen_if</spirit:name>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:activeInterface spirit:componentRef="port_blinker_1" spirit:busRef="signal_gen_if"/>
+			<spirit:activeInterface spirit:componentRef="sig_gen_1" spirit:busRef="signal_gen_if"/>
+		</spirit:interconnection>
+	</spirit:interconnections>
+	<spirit:hierConnections>
+		<spirit:hierConnection spirit:interfaceRef="rst_n">
+			<spirit:interface spirit:componentRef="sig_gen_1" spirit:busRef="rst_n"/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="440" y="190"/>
+				<kactus2:direction x="-1" y="0"/>
+				<kactus2:route>
+					<kactus2:position x="330" y="130"/>
+					<kactus2:position x="430" y="130"/>
+					<kactus2:position x="430" y="190"/>
+					<kactus2:position x="440" y="190"/>
+				</kactus2:route>
+			</spirit:vendorExtensions>
+		</spirit:hierConnection>
+		<spirit:hierConnection spirit:interfaceRef="rst_n">
+			<spirit:interface spirit:componentRef="port_blinker_1" spirit:busRef="rst_n"/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="440" y="190"/>
+				<kactus2:direction x="-1" y="0"/>
+				<kactus2:route>
+					<kactus2:position x="330" y="220"/>
+					<kactus2:position x="430" y="220"/>
+					<kactus2:position x="430" y="190"/>
+					<kactus2:position x="440" y="190"/>
+				</kactus2:route>
+			</spirit:vendorExtensions>
+		</spirit:hierConnection>
+		<spirit:hierConnection spirit:interfaceRef="port_out">
+			<spirit:interface spirit:componentRef="port_blinker_1" spirit:busRef="port_out"/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="440" y="250"/>
+				<kactus2:direction x="-1" y="0"/>
+				<kactus2:route>
+					<kactus2:position x="330" y="240"/>
+					<kactus2:position x="430" y="240"/>
+					<kactus2:position x="430" y="250"/>
+					<kactus2:position x="440" y="250"/>
+				</kactus2:route>
+			</spirit:vendorExtensions>
+		</spirit:hierConnection>
+		<spirit:hierConnection spirit:interfaceRef="clk">
+			<spirit:interface spirit:componentRef="sig_gen_1" spirit:busRef="clk"/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="60" y="100"/>
+				<kactus2:direction x="1" y="0"/>
+				<kactus2:route>
+					<kactus2:position x="170" y="100"/>
+					<kactus2:position x="160" y="100"/>
+					<kactus2:position x="160" y="100"/>
+					<kactus2:position x="60" y="100"/>
+				</kactus2:route>
+			</spirit:vendorExtensions>
+		</spirit:hierConnection>
+		<spirit:hierConnection spirit:interfaceRef="clk">
+			<spirit:interface spirit:componentRef="port_blinker_1" spirit:busRef="clk"/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="60" y="100"/>
+				<kactus2:direction x="1" y="0"/>
+				<kactus2:route>
+					<kactus2:position x="170" y="250"/>
+					<kactus2:position x="90" y="250"/>
+					<kactus2:position x="90" y="100"/>
+					<kactus2:position x="60" y="100"/>
+				</kactus2:route>
+			</spirit:vendorExtensions>
+		</spirit:hierConnection>
+		<spirit:hierConnection spirit:interfaceRef="toggle_in">
+			<spirit:interface spirit:componentRef="sig_gen_1" spirit:busRef="toggle_in"/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="440" y="100"/>
+				<kactus2:direction x="-1" y="0"/>
+				<kactus2:route>
+					<kactus2:position x="330" y="100"/>
+					<kactus2:position x="440" y="100"/>
+				</kactus2:route>
+			</spirit:vendorExtensions>
+		</spirit:hierConnection>
+	</spirit:hierConnections>
+	<spirit:vendorExtensions>
+		<kactus2:columnLayout>
+			<kactus2:column name="IO" contentType="0" allowedItems="1"/>
+			<kactus2:column name="Components" contentType="2" allowedItems="2"/>
+			<kactus2:column name="IO" contentType="0" allowedItems="1"/>
+		</kactus2:columnLayout>
+		<kactus2:routes>
+			<kactus2:route kactus2:connRef="port_blinker_1_signal_gen_if_to_sig_gen_1_signal_gen_if">
+				<kactus2:position x="170" y="220"/>
+				<kactus2:position x="160" y="220"/>
+				<kactus2:position x="160" y="130"/>
+				<kactus2:position x="170" y="130"/>
+			</kactus2:route>
+		</kactus2:routes>
+	</spirit:vendorExtensions>
+</spirit:design>
