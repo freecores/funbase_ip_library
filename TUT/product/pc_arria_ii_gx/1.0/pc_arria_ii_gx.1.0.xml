@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 12:16:31 ma marras 7 2011-->
+<!--Created by Kactus 2 document generator 14:04:50 ma marras 7 2011-->
 <spirit:component>
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>product</spirit:library>
@@ -20,6 +20,108 @@
 			</spirit:view>
 		</spirit:views>
 	</spirit:model>
+	<spirit:fileSets>
+		<spirit:fileSet>
+			<spirit:name>Documentation</spirit:name>
+			<spirit:group>documentation</spirit:group>
+			<spirit:file>
+				<spirit:name>doc/kactus2_reports/pc_arria_ii_gx_product_report.html</spirit:name>
+				<spirit:userFileType>htmlFile</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:description>Html file that contains the documentation for this component and subcomponents</spirit:description>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>doc/kactus2_reports/TUT.product.pc_arria_ii_gx.1.0.png</spirit:name>
+				<spirit:userFileType>picture</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:description>Preview picture needed by the html document.</spirit:description>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>doc/kactus2_reports/TUT.product.pc_arria_ii_gx.1.0.hierachical.png</spirit:name>
+				<spirit:userFileType>picture</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:description>Preview picture needed by the html document.</spirit:description>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>doc/kactus2_reports/TUT.board.arria_ii_board.1.0.png</spirit:name>
+				<spirit:userFileType>picture</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:description>Preview picture needed by the html document.</spirit:description>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>doc/kactus2_reports/TUT.board.arria_ii_board.1.0.hierarchical.png</spirit:name>
+				<spirit:userFileType>picture</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:description>Preview picture needed by the html document.</spirit:description>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>doc/kactus2_reports/TUT.chip.ddr2_memory.1.0.png</spirit:name>
+				<spirit:userFileType>picture</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:description>Preview picture needed by the html document.</spirit:description>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>doc/kactus2_reports/TUT.chip.arria_ii.1.0.png</spirit:name>
+				<spirit:userFileType>picture</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:description>Preview picture needed by the html document.</spirit:description>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>doc/kactus2_reports/TUT.chip.arria_ii.1.0.hierarchical.png</spirit:name>
+				<spirit:userFileType>picture</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:description>Preview picture needed by the html document.</spirit:description>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>doc/kactus2_reports/TUT.soc.arria_ii_gx_demo_soc.1.0.png</spirit:name>
+				<spirit:userFileType>picture</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:description>Preview picture needed by the html document.</spirit:description>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>doc/kactus2_reports/TUT.soc.arria_ii_gx_demo_soc.1.0.structural.png</spirit:name>
+				<spirit:userFileType>picture</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:description>Preview picture needed by the html document.</spirit:description>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>doc/kactus2_reports/TUT.ip.hwp.interface.pcie_to_hibi_4x.1.0.png</spirit:name>
+				<spirit:userFileType>picture</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:description>Preview picture needed by the html document.</spirit:description>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>doc/kactus2_reports/TUT.ip.hwp.storage.a2_ddr2_dimm_1GB.2.0.png</spirit:name>
+				<spirit:userFileType>picture</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:description>Preview picture needed by the html document.</spirit:description>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>doc/kactus2_reports/TUT.ip.hwp.storage.hibi_mem_dma.2.0.png</spirit:name>
+				<spirit:userFileType>picture</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:description>Preview picture needed by the html document.</spirit:description>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>doc/kactus2_reports/TUT.ip.hwp.accelerator.picture_manip.1.0.png</spirit:name>
+				<spirit:userFileType>picture</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:description>Preview picture needed by the html document.</spirit:description>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>doc/kactus2_reports/TUT.ip.hwp.communication.hibi_segment_small.2.0.png</spirit:name>
+				<spirit:userFileType>picture</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:description>Preview picture needed by the html document.</spirit:description>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>doc/kactus2_reports/TUT.board.pc_board.1.0.png</spirit:name>
+				<spirit:userFileType>picture</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:description>Preview picture needed by the html document.</spirit:description>
+			</spirit:file>
+		</spirit:fileSet>
+	</spirit:fileSets>
 	<spirit:description>Example Kactus2 product which includes Linux_PC and ArriaII_GX development board connected together with PCIe.</spirit:description>
 	<spirit:vendorExtensions>
 		<kactus2:extensions>

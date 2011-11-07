@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 12:16:57 ma marras 7 2011-->
+<!--Created by Kactus 2 document generator 14:02:23 ma marras 7 2011-->
 <spirit:component>
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>board</spirit:library>
@@ -101,7 +101,7 @@
 	<spirit:vendorExtensions>
 		<kactus2:extensions>
 			<kactus2:kts_attributes>
-				<kactus2:kts_productHier>Global</kactus2:kts_productHier>
+				<kactus2:kts_productHier>Board</kactus2:kts_productHier>
 				<kactus2:kts_implementation>HW</kactus2:kts_implementation>
 				<kactus2:kts_firmness>Mutable</kactus2:kts_firmness>
 			</kactus2:kts_attributes>

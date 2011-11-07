@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 12:16:57 ma marras 7 2011-->
+<!--Created by Kactus 2 document generator 14:02:23 ma marras 7 2011-->
 <spirit:designConfiguration>
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>board</spirit:library>
@@ -11,7 +11,15 @@
 		<spirit:viewName>hierarchical</spirit:viewName>
 	</spirit:viewConfiguration>
 	<spirit:viewConfiguration>
+		<spirit:instanceName>clock_oscillator</spirit:instanceName>
+		<spirit:viewName></spirit:viewName>
+	</spirit:viewConfiguration>
+	<spirit:viewConfiguration>
 		<spirit:instanceName>ddr2_memory</spirit:instanceName>
 		<spirit:viewName>flat</spirit:viewName>
+	</spirit:viewConfiguration>
+	<spirit:viewConfiguration>
+		<spirit:instanceName>push_buttons</spirit:instanceName>
+		<spirit:viewName></spirit:viewName>
 	</spirit:viewConfiguration>
 </spirit:designConfiguration>

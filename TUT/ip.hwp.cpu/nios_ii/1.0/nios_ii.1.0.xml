@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 09:59:10 to syys 29 2011-->
+<!--Created by Kactus 2 document generator 13:52:40 ma marras 7 2011-->
 <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>ip.hwp.cpu</spirit:library>
@@ -239,11 +239,18 @@
 			</spirit:port>
 		</spirit:ports>
 	</spirit:model>
-	
 	<spirit:cpus>
 		<spirit:cpu>
 			<spirit:name>nios</spirit:name>
 			<spirit:addressSpaceRef spirit:addressSpaceRef="program_mem"/>
 		</spirit:cpu>
 	</spirit:cpus>
+	<spirit:vendorExtensions>
+		<kactus2:extensions>
+			<kactus2:kts_attributes>
+				<kactus2:kts_productHier>IP</kactus2:kts_productHier>
+				<kactus2:kts_firmness>Mutable</kactus2:kts_firmness>
+			</kactus2:kts_attributes>
+		</kactus2:extensions>
+	</spirit:vendorExtensions>
 </spirit:component>
