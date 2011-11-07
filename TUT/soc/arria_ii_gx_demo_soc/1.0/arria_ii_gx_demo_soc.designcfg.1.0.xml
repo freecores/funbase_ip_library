@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 19:47:26 su loka 2 2011-->
+<!--Created by Kactus 2 document generator 12:49:08 ma marras 7 2011-->
 <spirit:designConfiguration>
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>soc</spirit:library>
 	<spirit:name>arria_ii_gx_demo_soc.designcfg</spirit:name>
 	<spirit:version>1.0</spirit:version>
 	<spirit:designRef spirit:vendor="TUT" spirit:library="soc" spirit:name="arria_ii_gx_demo_soc.design" spirit:version="1.0"/>
+	<spirit:viewConfiguration>
+		<spirit:instanceName>a2_ddr2_dimm_1GB_1</spirit:instanceName>
+		<spirit:viewName>rtl</spirit:viewName>
+	</spirit:viewConfiguration>
+	<spirit:viewConfiguration>
+		<spirit:instanceName>hibi_mem_dma_1</spirit:instanceName>
+		<spirit:viewName>rtl</spirit:viewName>
+	</spirit:viewConfiguration>
+	<spirit:viewConfiguration>
+		<spirit:instanceName>hibi_segment_small_1</spirit:instanceName>
+		<spirit:viewName>rtl</spirit:viewName>
+	</spirit:viewConfiguration>
+	<spirit:viewConfiguration>
+		<spirit:instanceName>pcie_to_hibi_4x_1</spirit:instanceName>
+		<spirit:viewName>rtl</spirit:viewName>
+	</spirit:viewConfiguration>
+	<spirit:viewConfiguration>
+		<spirit:instanceName>picture_manip_1</spirit:instanceName>
+		<spirit:viewName>rtl</spirit:viewName>
+	</spirit:viewConfiguration>
 </spirit:designConfiguration>

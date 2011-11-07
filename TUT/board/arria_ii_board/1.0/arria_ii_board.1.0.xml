@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 19:45:01 su loka 2 2011-->
+<!--Created by Kactus 2 document generator 12:16:57 ma marras 7 2011-->
 <spirit:component>
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>board</spirit:library>
@@ -53,9 +53,13 @@
 	<spirit:model>
 		<spirit:views>
 			<spirit:view>
-				<spirit:name>kactusHierarchical</spirit:name>
+				<spirit:name>hierarchical</spirit:name>
 				<spirit:envIdentifier></spirit:envIdentifier>
 				<spirit:hierarchyRef spirit:vendor="TUT" spirit:library="board" spirit:name="arria_ii_board.designcfg" spirit:version="1.0"/>
+			</spirit:view>
+			<spirit:view>
+				<spirit:name>flat</spirit:name>
+				<spirit:envIdentifier>none::</spirit:envIdentifier>
 			</spirit:view>
 		</spirit:views>
 		<spirit:ports>
@@ -93,6 +97,7 @@
 			</spirit:port>
 		</spirit:ports>
 	</spirit:model>
+	<spirit:description>Arria II GX development board.</spirit:description>
 	<spirit:vendorExtensions>
 		<kactus2:extensions>
 			<kactus2:kts_attributes>

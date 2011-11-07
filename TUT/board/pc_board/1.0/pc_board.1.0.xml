@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 17:50:37 su loka 2 2011-->
+<!--Created by Kactus 2 document generator 11:40:57 ma marras 7 2011-->
 <spirit:component>
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>board</spirit:library>
@@ -19,9 +19,8 @@
 	<spirit:model>
 		<spirit:views>
 			<spirit:view>
-				<spirit:name>kactusHierarchical</spirit:name>
-				<spirit:envIdentifier></spirit:envIdentifier>
-				<spirit:hierarchyRef spirit:vendor="TUT" spirit:library="board" spirit:name="pc_board.designcfg" spirit:version="1.0"/>
+				<spirit:name>flat</spirit:name>
+				<spirit:envIdentifier>none:Kactus2:</spirit:envIdentifier>
 			</spirit:view>
 		</spirit:views>
 	</spirit:model>

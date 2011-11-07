@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 18:17:30 su loka 2 2011-->
+<!--Created by Kactus 2 document generator 13:46:50 ma marras 7 2011-->
 <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>ip.hwp.interface</spirit:library>
@@ -228,6 +228,15 @@
 		</spirit:busInterface>
 	</spirit:busInterfaces>
 	<spirit:model>
+		<spirit:views>
+			<spirit:view>
+				<spirit:name>rtl</spirit:name>
+				<spirit:envIdentifier>vhdl:quartus:</spirit:envIdentifier>
+				<spirit:fileSetRef>
+					<spirit:localName>hdlSources</spirit:localName>
+				</spirit:fileSetRef>
+			</spirit:view>
+		</spirit:views>
 		<spirit:ports>
 			<spirit:port>
 				<spirit:name>clk_in</spirit:name>
@@ -709,7 +718,54 @@
 				<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
 			</spirit:defaultFileBuilder>
 		</spirit:fileSet>
+		<spirit:fileSet>
+			<spirit:name>Documentation</spirit:name>
+			<spirit:description>pcie_to_hibi IP documentations.</spirit:description>
+			<spirit:file>
+				<spirit:name>doc/PCI-E_to_hibi.docx</spirit:name>
+				<spirit:userFileType>documentation</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+				<spirit:description>pcie_to_hibi IP block documentation in word document.</spirit:description>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>doc/PCI-E_to_hibi.pptx</spirit:name>
+				<spirit:userFileType>documentation</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+				<spirit:description>pcie_to_hibi IP block documentation in powerpoint presentation.</spirit:description>
+			</spirit:file>
+		</spirit:fileSet>
+		<spirit:fileSet>
+			<spirit:name>fpga_settings</spirit:name>
+			<spirit:file>
+				<spirit:name>fpga_settings/pcie.sdc</spirit:name>
+				<spirit:userFileType>quartusSDCFile</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+				<spirit:description>pcie_to_hibi timing and area constraints.</spirit:description>
+			</spirit:file>
+		</spirit:fileSet>
+		<spirit:fileSet>
+			<spirit:name>sopc_files</spirit:name>
+			<spirit:file>
+				<spirit:name>sopc/pcie_to_hibi_4x_sopc.sopc</spirit:name>
+				<spirit:userFileType>quartusSOPCFILE</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+				<spirit:description>SOPC project file</spirit:description>
+			</spirit:file>
+		</spirit:fileSet>
 	</spirit:fileSets>
+	<spirit:description>Adapter to connect HIBI based FPGA subsystem to PCIe bus.</spirit:description>
 	<spirit:vendorExtensions>
 		<kactus2:extensions>
 			<kactus2:kts_attributes>

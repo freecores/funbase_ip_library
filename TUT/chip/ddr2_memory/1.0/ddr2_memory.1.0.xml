@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 17:07:06 su loka 2 2011-->
+<!--Created by Kactus 2 document generator 12:14:01 ma marras 7 2011-->
 <spirit:component>
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>chip</spirit:library>
@@ -19,11 +19,12 @@
 	<spirit:model>
 		<spirit:views>
 			<spirit:view>
-				<spirit:name>kactusHierarchical</spirit:name>
-				<spirit:envIdentifier></spirit:envIdentifier>
+				<spirit:name>flat</spirit:name>
+				<spirit:envIdentifier>none::</spirit:envIdentifier>
 			</spirit:view>
 		</spirit:views>
 	</spirit:model>
+	<spirit:description>Dummy DDR2 memory block.</spirit:description>
 	<spirit:vendorExtensions>
 		<kactus2:extensions>
 			<kactus2:kts_attributes>

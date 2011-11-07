@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 19:26:52 su loka 2 2011-->
+<!--Created by Kactus 2 document generator 12:51:29 ma marras 7 2011-->
 <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>ip.hwp.storage</spirit:library>
@@ -306,6 +306,12 @@
 		</spirit:busInterface>
 	</spirit:busInterfaces>
 	<spirit:model>
+		<spirit:views>
+			<spirit:view>
+				<spirit:name>rtl</spirit:name>
+				<spirit:envIdentifier>vhdl::</spirit:envIdentifier>
+			</spirit:view>
+		</spirit:views>
 		<spirit:ports>
 			<spirit:port>
 				<spirit:name>aux_full_rate_clk</spirit:name>
@@ -977,4 +983,13 @@
 			</spirit:defaultFileBuilder>
 		</spirit:fileSet>
 	</spirit:fileSets>
+	<spirit:description>Altera ddr2 memory controller</spirit:description>
+	<spirit:vendorExtensions>
+		<kactus2:extensions>
+			<kactus2:kts_attributes>
+				<kactus2:kts_productHier>Global</kactus2:kts_productHier>
+				<kactus2:kts_firmness>Mutable</kactus2:kts_firmness>
+			</kactus2:kts_attributes>
+		</kactus2:extensions>
+	</spirit:vendorExtensions>
 </spirit:component>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 19:47:26 su loka 2 2011-->
+<!--Created by Kactus 2 document generator 12:49:08 ma marras 7 2011-->
 <spirit:component>
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>soc</spirit:library>
@@ -8,6 +8,7 @@
 	<spirit:busInterfaces>
 		<spirit:busInterface>
 			<spirit:name>clk_in</spirit:name>
+			<spirit:description>Clock input for demo design</spirit:description>
 			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="clock.busdef" spirit:version="1.0"/>
 			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="clock.absDef" spirit:version="1.0"/>
 			<spirit:slave/>
@@ -35,6 +36,7 @@
 		</spirit:busInterface>
 		<spirit:busInterface>
 			<spirit:name>ddr2_p</spirit:name>
+			<spirit:description>DDR2 interface to DDR2 memory</spirit:description>
 			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="ddr2_a2.busdef" spirit:version="1.0"/>
 			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="ddr2_a2.absdef" spirit:version="1.0"/>
 			<spirit:master/>
@@ -270,6 +272,7 @@
 		</spirit:busInterface>
 		<spirit:busInterface>
 			<spirit:name>pcie_4x_p</spirit:name>
+			<spirit:description>PCIe 4x interface</spirit:description>
 			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="pcie_4x.busdef" spirit:version="1.1"/>
 			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="pcie_4x.absdef" spirit:version="1.1"/>
 			<spirit:mirroredMaster/>
@@ -359,111 +362,11 @@
 						</spirit:vector>
 					</spirit:logicalPort>
 					<spirit:physicalPort>
-						<spirit:name>rst_n_RESETn</spirit:name>
+						<spirit:name>user_pb</spirit:name>
 						<spirit:vector>
 							<spirit:left>0</spirit:left>
 							<spirit:right>0</spirit:right>
 						</spirit:vector>
-					</spirit:physicalPort>
-				</spirit:portMap>
-			</spirit:portMaps>
-			<spirit:bitsInLau>8</spirit:bitsInLau>
-			<spirit:endianness>little</spirit:endianness>
-		</spirit:busInterface>
-		<spirit:busInterface>
-			<spirit:name>rst_n_1</spirit:name>
-			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.busdef" spirit:version="1.0"/>
-			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.absDef" spirit:version="1.0"/>
-			<spirit:slave/>
-			<spirit:connectionRequired>false</spirit:connectionRequired>
-			<spirit:portMaps>
-				<spirit:portMap>
-					<spirit:logicalPort>
-						<spirit:name>RESETn</spirit:name>
-						<spirit:vector>
-							<spirit:left>0</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:logicalPort>
-					<spirit:physicalPort>
-						<spirit:name>rst_n_RESETn</spirit:name>
-						<spirit:vector>
-							<spirit:left>0</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:physicalPort>
-				</spirit:portMap>
-			</spirit:portMaps>
-			<spirit:bitsInLau>8</spirit:bitsInLau>
-			<spirit:endianness>little</spirit:endianness>
-		</spirit:busInterface>
-		<spirit:busInterface>
-			<spirit:name>rst_n_2</spirit:name>
-			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.busdef" spirit:version="1.0"/>
-			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.absDef" spirit:version="1.0"/>
-			<spirit:slave/>
-			<spirit:connectionRequired>false</spirit:connectionRequired>
-			<spirit:portMaps>
-				<spirit:portMap>
-					<spirit:logicalPort>
-						<spirit:name>RESETn</spirit:name>
-						<spirit:vector>
-							<spirit:left>0</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:logicalPort>
-					<spirit:physicalPort>
-						<spirit:name>rst_n_RESETn</spirit:name>
-						<spirit:vector>
-							<spirit:left>0</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:physicalPort>
-				</spirit:portMap>
-			</spirit:portMaps>
-			<spirit:bitsInLau>8</spirit:bitsInLau>
-			<spirit:endianness>little</spirit:endianness>
-		</spirit:busInterface>
-		<spirit:busInterface>
-			<spirit:name>rst_n_3</spirit:name>
-			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.busdef" spirit:version="1.0"/>
-			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.absDef" spirit:version="1.0"/>
-			<spirit:slave/>
-			<spirit:connectionRequired>false</spirit:connectionRequired>
-			<spirit:portMaps>
-				<spirit:portMap>
-					<spirit:logicalPort>
-						<spirit:name>RESETn</spirit:name>
-						<spirit:vector>
-							<spirit:left>0</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:logicalPort>
-					<spirit:physicalPort>
-						<spirit:name>rst_n_RESETn</spirit:name>
-						<spirit:vector>
-							<spirit:left>0</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:physicalPort>
-				</spirit:portMap>
-			</spirit:portMaps>
-			<spirit:bitsInLau>8</spirit:bitsInLau>
-			<spirit:endianness>little</spirit:endianness>
-		</spirit:busInterface>
-		<spirit:busInterface>
-			<spirit:name>soft_rst_n</spirit:name>
-			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.busdef" spirit:version="1.0"/>
-			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.absDef" spirit:version="1.0"/>
-			<spirit:slave/>
-			<spirit:connectionRequired>false</spirit:connectionRequired>
-			<spirit:portMaps>
-				<spirit:portMap>
-					<spirit:logicalPort>
-						<spirit:name>RESETn</spirit:name>
-					</spirit:logicalPort>
-					<spirit:physicalPort>
-						<spirit:name>soft_rst_n_RESETn</spirit:name>
 					</spirit:physicalPort>
 				</spirit:portMap>
 			</spirit:portMaps>
@@ -474,9 +377,13 @@
 	<spirit:model>
 		<spirit:views>
 			<spirit:view>
-				<spirit:name>kactusHierarchical</spirit:name>
-				<spirit:envIdentifier></spirit:envIdentifier>
+				<spirit:name>structural</spirit:name>
+				<spirit:envIdentifier>vhdl:quartus:</spirit:envIdentifier>
 				<spirit:hierarchyRef spirit:vendor="TUT" spirit:library="soc" spirit:name="arria_ii_gx_demo_soc.designcfg" spirit:version="1.0"/>
+			</spirit:view>
+			<spirit:view>
+				<spirit:name>rtl</spirit:name>
+				<spirit:envIdentifier>vhdl:quartus:</spirit:envIdentifier>
 			</spirit:view>
 		</spirit:views>
 		<spirit:ports>
@@ -488,6 +395,13 @@
 						<spirit:left>0</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -498,6 +412,13 @@
 						<spirit:left>15</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -508,6 +429,13 @@
 						<spirit:left>2</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -518,6 +446,13 @@
 						<spirit:left>0</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -528,6 +463,13 @@
 						<spirit:left>0</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -538,6 +480,13 @@
 						<spirit:left>1</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -548,6 +497,13 @@
 						<spirit:left>1</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -558,6 +514,13 @@
 						<spirit:left>0</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -568,6 +531,13 @@
 						<spirit:left>7</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -578,6 +548,13 @@
 						<spirit:left>63</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -588,6 +565,13 @@
 						<spirit:left>7</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -598,6 +582,13 @@
 						<spirit:left>7</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -608,6 +599,13 @@
 						<spirit:left>0</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -618,6 +616,13 @@
 						<spirit:left>0</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -628,6 +633,13 @@
 						<spirit:left>0</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -638,6 +650,13 @@
 						<spirit:left>0</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -648,6 +667,13 @@
 						<spirit:left>3</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -658,6 +684,13 @@
 						<spirit:left>3</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -668,12 +701,13 @@
 						<spirit:left>0</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
-				</spirit:wire>
-			</spirit:port>
-			<spirit:port>
-				<spirit:name>soft_rst_n_RESETn</spirit:name>
-				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
-					<spirit:direction>in</spirit:direction>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -681,9 +715,16 @@
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>in</spirit:direction>
 					<spirit:vector>
-						<spirit:left>1</spirit:left>
+						<spirit:left>2</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 		</spirit:ports>

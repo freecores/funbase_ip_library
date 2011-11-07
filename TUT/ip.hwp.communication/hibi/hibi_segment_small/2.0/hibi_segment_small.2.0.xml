@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 18:02:16 pe syys 30 2011-->
+<!--Created by Kactus 2 document generator 13:46:35 ma marras 7 2011-->
 <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>ip.hwp.communication</spirit:library>
@@ -463,6 +463,15 @@
 		</spirit:channel>
 	</spirit:channels>
 	<spirit:model>
+		<spirit:views>
+			<spirit:view>
+				<spirit:name>rtl</spirit:name>
+				<spirit:envIdentifier>vhdl::</spirit:envIdentifier>
+				<spirit:fileSetRef>
+					<spirit:localName>hdlSources</spirit:localName>
+				</spirit:fileSetRef>
+			</spirit:view>
+		</spirit:views>
 		<spirit:ports>
 			<spirit:port>
 				<spirit:name>agent_addr_in_17</spirit:name>
@@ -1866,6 +1875,7 @@
 			</spirit:defaultFileBuilder>
 		</spirit:fileSet>
 	</spirit:fileSets>
+	<spirit:description>HIBI segment block including two r4_wrapper and one r3_wrapper interfaces.</spirit:description>
 	<spirit:vendorExtensions>
 		<kactus2:extensions>
 			<kactus2:kts_attributes>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 19:45:01 su loka 2 2011-->
+<!--Created by Kactus 2 document generator 12:16:57 ma marras 7 2011-->
 <spirit:designConfiguration>
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>board</spirit:library>
@@ -8,10 +8,10 @@
 	<spirit:designRef spirit:vendor="TUT" spirit:library="board" spirit:name="arria_ii_board.design" spirit:version="1.0"/>
 	<spirit:viewConfiguration>
 		<spirit:instanceName>arria_ii_gx_chip</spirit:instanceName>
-		<spirit:viewName>kactusHierarchical</spirit:viewName>
+		<spirit:viewName>hierarchical</spirit:viewName>
 	</spirit:viewConfiguration>
 	<spirit:viewConfiguration>
 		<spirit:instanceName>ddr2_memory</spirit:instanceName>
-		<spirit:viewName></spirit:viewName>
+		<spirit:viewName>flat</spirit:viewName>
 	</spirit:viewConfiguration>
 </spirit:designConfiguration>
