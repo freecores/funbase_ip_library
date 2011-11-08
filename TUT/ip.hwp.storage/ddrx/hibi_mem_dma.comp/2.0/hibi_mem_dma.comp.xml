@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 13:45:28 ma marras 7 2011-->
+<!--Created by Kactus 2 document generator 11:31:58 ti marras 8 2011-->
 <spirit:component kts_producthier="Global" kts_reuselevel="Block" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>ip.hwp.storage</spirit:library>
@@ -15,90 +15,178 @@
 			<spirit:portMaps>
 				<spirit:portMap>
 					<spirit:logicalPort>
-						<spirit:name>MEM_INIT_DONE_FROM_ALT_DDR2</spirit:name>
+						<spirit:name>MEM_RDATA_FROM_ALT_DDR2</spirit:name>
+						<spirit:vector>
+							<spirit:left>31</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
 					</spirit:logicalPort>
 					<spirit:physicalPort>
-						<spirit:name>mem_init_done_in</spirit:name>
-					</spirit:physicalPort>
-				</spirit:portMap>
-				<spirit:portMap>
-					<spirit:logicalPort>
-						<spirit:name>MEM_WR_REQ_TO_ALT_DDR2</spirit:name>
-					</spirit:logicalPort>
-					<spirit:physicalPort>
-						<spirit:name>mem_wr_req_out</spirit:name>
-					</spirit:physicalPort>
-				</spirit:portMap>
-				<spirit:portMap>
-					<spirit:logicalPort>
-						<spirit:name>MEM_RD_REQ_TO_ALT_DDR2</spirit:name>
-					</spirit:logicalPort>
-					<spirit:physicalPort>
-						<spirit:name>mem_rd_req_out</spirit:name>
-					</spirit:physicalPort>
-				</spirit:portMap>
-				<spirit:portMap>
-					<spirit:logicalPort>
-						<spirit:name>MEM_ADDR_TO_ALT_DDR2</spirit:name>
-					</spirit:logicalPort>
-					<spirit:physicalPort>
-						<spirit:name>mem_addr_out</spirit:name>
-					</spirit:physicalPort>
-				</spirit:portMap>
-				<spirit:portMap>
-					<spirit:logicalPort>
-						<spirit:name>MEM_READY_FROM_ALT_DDR2</spirit:name>
-					</spirit:logicalPort>
-					<spirit:physicalPort>
-						<spirit:name>mem_ready_in</spirit:name>
-					</spirit:physicalPort>
-				</spirit:portMap>
-				<spirit:portMap>
-					<spirit:logicalPort>
-						<spirit:name>MEM_RDATA_VALID_FROM_ALT_DDR2</spirit:name>
-					</spirit:logicalPort>
-					<spirit:physicalPort>
-						<spirit:name>mem_rdata_valid_in</spirit:name>
+						<spirit:name>mem_rdata_in</spirit:name>
+						<spirit:vector>
+							<spirit:left>31</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
 					</spirit:physicalPort>
 				</spirit:portMap>
 				<spirit:portMap>
 					<spirit:logicalPort>
 						<spirit:name>MEM_WDATA_TO_ALT_DDR2</spirit:name>
+						<spirit:vector>
+							<spirit:left>31</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
 					</spirit:logicalPort>
 					<spirit:physicalPort>
 						<spirit:name>mem_wdata_out</spirit:name>
-					</spirit:physicalPort>
-				</spirit:portMap>
-				<spirit:portMap>
-					<spirit:logicalPort>
-						<spirit:name>MEM_RDATA_FROM_ALT_DDR2</spirit:name>
-					</spirit:logicalPort>
-					<spirit:physicalPort>
-						<spirit:name>mem_rdata_in</spirit:name>
-					</spirit:physicalPort>
-				</spirit:portMap>
-				<spirit:portMap>
-					<spirit:logicalPort>
-						<spirit:name>MEM_BE_TO_ALT_DDR2</spirit:name>
-					</spirit:logicalPort>
-					<spirit:physicalPort>
-						<spirit:name>mem_be_out</spirit:name>
-					</spirit:physicalPort>
-				</spirit:portMap>
-				<spirit:portMap>
-					<spirit:logicalPort>
-						<spirit:name>MEM_BURST_BEGIN_TO_ALT_DDR2</spirit:name>
-					</spirit:logicalPort>
-					<spirit:physicalPort>
-						<spirit:name>mem_burst_begin_out</spirit:name>
+						<spirit:vector>
+							<spirit:left>31</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
 					</spirit:physicalPort>
 				</spirit:portMap>
 				<spirit:portMap>
 					<spirit:logicalPort>
 						<spirit:name>MEM_BURST_SIZE_TO_ALT_DDR2</spirit:name>
+						<spirit:vector>
+							<spirit:left>2</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
 					</spirit:logicalPort>
 					<spirit:physicalPort>
 						<spirit:name>mem_burst_size_out</spirit:name>
+						<spirit:vector>
+							<spirit:left>2</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>MEM_BURST_BEGIN_TO_ALT_DDR2</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_burst_begin_out</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>MEM_RDATA_VALID_FROM_ALT_DDR2</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_rdata_valid_in</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>MEM_READY_FROM_ALT_DDR2</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_ready_in</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>MEM_ADDR_TO_ALT_DDR2</spirit:name>
+						<spirit:vector>
+							<spirit:left>24</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_addr_out</spirit:name>
+						<spirit:vector>
+							<spirit:left>24</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>MEM_RD_REQ_TO_ALT_DDR2</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_rd_req_out</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>MEM_WR_REQ_TO_ALT_DDR2</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_wr_req_out</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>MEM_INIT_DONE_FROM_ALT_DDR2</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_init_done_in</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>MEM_BE_TO_ALT_DDR2</spirit:name>
+						<spirit:vector>
+							<spirit:left>3</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_be_out</spirit:name>
+						<spirit:vector>
+							<spirit:left>3</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
 					</spirit:physicalPort>
 				</spirit:portMap>
 			</spirit:portMaps>
@@ -691,7 +779,7 @@
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>out</spirit:direction>
 					<spirit:vector>
-						<spirit:left>31</spirit:left>
+						<spirit:left>3</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
 					<spirit:wireTypeDefs>
@@ -764,7 +852,7 @@
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>in</spirit:direction>
 					<spirit:vector>
-						<spirit:left>255</spirit:left>
+						<spirit:left>31</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
 					<spirit:wireTypeDefs>
@@ -807,7 +895,7 @@
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>out</spirit:direction>
 					<spirit:vector>
-						<spirit:left>255</spirit:left>
+						<spirit:left>31</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
 					<spirit:wireTypeDefs>
@@ -850,6 +938,32 @@
 				</spirit:wire>
 			</spirit:port>
 		</spirit:ports>
+		<spirit:modelParameters>
+			<spirit:modelParameter spirit:dataType="integer" spirit:usageType="nontyped">
+				<spirit:name>BURST_SIZE_WIDTH</spirit:name>
+				<spirit:value>1</spirit:value>
+			</spirit:modelParameter>
+			<spirit:modelParameter spirit:dataType="integer" spirit:usageType="nontyped">
+				<spirit:name>HIBI_COM_WIDTH</spirit:name>
+				<spirit:value>3</spirit:value>
+			</spirit:modelParameter>
+			<spirit:modelParameter spirit:dataType="integer" spirit:usageType="nontyped">
+				<spirit:name>HIBI_DATA_WIDTH</spirit:name>
+				<spirit:value>32</spirit:value>
+			</spirit:modelParameter>
+			<spirit:modelParameter spirit:dataType="integer" spirit:usageType="nontyped">
+				<spirit:name>MEM_ADDR_WIDTH</spirit:name>
+				<spirit:value>22</spirit:value>
+			</spirit:modelParameter>
+			<spirit:modelParameter spirit:dataType="integer" spirit:usageType="nontyped">
+				<spirit:name>MEM_BE_WIDTH</spirit:name>
+				<spirit:value>4</spirit:value>
+			</spirit:modelParameter>
+			<spirit:modelParameter spirit:dataType="integer" spirit:usageType="nontyped">
+				<spirit:name>MEM_DATA_WIDTH</spirit:name>
+				<spirit:value>32</spirit:value>
+			</spirit:modelParameter>
+		</spirit:modelParameters>
 	</spirit:model>
 	<spirit:fileSets>
 		<spirit:fileSet>

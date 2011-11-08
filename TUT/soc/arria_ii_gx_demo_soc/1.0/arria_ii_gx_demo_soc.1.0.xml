@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 14:16:58 ma marras 7 2011-->
+<!--Created by Kactus 2 document generator 11:33:17 ti marras 8 2011-->
 <spirit:component>
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>soc</spirit:library>
@@ -36,7 +36,6 @@
 		</spirit:busInterface>
 		<spirit:busInterface>
 			<spirit:name>ddr2_p</spirit:name>
-			<spirit:description>DDR2 interface to DDR2 memory</spirit:description>
 			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="ddr2_a2.busdef" spirit:version="1.0"/>
 			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="ddr2_a2.absdef" spirit:version="1.0"/>
 			<spirit:master/>
@@ -44,226 +43,114 @@
 			<spirit:portMaps>
 				<spirit:portMap>
 					<spirit:logicalPort>
-						<spirit:name>ADDR_TO_DDR2</spirit:name>
-						<spirit:vector>
-							<spirit:left>15</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
+						<spirit:name>CLK_TO_AND_FROM_DDR2</spirit:name>
 					</spirit:logicalPort>
 					<spirit:physicalPort>
-						<spirit:name>ddr2_dimm_addr</spirit:name>
-						<spirit:vector>
-							<spirit:left>15</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:physicalPort>
-				</spirit:portMap>
-				<spirit:portMap>
-					<spirit:logicalPort>
-						<spirit:name>BA_TO_DDR2</spirit:name>
-						<spirit:vector>
-							<spirit:left>2</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:logicalPort>
-					<spirit:physicalPort>
-						<spirit:name>ddr2_dimm_ba</spirit:name>
-						<spirit:vector>
-							<spirit:left>2</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:physicalPort>
-				</spirit:portMap>
-				<spirit:portMap>
-					<spirit:logicalPort>
-						<spirit:name>CAS_N_TO_DDR2</spirit:name>
-						<spirit:vector>
-							<spirit:left>0</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:logicalPort>
-					<spirit:physicalPort>
-						<spirit:name>ddr2_dimm_cas_n</spirit:name>
-						<spirit:vector>
-							<spirit:left>0</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:physicalPort>
-				</spirit:portMap>
-				<spirit:portMap>
-					<spirit:logicalPort>
-						<spirit:name>CKE_TO_DDR2</spirit:name>
-						<spirit:vector>
-							<spirit:left>0</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:logicalPort>
-					<spirit:physicalPort>
-						<spirit:name>ddr2_dimm_cke</spirit:name>
-						<spirit:vector>
-							<spirit:left>0</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
+						<spirit:name>mem_clk</spirit:name>
 					</spirit:physicalPort>
 				</spirit:portMap>
 				<spirit:portMap>
 					<spirit:logicalPort>
 						<spirit:name>CLK_N_TO_AND_FROM_DDR2</spirit:name>
-						<spirit:vector>
-							<spirit:left>1</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
 					</spirit:logicalPort>
 					<spirit:physicalPort>
-						<spirit:name>ddr2_dimm_clk_n</spirit:name>
-						<spirit:vector>
-							<spirit:left>1</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
+						<spirit:name>mem_clk_n</spirit:name>
 					</spirit:physicalPort>
 				</spirit:portMap>
 				<spirit:portMap>
 					<spirit:logicalPort>
-						<spirit:name>CLK_TO_AND_FROM_DDR2</spirit:name>
-						<spirit:vector>
-							<spirit:left>1</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
+						<spirit:name>CKE_TO_DDR2</spirit:name>
 					</spirit:logicalPort>
 					<spirit:physicalPort>
-						<spirit:name>ddr2_dimm_clk</spirit:name>
-						<spirit:vector>
-							<spirit:left>1</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
+						<spirit:name>mem_cke</spirit:name>
 					</spirit:physicalPort>
 				</spirit:portMap>
 				<spirit:portMap>
 					<spirit:logicalPort>
 						<spirit:name>CS_N_TO_DDR2</spirit:name>
-						<spirit:vector>
-							<spirit:left>0</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
 					</spirit:logicalPort>
 					<spirit:physicalPort>
-						<spirit:name>ddr2_dimm_cs_n</spirit:name>
-						<spirit:vector>
-							<spirit:left>0</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
+						<spirit:name>mem_cs_n</spirit:name>
 					</spirit:physicalPort>
 				</spirit:portMap>
 				<spirit:portMap>
 					<spirit:logicalPort>
-						<spirit:name>DQS_N_TO_AND_FROM_DDR2</spirit:name>
-						<spirit:vector>
-							<spirit:left>7</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
+						<spirit:name>CAS_N_TO_DDR2</spirit:name>
 					</spirit:logicalPort>
 					<spirit:physicalPort>
-						<spirit:name>ddr2_dimm_dqs_n</spirit:name>
-						<spirit:vector>
-							<spirit:left>7</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:physicalPort>
-				</spirit:portMap>
-				<spirit:portMap>
-					<spirit:logicalPort>
-						<spirit:name>DQS_TO_AND_FROM_DDR2</spirit:name>
-						<spirit:vector>
-							<spirit:left>7</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:logicalPort>
-					<spirit:physicalPort>
-						<spirit:name>ddr2_dimm_dqs</spirit:name>
-						<spirit:vector>
-							<spirit:left>7</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:physicalPort>
-				</spirit:portMap>
-				<spirit:portMap>
-					<spirit:logicalPort>
-						<spirit:name>DQ_M_TO_DDR2</spirit:name>
-						<spirit:vector>
-							<spirit:left>7</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:logicalPort>
-					<spirit:physicalPort>
-						<spirit:name>ddr2_dimm_dm</spirit:name>
-						<spirit:vector>
-							<spirit:left>7</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:physicalPort>
-				</spirit:portMap>
-				<spirit:portMap>
-					<spirit:logicalPort>
-						<spirit:name>DQ_TO_AND_FROM_DDR2</spirit:name>
-						<spirit:vector>
-							<spirit:left>63</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:logicalPort>
-					<spirit:physicalPort>
-						<spirit:name>ddr2_dimm_dq</spirit:name>
-						<spirit:vector>
-							<spirit:left>63</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:physicalPort>
-				</spirit:portMap>
-				<spirit:portMap>
-					<spirit:logicalPort>
-						<spirit:name>ODT_TO_DDR2</spirit:name>
-						<spirit:vector>
-							<spirit:left>0</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:logicalPort>
-					<spirit:physicalPort>
-						<spirit:name>ddr2_dimm_odt</spirit:name>
-						<spirit:vector>
-							<spirit:left>0</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
+						<spirit:name>mem_cas_n</spirit:name>
 					</spirit:physicalPort>
 				</spirit:portMap>
 				<spirit:portMap>
 					<spirit:logicalPort>
 						<spirit:name>RAS_N_TO_DDR2</spirit:name>
-						<spirit:vector>
-							<spirit:left>0</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
 					</spirit:logicalPort>
 					<spirit:physicalPort>
-						<spirit:name>ddr2_dimm_ras_n</spirit:name>
-						<spirit:vector>
-							<spirit:left>0</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
+						<spirit:name>mem_ras_n</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>ODT_TO_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_odt</spirit:name>
 					</spirit:physicalPort>
 				</spirit:portMap>
 				<spirit:portMap>
 					<spirit:logicalPort>
 						<spirit:name>WE_N_TO_DDR2</spirit:name>
-						<spirit:vector>
-							<spirit:left>0</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
 					</spirit:logicalPort>
 					<spirit:physicalPort>
-						<spirit:name>ddr2_dimm_we_n</spirit:name>
-						<spirit:vector>
-							<spirit:left>0</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
+						<spirit:name>mem_we_n</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>BA_TO_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_ba</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>ADDR_TO_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_addr</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>DQ_M_TO_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_dm</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>DQS_TO_AND_FROM_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_dqs</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>DQS_N_TO_AND_FROM_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_dqsn</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>DQ_TO_AND_FROM_DDR2</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>mem_dq</spirit:name>
 					</spirit:physicalPort>
 				</spirit:portMap>
 			</spirit:portMaps>
@@ -348,7 +235,6 @@
 		</spirit:busInterface>
 		<spirit:busInterface>
 			<spirit:name>rst_n</spirit:name>
-			<spirit:description>Active low reset</spirit:description>
 			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.busdef" spirit:version="1.0"/>
 			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.absDef" spirit:version="1.0"/>
 			<spirit:slave/>
@@ -363,11 +249,30 @@
 						</spirit:vector>
 					</spirit:logicalPort>
 					<spirit:physicalPort>
-						<spirit:name>user_pb</spirit:name>
+						<spirit:name>user_pb_0</spirit:name>
 						<spirit:vector>
 							<spirit:left>0</spirit:left>
 							<spirit:right>0</spirit:right>
 						</spirit:vector>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+		<spirit:busInterface>
+			<spirit:name>soft_rst_n</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.busdef" spirit:version="1.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.absDef" spirit:version="1.0"/>
+			<spirit:slave/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>RESETn</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>soft_reset_n</spirit:name>
 					</spirit:physicalPort>
 				</spirit:portMap>
 			</spirit:portMaps>
@@ -414,11 +319,11 @@
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
-				<spirit:name>ddr2_dimm_addr</spirit:name>
+				<spirit:name>mem_addr</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>out</spirit:direction>
 					<spirit:vector>
-						<spirit:left>15</spirit:left>
+						<spirit:left>13</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
 					<spirit:wireTypeDefs>
@@ -431,7 +336,7 @@
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
-				<spirit:name>ddr2_dimm_ba</spirit:name>
+				<spirit:name>mem_ba</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>out</spirit:direction>
 					<spirit:vector>
@@ -448,13 +353,9 @@
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
-				<spirit:name>ddr2_dimm_cas_n</spirit:name>
+				<spirit:name>mem_cas_n</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>out</spirit:direction>
-					<spirit:vector>
-						<spirit:left>0</spirit:left>
-						<spirit:right>0</spirit:right>
-					</spirit:vector>
 					<spirit:wireTypeDefs>
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
@@ -465,13 +366,9 @@
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
-				<spirit:name>ddr2_dimm_cke</spirit:name>
+				<spirit:name>mem_cke</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>out</spirit:direction>
-					<spirit:vector>
-						<spirit:left>0</spirit:left>
-						<spirit:right>0</spirit:right>
-					</spirit:vector>
 					<spirit:wireTypeDefs>
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
@@ -482,7 +379,7 @@
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
-				<spirit:name>ddr2_dimm_clk</spirit:name>
+				<spirit:name>mem_clk</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>inout</spirit:direction>
 					<spirit:vector>
@@ -499,7 +396,7 @@
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
-				<spirit:name>ddr2_dimm_clk_n</spirit:name>
+				<spirit:name>mem_clk_n</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>inout</spirit:direction>
 					<spirit:vector>
@@ -516,13 +413,9 @@
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
-				<spirit:name>ddr2_dimm_cs_n</spirit:name>
+				<spirit:name>mem_cs_n</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>out</spirit:direction>
-					<spirit:vector>
-						<spirit:left>0</spirit:left>
-						<spirit:right>0</spirit:right>
-					</spirit:vector>
 					<spirit:wireTypeDefs>
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
@@ -533,7 +426,7 @@
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
-				<spirit:name>ddr2_dimm_dm</spirit:name>
+				<spirit:name>mem_dm</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>out</spirit:direction>
 					<spirit:vector>
@@ -550,7 +443,7 @@
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
-				<spirit:name>ddr2_dimm_dq</spirit:name>
+				<spirit:name>mem_dq</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>inout</spirit:direction>
 					<spirit:vector>
@@ -567,7 +460,7 @@
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
-				<spirit:name>ddr2_dimm_dqs</spirit:name>
+				<spirit:name>mem_dqs</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>inout</spirit:direction>
 					<spirit:vector>
@@ -584,7 +477,7 @@
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
-				<spirit:name>ddr2_dimm_dqs_n</spirit:name>
+				<spirit:name>mem_dqsn</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>inout</spirit:direction>
 					<spirit:vector>
@@ -601,13 +494,9 @@
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
-				<spirit:name>ddr2_dimm_odt</spirit:name>
+				<spirit:name>mem_odt</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>out</spirit:direction>
-					<spirit:vector>
-						<spirit:left>0</spirit:left>
-						<spirit:right>0</spirit:right>
-					</spirit:vector>
 					<spirit:wireTypeDefs>
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
@@ -618,13 +507,9 @@
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
-				<spirit:name>ddr2_dimm_ras_n</spirit:name>
+				<spirit:name>mem_ras_n</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>out</spirit:direction>
-					<spirit:vector>
-						<spirit:left>0</spirit:left>
-						<spirit:right>0</spirit:right>
-					</spirit:vector>
 					<spirit:wireTypeDefs>
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
@@ -635,13 +520,9 @@
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
-				<spirit:name>ddr2_dimm_we_n</spirit:name>
+				<spirit:name>mem_we_n</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>out</spirit:direction>
-					<spirit:vector>
-						<spirit:left>0</spirit:left>
-						<spirit:right>0</spirit:right>
-					</spirit:vector>
 					<spirit:wireTypeDefs>
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
@@ -720,16 +601,29 @@
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
-				<spirit:name>user_pb</spirit:name>
+				<spirit:name>soft_reset_n</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>user_pb_0</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>in</spirit:direction>
 					<spirit:vector>
-						<spirit:left>2</spirit:left>
+						<spirit:left>0</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
 					<spirit:wireTypeDefs>
 						<spirit:wireTypeDef>
-							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
 							<spirit:viewNameRef></spirit:viewNameRef>
 						</spirit:wireTypeDef>

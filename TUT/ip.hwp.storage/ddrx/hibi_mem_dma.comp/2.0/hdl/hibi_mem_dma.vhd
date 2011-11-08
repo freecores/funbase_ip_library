@@ -758,7 +758,7 @@ begin
                 rw_conf_load_data_r(RW_CONF_STARTED_L) <= '1';
               when "001" =>
                 rw_conf_load_data_r(RW_AMOUNT_U downto RW_AMOUNT_L) <= hibi_msg_rd_data_v(RW_AMOUNT_WIDTH-1 downto 0);
-                rw_conf_load_data_r(RW_MEM_BE_U downto RW_MEM_BE_L) <= hibi_msg_rd_data_v(RW_AMOUNT_WIDTH + MEM_BE_WIDTH - 1 downto RW_AMOUNT_WIDTH);
+
               when "010" =>
                 rw_conf_load_data_r(RW_ADDR_INC_U downto RW_ADDR_INC_L) <= hibi_msg_rd_data_v(RW_ADDR_INC_WIDTH-1 downto 0);
                 rw_conf_load_data_r(RW_ADDR_INTERVAL_U downto RW_ADDR_INTERVAL_L) <= hibi_msg_rd_data_v(RW_ADDR_INC_WIDTH + RW_ADDR_INTERVAL_WIDTH - 1

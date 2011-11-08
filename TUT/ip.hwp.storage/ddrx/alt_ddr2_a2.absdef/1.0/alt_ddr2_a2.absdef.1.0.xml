@@ -1,57 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 11:19:44 ti marras 8 2011-->
 <spirit:abstractionDefinition xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
-  <spirit:vendor>TUT</spirit:vendor>
-  <spirit:library>ip.hwp.storage</spirit:library>
-  <spirit:name>alt_ddr2_a2.absdef</spirit:name>
-  <spirit:version>1.0</spirit:version>
-  <spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.storage" spirit:name="alt_ddr2_a2.busdef" spirit:version="1.0"/>
-  <spirit:ports>
-  <spirit:port>
-		<spirit:logicalName>MEM_INIT_DONE_FROM_ALT_DDR2</spirit:logicalName>
-    <spirit:wire><spirit:onMaster><spirit:width>1</spirit:width><spirit:direction>out</spirit:direction></spirit:onMaster></spirit:wire>
-	</spirit:port>
-	<spirit:port>
-		<spirit:logicalName>MEM_WR_REQ_TO_ALT_DDR2</spirit:logicalName>
-		<spirit:wire><spirit:onMaster><spirit:width>1</spirit:width><spirit:direction>in</spirit:direction></spirit:onMaster></spirit:wire>
-	</spirit:port>
-	<spirit:port>
-		<spirit:logicalName>MEM_RD_REQ_TO_ALT_DDR2</spirit:logicalName>
-		<spirit:wire><spirit:onMaster><spirit:width>1</spirit:width><spirit:direction>in</spirit:direction></spirit:onMaster></spirit:wire>
-	</spirit:port>
-	<spirit:port>
-		<spirit:logicalName>MEM_ADDR_TO_ALT_DDR2</spirit:logicalName>
-		<spirit:wire><spirit:onMaster><spirit:width>25</spirit:width><spirit:direction>in</spirit:direction></spirit:onMaster></spirit:wire>
-	</spirit:port>
-	<spirit:port>
-		<spirit:logicalName>MEM_READY_FROM_ALT_DDR2</spirit:logicalName>
-		<spirit:wire><spirit:onMaster><spirit:width>1</spirit:width><spirit:direction>out</spirit:direction></spirit:onMaster></spirit:wire>
-	</spirit:port>
-  <spirit:port>
-		<spirit:logicalName>MEM_RDATA_VALID_FROM_ALT_DDR2</spirit:logicalName>
-		<spirit:wire><spirit:onMaster><spirit:width>1</spirit:width><spirit:direction>out</spirit:direction></spirit:onMaster></spirit:wire>
-	</spirit:port>
-  <spirit:port>
-		<spirit:logicalName>MEM_WDATA_TO_ALT_DDR2</spirit:logicalName>
-		<spirit:wire><spirit:onMaster><spirit:width>256</spirit:width><spirit:direction>in</spirit:direction></spirit:onMaster></spirit:wire>
-	</spirit:port>
-  <spirit:port>
-		<spirit:logicalName>MEM_RDATA_FROM_ALT_DDR2</spirit:logicalName>
-		<spirit:wire><spirit:onMaster><spirit:width>256</spirit:width><spirit:direction>out</spirit:direction></spirit:onMaster></spirit:wire>
-	</spirit:port>
-  <spirit:port>
-		<spirit:logicalName>MEM_BE_TO_ALT_DDR2</spirit:logicalName>
-		<spirit:wire><spirit:onMaster><spirit:width>32</spirit:width><spirit:direction>in</spirit:direction></spirit:onMaster></spirit:wire>
-	</spirit:port>
-  <spirit:port>
-		<spirit:logicalName>MEM_BURST_BEGIN_TO_ALT_DDR2</spirit:logicalName>
-		<spirit:wire><spirit:onMaster><spirit:width>1</spirit:width><spirit:direction>in</spirit:direction></spirit:onMaster></spirit:wire>
-	</spirit:port>
-  <spirit:port>
-		<spirit:logicalName>MEM_BURST_SIZE_TO_ALT_DDR2</spirit:logicalName>
-		<spirit:wire><spirit:onMaster><spirit:width>3</spirit:width><spirit:direction>in</spirit:direction></spirit:onMaster></spirit:wire>
-	</spirit:port>
-  </spirit:ports>
-  
-  
- </spirit:abstractionDefinition>
-  
-  
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>ip.hwp.storage</spirit:library>
+	<spirit:name>alt_ddr2_a2.absdef</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.storage" spirit:name="alt_ddr2_a2.busdef" spirit:version="1.0"/>
+	<spirit:ports>
+		<spirit:port>
+			<spirit:logicalName>MEM_ADDR_TO_ALT_DDR2</spirit:logicalName>
+			<spirit:wire>
+				<spirit:onMaster>
+					<spirit:presence>optional</spirit:presence>
+					<spirit:width>25</spirit:width>
+					<spirit:direction>out</spirit:direction>
+				</spirit:onMaster>
+				<spirit:requiresDriver spirit:driverType="any"/>false</spirit:wire>
+		</spirit:port>
+		<spirit:port>
+			<spirit:logicalName>MEM_BE_TO_ALT_DDR2</spirit:logicalName>
+			<spirit:wire>
+				<spirit:onMaster>
+					<spirit:presence>optional</spirit:presence>
+					<spirit:width>32</spirit:width>
+					<spirit:direction>out</spirit:direction>
+				</spirit:onMaster>
+				<spirit:requiresDriver spirit:driverType="any"/>false</spirit:wire>
+		</spirit:port>
+		<spirit:port>
+			<spirit:logicalName>MEM_BURST_BEGIN_TO_ALT_DDR2</spirit:logicalName>
+			<spirit:wire>
+				<spirit:onMaster>
+					<spirit:presence>optional</spirit:presence>
+					<spirit:width>1</spirit:width>
+					<spirit:direction>out</spirit:direction>
+				</spirit:onMaster>
+				<spirit:requiresDriver spirit:driverType="any"/>false</spirit:wire>
+		</spirit:port>
+		<spirit:port>
+			<spirit:logicalName>MEM_BURST_SIZE_TO_ALT_DDR2</spirit:logicalName>
+			<spirit:wire>
+				<spirit:onMaster>
+					<spirit:presence>optional</spirit:presence>
+					<spirit:width>3</spirit:width>
+					<spirit:direction>out</spirit:direction>
+				</spirit:onMaster>
+				<spirit:requiresDriver spirit:driverType="any"/>false</spirit:wire>
+		</spirit:port>
+		<spirit:port>
+			<spirit:logicalName>MEM_INIT_DONE_FROM_ALT_DDR2</spirit:logicalName>
+			<spirit:wire>
+				<spirit:onMaster>
+					<spirit:presence>optional</spirit:presence>
+					<spirit:width>1</spirit:width>
+					<spirit:direction>in</spirit:direction>
+				</spirit:onMaster>
+				<spirit:requiresDriver spirit:driverType="any"/>false</spirit:wire>
+		</spirit:port>
+		<spirit:port>
+			<spirit:logicalName>MEM_RDATA_FROM_ALT_DDR2</spirit:logicalName>
+			<spirit:wire>
+				<spirit:onMaster>
+					<spirit:presence>optional</spirit:presence>
+					<spirit:width>256</spirit:width>
+					<spirit:direction>in</spirit:direction>
+				</spirit:onMaster>
+				<spirit:requiresDriver spirit:driverType="any"/>false</spirit:wire>
+		</spirit:port>
+		<spirit:port>
+			<spirit:logicalName>MEM_RDATA_VALID_FROM_ALT_DDR2</spirit:logicalName>
+			<spirit:wire>
+				<spirit:onMaster>
+					<spirit:presence>optional</spirit:presence>
+					<spirit:width>1</spirit:width>
+					<spirit:direction>in</spirit:direction>
+				</spirit:onMaster>
+				<spirit:requiresDriver spirit:driverType="any"/>false</spirit:wire>
+		</spirit:port>
+		<spirit:port>
+			<spirit:logicalName>MEM_RD_REQ_TO_ALT_DDR2</spirit:logicalName>
+			<spirit:wire>
+				<spirit:onMaster>
+					<spirit:presence>optional</spirit:presence>
+					<spirit:width>1</spirit:width>
+					<spirit:direction>out</spirit:direction>
+				</spirit:onMaster>
+				<spirit:requiresDriver spirit:driverType="any"/>false</spirit:wire>
+		</spirit:port>
+		<spirit:port>
+			<spirit:logicalName>MEM_READY_FROM_ALT_DDR2</spirit:logicalName>
+			<spirit:wire>
+				<spirit:onMaster>
+					<spirit:presence>optional</spirit:presence>
+					<spirit:width>1</spirit:width>
+					<spirit:direction>in</spirit:direction>
+				</spirit:onMaster>
+				<spirit:requiresDriver spirit:driverType="any"/>false</spirit:wire>
+		</spirit:port>
+		<spirit:port>
+			<spirit:logicalName>MEM_WDATA_TO_ALT_DDR2</spirit:logicalName>
+			<spirit:wire>
+				<spirit:onMaster>
+					<spirit:presence>optional</spirit:presence>
+					<spirit:width>256</spirit:width>
+					<spirit:direction>out</spirit:direction>
+				</spirit:onMaster>
+				<spirit:requiresDriver spirit:driverType="any"/>false</spirit:wire>
+		</spirit:port>
+		<spirit:port>
+			<spirit:logicalName>MEM_WR_REQ_TO_ALT_DDR2</spirit:logicalName>
+			<spirit:wire>
+				<spirit:onMaster>
+					<spirit:presence>optional</spirit:presence>
+					<spirit:width>1</spirit:width>
+					<spirit:direction>out</spirit:direction>
+				</spirit:onMaster>
+				<spirit:requiresDriver spirit:driverType="any"/>false</spirit:wire>
+		</spirit:port>
+	</spirit:ports>
+</spirit:abstractionDefinition>
