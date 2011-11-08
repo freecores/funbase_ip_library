@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 14:44:47 ti marras 8 2011-->
+<!--Created by Kactus 2 document generator 14:48:10 ti marras 8 2011-->
 <spirit:designConfiguration>
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>soc</spirit:library>
-	<spirit:name>arria_ii_gx_demo_soc.designcfg</spirit:name>
+	<spirit:name>arria_ii_gx_demo_soc.nios_picture_manipulator.designcfg</spirit:name>
 	<spirit:version>1.0</spirit:version>
-	<spirit:designRef spirit:vendor="TUT" spirit:library="soc" spirit:name="arria_ii_gx_demo_soc.design" spirit:version="1.0"/>
+	<spirit:designRef spirit:vendor="TUT" spirit:library="soc" spirit:name="arria_ii_gx_demo_soc.nios_picture_manipulator.design" spirit:version="1.0"/>
 	<spirit:viewConfiguration>
 		<spirit:instanceName>a2_ddr2_dimm_1GB_1</spirit:instanceName>
 		<spirit:viewName>rtl</spirit:viewName>
@@ -19,11 +19,11 @@
 		<spirit:viewName>rtl</spirit:viewName>
 	</spirit:viewConfiguration>
 	<spirit:viewConfiguration>
-		<spirit:instanceName>pcie_to_hibi_4x_1</spirit:instanceName>
-		<spirit:viewName>rtl</spirit:viewName>
+		<spirit:instanceName>nios_ii_1</spirit:instanceName>
+		<spirit:viewName></spirit:viewName>
 	</spirit:viewConfiguration>
 	<spirit:viewConfiguration>
-		<spirit:instanceName>picture_manip_1</spirit:instanceName>
+		<spirit:instanceName>pcie_to_hibi_4x_1</spirit:instanceName>
 		<spirit:viewName>rtl</spirit:viewName>
 	</spirit:viewConfiguration>
 </spirit:designConfiguration>

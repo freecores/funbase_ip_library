@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 11:33:17 ti marras 8 2011-->
+<!--Created by Kactus 2 document generator 15:34:58 ti marras 8 2011-->
 <spirit:component>
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>soc</spirit:library>
@@ -222,7 +222,7 @@
 						</spirit:vector>
 					</spirit:logicalPort>
 					<spirit:physicalPort>
-						<spirit:name>user_pb</spirit:name>
+						<spirit:name>user_pb_0</spirit:name>
 						<spirit:vector>
 							<spirit:left>0</spirit:left>
 							<spirit:right>0</spirit:right>
@@ -298,6 +298,11 @@
 				<spirit:fileSetRef>
 					<spirit:localName>vhdlSource</spirit:localName>
 				</spirit:fileSetRef>
+			</spirit:view>
+			<spirit:view>
+				<spirit:name>nios_picture_manipulator</spirit:name>
+				<spirit:envIdentifier></spirit:envIdentifier>
+				<spirit:hierarchyRef spirit:vendor="TUT" spirit:library="soc" spirit:name="arria_ii_gx_demo_soc.nios_picture_manipulator.designcfg" spirit:version="1.0"/>
 			</spirit:view>
 		</spirit:views>
 		<spirit:ports>

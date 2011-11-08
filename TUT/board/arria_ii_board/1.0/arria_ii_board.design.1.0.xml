@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 14:02:23 ma marras 7 2011-->
+<!--Created by Kactus 2 document generator 14:49:24 ti marras 8 2011-->
 <spirit:design>
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>board</spirit:library>
@@ -7,15 +7,15 @@
 	<spirit:version>1.0</spirit:version>
 	<spirit:componentInstances>
 		<spirit:componentInstance>
-			<spirit:instanceName>push_buttons</spirit:instanceName>
+			<spirit:instanceName>ddr2_memory</spirit:instanceName>
 			<spirit:displayName></spirit:displayName>
 			<spirit:description></spirit:description>
-			<spirit:componentRef spirit:vendor="TUT" spirit:library="chip" spirit:name="push_buttons" spirit:version="1.0"/>
+			<spirit:componentRef spirit:vendor="TUT" spirit:library="chip" spirit:name="ddr2_memory" spirit:version="1.0"/>
 			<spirit:configurableElementValues/>
 			<spirit:vendorExtensions>
-				<kactus2:position x="510" y="240"/>
+				<kactus2:position x="510" y="60"/>
 				<kactus2:portPositions>
-					<kactus2:portPosition kactus2:busRef="button_0">
+					<kactus2:portPosition kactus2:busRef="ddr2_p">
 						<kactus2:position x="-80" y="40"/>
 					</kactus2:portPosition>
 				</kactus2:portPositions>
@@ -37,15 +37,15 @@
 			</spirit:vendorExtensions>
 		</spirit:componentInstance>
 		<spirit:componentInstance>
-			<spirit:instanceName>ddr2_memory</spirit:instanceName>
+			<spirit:instanceName>push_buttons</spirit:instanceName>
 			<spirit:displayName></spirit:displayName>
 			<spirit:description></spirit:description>
-			<spirit:componentRef spirit:vendor="TUT" spirit:library="chip" spirit:name="ddr2_memory" spirit:version="1.0"/>
+			<spirit:componentRef spirit:vendor="TUT" spirit:library="chip" spirit:name="push_buttons" spirit:version="1.0"/>
 			<spirit:configurableElementValues/>
 			<spirit:vendorExtensions>
-				<kactus2:position x="510" y="60"/>
+				<kactus2:position x="510" y="240"/>
 				<kactus2:portPositions>
-					<kactus2:portPosition kactus2:busRef="ddr2_p">
+					<kactus2:portPosition kactus2:busRef="button_0">
 						<kactus2:position x="-80" y="40"/>
 					</kactus2:portPosition>
 				</kactus2:portPositions>
@@ -78,11 +78,11 @@
 	</spirit:componentInstances>
 	<spirit:interconnections>
 		<spirit:interconnection>
-			<spirit:name>arria_ii_gx_chip_clk_in_to_clock_oscillator_clk_out</spirit:name>
+			<spirit:name>arria_ii_gx_chip_push_button_0_to_push_buttons_button_0</spirit:name>
 			<spirit:displayName></spirit:displayName>
 			<spirit:description></spirit:description>
-			<spirit:activeInterface spirit:componentRef="arria_ii_gx_chip" spirit:busRef="clk_in"/>
-			<spirit:activeInterface spirit:componentRef="clock_oscillator" spirit:busRef="clk_out"/>
+			<spirit:activeInterface spirit:componentRef="arria_ii_gx_chip" spirit:busRef="push_button_0"/>
+			<spirit:activeInterface spirit:componentRef="push_buttons" spirit:busRef="button_0"/>
 		</spirit:interconnection>
 		<spirit:interconnection>
 			<spirit:name>arria_ii_gx_chip_ddr2_p_to_ddr2_memory_ddr2_p</spirit:name>
@@ -92,11 +92,11 @@
 			<spirit:activeInterface spirit:componentRef="ddr2_memory" spirit:busRef="ddr2_p"/>
 		</spirit:interconnection>
 		<spirit:interconnection>
-			<spirit:name>arria_ii_gx_chip_push_button_0_to_push_buttons_button_0</spirit:name>
+			<spirit:name>arria_ii_gx_chip_clk_in_to_clock_oscillator_clk_out</spirit:name>
 			<spirit:displayName></spirit:displayName>
 			<spirit:description></spirit:description>
-			<spirit:activeInterface spirit:componentRef="arria_ii_gx_chip" spirit:busRef="push_button_0"/>
-			<spirit:activeInterface spirit:componentRef="push_buttons" spirit:busRef="button_0"/>
+			<spirit:activeInterface spirit:componentRef="arria_ii_gx_chip" spirit:busRef="clk_in"/>
+			<spirit:activeInterface spirit:componentRef="clock_oscillator" spirit:busRef="clk_out"/>
 		</spirit:interconnection>
 	</spirit:interconnections>
 	<spirit:hierConnections>
@@ -122,9 +122,9 @@
 			<kactus2:column name="IO" contentType="0" allowedItems="1"/>
 		</kactus2:columnLayout>
 		<kactus2:routes>
-			<kactus2:route kactus2:connRef="arria_ii_gx_chip_clk_in_to_clock_oscillator_clk_out">
-				<kactus2:position x="330" y="190"/>
-				<kactus2:position x="430" y="190"/>
+			<kactus2:route kactus2:connRef="arria_ii_gx_chip_push_button_0_to_push_buttons_button_0">
+				<kactus2:position x="330" y="280"/>
+				<kactus2:position x="430" y="280"/>
 			</kactus2:route>
 			<kactus2:route kactus2:connRef="arria_ii_gx_chip_ddr2_p_to_ddr2_memory_ddr2_p">
 				<kactus2:position x="330" y="100"/>
@@ -132,9 +132,9 @@
 				<kactus2:position x="420" y="100"/>
 				<kactus2:position x="430" y="100"/>
 			</kactus2:route>
-			<kactus2:route kactus2:connRef="arria_ii_gx_chip_push_button_0_to_push_buttons_button_0">
-				<kactus2:position x="330" y="280"/>
-				<kactus2:position x="430" y="280"/>
+			<kactus2:route kactus2:connRef="arria_ii_gx_chip_clk_in_to_clock_oscillator_clk_out">
+				<kactus2:position x="330" y="190"/>
+				<kactus2:position x="430" y="190"/>
 			</kactus2:route>
 		</kactus2:routes>
 	</spirit:vendorExtensions>

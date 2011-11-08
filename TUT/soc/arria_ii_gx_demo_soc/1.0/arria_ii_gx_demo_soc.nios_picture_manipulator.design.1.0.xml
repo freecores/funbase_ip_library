@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 14:44:47 ti marras 8 2011-->
+<!--Created by Kactus 2 document generator 14:48:10 ti marras 8 2011-->
 <spirit:design>
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>soc</spirit:library>
-	<spirit:name>arria_ii_gx_demo_soc.design</spirit:name>
+	<spirit:name>arria_ii_gx_demo_soc.nios_picture_manipulator.design</spirit:name>
 	<spirit:version>1.0</spirit:version>
 	<spirit:componentInstances>
 		<spirit:componentInstance>
@@ -13,7 +13,7 @@
 			<spirit:componentRef spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="pcie_to_hibi_4x" spirit:version="1.0"/>
 			<spirit:configurableElementValues/>
 			<spirit:vendorExtensions>
-				<kactus2:position x="510" y="560"/>
+				<kactus2:position x="510" y="530"/>
 				<kactus2:portPositions>
 					<kactus2:portPosition kactus2:busRef="clk_in">
 						<kactus2:position x="80" y="40"/>
@@ -90,22 +90,22 @@
 			</spirit:vendorExtensions>
 		</spirit:componentInstance>
 		<spirit:componentInstance>
-			<spirit:instanceName>picture_manip_1</spirit:instanceName>
+			<spirit:instanceName>nios_ii_1</spirit:instanceName>
 			<spirit:displayName></spirit:displayName>
 			<spirit:description></spirit:description>
-			<spirit:componentRef spirit:vendor="TUT" spirit:library="ip.hwp.accelerator" spirit:name="picture_manip" spirit:version="1.0"/>
+			<spirit:componentRef spirit:vendor="TUT" spirit:library="ip.hwp.cpu" spirit:name="nios_ii" spirit:version="1.0"/>
 			<spirit:configurableElementValues/>
 			<spirit:vendorExtensions>
 				<kactus2:position x="510" y="410"/>
 				<kactus2:portPositions>
-					<kactus2:portPosition kactus2:busRef="clk">
-						<kactus2:position x="80" y="70"/>
+					<kactus2:portPosition kactus2:busRef="clk_in">
+						<kactus2:position x="80" y="50"/>
 					</kactus2:portPosition>
 					<kactus2:portPosition kactus2:busRef="hibi_p">
 						<kactus2:position x="-80" y="40"/>
 					</kactus2:portPosition>
 					<kactus2:portPosition kactus2:busRef="rst_n">
-						<kactus2:position x="-80" y="100"/>
+						<kactus2:position x="-80" y="70"/>
 					</kactus2:portPosition>
 				</kactus2:portPositions>
 			</spirit:vendorExtensions>
@@ -126,7 +126,7 @@
 						<kactus2:position x="80" y="70"/>
 					</kactus2:portPosition>
 					<kactus2:portPosition kactus2:busRef="hibi_p1">
-						<kactus2:position x="80" y="570"/>
+						<kactus2:position x="80" y="540"/>
 					</kactus2:portPosition>
 					<kactus2:portPosition kactus2:busRef="hibi_p2">
 						<kactus2:position x="80" y="390"/>
@@ -139,6 +139,20 @@
 		</spirit:componentInstance>
 	</spirit:componentInstances>
 	<spirit:interconnections>
+		<spirit:interconnection>
+			<spirit:name>nios_ii_1_clk_in_to_a2_ddr2_dimm_1GB_1_phy_clk_out</spirit:name>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:activeInterface spirit:componentRef="nios_ii_1" spirit:busRef="clk_in"/>
+			<spirit:activeInterface spirit:componentRef="a2_ddr2_dimm_1GB_1" spirit:busRef="phy_clk_out"/>
+		</spirit:interconnection>
+		<spirit:interconnection>
+			<spirit:name>nios_ii_1_hibi_p_to_hibi_segment_small_1_hibi_p2</spirit:name>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:activeInterface spirit:componentRef="nios_ii_1" spirit:busRef="hibi_p"/>
+			<spirit:activeInterface spirit:componentRef="hibi_segment_small_1" spirit:busRef="hibi_p2"/>
+		</spirit:interconnection>
 		<spirit:interconnection>
 			<spirit:name>a2_ddr2_dimm_1GB_1_alt_ddr2_p_to_hibi_mem_dma_1_alt_ddr2_p</spirit:name>
 			<spirit:displayName></spirit:displayName>
@@ -181,31 +195,30 @@
 			<spirit:activeInterface spirit:componentRef="hibi_segment_small_1" spirit:busRef="hibi_p1"/>
 			<spirit:activeInterface spirit:componentRef="pcie_to_hibi_4x_1" spirit:busRef="hibi_p"/>
 		</spirit:interconnection>
-		<spirit:interconnection>
-			<spirit:name>hibi_segment_small_1_hibi_p2_to_picture_manip_1_hibi_p</spirit:name>
-			<spirit:displayName></spirit:displayName>
-			<spirit:description></spirit:description>
-			<spirit:activeInterface spirit:componentRef="hibi_segment_small_1" spirit:busRef="hibi_p2"/>
-			<spirit:activeInterface spirit:componentRef="picture_manip_1" spirit:busRef="hibi_p"/>
-		</spirit:interconnection>
-		<spirit:interconnection>
-			<spirit:name>a2_ddr2_dimm_1GB_1_phy_clk_out_to_picture_manip_1_clk</spirit:name>
-			<spirit:displayName></spirit:displayName>
-			<spirit:description></spirit:description>
-			<spirit:activeInterface spirit:componentRef="a2_ddr2_dimm_1GB_1" spirit:busRef="phy_clk_out"/>
-			<spirit:activeInterface spirit:componentRef="picture_manip_1" spirit:busRef="clk"/>
-		</spirit:interconnection>
 	</spirit:interconnections>
 	<spirit:hierConnections>
+		<spirit:hierConnection spirit:interfaceRef="rst_n">
+			<spirit:interface spirit:componentRef="nios_ii_1" spirit:busRef="rst_n"/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="60" y="100"/>
+				<kactus2:direction x="1" y="0"/>
+				<kactus2:route>
+					<kactus2:position x="430" y="480"/>
+					<kactus2:position x="100" y="480"/>
+					<kactus2:position x="100" y="100"/>
+					<kactus2:position x="60" y="100"/>
+				</kactus2:route>
+			</spirit:vendorExtensions>
+		</spirit:hierConnection>
 		<spirit:hierConnection spirit:interfaceRef="rst_n">
 			<spirit:interface spirit:componentRef="pcie_to_hibi_4x_1" spirit:busRef="rst_n"/>
 			<spirit:vendorExtensions>
 				<kactus2:position x="60" y="100"/>
 				<kactus2:direction x="1" y="0"/>
 				<kactus2:route>
-					<kactus2:position x="430" y="660"/>
-					<kactus2:position x="420" y="660"/>
-					<kactus2:position x="420" y="100"/>
+					<kactus2:position x="430" y="630"/>
+					<kactus2:position x="100" y="630"/>
+					<kactus2:position x="100" y="100"/>
 					<kactus2:position x="60" y="100"/>
 				</kactus2:route>
 			</spirit:vendorExtensions>
@@ -217,21 +230,8 @@
 				<kactus2:direction x="1" y="0"/>
 				<kactus2:route>
 					<kactus2:position x="430" y="310"/>
-					<kactus2:position x="420" y="310"/>
-					<kactus2:position x="420" y="100"/>
-					<kactus2:position x="60" y="100"/>
-				</kactus2:route>
-			</spirit:vendorExtensions>
-		</spirit:hierConnection>
-		<spirit:hierConnection spirit:interfaceRef="rst_n">
-			<spirit:interface spirit:componentRef="picture_manip_1" spirit:busRef="rst_n"/>
-			<spirit:vendorExtensions>
-				<kactus2:position x="60" y="100"/>
-				<kactus2:direction x="1" y="0"/>
-				<kactus2:route>
-					<kactus2:position x="430" y="510"/>
-					<kactus2:position x="420" y="510"/>
-					<kactus2:position x="420" y="100"/>
+					<kactus2:position x="100" y="310"/>
+					<kactus2:position x="100" y="100"/>
 					<kactus2:position x="60" y="100"/>
 				</kactus2:route>
 			</spirit:vendorExtensions>
@@ -289,13 +289,13 @@
 		<spirit:hierConnection spirit:interfaceRef="pcie_4x_p">
 			<spirit:interface spirit:componentRef="pcie_to_hibi_4x_1" spirit:busRef="pcie_4x_p"/>
 			<spirit:vendorExtensions>
-				<kactus2:position x="700" y="650"/>
+				<kactus2:position x="700" y="620"/>
 				<kactus2:direction x="-1" y="0"/>
 				<kactus2:route>
-					<kactus2:position x="590" y="650"/>
-					<kactus2:position x="690" y="650"/>
-					<kactus2:position x="690" y="650"/>
-					<kactus2:position x="700" y="650"/>
+					<kactus2:position x="590" y="620"/>
+					<kactus2:position x="690" y="620"/>
+					<kactus2:position x="690" y="620"/>
+					<kactus2:position x="700" y="620"/>
 				</kactus2:route>
 			</spirit:vendorExtensions>
 		</spirit:hierConnection>
@@ -321,6 +321,16 @@
 			<kactus2:column name="IO" contentType="0" allowedItems="1"/>
 		</kactus2:columnLayout>
 		<kactus2:routes>
+			<kactus2:route kactus2:connRef="nios_ii_1_clk_in_to_a2_ddr2_dimm_1GB_1_phy_clk_out">
+				<kactus2:position x="590" y="460"/>
+				<kactus2:position x="740" y="460"/>
+				<kactus2:position x="740" y="270"/>
+				<kactus2:position x="590" y="270"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="nios_ii_1_hibi_p_to_hibi_segment_small_1_hibi_p2">
+				<kactus2:position x="430" y="450"/>
+				<kactus2:position x="330" y="450"/>
+			</kactus2:route>
 			<kactus2:route kactus2:connRef="a2_ddr2_dimm_1GB_1_alt_ddr2_p_to_hibi_mem_dma_1_alt_ddr2_p">
 				<kactus2:position x="430" y="270"/>
 				<kactus2:position x="420" y="270"/>
@@ -336,8 +346,8 @@
 			<kactus2:route kactus2:connRef="a2_ddr2_dimm_1GB_1_phy_clk_out_to_pcie_to_hibi_4x_1_clk_in">
 				<kactus2:position x="590" y="270"/>
 				<kactus2:position x="740" y="270"/>
-				<kactus2:position x="740" y="600"/>
-				<kactus2:position x="590" y="600"/>
+				<kactus2:position x="740" y="570"/>
+				<kactus2:position x="590" y="570"/>
 			</kactus2:route>
 			<kactus2:route kactus2:connRef="hibi_segment_small_1_clk_in_to_a2_ddr2_dimm_1GB_1_phy_clk_out">
 				<kactus2:position x="330" y="550"/>
@@ -352,22 +362,10 @@
 				<kactus2:position x="590" y="150"/>
 			</kactus2:route>
 			<kactus2:route kactus2:connRef="hibi_segment_small_1_hibi_p1_to_pcie_to_hibi_4x_1_hibi_p">
-				<kactus2:position x="330" y="630"/>
-				<kactus2:position x="420" y="630"/>
-				<kactus2:position x="420" y="630"/>
-				<kactus2:position x="430" y="630"/>
-			</kactus2:route>
-			<kactus2:route kactus2:connRef="hibi_segment_small_1_hibi_p2_to_picture_manip_1_hibi_p">
-				<kactus2:position x="330" y="450"/>
-				<kactus2:position x="390" y="450"/>
-				<kactus2:position x="390" y="450"/>
-				<kactus2:position x="430" y="450"/>
-			</kactus2:route>
-			<kactus2:route kactus2:connRef="a2_ddr2_dimm_1GB_1_phy_clk_out_to_picture_manip_1_clk">
-				<kactus2:position x="590" y="270"/>
-				<kactus2:position x="740" y="270"/>
-				<kactus2:position x="740" y="480"/>
-				<kactus2:position x="590" y="480"/>
+				<kactus2:position x="330" y="600"/>
+				<kactus2:position x="420" y="600"/>
+				<kactus2:position x="420" y="600"/>
+				<kactus2:position x="430" y="600"/>
 			</kactus2:route>
 		</kactus2:routes>
 	</spirit:vendorExtensions>
