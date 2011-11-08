@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 17:18:26 ti marras 8 2011-->
+<spirit:component>
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>ip.hwp.cpu</spirit:library>
+	<spirit:name>nios_ii_a2gx_onchip</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:busInterfaces>
+		<spirit:busInterface>
+			<spirit:name>clk</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="clock.busdef" spirit:version="1.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="clock.absDef" spirit:version="1.0"/>
+			<spirit:slave/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>CLK</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>clk_clk</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+		<spirit:busInterface>
+			<spirit:name>parallel_in</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="gen_32.busdef" spirit:version="1.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="gen_32.absDef" spirit:version="1.0"/>
+			<spirit:mirroredMaster/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>GENERIC_BUS_32</spirit:name>
+						<spirit:vector>
+							<spirit:left>31</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>parallel_in_export</spirit:name>
+						<spirit:vector>
+							<spirit:left>31</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+		<spirit:busInterface>
+			<spirit:name>parallel_out</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="gen_32.busdef" spirit:version="1.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="gen_32.absDef" spirit:version="1.0"/>
+			<spirit:master/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>GENERIC_BUS_32</spirit:name>
+						<spirit:vector>
+							<spirit:left>31</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>parallel_out_export</spirit:name>
+						<spirit:vector>
+							<spirit:left>31</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+		<spirit:busInterface>
+			<spirit:name>rst_n</spirit:name>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.busdef" spirit:version="1.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.absDef" spirit:version="1.0"/>
+			<spirit:slave/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>RESETn</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>reset_reset_n</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+	</spirit:busInterfaces>
+	<spirit:model>
+		<spirit:ports>
+			<spirit:port>
+				<spirit:name>clk_clk</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>parallel_in_export</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+					<spirit:vector>
+						<spirit:left>31</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>parallel_out_export</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>out</spirit:direction>
+					<spirit:vector>
+						<spirit:left>31</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>reset_reset_n</spirit:name>
+				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
+					<spirit:direction>in</spirit:direction>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef></spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
+				</spirit:wire>
+			</spirit:port>
+		</spirit:ports>
+	</spirit:model>
+	<spirit:fileSets>
+		<spirit:fileSet>
+			<spirit:name>hdlSources</spirit:name>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/nios2_a2gx_onchip.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/altera_avalon_sc_fifo.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/altera_avalon_st_pipeline_base.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/altera_merlin_arbitrator.sv</spirit:name>
+				<spirit:fileType>systemVerilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/altera_merlin_burst_adapter.sv</spirit:name>
+				<spirit:fileType>systemVerilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/altera_merlin_burst_uncompressor.sv</spirit:name>
+				<spirit:fileType>systemVerilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/altera_merlin_master_agent.sv</spirit:name>
+				<spirit:fileType>systemVerilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/altera_merlin_master_translator.sv</spirit:name>
+				<spirit:fileType>systemVerilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/altera_merlin_slave_agent.sv</spirit:name>
+				<spirit:fileType>systemVerilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/altera_merlin_slave_translator.sv</spirit:name>
+				<spirit:fileType>systemVerilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/altera_merlin_traffic_limiter.sv</spirit:name>
+				<spirit:fileType>systemVerilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/altera_reset_controller.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/altera_reset_synchronizer.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/nios2_a2gx_onchip_addr_router.sv</spirit:name>
+				<spirit:fileType>systemVerilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/nios2_a2gx_onchip_addr_router_001.sv</spirit:name>
+				<spirit:fileType>systemVerilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/nios2_a2gx_onchip_cmd_xbar_demux.sv</spirit:name>
+				<spirit:fileType>systemVerilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/nios2_a2gx_onchip_cmd_xbar_demux_001.sv</spirit:name>
+				<spirit:fileType>systemVerilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/nios2_a2gx_onchip_cpu.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/nios2_a2gx_onchip_cmd_xbar_mux_001.sv</spirit:name>
+				<spirit:fileType>systemVerilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/nios2_a2gx_onchip_cpu_mult_cell.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/nios2_a2gx_onchip_cpu_test_bench.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/nios2_a2gx_onchip_id_router.sv</spirit:name>
+				<spirit:fileType>systemVerilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/nios2_a2gx_onchip_id_router_001.sv</spirit:name>
+				<spirit:fileType>systemVerilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/nios2_a2gx_onchip_irq_mapper.sv</spirit:name>
+				<spirit:fileType>systemVerilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/nios2_a2gx_onchip_parallel_in.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/nios2_a2gx_onchip_onchip_mem_0.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/nios2_a2gx_onchip_parallel_out.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/nios2_a2gx_onchip_rsp_xbar_demux.sv</spirit:name>
+				<spirit:fileType>systemVerilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/nios2_a2gx_onchip_rsp_xbar_demux_001.sv</spirit:name>
+				<spirit:fileType>systemVerilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/nios2_a2gx_onchip_rsp_xbar_mux.sv</spirit:name>
+				<spirit:fileType>systemVerilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>gen/nios2_a2gx_onchip/synthesis/submodules/nios2_a2gx_onchip_timer.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+		</spirit:fileSet>
+	</spirit:fileSets>
+	<spirit:vendorExtensions>
+		<kactus2:extensions>
+			<kactus2:kts_attributes>
+				<kactus2:kts_productHier>IP</kactus2:kts_productHier>
+				<kactus2:kts_implementation>HW</kactus2:kts_implementation>
+				<kactus2:kts_firmness>Fixed</kactus2:kts_firmness>
+			</kactus2:kts_attributes>
+		</kactus2:extensions>
+	</spirit:vendorExtensions>
+</spirit:component>
