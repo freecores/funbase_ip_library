@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 15:07:59 ke marras 9 2011-->
+<spirit:design>
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>ip.hwp.storage</spirit:library>
+	<spirit:name>hibi_mem_dma_swmap.design</spirit:name>
+	<spirit:version>2.0</spirit:version>
+	<spirit:componentInstances>
+		<spirit:componentInstance>
+			<spirit:instanceName>hibi_mem_dma_endpoints</spirit:instanceName>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:componentRef spirit:vendor="TUT" spirit:library="ip.swp.api" spirit:name="hibi_mem_dma_endpoints" spirit:version="1.0"/>
+			<spirit:configurableElementValues/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="0" y="0"/>
+				<kactus2:portPositions/>
+			</spirit:vendorExtensions>
+		</spirit:componentInstance>
+	</spirit:componentInstances>
+	<spirit:vendorExtensions/>
+</spirit:design>
