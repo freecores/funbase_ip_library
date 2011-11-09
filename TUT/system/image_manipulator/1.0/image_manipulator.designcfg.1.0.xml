@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 16:32:33 ke marras 9 2011-->
+<spirit:designConfiguration>
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>system</spirit:library>
+	<spirit:name>image_manipulator.designcfg</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:designRef spirit:vendor="TUT" spirit:library="system" spirit:name="image_manipulator.design" spirit:version="1.0"/>
+</spirit:designConfiguration>

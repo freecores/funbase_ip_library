@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 16:32:32 ke marras 9 2011-->
+<spirit:component>
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>system</spirit:library>
+	<spirit:name>image_manipulator_swmapping_picture_manip_1.comp</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:busInterfaces>
+		<spirit:busInterface>
+			<spirit:name>picture_manip_endpoints_mcapiBus_manip_data_out</spirit:name>
+			<spirit:busType spirit:vendor="Kactus" spirit:library="internal" spirit:name="mcapi_packet" spirit:version="1.0"/>
+			<spirit:master/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+			<spirit:parameters>
+				<spirit:parameter>
+					<spirit:name>kts_port_id</spirit:name>
+					<spirit:value>0</spirit:value>
+				</spirit:parameter>
+			</spirit:parameters>
+		</spirit:busInterface>
+		<spirit:busInterface>
+			<spirit:name>picture_manip_endpoints_mcapiBus_manip_status_out</spirit:name>
+			<spirit:busType spirit:vendor="Kactus" spirit:library="internal" spirit:name="mcapi_message" spirit:version="1.0"/>
+			<spirit:master/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+			<spirit:parameters>
+				<spirit:parameter>
+					<spirit:name>kts_port_id</spirit:name>
+					<spirit:value>1</spirit:value>
+				</spirit:parameter>
+			</spirit:parameters>
+		</spirit:busInterface>
+		<spirit:busInterface>
+			<spirit:name>picture_manip_endpoints_mcapiBus_packet_in</spirit:name>
+			<spirit:busType spirit:vendor="Kactus" spirit:library="internal" spirit:name="mcapi_packet" spirit:version="1.0"/>
+			<spirit:slave/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+			<spirit:parameters>
+				<spirit:parameter>
+					<spirit:name>kts_port_id</spirit:name>
+					<spirit:value>2</spirit:value>
+				</spirit:parameter>
+			</spirit:parameters>
+		</spirit:busInterface>
+		<spirit:busInterface>
+			<spirit:name>picture_manip_endpoints_mcapiBus_start_manip</spirit:name>
+			<spirit:busType spirit:vendor="Kactus" spirit:library="internal" spirit:name="mcapi_message" spirit:version="1.0"/>
+			<spirit:slave/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+			<spirit:parameters>
+				<spirit:parameter>
+					<spirit:name>kts_port_id</spirit:name>
+					<spirit:value>3</spirit:value>
+				</spirit:parameter>
+			</spirit:parameters>
+		</spirit:busInterface>
+	</spirit:busInterfaces>
+	<spirit:model>
+		<spirit:views>
+			<spirit:view>
+				<spirit:name>kts_sys_ref</spirit:name>
+				<spirit:envIdentifier></spirit:envIdentifier>
+				<spirit:hierarchyRef spirit:vendor="TUT" spirit:library="system" spirit:name="image_manipulator_swmapping_picture_manip_1.design" spirit:version="1.0"/>
+			</spirit:view>
+		</spirit:views>
+		<spirit:modelParameters>
+			<spirit:modelParameter>
+				<spirit:name>kts_hw_ref</spirit:name>
+				<spirit:value>picture_manip_1</spirit:value>
+			</spirit:modelParameter>
+		</spirit:modelParameters>
+	</spirit:model>
+	<spirit:vendorExtensions>
+		<kactus2:extensions>
+			<kactus2:kts_attributes>
+				<kactus2:kts_productHier>Product</kactus2:kts_productHier>
+				<kactus2:kts_implementation>SW</kactus2:kts_implementation>
+				<kactus2:kts_sw_type>Mapping</kactus2:kts_sw_type>
+				<kactus2:kts_firmness>Fixed</kactus2:kts_firmness>
+			</kactus2:kts_attributes>
+		</kactus2:extensions>
+	</spirit:vendorExtensions>
+</spirit:component>

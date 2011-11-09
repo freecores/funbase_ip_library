@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 16:32:33 ke marras 9 2011-->
+<spirit:design>
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>system</spirit:library>
+	<spirit:name>image_manipulator_swmapping_hibi_mem_dma_1.design</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:componentInstances>
+		<spirit:componentInstance>
+			<spirit:instanceName>hibi_mem_dma_endpoints</spirit:instanceName>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:componentRef spirit:vendor="TUT" spirit:library="ip.swp.api" spirit:name="hibi_mem_dma_endpoints" spirit:version="1.0"/>
+			<spirit:configurableElementValues/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="0" y="40"/>
+				<kactus2:portPositions>
+					<kactus2:portPosition kactus2:busRef="data_in">
+						<kactus2:position x="0" y="0"/>
+					</kactus2:portPosition>
+					<kactus2:portPosition kactus2:busRef="data_out_0">
+						<kactus2:position x="0" y="1"/>
+					</kactus2:portPosition>
+					<kactus2:portPosition kactus2:busRef="data_out_1">
+						<kactus2:position x="0" y="2"/>
+					</kactus2:portPosition>
+				</kactus2:portPositions>
+				<kactus2:endpointsExpanded/>
+			</spirit:vendorExtensions>
+		</spirit:componentInstance>
+	</spirit:componentInstances>
+	<spirit:vendorExtensions/>
+</spirit:design>

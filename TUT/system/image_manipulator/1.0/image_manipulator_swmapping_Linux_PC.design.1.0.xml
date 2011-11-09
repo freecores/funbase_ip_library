@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 16:32:32 ke marras 9 2011-->
+<spirit:design>
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>system</spirit:library>
+	<spirit:name>image_manipulator_swmapping_Linux_PC.design</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:componentInstances>
+		<spirit:componentInstance>
+			<spirit:instanceName>funbase_pc_stack_0</spirit:instanceName>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:componentRef spirit:vendor="TUT" spirit:library="ip.swp.stack" spirit:name="funbase_pc_stack" spirit:version="1.0"/>
+			<spirit:configurableElementValues/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="0" y="320"/>
+				<kactus2:portPositions/>
+			</spirit:vendorExtensions>
+		</spirit:componentInstance>
+		<spirit:componentInstance>
+			<spirit:instanceName>linux_pc_endpoints_0</spirit:instanceName>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:componentRef spirit:vendor="TUT" spirit:library="ip.swp.api" spirit:name="linux_pc_endpoints" spirit:version="1.0"/>
+			<spirit:configurableElementValues/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="0" y="40"/>
+				<kactus2:portPositions>
+					<kactus2:portPosition kactus2:busRef="frame_in">
+						<kactus2:position x="0" y="0"/>
+					</kactus2:portPosition>
+					<kactus2:portPosition kactus2:busRef="frame_status_in">
+						<kactus2:position x="0" y="1"/>
+					</kactus2:portPosition>
+					<kactus2:portPosition kactus2:busRef="start_new_frame_out">
+						<kactus2:position x="0" y="2"/>
+					</kactus2:portPosition>
+				</kactus2:portPositions>
+				<kactus2:endpointsExpanded/>
+			</spirit:vendorExtensions>
+		</spirit:componentInstance>
+		<spirit:componentInstance>
+			<spirit:instanceName>video_gen_0</spirit:instanceName>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:componentRef spirit:vendor="TUT" spirit:library="ip.swp.application" spirit:name="video_gen" spirit:version="1.0"/>
+			<spirit:configurableElementValues/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="0" y="40"/>
+				<kactus2:portPositions/>
+			</spirit:vendorExtensions>
+		</spirit:componentInstance>
+	</spirit:componentInstances>
+	<spirit:interconnections>
+		<spirit:interconnection>
+			<spirit:name>linux_pc_endpoints_0_link_video_gen_0</spirit:name>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:activeInterface spirit:componentRef="linux_pc_endpoints_0" spirit:busRef="app_link"/>
+			<spirit:activeInterface spirit:componentRef="video_gen_0" spirit:busRef="app_link"/>
+		</spirit:interconnection>
+	</spirit:interconnections>
+	<spirit:vendorExtensions/>
+</spirit:design>

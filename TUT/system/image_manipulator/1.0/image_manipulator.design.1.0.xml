@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 16:32:33 ke marras 9 2011-->
+<spirit:design>
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>system</spirit:library>
+	<spirit:name>image_manipulator.design</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:componentInstances>
+		<spirit:componentInstance>
+			<spirit:instanceName>picture_manip_1</spirit:instanceName>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:componentRef spirit:vendor="TUT" spirit:library="system" spirit:name="image_manipulator_swmapping_picture_manip_1.comp" spirit:version="1.0"/>
+			<spirit:configurableElementValues>
+				<spirit:configurableElementValue spirit:referenceId="kts_hw_ref">picture_manip_1</spirit:configurableElementValue>
+			</spirit:configurableElementValues>
+			<spirit:vendorExtensions>
+				<kactus2:position x="520" y="60"/>
+				<kactus2:portPositions/>
+				<kactus2:mcapiNodeId value="2"/>
+			</spirit:vendorExtensions>
+		</spirit:componentInstance>
+		<spirit:componentInstance>
+			<spirit:instanceName>Linux_PC</spirit:instanceName>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:componentRef spirit:vendor="TUT" spirit:library="system" spirit:name="image_manipulator_swmapping_Linux_PC.comp" spirit:version="1.0"/>
+			<spirit:configurableElementValues>
+				<spirit:configurableElementValue spirit:referenceId="kts_hw_ref">Linux_PC</spirit:configurableElementValue>
+			</spirit:configurableElementValues>
+			<spirit:vendorExtensions>
+				<kactus2:position x="170" y="60"/>
+				<kactus2:portPositions/>
+				<kactus2:mcapiNodeId value="0"/>
+			</spirit:vendorExtensions>
+		</spirit:componentInstance>
+		<spirit:componentInstance>
+			<spirit:instanceName>hibi_mem_dma_1</spirit:instanceName>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:componentRef spirit:vendor="TUT" spirit:library="system" spirit:name="image_manipulator_swmapping_hibi_mem_dma_1.comp" spirit:version="1.0"/>
+			<spirit:configurableElementValues>
+				<spirit:configurableElementValue spirit:referenceId="kts_hw_ref">hibi_mem_dma_1</spirit:configurableElementValue>
+			</spirit:configurableElementValues>
+			<spirit:vendorExtensions>
+				<kactus2:position x="170" y="470"/>
+				<kactus2:portPositions/>
+				<kactus2:mcapiNodeId value="1"/>
+			</spirit:vendorExtensions>
+		</spirit:componentInstance>
+	</spirit:componentInstances>
+	<spirit:interconnections>
+		<spirit:interconnection>
+			<spirit:name>linux_pc_endpoints_0_mcapiBus_start_new_frame_out_to_picture_manip_endpoints_mcapiBus_start_manip</spirit:name>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:activeInterface spirit:componentRef="Linux_PC" spirit:busRef="linux_pc_endpoints_0_mcapiBus_start_new_frame_out"/>
+			<spirit:activeInterface spirit:componentRef="picture_manip_1" spirit:busRef="picture_manip_endpoints_mcapiBus_start_manip"/>
+		</spirit:interconnection>
+		<spirit:interconnection>
+			<spirit:name>picture_manip_endpoints_mcapiBus_manip_status_out_to_linux_pc_endpoints_0_mcapiBus_frame_status_in</spirit:name>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:activeInterface spirit:componentRef="picture_manip_1" spirit:busRef="picture_manip_endpoints_mcapiBus_manip_status_out"/>
+			<spirit:activeInterface spirit:componentRef="Linux_PC" spirit:busRef="linux_pc_endpoints_0_mcapiBus_frame_status_in"/>
+		</spirit:interconnection>
+		<spirit:interconnection>
+			<spirit:name>hibi_mem_dma_endpoints_mcapiBus_data_out_1_to_picture_manip_endpoints_mcapiBus_packet_in</spirit:name>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:activeInterface spirit:componentRef="hibi_mem_dma_1" spirit:busRef="hibi_mem_dma_endpoints_mcapiBus_data_out_1"/>
+			<spirit:activeInterface spirit:componentRef="picture_manip_1" spirit:busRef="picture_manip_endpoints_mcapiBus_packet_in"/>
+		</spirit:interconnection>
+		<spirit:interconnection>
+			<spirit:name>linux_pc_endpoints_0_mcapiBus_frame_in_to_hibi_mem_dma_endpoints_mcapiBus_data_out_0</spirit:name>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:activeInterface spirit:componentRef="Linux_PC" spirit:busRef="linux_pc_endpoints_0_mcapiBus_frame_in"/>
+			<spirit:activeInterface spirit:componentRef="hibi_mem_dma_1" spirit:busRef="hibi_mem_dma_endpoints_mcapiBus_data_out_0"/>
+		</spirit:interconnection>
+		<spirit:interconnection>
+			<spirit:name>picture_manip_endpoints_mcapiBus_manip_data_out_to_hibi_mem_dma_endpoints_mcapiBus_data_in</spirit:name>
+			<spirit:displayName></spirit:displayName>
+			<spirit:description></spirit:description>
+			<spirit:activeInterface spirit:componentRef="picture_manip_1" spirit:busRef="picture_manip_endpoints_mcapiBus_manip_data_out"/>
+			<spirit:activeInterface spirit:componentRef="hibi_mem_dma_1" spirit:busRef="hibi_mem_dma_endpoints_mcapiBus_data_in"/>
+		</spirit:interconnection>
+	</spirit:interconnections>
+	<spirit:vendorExtensions>
+		<kactus2:columnLayout>
+			<kactus2:column name="SW Components" contentType="3" allowedItems="0"/>
+			<kactus2:column name="SW Components" contentType="3" allowedItems="0"/>
+		</kactus2:columnLayout>
+		<kactus2:routes>
+			<kactus2:route kactus2:connRef="linux_pc_endpoints_0_mcapiBus_start_new_frame_out_to_picture_manip_endpoints_mcapiBus_start_manip">
+				<kactus2:position x="170" y="320"/>
+				<kactus2:position x="330" y="320"/>
+				<kactus2:position x="330" y="280"/>
+				<kactus2:position x="520" y="280"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="picture_manip_endpoints_mcapiBus_manip_status_out_to_linux_pc_endpoints_0_mcapiBus_frame_status_in">
+				<kactus2:position x="520" y="240"/>
+				<kactus2:position x="300" y="240"/>
+				<kactus2:position x="300" y="280"/>
+				<kactus2:position x="170" y="280"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="hibi_mem_dma_endpoints_mcapiBus_data_out_1_to_picture_manip_endpoints_mcapiBus_packet_in">
+				<kactus2:position x="170" y="730"/>
+				<kactus2:position x="390" y="730"/>
+				<kactus2:position x="390" y="360"/>
+				<kactus2:position x="520" y="360"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="linux_pc_endpoints_0_mcapiBus_frame_in_to_hibi_mem_dma_endpoints_mcapiBus_data_out_0">
+				<kactus2:position x="170" y="240"/>
+				<kactus2:position x="20" y="240"/>
+				<kactus2:position x="20" y="690"/>
+				<kactus2:position x="170" y="690"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="picture_manip_endpoints_mcapiBus_manip_data_out_to_hibi_mem_dma_endpoints_mcapiBus_data_in">
+				<kactus2:position x="520" y="320"/>
+				<kactus2:position x="350" y="320"/>
+				<kactus2:position x="350" y="650"/>
+				<kactus2:position x="170" y="650"/>
+			</kactus2:route>
+		</kactus2:routes>
+	</spirit:vendorExtensions>
+</spirit:design>
