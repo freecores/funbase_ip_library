@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 16:48:37 ti marras 8 2011-->
+<spirit:component>
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>ip.swp.api</spirit:library>
+	<spirit:name>linux_pc_endpoints</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:busInterfaces>
+		<spirit:busInterface>
+			<spirit:name>app_link</spirit:name>
+			<spirit:busType spirit:vendor="Kactus" spirit:library="internal" spirit:name="app_link" spirit:version="1.0"/>
+			<spirit:slave/>
+			<spirit:connectionRequired>false</spirit:connectionRequired>
+			<spirit:bitsInLau>8</spirit:bitsInLau>
+			<spirit:endianness>little</spirit:endianness>
+		</spirit:busInterface>
+	</spirit:busInterfaces>
+	<spirit:model>
+		<spirit:modelParameters>
+			<spirit:modelParameter spirit:dataType="packet">
+				<spirit:name>frame_in</spirit:name>
+				<spirit:value>in</spirit:value>
+			</spirit:modelParameter>
+			<spirit:modelParameter spirit:dataType="message">
+				<spirit:name>frame_status_in</spirit:name>
+				<spirit:value>in</spirit:value>
+			</spirit:modelParameter>
+			<spirit:modelParameter spirit:dataType="message">
+				<spirit:name>start_new_frame_out</spirit:name>
+				<spirit:value>out</spirit:value>
+			</spirit:modelParameter>
+		</spirit:modelParameters>
+	</spirit:model>
+	<spirit:vendorExtensions>
+		<kactus2:extensions>
+			<kactus2:kts_attributes>
+				<kactus2:kts_implementation>SW</kactus2:kts_implementation>
+				<kactus2:kts_sw_type>Endpoints</kactus2:kts_sw_type>
+			</kactus2:kts_attributes>
+		</kactus2:extensions>
+	</spirit:vendorExtensions>
+</spirit:component>
