@@ -215,7 +215,7 @@ components. All these are connected using an on-chip network.
 
 \begin{figure} [b]
   \begin{center}
-    {\includegraphics[width=0.49\textwidth]{../Fig/Eps/fig_soc_concept.eps}}
+    {\includegraphics[width=0.60\textwidth]{../Fig/Eps/fig_soc_concept.eps}}
     \caption{Conceptual structure of system-on-chip}
     \label{fig:soc_concept}
   \end{center}
@@ -269,7 +269,7 @@ changes do not affect the IP, though.
 
 \begin{figure*}
   \begin{center}
-    {\includegraphics[width=0.6\textwidth]{../Fig/Eps/fig_topo_hibi_hierarchy.eps}}
+    {\includegraphics[width=0.85\textwidth]{../Fig/Eps/fig_topo_hibi_hierarchy.eps}}
     \caption{Example of a hierarchical HIBI network with multiple clock domains and bus segments}
     \label{fig:hierarchy}
   \end{center}
@@ -379,7 +379,7 @@ read becomes a little slower due additional arbitration round.
 
 \begin{figure}
   \begin{center}
-    {\includegraphics[width=0.5\textwidth]{../Fig/Eps/fig_basic_tx.eps}}
+    {\includegraphics[width=0.7\textwidth]{../Fig/Eps/fig_basic_tx.eps}}
     \caption{Example of read and write operations.}
     \label{fig:basic_tx}
   \end{center}
@@ -387,7 +387,7 @@ read becomes a little slower due additional arbitration round.
 
 \begin{figure}
   \begin{center}
-    {\includegraphics[width=0.3\textwidth]{../Fig/Eps/fig_basic_tx2.eps}}
+    {\includegraphics[width=0.4\textwidth]{../Fig/Eps/fig_basic_tx2.eps}}
     \caption{Basic transactions are write and read.}
     \label{fig:basic_tx2}
   \end{center}
@@ -823,7 +823,7 @@ For example, Nios subsystems utilize commonly r4 but SDRAM utilizes
 r3. This is because SDRAM ctrl distinguishes DMA configuration and
 memory data traffic with priority of incoming data. It also prevents
 dead-lock. Fig ~\ref{fig:ip_interface_variants} depicts variants of
-wrapper's IP side signals. Interfave type r1 is the ``native''
+wrapper's IP side signals. Interface type r1 is the ``native''
 interface that is used inside all other variants.
 
 \begin{figure*}
@@ -1651,6 +1651,36 @@ the sequence diagram.
     \label{fig:dma_example}
   \end{center}
 \end{figure*}
+
+
+
+
+\section{Performance and resource usage}
+
+\subsection{HIBI wrapper structure}
+
+The main resource the HIBI uses is it's wrappers. HIBI version 3 has three of them which include R1, R3 and R4. Figure shows how a R3 wrapper is constructed of a R1 wrapper which in itself has four separate fifos.
+
+\begin{figure*}
+  \caption{HIBI R3 wrapper block diagram}
+  \label{figure:r3_block_diagram}
+  \begin{center}
+    \includegraphics[width=0.9\textwidth]{../Fig/Eps/test.eps}
+  \end{center}
+\end{figure*}
+
+\subsection{Resource usage}
+
+The resource usage for invidual HIBI wrappers was acquired from a SoC that was synthesized to a Arria II GX FPGA on a Arria II GX development board. The SoC had two HIBI components with both attached to a R3 HIBI wrapper. The size of the fifos on these wrappers was set to 4 words which amounts to 128 bits on each fifo. Figure shows the resource usage layout on the FPGA as seen on the Chip Planner in Quartus II. The two wrappers are highlighted in red.
+
+
+
+\subsection{Simulated performance}
+
+The throughput was measured for a HIBI segment with two components, both of which were connected to the segment with a R3 wrapper. The sender transmitted a continous stream of 1024 words to a single address. And as the HIBI segment had the data and address buses muxed together, the minimum time to send the stream would be 1025 cycles.
+
+
+
 
 
 \section {Summary}
