@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 19:50:55 ke marras 9 2011-->
+<!--Created by Kactus 2 document generator 14:35:20 pe marras 11 2011-->
 <spirit:component>
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>soc</spirit:library>
@@ -227,7 +227,7 @@
 			<spirit:name>vhdlSource</spirit:name>
 			<spirit:group>sourceFiles</spirit:group>
 			<spirit:file>
-				<spirit:name>led_ase_mesh1_example.vhd</spirit:name>
+				<spirit:name>vhd/led_ase_mesh1_example.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
 				<spirit:isIncludeFile spirit:externalDeclarations="false">true</spirit:isIncludeFile>
 				<spirit:logicalName spirit:default="false">soc</spirit:logicalName>
