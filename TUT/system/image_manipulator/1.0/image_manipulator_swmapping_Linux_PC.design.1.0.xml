@@ -39,26 +39,9 @@
 				<kactus2:endpointsExpanded/>
 			</spirit:vendorExtensions>
 		</spirit:componentInstance>
-		<spirit:componentInstance>
-			<spirit:instanceName>video_gen_0</spirit:instanceName>
-			<spirit:displayName></spirit:displayName>
-			<spirit:description></spirit:description>
-			<spirit:componentRef spirit:vendor="TUT" spirit:library="ip.swp.application" spirit:name="video_gen" spirit:version="1.0"/>
-			<spirit:configurableElementValues/>
-			<spirit:vendorExtensions>
-				<kactus2:position x="0" y="40"/>
-				<kactus2:portPositions/>
-			</spirit:vendorExtensions>
-		</spirit:componentInstance>
 	</spirit:componentInstances>
 	<spirit:interconnections>
-		<spirit:interconnection>
-			<spirit:name>linux_pc_endpoints_0_link_video_gen_0</spirit:name>
-			<spirit:displayName></spirit:displayName>
-			<spirit:description></spirit:description>
-			<spirit:activeInterface spirit:componentRef="linux_pc_endpoints_0" spirit:busRef="app_link"/>
-			<spirit:activeInterface spirit:componentRef="video_gen_0" spirit:busRef="app_link"/>
-		</spirit:interconnection>
+		
 	</spirit:interconnections>
 	<spirit:vendorExtensions/>
 </spirit:design>
