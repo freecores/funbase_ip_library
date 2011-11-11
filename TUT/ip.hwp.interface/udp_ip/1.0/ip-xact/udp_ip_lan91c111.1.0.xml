@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 01:59:33 pe marras 4 2011-->
+<!--Created by Kactus 2 document generator 11:07:05 pe marras 11 2011-->
 <spirit:component kts_firmtype="HW" kts_producthier="IP" kts_reuselevel="Block">
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>ip.hwp.interface</spirit:library>
@@ -545,8 +545,8 @@
 			<spirit:name>clk</spirit:name>
 			<spirit:displayName>clk</spirit:displayName>
 			<spirit:description>Clock 25 MHz in.</spirit:description>
-			<spirit:busType spirit:vendor="spiritconsortium.org" spirit:library="busdef.clock" spirit:name="clock" spirit:version="1.0"/>
-			<spirit:abstractionType spirit:vendor="spiritconsortium.org" spirit:library="busdef.clock" spirit:name="clock_rtl" spirit:version="1.0"/>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="clock.busdef" spirit:version="1.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="clock.absDef" spirit:version="1.0"/>
 			<spirit:slave/>
 			<spirit:connectionRequired>false</spirit:connectionRequired>
 			<spirit:portMaps>
@@ -574,8 +574,8 @@
 			<spirit:name>rst_n</spirit:name>
 			<spirit:displayName>rst_n</spirit:displayName>
 			<spirit:description>Asynchronous reset active-low.</spirit:description>
-			<spirit:busType spirit:vendor="spiritconsortium.org" spirit:library="busdef.reset" spirit:name="reset" spirit:version="1.0"/>
-			<spirit:abstractionType spirit:vendor="spiritconsortium.org" spirit:library="busdef.reset" spirit:name="reset_rtl" spirit:version="1.0"/>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.busdef" spirit:version="1.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="reset.absDef" spirit:version="1.0"/>
 			<spirit:slave/>
 			<spirit:connectionRequired>false</spirit:connectionRequired>
 			<spirit:portMaps>

@@ -16,6 +16,17 @@
 			<spirit:endianness>little</spirit:endianness>
 		</spirit:busInterface>
 	</spirit:busInterfaces>
+	<spirit:addressSpaces>
+		<spirit:addressSpace>
+			<spirit:name>program_mem</spirit:name>
+			<spirit:range>1</spirit:range>
+			<spirit:width>32</spirit:width>
+			<spirit:addressUnitBits>8</spirit:addressUnitBits>
+			<spirit:localMemoryMap>
+				<spirit:name>prg_mem_block</spirit:name>
+			</spirit:localMemoryMap>
+		</spirit:addressSpace>
+	</spirit:addressSpaces>
 	<spirit:model>
 		<spirit:views>
 			<spirit:view>
@@ -24,6 +35,12 @@
 			</spirit:view>
 		</spirit:views>
 	</spirit:model>
+	<spirit:cpus>
+		<spirit:cpu>
+			<spirit:name>nios</spirit:name>
+			<spirit:addressSpaceRef spirit:addressSpaceRef="program_mem"/>
+		</spirit:cpu>
+	</spirit:cpus>
 	<spirit:vendorExtensions>
 		<kactus2:extensions>
 			<kactus2:kts_attributes>

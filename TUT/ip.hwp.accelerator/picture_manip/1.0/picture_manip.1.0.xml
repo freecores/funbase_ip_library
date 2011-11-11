@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 10:42:01 ti marras 8 2011-->
+<!--Created by Kactus 2 document generator 10:33:12 ke marras 9 2011-->
 <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>ip.hwp.accelerator</spirit:library>
@@ -170,38 +170,6 @@
 				</spirit:portMap>
 				<spirit:portMap>
 					<spirit:logicalPort>
-						<spirit:name>ONE_D_TO_IP</spirit:name>
-						<spirit:vector>
-							<spirit:left>0</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:logicalPort>
-					<spirit:physicalPort>
-						<spirit:name>hibi_iOne_d</spirit:name>
-						<spirit:vector>
-							<spirit:left>0</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:physicalPort>
-				</spirit:portMap>
-				<spirit:portMap>
-					<spirit:logicalPort>
-						<spirit:name>ONE_P_TO_IP</spirit:name>
-						<spirit:vector>
-							<spirit:left>0</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:logicalPort>
-					<spirit:physicalPort>
-						<spirit:name>hibi_iOne_p</spirit:name>
-						<spirit:vector>
-							<spirit:left>0</spirit:left>
-							<spirit:right>0</spirit:right>
-						</spirit:vector>
-					</spirit:physicalPort>
-				</spirit:portMap>
-				<spirit:portMap>
-					<spirit:logicalPort>
 						<spirit:name>RE_FROM_IP</spirit:name>
 						<spirit:vector>
 							<spirit:left>0</spirit:left>
@@ -226,6 +194,38 @@
 					</spirit:logicalPort>
 					<spirit:physicalPort>
 						<spirit:name>hibi_oWe</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>ONE_D_TO_IP</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_iOne_d_left</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>ONE_P_TO_IP</spirit:name>
+						<spirit:vector>
+							<spirit:left>0</spirit:left>
+							<spirit:right>0</spirit:right>
+						</spirit:vector>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>hibi_iOne_p_left</spirit:name>
 						<spirit:vector>
 							<spirit:left>0</spirit:left>
 							<spirit:right>0</spirit:right>
@@ -272,6 +272,11 @@
 				<spirit:fileSetRef>
 					<spirit:localName>hdlSources</spirit:localName>
 				</spirit:fileSetRef>
+			</spirit:view>
+			<spirit:view>
+				<spirit:name>kts_sw_ref</spirit:name>
+				<spirit:envIdentifier></spirit:envIdentifier>
+				<spirit:hierarchyRef spirit:vendor="TUT" spirit:library="ip.hwp.accelerator" spirit:name="picture_manip_swmap.design" spirit:version="1.0"/>
 			</spirit:view>
 		</spirit:views>
 		<spirit:ports>

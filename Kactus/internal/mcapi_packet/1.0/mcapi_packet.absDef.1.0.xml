@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 11:08:19 pe marras 11 2011-->
+<spirit:abstractionDefinition>
+	<spirit:vendor>Kactus</spirit:vendor>
+	<spirit:library>internal</spirit:library>
+	<spirit:name>mcapi_packet.absDef</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:busType spirit:vendor="Kactus" spirit:library="internal" spirit:name="mcapi_packet" spirit:version="1.0"/>
+</spirit:abstractionDefinition>

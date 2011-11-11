@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 19:39:09 ti marras 1 2011-->
+<!--Created by Kactus 2 document generator 11:03:01 pe marras 11 2011-->
 <spirit:component kts_firmtype="HW" kts_producthier="IP" kts_reuselevel="Block">
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>ip.hwp.misc</spirit:library>
@@ -10,8 +10,8 @@
 			<spirit:name>clk_in</spirit:name>
 			<spirit:displayName>clk_in</spirit:displayName>
 			<spirit:description>Input clock (50 MHz, DE2 PIN_N2)</spirit:description>
-			<spirit:busType spirit:vendor="spiritconsortium.org" spirit:library="busdef.clock" spirit:name="clock" spirit:version="1.0"/>
-			<spirit:abstractionType spirit:vendor="spiritconsortium.org" spirit:library="busdef.clock" spirit:name="clock_rtl" spirit:version="1.0"/>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="clock.busdef" spirit:version="1.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="clock.absDef" spirit:version="1.0"/>
 			<spirit:slave/>
 			<spirit:connectionRequired>false</spirit:connectionRequired>
 			<spirit:portMaps>
@@ -39,8 +39,8 @@
 			<spirit:name>clk_out</spirit:name>
 			<spirit:displayName>clk_out</spirit:displayName>
 			<spirit:description>Output clock: input clock divided by 2.</spirit:description>
-			<spirit:busType spirit:vendor="spiritconsortium.org" spirit:library="busdef.clock" spirit:name="clock" spirit:version="1.0"/>
-			<spirit:abstractionType spirit:vendor="spiritconsortium.org" spirit:library="busdef.clock" spirit:name="clock_rtl" spirit:version="1.0"/>
+			<spirit:busType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="clock.busdef" spirit:version="1.0"/>
+			<spirit:abstractionType spirit:vendor="TUT" spirit:library="ip.hwp.interface" spirit:name="clock.absDef" spirit:version="1.0"/>
 			<spirit:master/>
 			<spirit:connectionRequired>false</spirit:connectionRequired>
 			<spirit:portMaps>
