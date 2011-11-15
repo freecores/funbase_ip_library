@@ -768,8 +768,8 @@ The address signals at IP side offer few choices that described next.
   \end{center}
 \end{figure*}
 
-Fig~\ref{ip_signals} depicts the signals between IP and wrapper and
-Table~\ref{table_ip_signals} list their details.
+Fig~\ref{fig:ip_signals} depicts the signals between IP and wrapper and
+Table~\ref{table:ip_signals} list their details.
 
 \begin{table*}
   \caption {The signals at wrapper's IP interface}
@@ -846,7 +846,7 @@ Fig.~\ref{fig:sgn_naming} clarifies the naming scheme.
 
 \begin{figure*}
   \begin{center}
-    {\includegraphics[width=0.8\textwidth]{../Fig/Eps/fig_sgn_naming.eps}}
+    {\includegraphics[width=0.5\textwidth]{../Fig/Eps/fig_sgn_naming.eps}}
     \caption{The naming convention of ports}
     \label{fig:sgn_naming}
   \end{center}
@@ -861,9 +861,9 @@ The timing when transmitting is depicted in Fig
 
 \begin{figure*}
   \begin{center}
-    \subfigure[IP sends.]{\includegraphics[width=0.85\textwidth]{../Fig/Eps/fig_tx_timing.eps}
+    \subfigure[IP sends.]{\includegraphics[width=0.95\textwidth]{../Fig/Eps/fig_tx_timing.eps}
       \label{subfig:tx_timing}}
-    \subfigure[IP receives data]{\includegraphics[width=0.85\textwidth]{../Fig/Eps/fig_rx_timing.eps}
+    \subfigure[IP receives data]{\includegraphics[width=0.95\textwidth]{../Fig/Eps/fig_rx_timing.eps}
       \label{subfig:rx_timing}}
     \caption{Examples of timing at IP interface.}
     \label{fig:interface_timing}
@@ -900,10 +900,10 @@ A Simple example VHDL code can be found in SVN
 /release\_1/lib/hw\_lib/ips/computation/image\_xor/tb/tb\_image\_xor\_linemaker.vhd
 It shows how to send address and data. 
 
-Fig.~\ref{fig_ip_fsm} shows the simple example FSM of the IP.
+Fig.~\ref{fig:ip_fsm} shows the simple example FSM of the IP.
 \begin{figure*}
   \begin{center}
-    {\includegraphics[width=0.8\textwidth]{../Fig/Eps/fig_ip_fsm.eps}}
+    {\includegraphics[width=0.9\textwidth]{../Fig/Eps/fig_ip_fsm.eps}}
     \caption{Example FSM of an IP}
     \label{fig:ip_fsm}
   \end{center}
@@ -1446,15 +1446,115 @@ last digits define the parameter number.
 \end{enumerate}
 
 
+\section{Performance and resource usage}
+
+\subsection{HIBI wrapper structure}
+
+The resource usage of the HIBI comes mainly from it's wrappers. HIBI
+version 3 has three types of them which include R1, R3 and
+R4. Figure~\ref{fig:r3_block_diagram} shows how a R3 wrapper is
+constructed of multiplexors and a R1 wrapper which has four separate
+FIFOs itself.
+
+\begin{figure*}
+  \begin{center}
+    \includegraphics[width=0.9\textwidth]{../Fig/Eps/fig_r3_structure.eps}
+    \caption{HIBI R3 wrapper block diagram}
+    \label{fig:r3_structure}
+  \end{center}
+\end{figure*}
+
+\subsection{Resource usage}
+
+The resource usage for invidual HIBI wrappers was acquired from a SoC
+that was synthesized to a Arria II GX FPGA on a Arria II GX
+development board. The SoC had two HIBI components with both attached
+to a R3 HIBI wrapper. The size of the fifos on these wrappers was set
+to 4 words which means $4 \cdot 32b = 128 b$ on each fifo. 
+
+Table~\ref{table:resource_usage} shows the combinatorial ALU (adaptive
+LUT) counts and register counts of a wrapper. Both minimum and maximum
+values are reported since synthesis does not always produce exactly
+the same results. Area can be significantly reduced if the FIFOs are
+implemented as onchip memories (m9k blocks in Arria II GX).
+
+\begin{table*}
+  \caption {Resource usage of wrapper R3, with 32b data, multiplxed address and 5b command.
+  \label{table:resource_usage}
+    v.2  and v.3 }
+  \begin{center}
+    \begin{tabular}{l | l | r }
+      \hline \hline
+      Wrapper subblock & Unit   & Value \\
+      \hline \hline
+      HIBI wrapper r3 & comb. ALUTs & 724-763 \\
+                      & registers   & 1029-1168 \\
+      \hline
+      HIBI wrapper r1 & comb. ALUTs & 466-533 \\
+                      & registers   & 825-935 \\
+      \hline
+      4-word FIFO     & comb. ALUTs & 76-104 \\
+                      & registers   & 155-167 \\                
+      \hline
+    \end{tabular}
+  \end{center}  
+\end{table*}
+
+
+Fig.~\ref{fig_chip_planner} shows the
+resource usage layout on the FPGA as seen on the Chip Planner in
+Quartus II. The two wrappers are highlighted in blue.
+
+
+\begin{figure*}
+  \begin{center}
+    \includegraphics[width=0.4\textwidth]{../Fig/Eps/fig_chip_planner.eps}
+    \caption{HIBI R3 in Quartus' chip planner tool}
+    \label{fig:chip_plannet}
+  \end{center}
+\end{figure*}
+
+
+\subsection{Simulated performance}
+
+The throughput was measured for a 32 bit, 200 MHz HIBI segment with
+two components, both of which were connected to the segment with a R3
+wrapper. The sender transmitted a continous stream of 1024 words to a
+single address. Maximum throughput is $200 MHz \cdot 32b =$ 800
+MByte/s. Since the data and address are buses muxed together, the
+minimum time to send the stream would be 1025 cycles.  Measured
+latency and throughput are shown in Fig.\ref{fig_performance}. Both
+approach their theoretical limits as the FIFO depth increases.
+
+\begin{figure*}
+  \begin{center}
+    \subfigure[Transfer latency in cycles. Theoretical miniumum 1025 cycles (one cycle needed for address)]{\includegraphics[width=0.85\textwidth]{../Fig/Eps/gra_latency_1024words.eps}
+      \label{subfig:perf_latency}}
+    \subfigure[Throuhgpput in MB/s. Theoretical max 800 MB/s]{\includegraphics[width=0.85\textwidth]{../Fig/Eps/gra_throughput_1024words.eps}
+      \label{subfig:perf_throughput}}
+    \caption{Performance with 1024-word transfers.}
+    \label{fig:performance}
+  \end{center}
+\end{figure*}
+
+
+
+
+
 \section{Usage examples}
+
+IP can connect directly to HIBI but CPUs should use a DMA. It allows
+performing transfers on the backgournd while CPU is processing.
 
 \subsection{Transmission with dual-port memory buffer and DMA controller}
 
+Fig.~\ref{fig:dma_tx} shows the concept how CPU can send data using
+DMA.
 \begin{enumerate}
 \item CPU reserves buffer space from dual-port memory
 \item CPU copies/writes data to dual-port memory
-\item CPU configures DMA transfer. Size of transfer and destination
-  IP-block's HIBI address (not local CPU address)
+\item CPU configures DMA transfer: memory address, size of transfer,
+  and destination IP-block's HIBI address (not local CPU address)
 \item DMA reads data from dual-port memory and sends the data to the
   configured HIBI address
 \end{enumerate}
@@ -1462,18 +1562,22 @@ last digits define the parameter number.
 
 \begin{figure}
   \begin{center}
-    {\includegraphics[width=0.5\textwidth]{../Fig/Eps/fig_dma_tx.eps}}
-    \caption{Example how CPU instructs the IP block where to put result data.}
+    {\includegraphics[width=0.7\textwidth]{../Fig/Eps/fig_dma_tx.eps}}
+    \caption{Example how CPU sends using DMA.}
     \label{fig:dma_tx}
   \end{center}
 \end{figure}
 
 
 \subsection{Reception with dual-port memory buffer and DMA controller}
+
+Fig.~\ref{fig:dma_rx} shows the concept how CPU can use DMA to copy
+received data into the local dual-port memory.
+
 \begin{enumerate}
 \item CPU reserves buffer space from dual-port memory
-\item CPU configures DMA. Size of transfer and HIBI address in which
-  data is received
+\item CPU configures DMA: Memory address, size of transfer, and the
+  HIBI address in which data is received
 \item DMA copies the incoming data to DPRAM
 \item DMA interrupts CPU when a configured number of words have been
   received
@@ -1483,22 +1587,25 @@ last digits define the parameter number.
 
 \begin{figure}
   \begin{center}
-    {\includegraphics[width=0.5\textwidth]{../Fig/Eps/fig_dma_rx.eps}}
-    \caption{Example how CPU instructs the DMA where to put incoming data.}
+    {\includegraphics[width=0.7\textwidth]{../Fig/Eps/fig_dma_rx.eps}}
+    \caption{Example how CPU receives data usign DMA.}
     \label{fig:dma_rx}
   \end{center}
 \end{figure}
 
-Rx buffers are organized as channels. Only memory space limits how many buffers (channels) exists at the same time. Channels have implicit meanings that must be agreed:
+Rx buffers are organized as channels. Fig.~\ref{fig:dma_rx_buffers}
+shows how DMA translates incoming HIBI addresses into addresses in the
+local memory. Only memory space limits how many buffers (channels)
+exists at the same time. Channels have implicit meanings that must be
+agreed:
 \begin{enumerate}
 
 \item Who (what IP-block or CPU) sends data to which channel, since
   otherwise the sender is not known (HIBI does not send sender ID in
-  transfers)
+  transfers).
 \item Possible explicit meaning of channel like ``DCT transform
-  Q-parameter''
+  Q-parameter''. Then, it is not that relevant who provides data.
 \end{enumerate}
-
 
 
 \begin{figure}
@@ -1535,15 +1642,15 @@ It is assumed that CPU and IP A know the data amount at design
 time. Otherwise, it must agreed upon during initialization (that was
 omitted for clarity).
 
-\subsection{SW interface}
+\subsection{SW interface to DMA}
 
 There are low-level SW macros available that access the hardware registers
 of HIBI PE DMA (abbreaviated as HPD).  They implement a driver, but
 can be also used from user programs.
 
 \begin{table*}
-  \caption {The SW for accessing the DMA controller's registers}
-  \label{table:bus_signals}
+  \caption {The SW macros for accessing the DMA controller's registers}
+  \label{table:dma_macros}
   \begin{center}
     \begin{tabular}{p{0.5\textwidth} | p{0.5\textwidth} }
       \hline
@@ -1586,14 +1693,14 @@ can be also used from user programs.
   \end{center}  
 \end{table*}
 
-Notes: ``HPD'' is HIBI PE DMA (previously called Nios-to-HIBI 2, N2H2). ``Base'' is the base
-address of HIBI PE DMA in HIBI address space.  ``Amount'' is data
-amount in 32-bit words.
+Notes: ``HPD'' is HIBI PE DMA (previously called Nios-to-HIBI 2,
+N2H2). ``Base'' is the base address of HIBI PE DMA in HIBI address
+space.  ``Amount'' is data amount in 32-bit words.
 
 
 \begin{table*}
-  \caption {The SW for accessing the DMA controller's registers}
-  \label{table:bus_signals}
+  \caption {The SW functions for using the DMA}
+  \label{table:dma_functions}
   \begin{center}
     \begin{tabular}{p{0.5\textwidth} | p{0.5\textwidth} }
       \hline Function & Meaning \\ \hline \hline 
@@ -1641,44 +1748,17 @@ system in
 Fig.~\ref{subfig:dma_example}. Fig.~\ref{subfig:dma_seq_diag} shows
 the sequence diagram.
 
+
 \begin{figure*}
   \begin{center}
     \subfigure[IP sends.]{\includegraphics[width=0.85\textwidth]{../Fig/Eps/fig_dma_example.eps}
       \label{subfig:dma_example}}
     \subfigure[IP receives data]{\includegraphics[width=0.85\textwidth]{../Fig/Eps/fig_dma_seq_diag.eps}
-      \label{subfig:_dma_seq_diag}}
+      \label{subfig:dma_seq_diag}}
     \caption{Examples of timing at IP interface.}
     \label{fig:dma_example}
   \end{center}
 \end{figure*}
-
-
-
-
-\section{Performance and resource usage}
-
-\subsection{HIBI wrapper structure}
-
-The main resource the HIBI uses is it's wrappers. HIBI version 3 has three of them which include R1, R3 and R4. Figure shows how a R3 wrapper is constructed of a R1 wrapper which in itself has four separate fifos.
-
-\begin{figure*}
-  \caption{HIBI R3 wrapper block diagram}
-  \label{figure:r3_block_diagram}
-  \begin{center}
-    \includegraphics[width=0.9\textwidth]{../Fig/Eps/test.eps}
-  \end{center}
-\end{figure*}
-
-\subsection{Resource usage}
-
-The resource usage for invidual HIBI wrappers was acquired from a SoC that was synthesized to a Arria II GX FPGA on a Arria II GX development board. The SoC had two HIBI components with both attached to a R3 HIBI wrapper. The size of the fifos on these wrappers was set to 4 words which amounts to 128 bits on each fifo. Figure shows the resource usage layout on the FPGA as seen on the Chip Planner in Quartus II. The two wrappers are highlighted in red.
-
-
-
-\subsection{Simulated performance}
-
-The throughput was measured for a HIBI segment with two components, both of which were connected to the segment with a R3 wrapper. The sender transmitted a continous stream of 1024 words to a single address. And as the HIBI segment had the data and address buses muxed together, the minimum time to send the stream would be 1025 cycles.
-
 
 
 
@@ -1701,9 +1781,6 @@ parameters of the network runtime.
     \includegraphics[width=0.9\textwidth]{../Fig/Eps/tab_hibi_v3.eps}
   \end{center}
 \end{table*}
-
-
-
 
 \setcounter{secnumdepth}{-1}
 \bibliography{IEEEfull,hibi_datasheet_ref}
