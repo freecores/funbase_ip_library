@@ -49,9 +49,6 @@ ON
 |user|matilail|funbase|opencores_lib|trunk|tut|ip.hwp.accelerator|sig_gen|1.0|src|sig_gen.vhd
 d3cb4f38966ab5c1efe7799a8a75aa52
 }
-# hierarchies {
-|
-}
 # macro_sequence
 
 # end
@@ -89,9 +86,6 @@ USR
 PARAMETER_STRING
 USR
 }
-# hierarchies {
-port_blinker:port_blinker_1
-}
 # macro_sequence
 
 # end
@@ -107,6 +101,123 @@ ON
 # case_insensitive
 # source_file
 |user|matilail|funbase|opencores_lib|trunk|tut|ip.hwp.accelerator|sig_gen|1.0|src|sig_gen.vhd
+d3cb4f38966ab5c1efe7799a8a75aa52
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# user_parameter {
+signal_val
+100000000
+PARAMETER_SIGNED_DEC
+USR
+signal_width
+32
+PARAMETER_SIGNED_DEC
+USR
+ constraint(sig_out)
+31 downto 0
+PARAMETER_STRING
+USR
+}
+# macro_sequence
+
+# end
+# entity
+altera_de_II_demo
+# storage
+db|altera_de_II_demo.(3).cnf
+db|altera_de_II_demo.(3).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+|user|matilail|funbase|repos|opencores_lib|trunk|tut|soc|altera_de_ii_demo|1.0|vhd|altera_de_ii_demo.vhd
+ba7ba46d8c531d3bf2d6278ada65cada
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# include_file {
+|user|matilail|funbase|repos|opencores_lib|trunk|tut|ip.hwp.accelerator|port_blinker|1.0|src|port_blinker.vhd
+6ad6d680d0e2cd2c32135b7829ff2d0
+|user|matilail|funbase|repos|opencores_lib|trunk|tut|ip.hwp.accelerator|sig_gen|1.0|src|sig_gen.vhd
+d3cb4f38966ab5c1efe7799a8a75aa52
+}
+# hierarchies {
+|
+}
+# macro_sequence
+
+# end
+# entity
+port_blinker
+# storage
+db|altera_de_II_demo.(4).cnf
+db|altera_de_II_demo.(4).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+|user|matilail|funbase|repos|opencores_lib|trunk|tut|ip.hwp.accelerator|port_blinker|1.0|src|port_blinker.vhd
+6ad6d680d0e2cd2c32135b7829ff2d0
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# user_parameter {
+signal_width
+32
+PARAMETER_SIGNED_DEC
+USR
+ constraint(val_in)
+31 downto 0
+PARAMETER_STRING
+USR
+}
+# hierarchies {
+port_blinker:port_blinker_1
+}
+# macro_sequence
+
+# end
+# entity
+sig_gen
+# storage
+db|altera_de_II_demo.(5).cnf
+db|altera_de_II_demo.(5).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+|user|matilail|funbase|repos|opencores_lib|trunk|tut|ip.hwp.accelerator|sig_gen|1.0|src|sig_gen.vhd
 d3cb4f38966ab5c1efe7799a8a75aa52
 5
 # internal_option {
