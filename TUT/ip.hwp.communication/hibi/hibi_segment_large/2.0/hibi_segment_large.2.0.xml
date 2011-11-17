@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 13:52:30 ma marras 7 2011-->
+<!--Created by Kactus 2 document generator 14:24:28 to marras 17 2011-->
 <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>ip.hwp.communication</spirit:library>
@@ -5296,6 +5296,13 @@
 			</spirit:defaultFileBuilder>
 		</spirit:fileSet>
 	</spirit:fileSets>
+	<spirit:description>Synchrnoous shared bus for 16+1 components. 
+
+One interface is different (so called hibi r3) from others (hibi r4). The reason is that controller for DDR memory needs separate ports for regular data and higher priority configuration data.
+
+Addresses are 0x0100 0000 - 0x02FF FFFF, 0x0300 000-0x04FF FFFF, ..., 0x2900 0000-0x3FFF FFFF. Arbitration priorities are the same as terminal numbers 1,2... FIFOs are 20 words deep by default. See toplevel VHDL hibi_segment.vhd for details.
+
+</spirit:description>
 	<spirit:vendorExtensions>
 		<kactus2:extensions>
 			<kactus2:kts_attributes>
