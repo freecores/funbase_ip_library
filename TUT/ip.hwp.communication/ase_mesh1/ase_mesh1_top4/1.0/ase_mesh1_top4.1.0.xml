@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 19:47:31 ke marras 9 2011-->
+<!--Created by Kactus 2 document generator 14:31:12 to marras 17 2011-->
 <spirit:component>
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>ip.hwp.communication</spirit:library>
@@ -1040,7 +1040,9 @@
 			</spirit:file>
 		</spirit:fileSet>
 	</spirit:fileSets>
-	<spirit:description>Top level for ase_mesh1 NoC with four agents.</spirit:description>
+	<spirit:description>Top level for 2x2 ase_mesh1 NoC.
+
+</spirit:description>
 	<spirit:vendorExtensions>
 		<kactus2:extensions>
 			<kactus2:kts_attributes>
