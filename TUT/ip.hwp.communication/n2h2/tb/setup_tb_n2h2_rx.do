@@ -1,8 +1,13 @@
-# Configuration file formats:
+# Tests N2H2 reception 
 #
-# tbrx_conf_hibisend.dat : dest_agent_n, delay, amount
-# tbrx_conf_rx.dat       : mem_addr, sender, irq_amount (=words to receive)
-# tbrx_data_file.dat     : mem_addr, sender, irq_amount (=words to receive)
+# Compiles all files, starts simulation and adds signals to wave window
+#
+# The traffic is configured with following ASCII file formats:
+#
+# tbrx_conf_hibisend.dat : dest_agent delay_cycles num_of_words
+#
+# tbrx_conf_rx.dat       : mem_addr, noc_addr, irq_amount (=words to receive)
+# tbrx_data_file.dat     : mem_addr, noc_addr, irq_amount (=words to receive)
 #
 #
 
@@ -34,5 +39,8 @@ vcom ./blocks/avalon_reader.vhd
 vcom ./blocks/sram_scalable_v3.vhd
 vcom ./blocks/tb_n2h2_rx.vhd
 
-vsim -t 1ns work.tb_n2h2_rx
+
+# Start simulation
+
+vsim -t 1ns -novopt work.tb_n2h2_rx
 do ./blocks/wave_tb_n2h2_rx.do

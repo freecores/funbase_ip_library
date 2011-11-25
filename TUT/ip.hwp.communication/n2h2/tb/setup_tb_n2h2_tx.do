@@ -17,7 +17,7 @@ vcom -check_synthesis -pedantic ../vhd/n2h2_chan.vhd
 
 
 vcom ./blocks/sram_scalable_v3.vhd
-vcom ./blocks/tb_n2h2_rx.vhd
+vcom ./blocks/tb_n2h2_tx.vhd
 
 vsim -t 1ns work.tb_n2h2_tx
 do blocks/wave_tb_n2h2_tx.do

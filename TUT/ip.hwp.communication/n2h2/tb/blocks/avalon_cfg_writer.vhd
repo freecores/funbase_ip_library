@@ -5,14 +5,41 @@
 -- File       : avalon_cfg_writer.vhd
 -- Author     : kulmala3
 -- Created    : 22.03.2005
--- Last update: 2010/05/07
--- Description: testbench block to config the dma via avalon
+-- Last update: 2011-11-10
+-- Description: Testbench block to config the dma via avalon.
+--              Gets the needed values from an ASCII file.
 -------------------------------------------------------------------------------
 -- Copyright (c) 2005 
 -------------------------------------------------------------------------------
 -- Revisions  :
 -- Date        Version  Author  Description
 -- 22.03.2005  1.0      AK      Created
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-- Funbase IP library Copyright (C) 2011 TUT Department of Computer Systems
+--
+-- This file is part of HIBI
+--
+-- This source file may be used and distributed without
+-- restriction provided that this copyright statement is not
+-- removed from the file and that any derivative work contains
+-- the original copyright notice and the associated disclaimer.
+--
+-- This source file is free software; you can redistribute it
+-- and/or modify it under the terms of the GNU Lesser General
+-- Public License as published by the Free Software Foundation;
+-- either version 2.1 of the License, or (at your option) any
+-- later version.
+--
+-- This source is distributed in the hope that it will be
+-- useful, but WITHOUT ANY WARRANTY; without even the implied
+-- warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+-- PURPOSE.  See the GNU Lesser General Public License for more
+-- details.
+--
+-- You should have received a copy of the GNU Lesser General
+-- Public License along with this source; if not, download it
+-- from http://www.opencores.org/lgpl.shtml
 -------------------------------------------------------------------------------
 
 
@@ -49,8 +76,14 @@ architecture rtl of avalon_cfg_writer is
   signal state_r        : integer;
   signal init_state_r   : integer;
   signal chan_counter_r : integer;
+
+
 begin  -- rtl
 
+  --
+  -- Simple state machine, states are just numbered 0,1,2...8
+  -- Separate part for init on the bottom
+  --
   process (clk, rst_n)
     file conf_file        : text open read_mode is conf_file_g;
     variable mem_addr_r   : integer;
@@ -81,18 +114,20 @@ begin  -- rtl
           end if;
 
         when 1 =>
+          -- Read file and configure mem addr
+          
           read_conf_file (
             mem_addr   => mem_addr_r ,
-            sender     => sender_r,
+            dst_addr   => sender_r,
             irq_amount => irq_amount_r,
---            max_amount => max_amount_r,
+            --            max_amount => max_amount_r,
             file_txt   => conf_file
             );
 
           assert false report "mem_addr: " & str(mem_addr_r) severity note;
-          assert false report "sender_r: " & str(sender_r) severity note;
-          assert false report "irq_amount_r: " & str(irq_amount_r) severity note;
---          assert false report "max_amount_r: " & str(max_amount_r) severity note;
+          assert false report "dst_addr: " & str(sender_r) severity note;
+          assert false report "irq_amount: " & str(irq_amount_r) severity note;
+          --          assert false report "max_amount_r: " & str(max_amount_r) severity note;
 
           avalon_cfg_writedata_out <= conv_std_logic_vector(mem_addr_r, data_width_g);
           avalon_cfg_addr_out      <= conv_std_logic_vector(chan_counter_r, log2(n_chans_g)) &
@@ -102,7 +137,9 @@ begin  -- rtl
           state_r           <= 2;
 
         when 2 =>
+          -- Configure noc_addr_r (originally called "sender_r")
 
+          
           avalon_cfg_writedata_out <= conv_std_logic_vector(sender_r, data_width_g);
           avalon_cfg_addr_out      <= conv_std_logic_vector(chan_counter_r, log2(n_chans_g)) &
                                       conv_std_logic_vector(1, conf_bits_c);
@@ -112,7 +149,8 @@ begin  -- rtl
           state_r           <= 3;
           
         when 3 =>
-
+          -- Confgure expexted word count
+          
           avalon_cfg_writedata_out <= conv_std_logic_vector(irq_amount_r, data_width_g);
           avalon_cfg_addr_out      <= conv_std_logic_vector(chan_counter_r, log2(n_chans_g)) &
                                       conv_std_logic_vector(2, conf_bits_c);
@@ -132,7 +170,7 @@ begin  -- rtl
 --          state_r                  <= 5;
 
         when 5 =>
-          -- set init bit
+          -- Set init bit
           avalon_cfg_writedata_out                 <= (others => '0');
           avalon_cfg_writedata_out(chan_counter_r) <= '1';
           avalon_cfg_addr_out                      <= conv_std_logic_vector(chan_counter_r, log2(n_chans_g)) &
@@ -142,7 +180,7 @@ begin  -- rtl
           state_r           <= 6;
 
         when 6 =>
-          -- set irq_ena bit
+          -- Set irq_ena bit
           avalon_cfg_writedata_out    <= (others => '0');
           avalon_cfg_writedata_out(1) <= '1';
           avalon_cfg_addr_out         <= conv_std_logic_vector(chan_counter_r, log2(n_chans_g)) &
@@ -162,11 +200,15 @@ begin  -- rtl
 --          state_r <= 7;
 
         when 7 =>
+          -- Go to next channel
+          
           avalon_cfg_cs_out <= '0';
           chan_counter_r    <= chan_counter_r+1;
           state_r           <= 8;
 
         when 8 =>
+          -- Configure next channel or start over
+          
           if chan_counter_r = n_chans_g then
             state_r           <= 0;
             chan_counter_r    <= 0;
@@ -179,6 +221,9 @@ begin  -- rtl
         when others => null;
       end case;
 
+
+
+      
       if init_in = '1' then
         init_state_r <= 1;
       end if;
