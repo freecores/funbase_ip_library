@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 15:12:14 ke marras 16 2011-->
-<spirit:component>
+<!--Created by Kactus 2 document generator 13:21:50 30.11.2011-->
+<spirit:component xmlns:kactus2="http://funbase.cs.tut.fi/" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>soc</spirit:library>
 	<spirit:name>altera_de_II_demo</spirit:name>
@@ -125,7 +125,7 @@
 				<spirit:envIdentifier></spirit:envIdentifier>
 				<spirit:hierarchyRef spirit:vendor="TUT" spirit:library="soc" spirit:name="altera_de_II_demo.designcfg" spirit:version="1.0"/>
 				<spirit:vendorExtensions>
-					<kactus2:topLevelViewRef>rtl</kactus2:topLevelViewRef>
+					<kactus2:topLevelViewRef>kactusHierarchical_rtl</kactus2:topLevelViewRef>
 				</spirit:vendorExtensions>
 			</spirit:view>
 			<spirit:view>
@@ -135,6 +135,15 @@
 				<spirit:modelName>altera_de_II_demo(top_level)</spirit:modelName>
 				<spirit:fileSetRef>
 					<spirit:localName>vhdlSource</spirit:localName>
+				</spirit:fileSetRef>
+			</spirit:view>
+			<spirit:view>
+				<spirit:name>kactusHierarchical_rtl</spirit:name>
+				<spirit:envIdentifier>VHDL:Kactus2:</spirit:envIdentifier>
+				<spirit:language spirit:strict="false">vhdl</spirit:language>
+				<spirit:modelName>altera_de_II_demo(kactusHierarchical)</spirit:modelName>
+				<spirit:fileSetRef>
+					<spirit:localName>kactusHierarchical_vhdlSource</spirit:localName>
 				</spirit:fileSetRef>
 			</spirit:view>
 		</spirit:views>
@@ -147,6 +156,15 @@
 						<spirit:left>0</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>kactusHierarchical</spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>kactusHierarchical_rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -157,6 +175,15 @@
 						<spirit:left>0</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>kactusHierarchical</spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>kactusHierarchical_rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -167,6 +194,15 @@
 						<spirit:left>0</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>kactusHierarchical</spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>kactusHierarchical_rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -177,6 +213,15 @@
 						<spirit:left>0</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>kactusHierarchical</spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>kactusHierarchical_rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 		</spirit:ports>
@@ -221,15 +266,31 @@
 				<spirit:description>Step-by-step instructions how to generate top-level VHDL and Quartus project for this demo SoC</spirit:description>
 			</spirit:file>
 		</spirit:fileSet>
+		<spirit:fileSet>
+			<spirit:name>kactusHierarchical_vhdlSource</spirit:name>
+			<spirit:group>sourceFiles</spirit:group>
+			<spirit:file>
+				<spirit:name>vhd/altera_de_II_demo.kactusHierarchical.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">true</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">work</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:command>vcom</spirit:command>
+					<spirit:flags>-quiet -check_synthesis -work work</spirit:flags>
+					<spirit:replaceDefaultFlags>true</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+		</spirit:fileSet>
 	</spirit:fileSets>
 	<spirit:description>Simple demo for Altera DE2 development board.Instantietes two components sig_gen and port blinker. 
-Sig_gen reads switch[17] from DE2 board and activates port blinker to blink leds in DE2 Board.
+Sig_gen reads switch[17] from DE2 board and activates port blinker to blink leds in DE2 Board. Switch[0] is reset.
 
 DEMO INSTRUCTIONS.
 1. Open altera_de_II_demo design in Kactus2
 2. Generate top-level VHDL with Kactus2 vhdl generator the ribbon
 3. Generate Qurtus project for synthesizing demo design by clicking Quartus project generator in the ribbon element. 
-4. Open generated project with quartus. Compile and synthesize.</spirit:description>
+4. Open generated project with Quartus. Compile and synthesize.
+5. Program the FPGA.</spirit:description>
 	<spirit:vendorExtensions>
 		<kactus2:extensions>
 			<kactus2:kts_attributes>
