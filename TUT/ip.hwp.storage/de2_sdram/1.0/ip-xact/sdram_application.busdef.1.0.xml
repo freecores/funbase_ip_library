@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 13:24:26 ke marras 9 2011-->
+<spirit:busDefinition>
+	<spirit:vendor>TUT</spirit:vendor>
+	<spirit:library>ip.hwp.storage</spirit:library>
+	<spirit:name>sdram_application.busdef</spirit:name>
+	<spirit:version>1.0</spirit:version>
+	<spirit:directConnection>true</spirit:directConnection>
+	<spirit:isAddressable>true</spirit:isAddressable>
+</spirit:busDefinition>
