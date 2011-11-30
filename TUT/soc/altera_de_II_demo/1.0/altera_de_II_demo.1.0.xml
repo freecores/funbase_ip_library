@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 13:21:50 30.11.2011-->
+<!--Created by Kactus 2 document generator 14:16:05 30.11.2011-->
 <spirit:component xmlns:kactus2="http://funbase.cs.tut.fi/" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>soc</spirit:library>
@@ -270,6 +270,17 @@
 			<spirit:name>kactusHierarchical_vhdlSource</spirit:name>
 			<spirit:group>sourceFiles</spirit:group>
 			<spirit:file>
+				<spirit:name>altera_de_II_demo.kactusHierarchical.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">true</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">work</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:command>vcom</spirit:command>
+					<spirit:flags>-quiet -check_synthesis -work work</spirit:flags>
+					<spirit:replaceDefaultFlags>true</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
 				<spirit:name>vhd/altera_de_II_demo.kactusHierarchical.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
 				<spirit:isIncludeFile spirit:externalDeclarations="false">true</spirit:isIncludeFile>
@@ -283,7 +294,8 @@
 		</spirit:fileSet>
 	</spirit:fileSets>
 	<spirit:description>Simple demo for Altera DE2 development board.Instantietes two components sig_gen and port blinker. 
-Sig_gen reads switch[17] from DE2 board and activates port blinker to blink leds in DE2 Board. Switch[0] is reset.
+Sig_gen reads switch[17] from DE2 board and activates port blinker to blink leds in DE2 Board. Note that sig_gen detects rising_edges of switch[17].
+Switch[0] is reset.
 
 DEMO INSTRUCTIONS.
 1. Open altera_de_II_demo design in Kactus2
