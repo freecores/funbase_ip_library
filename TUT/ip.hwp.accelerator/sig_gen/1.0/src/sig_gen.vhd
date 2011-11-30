@@ -28,11 +28,12 @@
 -- File       : sig_gen.vhd
 -- Author     : Juha Arvio
 -- Company    : TUT
--- Last update: 20.10.2011
+-- Last update: 2011-11-30
 -- Version    : 0.1
 -- Platform   : 
 -------------------------------------------------------------------------------
--- Description:
+-- Description: Generates a constant value to the output bus and an enable
+--              signal that can be toggled.
 -------------------------------------------------------------------------------
 -- Revisions  :
 -- Date        Version  Author  Description
@@ -45,48 +46,54 @@ use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 
 entity sig_gen is
-  generic ( SIGNAL_VAL : integer := 100000000;
-            SIGNAL_WIDTH : integer := 32 );
-
+  generic (
+    SIGNAL_VAL   : integer := 5000000;  -- Constant value driven to the output
+    SIGNAL_WIDTH : integer := 32        -- In bits
+    );
   port (
-    clk : in std_logic;
+    clk   : in std_logic;
     rst_n : in std_logic;
-    
-    toggle_in : in std_logic;
-    sig_out : out std_logic_vector(SIGNAL_WIDTH-1 downto 0);
-    ena_out : out std_logic );
+
+    toggle_in : in  std_logic;
+    sig_out   : out std_logic_vector(SIGNAL_WIDTH-1 downto 0);
+    ena_out   : out std_logic
+    );
 
 end sig_gen;
 
 architecture rtl of sig_gen is
+  
   function i2s(value : integer; width : integer) return std_logic_vector is
   begin
     return conv_std_logic_vector(value, width);
   end;
-  
+
   function s2i(value : std_logic_vector) return integer is
   begin
     return conv_integer(value);
   end;
-  
+
   signal toggle_d1_r : std_logic;
-  signal toggle_r : std_logic;
+  signal ena_r       : std_logic;
 begin
   
   sig_out <= i2s(SIGNAL_VAL, SIGNAL_WIDTH);
-  ena_out <= toggle_r;
-  
+  ena_out <= ena_r;
+
+  --
+  -- Detects a rising edge in toggle-input 
+  --
   process (clk, rst_n)
   begin
     if (rst_n = '0') then
       toggle_d1_r <= '0';
-      toggle_r <= '0';
+      ena_r       <= '0';
       
     elsif (clk'event and clk = '1') then
       toggle_d1_r <= toggle_in;
-      
+
       if ((toggle_in = '1') and (toggle_d1_r = '0')) then
-        toggle_r <= not(toggle_r);
+        ena_r <= not(ena_r);
       end if;
     end if;
   end process;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 10:48:51 pe loka 21 2011-->
-<spirit:component>
+<!--Created by Kactus 2 document generator 14:14:24 30.11.2011-->
+<spirit:component xmlns:kactus2="http://funbase.cs.tut.fi/" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>ip.hwp.accelerator</spirit:library>
 	<spirit:name>port_blinker</spirit:name>
@@ -204,6 +204,7 @@
 			</spirit:file>
 		</spirit:fileSet>
 	</spirit:fileSets>
+	<spirit:description>Counts up and inverts output when reaching the limit value. Then start over again.</spirit:description>
 	<spirit:vendorExtensions>
 		<kactus2:extensions>
 			<kactus2:kts_attributes>

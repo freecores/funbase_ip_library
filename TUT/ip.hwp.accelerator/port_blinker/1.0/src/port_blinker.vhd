@@ -28,11 +28,12 @@
 -- File       : port_blinker.vhd
 -- Author     : Juha Arvio
 -- Company    : TUT
--- Last update: 20.10.2011
+-- Last update: 2011-11-30
 -- Version    : 0.1
 -- Platform   : 
 -------------------------------------------------------------------------------
--- Description:
+-- Description: Counts up and inverts output when reaching the limit value.
+--              Then start over again.
 -------------------------------------------------------------------------------
 -- Revisions  :
 -- Date        Version  Author  Description
@@ -45,40 +46,37 @@ use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 
 entity port_blinker is
-  generic ( SIGNAL_WIDTH : integer := 32 );
-
+  generic (
+    SIGNAL_WIDTH : integer := 32
+    );
   port (
-    clk : in std_logic;
+    clk   : in std_logic;
     rst_n : in std_logic;
-    
-    ena_in : in std_logic;
-    val_in : in std_logic_vector(SIGNAL_WIDTH-1 downto 0);
-    port_out : out std_logic );
+
+    ena_in   : in  std_logic;
+    val_in   : in  std_logic_vector(SIGNAL_WIDTH-1 downto 0);
+    port_out : out std_logic
+    );
 
 end port_blinker;
 
 architecture rtl of port_blinker is
-  function i2s(value : integer; width : integer) return std_logic_vector is
-  begin
-    return conv_std_logic_vector(value, width);
-  end;
-  
-  function s2i(value : std_logic_vector) return integer is
-  begin
-    return conv_integer(value);
-  end;
-  
+
   signal port_level_r : std_logic;
-  signal val_cnt_r : std_logic_vector(SIGNAL_WIDTH-1 downto 0);
+  signal val_cnt_r    : std_logic_vector(SIGNAL_WIDTH-1 downto 0);
+
 begin
   
   port_out <= port_level_r;
-  
+
+  --
+  -- Count upwards until reaching the value in the input
+  -- 
   process (clk, rst_n)
   begin
     if (rst_n = '0') then
       port_level_r <= '0';
-      val_cnt_r <= (others => '0');
+      val_cnt_r    <= (others => '0');
       
     elsif (clk'event and clk = '1') then
       
@@ -87,7 +85,7 @@ begin
       else
         if (val_cnt_r = val_in) then
           port_level_r <= not(port_level_r);
-          val_cnt_r <= (others => '0');
+          val_cnt_r    <= (others => '0');
         else
           val_cnt_r <= val_cnt_r + 1;
         end if;
