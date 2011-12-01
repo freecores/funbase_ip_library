@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 14:35:20 pe marras 11 2011-->
-<spirit:component>
+<!--Created by Kactus 2 document generator 15:44:48 01.12.2011-->
+<spirit:component xmlns:kactus2="http://funbase.cs.tut.fi/" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>soc</spirit:library>
 	<spirit:name>led_ase_mesh1_example</spirit:name>
@@ -150,7 +150,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>structural</spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -163,7 +164,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>structural</spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -176,7 +178,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>structural</spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -189,7 +192,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>structural</spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -202,7 +206,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>structural</spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -215,7 +220,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>structural</spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -230,12 +236,21 @@
 				<spirit:name>vhd/led_ase_mesh1_example.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
 				<spirit:isIncludeFile spirit:externalDeclarations="false">true</spirit:isIncludeFile>
-				<spirit:logicalName spirit:default="false">soc</spirit:logicalName>
+				<spirit:logicalName spirit:default="false">work</spirit:logicalName>
 				<spirit:buildCommand>
 					<spirit:command>vcom</spirit:command>
-					<spirit:flags>-quiet -check_synthesis -work work</spirit:flags>
+					<spirit:flags>-quiet -check_synthesis</spirit:flags>
 					<spirit:replaceDefaultFlags>true</spirit:replaceDefaultFlags>
 				</spirit:buildCommand>
+			</spirit:file>
+		</spirit:fileSet>
+		<spirit:fileSet>
+			<spirit:name>ModelsimScripts</spirit:name>
+			<spirit:group>simulation</spirit:group>
+			<spirit:file>
+				<spirit:name>simppa/create_makefile.sh</spirit:name>
+				<spirit:userFileType>ModelsimScript</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
 			</spirit:file>
 		</spirit:fileSet>
 	</spirit:fileSets>
