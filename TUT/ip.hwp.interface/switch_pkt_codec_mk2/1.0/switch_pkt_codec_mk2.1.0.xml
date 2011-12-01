@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 19:50:42 ke marras 9 2011-->
-<spirit:component>
+<!--Created by Kactus 2 document generator 15:19:28 01.12.2011-->
+<spirit:component xmlns:kactus2="http://funbase.cs.tut.fi/" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>ip.hwp.interface</spirit:library>
 	<spirit:name>switch_pkt_codec_mk2</spirit:name>
@@ -196,6 +196,15 @@
 		</spirit:busInterface>
 	</spirit:busInterfaces>
 	<spirit:model>
+		<spirit:views>
+			<spirit:view>
+				<spirit:name>rtl</spirit:name>
+				<spirit:envIdentifier>VHDL::</spirit:envIdentifier>
+				<spirit:fileSetRef>
+					<spirit:localName>HDLsources</spirit:localName>
+				</spirit:fileSetRef>
+			</spirit:view>
+		</spirit:views>
 		<spirit:ports>
 			<spirit:port>
 				<spirit:name>clk</spirit:name>
@@ -209,7 +218,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -226,7 +235,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -243,7 +252,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -260,7 +269,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -277,7 +286,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -290,7 +299,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -303,7 +312,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -316,7 +325,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -329,7 +338,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -345,7 +354,7 @@
 	</spirit:model>
 	<spirit:fileSets>
 		<spirit:fileSet>
-			<spirit:name>HDLsourced</spirit:name>
+			<spirit:name>HDLsources</spirit:name>
 			<spirit:file>
 				<spirit:name>vhd/switch_pkt_codec_mk2.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
@@ -354,6 +363,12 @@
 					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
 				</spirit:buildCommand>
 			</spirit:file>
+			<spirit:defaultFileBuilder>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:command>vcom</spirit:command>
+				<spirit:flags>-quiet -check_synthesis</spirit:flags>
+				<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+			</spirit:defaultFileBuilder>
 		</spirit:fileSet>
 	</spirit:fileSets>
 	<spirit:vendorExtensions>
