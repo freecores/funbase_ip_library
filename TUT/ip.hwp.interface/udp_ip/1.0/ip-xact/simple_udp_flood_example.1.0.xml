@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 11:05:01 pe marras 11 2011-->
-<spirit:component kts_firmtype="HW" kts_producthier="IP" kts_reuselevel="Block">
+<!--Created by Kactus 2 document generator 13:26:21 02.12.2011-->
+<spirit:component xmlns:kactus2="http://funbase.cs.tut.fi/" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>ip.hwp.interface</spirit:library>
 	<spirit:name>simple_udp_flood_example</spirit:name>
@@ -489,11 +489,27 @@
 		</spirit:busInterface>
 	</spirit:busInterfaces>
 	<spirit:model>
+		<spirit:views>
+			<spirit:view>
+				<spirit:name>rtl</spirit:name>
+				<spirit:envIdentifier>vhdl::</spirit:envIdentifier>
+				<spirit:fileSetRef>
+					<spirit:localName>HDLsources</spirit:localName>
+				</spirit:fileSetRef>
+			</spirit:view>
+		</spirit:views>
 		<spirit:ports>
 			<spirit:port>
 				<spirit:name>clk</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>in</spirit:direction>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -504,36 +520,78 @@
 						<spirit:left>15</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
 				<spirit:name>fatal_error_in</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>in</spirit:direction>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
 				<spirit:name>link_up_in</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>in</spirit:direction>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
 				<spirit:name>link_up_out</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>out</spirit:direction>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
 				<spirit:name>new_rx_in</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>in</spirit:direction>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
 				<spirit:name>new_tx_out</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>out</spirit:direction>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -544,12 +602,26 @@
 						<spirit:left>47</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
 				<spirit:name>rst_n</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>in</spirit:direction>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -560,24 +632,52 @@
 						<spirit:left>15</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
 				<spirit:name>rx_data_valid_in</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>in</spirit:direction>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
 				<spirit:name>rx_erroneous_in</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>in</spirit:direction>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
 				<spirit:name>rx_error_in</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>in</spirit:direction>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -588,12 +688,26 @@
 						<spirit:left>10</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
 				<spirit:name>rx_re_out</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>out</spirit:direction>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -604,6 +718,13 @@
 						<spirit:left>31</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -614,6 +735,13 @@
 						<spirit:left>15</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -624,6 +752,13 @@
 						<spirit:left>15</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -634,6 +769,13 @@
 						<spirit:left>31</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -644,6 +786,13 @@
 						<spirit:left>15</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -654,12 +803,26 @@
 						<spirit:left>15</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
 				<spirit:name>tx_data_valid_out</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>out</spirit:direction>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
@@ -670,12 +833,26 @@
 						<spirit:left>10</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 			<spirit:port>
 				<spirit:name>tx_re_in</spirit:name>
 				<spirit:wire spirit:allLogicalDirectionsAllowed="false">
 					<spirit:direction>in</spirit:direction>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
+							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 		</spirit:ports>
@@ -726,4 +903,12 @@
 		</spirit:fileSet>
 	</spirit:fileSets>
 	<spirit:description>Connect to UDP/IP controller. Creates TX operations as quickly as possible. Destination and packet size are configurable by using generics.</spirit:description>
+	<spirit:vendorExtensions>
+		<kactus2:extensions>
+			<kactus2:kts_attributes>
+				<kactus2:kts_productHier>Global</kactus2:kts_productHier>
+				<kactus2:kts_firmness>Mutable</kactus2:kts_firmness>
+			</kactus2:kts_attributes>
+		</kactus2:extensions>
+	</spirit:vendorExtensions>
 </spirit:component>

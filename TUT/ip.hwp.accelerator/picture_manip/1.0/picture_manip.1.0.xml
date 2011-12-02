@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 10:33:12 ke marras 9 2011-->
-<spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
+<!--Created by Kactus 2 document generator 13:20:20 02.12.2011-->
+<spirit:component xmlns:kactus2="http://funbase.cs.tut.fi/" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>ip.hwp.accelerator</spirit:library>
 	<spirit:name>picture_manip</spirit:name>
@@ -288,7 +288,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>kts_sw_ref</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -301,7 +302,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>kts_sw_ref</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -318,7 +320,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>kts_sw_ref</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -335,7 +338,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>kts_sw_ref</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -348,7 +352,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>kts_sw_ref</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -361,7 +366,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>kts_sw_ref</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -374,7 +380,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>kts_sw_ref</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -387,7 +394,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>kts_sw_ref</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -400,7 +408,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>kts_sw_ref</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -417,7 +426,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>kts_sw_ref</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -434,7 +444,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>kts_sw_ref</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -447,7 +458,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>kts_sw_ref</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -460,7 +472,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>kts_sw_ref</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -473,7 +486,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>kts_sw_ref</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -512,7 +526,7 @@
 			</spirit:file>
 		</spirit:fileSet>
 	</spirit:fileSets>
-	<spirit:description>Simple picture manipulator IP  to rotate 8-bit grayscale picture 90 degrees clockwise.</spirit:description>
+	<spirit:description>Simple picture manipulator IP  to rotate 8-bit grayscale picture 90 degrees clockwise. </spirit:description>
 	<spirit:vendorExtensions>
 		<kactus2:extensions>
 			<kactus2:kts_attributes>
