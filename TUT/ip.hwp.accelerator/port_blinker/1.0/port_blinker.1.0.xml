@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 13:36:18 02.12.2011-->
+<!--Created by Kactus 2 document generator 13:17:41 05.12.2011-->
 <spirit:component xmlns:kactus2="http://funbase.cs.tut.fi/" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>ip.hwp.accelerator</spirit:library>
@@ -231,6 +231,7 @@
 		<spirit:modelParameters>
 			<spirit:modelParameter spirit:dataType="integer" spirit:usageType="nontyped">
 				<spirit:name>SIGNAL_WIDTH</spirit:name>
+				<spirit:description>In bits</spirit:description>
 				<spirit:value>32</spirit:value>
 			</spirit:modelParameter>
 		</spirit:modelParameters>
@@ -241,6 +242,26 @@
 			<spirit:file>
 				<spirit:name>src/port_blinker.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">work</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:defaultFileBuilder>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:command>vcom</spirit:command>
+				<spirit:flags>-quiet -check_synthesis</spirit:flags>
+				<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+			</spirit:defaultFileBuilder>
+		</spirit:fileSet>
+		<spirit:fileSet>
+			<spirit:name>documentation</spirit:name>
+			<spirit:description>Auto-generated HTML documentation of the component</spirit:description>
+			<spirit:group>documentation</spirit:group>
+			<spirit:file>
+				<spirit:name>doc/port_blinker.html</spirit:name>
+				<spirit:userFileType>documentation</spirit:userFileType>
 				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
 				<spirit:buildCommand>
 					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
