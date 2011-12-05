@@ -6,11 +6,11 @@
 -- Author     : Lasse Lehtonen
 -- Company    : 
 -- Created    : 2011-11-09
--- Last update: 2011-11-21
+-- Last update: 2011-12-02
 -- Platform   : 
 -- Standard   : VHDL'87
 -------------------------------------------------------------------------------
--- Description: 
+-- Description: Inverts led output for evey data word received.
 -------------------------------------------------------------------------------
 -- Copyright (c) 2011 
 -------------------------------------------------------------------------------
@@ -54,10 +54,13 @@ entity led_pkt_codec_mk2 is
     cmd_in    : in  std_logic_vector(1 downto 0);
     data_in   : in  std_logic_vector(31 downto 0);
     stall_out : out std_logic;
+
     cmd_out   : out std_logic_vector(1 downto 0);
     data_out  : out std_logic_vector(31 downto 0);
     stall_in  : in  std_logic;
-    led_out   : out std_logic);
+    
+    led_out   : out std_logic
+    );
 
 end led_pkt_codec_mk2;
 
@@ -70,9 +73,12 @@ begin  -- rtl
 
   data_out  <= (others => '0');
   cmd_out   <= (others => '0');
-  stall_out <= '0';
+  stall_out <= '0';                     -- This accepts all incoming data
   led_out   <= led_r;
 
+  --
+  -- Read input
+  --   
   main_p : process (clk, rst_n)
   begin  -- process main_p
     if rst_n = '0' then                 -- asynchronous reset (active low)
@@ -84,9 +90,9 @@ begin  -- rtl
       if cmd_in = "00" then
         -- no data coming in
       elsif cmd_in = "01" then
-        -- address coming in
+        -- address coming in, don't care what it is
       elsif cmd_in = "10" then
-        -- data coming in
+        -- data coming in, donät care about its value
         led_r <= not led_r;
       else
         -- not defined
