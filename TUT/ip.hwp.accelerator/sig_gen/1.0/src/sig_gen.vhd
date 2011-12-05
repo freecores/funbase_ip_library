@@ -1,4 +1,21 @@
 -------------------------------------------------------------------------------
+-- Title      : Signal generator
+-- Project    : Funbase
+-------------------------------------------------------------------------------
+-- File       : sig_gen.vhd
+-- Author     : Juha Arvio
+-- Company    : TUT
+-- Last update: 2011-12-05
+-- Version    : 0.1
+-- Platform   : 
+-------------------------------------------------------------------------------
+-- Description: Generates a constant value to the output bus and an enable
+--              signal that can be toggled.
+-------------------------------------------------------------------------------
+-- Revisions  :
+-- Date        Version  Author  Description
+-- 20.10.2011   0.1     arvio     Created
+-------------------------------------------------------------------------------
 -- Funbase IP library Copyright (C) 2011 TUT Department of Computer Systems
 --
 -- This source file may be used and distributed without
@@ -21,23 +38,6 @@
 -- You should have received a copy of the GNU Lesser General
 -- Public License along with this source; if not, download it
 -- from http://www.opencores.org/lgpl.shtml
--------------------------------------------------------------------------------
--- Title      : Signal generator
--- Project    : Funbase
--------------------------------------------------------------------------------
--- File       : sig_gen.vhd
--- Author     : Juha Arvio
--- Company    : TUT
--- Last update: 2011-11-30
--- Version    : 0.1
--- Platform   : 
--------------------------------------------------------------------------------
--- Description: Generates a constant value to the output bus and an enable
---              signal that can be toggled.
--------------------------------------------------------------------------------
--- Revisions  :
--- Date        Version  Author  Description
--- 20.10.2011   0.1     arvio     Created
 -------------------------------------------------------------------------------
 
 library ieee;
