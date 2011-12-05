@@ -6,11 +6,11 @@
 -- Author     : Lasse Lehtonen
 -- Company    : 
 -- Created    : 2011-11-09
--- Last update: 2011-11-21
+-- Last update: 2011-12-02
 -- Platform   : 
 -- Standard   : VHDL'87
 -------------------------------------------------------------------------------
--- Description: 
+-- Description: Sends a constant addr+data pair every time a switch is toggled.
 -------------------------------------------------------------------------------
 -- Copyright (c) 2011 
 -------------------------------------------------------------------------------
@@ -57,20 +57,25 @@ entity switch_pkt_codec_mk2 is
     cmd_in    : in  std_logic_vector(1 downto 0);
     data_in   : in  std_logic_vector(31 downto 0);
     stall_out : out std_logic;
+
     cmd_out   : out std_logic_vector(1 downto 0);
     data_out  : out std_logic_vector(31 downto 0);
     stall_in  : in  std_logic;
-    switch_in : in  std_logic);
+
+    switch_in : in  std_logic
+    );
 
 end switch_pkt_codec_mk2;
 
 
 architecture rtl of switch_pkt_codec_mk2 is
 
+  -- Signals for edge detection
   signal switch1_r : std_logic;
   signal switch2_r : std_logic;
   signal switch3_r : std_logic;
 
+  -- State machine
   type fsm_type is (idle, cmd, data);
   signal state_r : fsm_type;
   
@@ -78,7 +83,9 @@ begin  -- rtl
   
   stall_out <= '0';
 
-
+  --
+  -- Simple state machine loops over 3 states
+  --
   main_p : process (clk, rst_n)
   begin  -- process main_p
     if rst_n = '0' then                 -- asynchronous reset (active low)
