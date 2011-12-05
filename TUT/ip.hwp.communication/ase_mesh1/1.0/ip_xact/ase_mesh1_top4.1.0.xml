@@ -1,5 +1,5 @@
-	<?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 15:21:04 01.12.2011-->
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Kactus 2 document generator 16:31:10 02.12.2011-->
 <spirit:component xmlns:kactus2="http://funbase.cs.tut.fi/" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>ip.hwp.communication</spirit:library>
@@ -492,13 +492,13 @@
 	<spirit:model>
 		<spirit:views>
 			<spirit:view>
-				<spirit:name>rtl</spirit:name>
-				<spirit:envIdentifier>::</spirit:envIdentifier>
-				<spirit:fileSetRef>
-					<spirit:localName>HDLSources</spirit:localName>
-				</spirit:fileSetRef>
+				<spirit:name>hdl</spirit:name>
+				<spirit:envIdentifier>VHDL::</spirit:envIdentifier>
 				<spirit:fileSetRef>
 					<spirit:localName>DependedHDL</spirit:localName>
+				</spirit:fileSetRef>
+				<spirit:fileSetRef>
+					<spirit:localName>HDLSource</spirit:localName>
 				</spirit:fileSetRef>
 			</spirit:view>
 		</spirit:views>
@@ -511,7 +511,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -528,7 +528,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -545,7 +545,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -562,7 +562,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -579,7 +579,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -596,7 +596,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -613,7 +613,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -630,7 +630,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -647,7 +647,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -664,7 +664,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -681,7 +681,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -698,7 +698,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -715,7 +715,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -732,7 +732,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -749,7 +749,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -766,7 +766,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -783,7 +783,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -796,7 +796,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -809,7 +809,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -822,7 +822,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -839,7 +839,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -852,7 +852,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -865,7 +865,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -878,7 +878,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -891,7 +891,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -908,7 +908,7 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef>rtl</spirit:viewNameRef>
+							<spirit:viewNameRef>hdl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -917,39 +917,49 @@
 	</spirit:model>
 	<spirit:fileSets>
 		<spirit:fileSet>
-			<spirit:name>HDLSources</spirit:name>
+			<spirit:name>HDLSource</spirit:name>
 			<spirit:group>sourceFiles</spirit:group>
 			<spirit:file>
-				<spirit:name>vhd/ase_mesh1_pkt_codec.vhd</spirit:name>
+				<spirit:name>../vhd/ase_mesh1_router.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
 				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">work</spirit:logicalName>
 				<spirit:buildCommand>
 					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
 				</spirit:buildCommand>
+				<spirit:description>Router has connections to 4 neighbors and to IP. Neighbors are are named as compass points: north, east, south and west. Routing is fixed to YX routing and arbitration has fixed priorities among the input ports. Addresses are expressed as number of hops, e.g. 2 up and then 3 to the right.
+--              Flow control needs 2 bits downstream (da+av) and 1 upstream (stall)</spirit:description>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>vhd/ase_mesh1.vhd</spirit:name>
+				<spirit:name>../vhd/ase_mesh1.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
 				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">work</spirit:logicalName>
 				<spirit:buildCommand>
 					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
 				</spirit:buildCommand>
+				<spirit:description>Instantiate variable-sized network from rows*cols routers
+</spirit:description>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>vhd/ase_mesh1_router.vhd</spirit:name>
+				<spirit:name>../vhd/ase_mesh1_pkt_codec.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
 				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">work</spirit:logicalName>
 				<spirit:buildCommand>
 					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
 				</spirit:buildCommand>
+				<spirit:description>Combines the mesh network with packetizers.</spirit:description>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>vhd/ase_mesh1_top4.vhd</spirit:name>
+				<spirit:name>../vhd/ase_mesh1_top4.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
 				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">work</spirit:logicalName>
 				<spirit:buildCommand>
 					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
 				</spirit:buildCommand>
+				<spirit:description>Creates a fixed size mesh (incl. packetizers)</spirit:description>
 			</spirit:file>
 			<spirit:defaultFileBuilder>
 				<spirit:fileType>vhdlSource</spirit:fileType>
@@ -961,33 +971,10 @@
 		<spirit:fileSet>
 			<spirit:name>DependedHDL</spirit:name>
 			<spirit:file>
-				<spirit:name>../../../pkt_codec_mk2/1.0/vhd/addr_gen.vhd</spirit:name>
+				<spirit:name>../../../pkt_codec_mk2/1.0/vhd/ase_noc_pkg.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
 				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
-				<spirit:buildCommand>
-					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
-				</spirit:buildCommand>
-			</spirit:file>
-			<spirit:file>
-				<spirit:name>../../../pkt_codec_mk2/1.0/vhd/addr_lut.vhd</spirit:name>
-				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
-				<spirit:buildCommand>
-					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
-				</spirit:buildCommand>
-			</spirit:file>
-			<spirit:file>
-				<spirit:name>../../../pkt_codec_mk2/1.0/vhd/addr_rip.vhd</spirit:name>
-				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
-				<spirit:buildCommand>
-					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
-				</spirit:buildCommand>
-			</spirit:file>
-			<spirit:file>
-				<spirit:name>../../../pkt_codec_mk2/1.0/vhd/addr_translation.vhd</spirit:name>
-				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">work</spirit:logicalName>
 				<spirit:buildCommand>
 					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
 				</spirit:buildCommand>
@@ -996,6 +983,7 @@
 				<spirit:name>../../../pkt_codec_mk2/1.0/vhd/ase_dring1_pkg.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
 				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">work</spirit:logicalName>
 				<spirit:buildCommand>
 					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
 				</spirit:buildCommand>
@@ -1004,30 +992,7 @@
 				<spirit:name>../../../pkt_codec_mk2/1.0/vhd/ase_mesh1_pkg.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
 				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
-				<spirit:buildCommand>
-					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
-				</spirit:buildCommand>
-			</spirit:file>
-			<spirit:file>
-				<spirit:name>../../../pkt_codec_mk2/1.0/vhd/ase_noc_pkg.vhd</spirit:name>
-				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
-				<spirit:buildCommand>
-					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
-				</spirit:buildCommand>
-			</spirit:file>
-			<spirit:file>
-				<spirit:name>../../../pkt_codec_mk2/1.0/vhd/cdc.vhd</spirit:name>
-				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
-				<spirit:buildCommand>
-					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
-				</spirit:buildCommand>
-			</spirit:file>
-			<spirit:file>
-				<spirit:name>../../../pkt_codec_mk2/1.0/vhd/fifo_2clk.vhd</spirit:name>
-				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">work</spirit:logicalName>
 				<spirit:buildCommand>
 					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
 				</spirit:buildCommand>
@@ -1036,6 +1001,72 @@
 				<spirit:name>../../../pkt_codec_mk2/1.0/vhd/log2_pkg.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
 				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">work</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>../../../../ip.hwp.storage/fifos/fifo_mk2/1.0/vhd/ram_1clk.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">work</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>../../../../ip.hwp.storage/fifos/fifo_mk2/1.0/vhd/fifo_2clk.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">work</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>../../../pkt_codec_mk2/1.0/vhd/addr_gen.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">work</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>../../../pkt_codec_mk2/1.0/vhd/addr_lut.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">work</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>../../../pkt_codec_mk2/1.0/vhd/addr_rip.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">work</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+				<spirit:description>Converts the addresses received from NoC to IP. All transfers start with NoC address which can be optionally followed by (memory-mapped original) address.
+This unit rips (removed) the NoC address flit, if wanted. Moreover, this can replace the network address with original address (2nd flit). Or this doesn't  do a thing but just forwards everything to IP.</spirit:description>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>../../../pkt_codec_mk2/1.0/vhd/addr_translation.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">work</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>../../../pkt_codec_mk2/1.0/vhd/cdc.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">work</spirit:logicalName>
 				<spirit:buildCommand>
 					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
 				</spirit:buildCommand>
@@ -1044,14 +1075,7 @@
 				<spirit:name>../../../pkt_codec_mk2/1.0/vhd/pkt_codec_mk2.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
 				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
-				<spirit:buildCommand>
-					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
-				</spirit:buildCommand>
-			</spirit:file>
-			<spirit:file>
-				<spirit:name>../../../pkt_codec_mk2/1.0/vhd/ram_1clk.vhd</spirit:name>
-				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">work</spirit:logicalName>
 				<spirit:buildCommand>
 					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
 				</spirit:buildCommand>
@@ -1064,7 +1088,7 @@
 			</spirit:defaultFileBuilder>
 		</spirit:fileSet>
 	</spirit:fileSets>
-	<spirit:description>Top level for 2x2 ase_mesh1 NoC.
+	<spirit:description>Top level for 2x2 32-bit ase_mesh1 NoC.
 
 </spirit:description>
 	<spirit:vendorExtensions>

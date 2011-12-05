@@ -6,11 +6,11 @@
 -- Author     : Lasse Lehtonen
 -- Company    : 
 -- Created    : 2011-11-09
--- Last update: 2011-11-09
+-- Last update: 2011-12-02
 -- Platform   : 
 -- Standard   : VHDL'87
 -------------------------------------------------------------------------------
--- Description: 
+-- Description: Creates a fixed size mesh (incl. packetizers).
 -------------------------------------------------------------------------------
 -- Copyright (c) 2011 
 -------------------------------------------------------------------------------
@@ -34,18 +34,21 @@ entity ase_mesh1_top4 is
     cmd0_out   : out std_logic_vector(1 downto 0);
     data0_out  : out std_logic_vector(31 downto 0);
     stall0_in  : in  std_logic;
+
     cmd1_in    : in  std_logic_vector(1 downto 0);
     data1_in   : in  std_logic_vector(31 downto 0);
     stall1_out : out std_logic;
     cmd1_out   : out std_logic_vector(1 downto 0);
     data1_out  : out std_logic_vector(31 downto 0);
     stall1_in  : in  std_logic;
+
     cmd2_in    : in  std_logic_vector(1 downto 0);
     data2_in   : in  std_logic_vector(31 downto 0);
     stall2_out : out std_logic;
     cmd2_out   : out std_logic_vector(1 downto 0);
     data2_out  : out std_logic_vector(31 downto 0);
     stall2_in  : in  std_logic;
+
     cmd3_in    : in  std_logic_vector(1 downto 0);
     data3_in   : in  std_logic_vector(31 downto 0);
     stall3_out : out std_logic;
@@ -55,17 +58,21 @@ entity ase_mesh1_top4 is
 
 end ase_mesh1_top4;
 
-architecture rtl of ase_mesh1_top4 is
+architecture structural of ase_mesh1_top4 is
 
+  -- Intermediate wide signals that combine indifivudal terminals so that they
+  -- can be connected to mesh
   signal cmd_i   : std_logic_vector(4*2-1 downto 0);
   signal data_i  : std_logic_vector(4*32-1 downto 0);
   signal stall_i : std_logic_vector(3 downto 0);
+  
   signal cmd_o   : std_logic_vector(4*2-1 downto 0);
   signal data_o  : std_logic_vector(4*32-1 downto 0);
   signal stall_o : std_logic_vector(3 downto 0);
   
-begin  -- rtl
+begin  -- structural
 
+  -- Connect terminals to internal signals, and vice versa
   cmd_i((0+1)*2-1 downto 0*2)    <= cmd0_in;
   data_i((0+1)*32-1 downto 0*32) <= data0_in;
   stall_i(0)                     <= stall0_in;
@@ -94,6 +101,7 @@ begin  -- rtl
   data3_out                      <= data_o((3+1)*32-1 downto 3*32);
   stall3_out                     <= stall_o(3);
 
+  -- Instantiate mesh with fixed parameters
   ase_mesh1_pkt_codec_1 : entity work.ase_mesh1_pkt_codec
     generic map (
       data_width_g   => 32,
@@ -106,16 +114,20 @@ begin  -- rtl
       address_mode_g => 1,
       clock_mode_g   => 0,
       rip_addr_g     => 0,
-      fifo_depth_g   => 0)
+      fifo_depth_g   => 0
+      )
     port map (
       clk_ip    => clk,
       clk_net   => clk,
       rst_n     => rst_n,
+
       cmd_in    => cmd_i,
       data_in   => data_i,
       stall_out => stall_o,
+      
       cmd_out   => cmd_o,
       data_out  => data_o,
-      stall_in  => stall_i); 
+      stall_in  => stall_i
+      ); 
 
-end rtl;
+end structural;

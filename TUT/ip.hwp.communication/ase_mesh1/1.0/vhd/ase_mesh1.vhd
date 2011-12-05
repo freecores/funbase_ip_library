@@ -3,14 +3,14 @@
 -- Project    : 
 -------------------------------------------------------------------------------
 -- File       : ase_mesh1.vhdl
--- Author     : Lasse Lehtonen
+-- Author     : Lasse Lehtonen (ase)
 -- Company    : 
 -- Created    : 2010-06-14
--- Last update: 2011-10-07
+-- Last update: 2011-12-02
 -- Platform   : 
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
--- Description: 
+-- Description: Instantiate variable-sized network from rows*cols routers
 -------------------------------------------------------------------------------
 -- Copyright (c) 2010 
 -------------------------------------------------------------------------------
@@ -27,14 +27,17 @@ entity ase_mesh1 is
   generic (
     n_rows_g    : positive := 4;        -- Nuber of rows
     n_cols_g    : positive := 4;        -- Nuber of columns
-    cmd_width_g : positive := 2;        -- Width of the cmd line
-    bus_width_g : positive := 32);      -- Width of the data bus
+    cmd_width_g : positive := 2;        -- Width of the cmd line in bits
+    bus_width_g : positive := 32        -- Width of the data bus in bits
+    );
   port (
     clk       : in  std_logic;
     rst_n     : in  std_logic;
+
     data_in   : in  std_logic_vector(n_rows_g*n_cols_g*bus_width_g-1 downto 0);
     cmd_in    : in  std_logic_vector(n_rows_g*n_cols_g*cmd_width_g-1 downto 0);
     stall_out : out std_logic_vector(n_rows_g*n_cols_g-1 downto 0);
+    
     data_out  : out std_logic_vector(n_rows_g*n_cols_g*bus_width_g-1 downto 0);
     cmd_out   : out std_logic_vector(n_rows_g*n_cols_g*cmd_width_g-1 downto 0);
     stall_in  : in  std_logic_vector(n_rows_g*n_cols_g-1 downto 0));
@@ -42,9 +45,11 @@ entity ase_mesh1 is
 end entity ase_mesh1;
 
 
-architecture rtl of ase_mesh1 is
+architecture structural of ase_mesh1 is
 
   -- row data
+  -- All signals amed as <source><destination>name,
+  -- e.g. sn_data means "data going from south to north"
   type r_data_type is array (0 to n_rows_g) of
     std_logic_vector(n_cols_g*bus_width_g-1 downto 0);
   type r_bit_type is array (0 to n_rows_g) of
@@ -77,8 +82,9 @@ architecture rtl of ase_mesh1 is
   signal we_stall : c_bit_type;
 
   
-begin  -- architecture rtl
+begin  -- architecture structural
 
+  -- De-activate the signals "coming from outside"
   ns_data(0)         <= (others => '0');
   ns_av(0)           <= (others => '0');
   ns_da(0)           <= (others => '0');
@@ -100,7 +106,7 @@ begin  -- architecture rtl
   ew_stall(0)       <= (others => '0');
 
 
-
+  -- Instantiate rows*cols routers
   row : for r in 0 to n_rows_g-1 generate
     col : for c in 0 to n_cols_g-1 generate
 
@@ -165,4 +171,4 @@ begin  -- architecture rtl
   
 
 
-end architecture rtl;
+end architecture structural;

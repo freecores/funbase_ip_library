@@ -1,16 +1,21 @@
 -------------------------------------------------------------------------------
--- Title      : 2D mesh mk1 by ase
+-- Title      : Router for 2D mesh mk1 by ase
 -- Project    : 
 -------------------------------------------------------------------------------
 -- File       : ase_mesh1_router.vhdl
--- Author     : Lasse Lehtonen
+-- Author     : Lasse Lehtonen (ase)
 -- Company    : 
 -- Created    : 2010-04-06
--- Last update: 2011-10-21
+-- Last update: 2011-12-02
 -- Platform   : 
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
--- Description: 
+-- Description: Router has connections to 4 neighbors and to IP. Neighbors are
+--              are named as compass points: north, east, south and west.
+--              Routing is fixed to YX routing and arbitration has fixed prio-
+--              rities among the input ports. Addresses are expressed as number
+--              of hops, e.g. 2 up and then 3 to the right.
+--              Flow control needs 2 bits downstream (da+av) and 1 upstream (stall)
 -------------------------------------------------------------------------------
 -- Copyright (c) 2010 
 -------------------------------------------------------------------------------
@@ -29,19 +34,23 @@ entity ase_mesh1_router is
   generic (
     n_rows_g    : positive;             -- Number of rows
     n_cols_g    : positive;             -- Number of columns
-    bus_width_g : positive);            -- Width of the data bus
+    bus_width_g : positive              -- Width of the data bus in bits
+    );                         
   port (
-    clk         : in  std_logic;
-    rst_n       : in  std_logic;
+    clk   : in std_logic;
+    rst_n : in std_logic;
+
     -- Agent interface
     a_data_in   : in  std_logic_vector(bus_width_g-1 downto 0);
-    a_da_in     : in  std_logic;
-    a_av_in     : in  std_logic;
+    a_da_in     : in  std_logic;        -- data available = not empty = either addr or data
+    a_av_in     : in  std_logic;        -- addr valid
     a_stall_out : out std_logic;
+
     a_data_out  : out std_logic_vector(bus_width_g-1 downto 0);
     a_da_out    : out std_logic;
     a_av_out    : out std_logic;
     a_stall_in  : in  std_logic;
+
     -- North interface
     n_data_in   : in  std_logic_vector(bus_width_g-1 downto 0);
     n_da_in     : in  std_logic;
@@ -51,6 +60,7 @@ entity ase_mesh1_router is
     n_da_out    : out std_logic;
     n_av_out    : out std_logic;
     n_stall_in  : in  std_logic;
+
     -- East interface
     e_data_in   : in  std_logic_vector(bus_width_g-1 downto 0);
     e_da_in     : in  std_logic;
@@ -60,6 +70,7 @@ entity ase_mesh1_router is
     e_da_out    : out std_logic;
     e_av_out    : out std_logic;
     e_stall_in  : in  std_logic;
+
     -- South interface
     s_data_in   : in  std_logic_vector(bus_width_g-1 downto 0);
     s_da_in     : in  std_logic;
@@ -69,6 +80,7 @@ entity ase_mesh1_router is
     s_da_out    : out std_logic;
     s_av_out    : out std_logic;
     s_stall_in  : in  std_logic;
+
     -- West interface
     w_data_in   : in  std_logic_vector(bus_width_g-1 downto 0);
     w_da_in     : in  std_logic;
@@ -93,8 +105,13 @@ architecture rtl of ase_mesh1_router is
   -- CONSTANTS
   -----------------------------------------------------------------------------
 
+  -- Num of hops are stored into the lowest bits of the flit
   constant r_addr_width_c  : positive := log2_ceil(n_rows_g-1);
   constant c_addr_width_c  : positive := log2_ceil(n_cols_g-1);
+  -- 4 additional bits are used for routing.
+  --  1b telling go to left or right?,
+  --  1b already in the right column? (called "here"), 
+  --  2b for where to go first when data comes from ip
   constant lr_index_c      : positive := r_addr_width_c + c_addr_width_c;
   constant here_index_c    : positive := r_addr_width_c + c_addr_width_c + 1;
   constant first_index_h_c : positive := r_addr_width_c + c_addr_width_c + 3;
@@ -144,15 +161,15 @@ architecture rtl of ase_mesh1_router is
   signal w_da_in_r   : std_logic;
 
   -- Other registers
-  signal reroute_n_r : std_logic;
+  signal reroute_n_r : std_logic;       -- Data from n(orht) makes a turn or not?
   signal reroute_e_r : std_logic;
   signal reroute_s_r : std_logic;
   signal reroute_w_r : std_logic;
 
-  signal grant_s_n_r : std_logic;
+  signal grant_s_n_r : std_logic;       -- Output n(orht) granted for data from s(outh)
   signal grant_a_n_r : std_logic;
 
-  signal grant_n_e_r : std_logic;
+  signal grant_n_e_r : std_logic;       
   signal grant_s_e_r : std_logic;
   signal grant_w_e_r : std_logic;
   signal grant_a_e_r : std_logic;
@@ -170,6 +187,10 @@ architecture rtl of ase_mesh1_router is
   signal grant_s_a_r : std_logic;
   signal grant_w_a_r : std_logic;
 
+  -- Address = num of hops is incremented on every router. When row or col bit
+  -- overflow packet has reached the right row or column. Note that this
+  -- addition performed also for data flits. Therefore, 
+  
   signal add_ar_r : std_logic_vector(r_addr_width_c-1 downto 0);
   signal add_ac_r : std_logic_vector(c_addr_width_c-1 downto 0);
 
@@ -290,7 +311,7 @@ begin  -- architecture rtl
   -- COMINATORIAL SIGNALS
   -----------------------------------------------------------------------------
 
-
+  -- Always increment the incoming flits
   add_n <=
     std_logic_vector(resize(unsigned(n_data_in(r_addr_width_c-1 downto 0)),
                             r_addr_width_c+1)
@@ -310,6 +331,7 @@ begin  -- architecture rtl
                             c_addr_width_c+1)
                      + to_unsigned(1, c_addr_width_c+1));
 
+  -- Forward the data to the agent (=IP block) and other outputs
   with a_av_in select
     data_a <=
     a_data_in when '1',
@@ -320,6 +342,22 @@ begin  -- architecture rtl
     std_logic_vector(unsigned(a_data_in(r_addr_width_c-1 downto 0)) +
                      unsigned(add_ar_r)) when others;
 
+  data_n <= n_data_in(bus_width_g-1 downto r_addr_width_c) &
+            add_n(r_addr_width_c-1 downto 0);
+  data_e <= e_data_in(bus_width_g-1 downto c_addr_width_c + r_addr_width_c) &
+            add_e(c_addr_width_c-1 downto 0) &
+            e_data_in(r_addr_width_c-1 downto 0);
+  data_s <= s_data_in(bus_width_g-1 downto r_addr_width_c) &
+            add_s(r_addr_width_c-1 downto 0);
+  data_w <= w_data_in(bus_width_g-1 downto c_addr_width_c + r_addr_width_c) &
+            add_w(c_addr_width_c-1 downto 0) &
+            w_data_in(r_addr_width_c-1 downto 0);
+
+
+  
+  -- Short-hand notations: for detecting if a turn is needed (reroute),
+  -- has the right column been reached, whether to go left or right, and where
+  -- to go first when entering the network.
   reroute_n <= add_n(r_addr_width_c);
   reroute_e <= add_e(c_addr_width_c);
   reroute_s <= add_s(r_addr_width_c);
@@ -340,17 +378,9 @@ begin  -- architecture rtl
   a_first_hi_prev <= a_data_in_r(first_index_h_c);
   a_first_lo_prev <= a_data_in_r(first_index_l_c);
 
-  data_n <= n_data_in(bus_width_g-1 downto r_addr_width_c) &
-            add_n(r_addr_width_c-1 downto 0);
-  data_e <= e_data_in(bus_width_g-1 downto c_addr_width_c + r_addr_width_c) &
-            add_e(c_addr_width_c-1 downto 0) &
-            e_data_in(r_addr_width_c-1 downto 0);
-  data_s <= s_data_in(bus_width_g-1 downto r_addr_width_c) &
-            add_s(r_addr_width_c-1 downto 0);
-  data_w <= w_data_in(bus_width_g-1 downto c_addr_width_c + r_addr_width_c) &
-            add_w(c_addr_width_c-1 downto 0) &
-            w_data_in(r_addr_width_c-1 downto 0);
-  
+
+  -- Arbitrate for outputs. Routing algorithm decides with output to "request"
+  -- and fixed-priority algorithm "grants" the output to one of the requestors
   req_n_e <= ((n_av_in and not n_stall_out_r) and reroute_n and (not here_n) and
               (not lr_n)) or
              (n_av_in_r and reroute_n_r and (not here_n_prev) and
@@ -382,13 +412,13 @@ begin  -- architecture rtl
   req_s_a <= ((s_av_in and not s_stall_out_r) and reroute_s and here_s) or
              (s_av_in_r and reroute_s_r and here_s_prev);
 
-          -- (was just w_av_in              )
+  -- (was just w_av_in              )
   req_w_e <= ((w_av_in and not w_stall_out_r) and (not reroute_w)) or
              (w_av_in_r and (not reroute_w_r));
   req_w_a <= ((w_av_in and not w_stall_out_r) and reroute_w) or
              (w_av_in_r and reroute_w_r);
-  
-          -- ( was just a_av_in       )
+
+  -- ( was just a_av_in       )
   req_a_n <= ((a_av_in and not a_stall_out_r) and (not a_first_hi)
               and (not a_first_lo)) or
              (a_av_in_r and (not a_first_hi_prev)
@@ -519,6 +549,7 @@ begin  -- architecture rtl
                (w_da_in and (not w_av_in) and grant_w_a_r) or
                (w_da_in_r and (not w_av_in_r) and grant_w_a_r);
 
+  -- Flow control. Stall the incoming data if it cannot be forwarded.
   stall_n <= (req_n_e and (not grant_n_e or e_stall_in)) or
              (grant_n_e_r and e_stall_in) or
              (req_n_s and (not grant_n_s or s_stall_in)) or
