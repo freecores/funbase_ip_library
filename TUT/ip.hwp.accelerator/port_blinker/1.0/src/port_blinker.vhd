@@ -1,4 +1,21 @@
 -------------------------------------------------------------------------------
+-- Title      : Port blinker
+-- Project    : Funbase
+-------------------------------------------------------------------------------
+-- File       : port_blinker.vhd
+-- Author     : Juha Arvio
+-- Company    : TUT
+-- Last update: 2011-12-05
+-- Version    : 0.1
+-- Platform   : 
+-------------------------------------------------------------------------------
+-- Description: Counts up and inverts output when reaching the limit value.
+--              Then start over again.
+-------------------------------------------------------------------------------
+-- Revisions  :
+-- Date        Version  Author  Description
+-- 20.10.2011   0.1     arvio     Created
+-------------------------------------------------------------------------------
 -- Funbase IP library Copyright (C) 2011 TUT Department of Computer Systems
 --
 -- This source file may be used and distributed without
@@ -22,24 +39,6 @@
 -- Public License along with this source; if not, download it
 -- from http://www.opencores.org/lgpl.shtml
 -------------------------------------------------------------------------------
--- Title      : Port blinker
--- Project    : Funbase
--------------------------------------------------------------------------------
--- File       : port_blinker.vhd
--- Author     : Juha Arvio
--- Company    : TUT
--- Last update: 2011-11-30
--- Version    : 0.1
--- Platform   : 
--------------------------------------------------------------------------------
--- Description: Counts up and inverts output when reaching the limit value.
---              Then start over again.
--------------------------------------------------------------------------------
--- Revisions  :
--- Date        Version  Author  Description
--- 20.10.2011   0.1     arvio     Created
--------------------------------------------------------------------------------
-
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_arith.all;
