@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 15:37:13 ke marras 9 2011-->
-<spirit:design>
+<!--Created by Kactus 2 document generator 15:30:55 05.12.2011-->
+<spirit:design xmlns:kactus2="http://funbase.cs.tut.fi/" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>soc</spirit:library>
 	<spirit:name>de2_sdram_example.design</spirit:name>
@@ -74,90 +74,14 @@
 		</spirit:interconnection>
 	</spirit:interconnections>
 	<spirit:hierConnections>
-		<spirit:hierConnection spirit:interfaceRef="sdram_clk">
-			<spirit:interface spirit:componentRef="de2_sdram_tester_1" spirit:busRef="sdram_clk"/>
+		<spirit:hierConnection spirit:interfaceRef="Chip">
+			<spirit:interface spirit:componentRef="de2_sdram_1" spirit:busRef="Chip"/>
 			<spirit:vendorExtensions>
-				<kactus2:position x="700" y="330"/>
+				<kactus2:position x="700" y="100"/>
 				<kactus2:direction x="-1" y="0"/>
 				<kactus2:route>
-					<kactus2:position x="330" y="330"/>
-					<kactus2:position x="690" y="330"/>
-					<kactus2:position x="690" y="330"/>
-					<kactus2:position x="700" y="330"/>
-				</kactus2:route>
-			</spirit:vendorExtensions>
-		</spirit:hierConnection>
-		<spirit:hierConnection spirit:interfaceRef="LEDG">
-			<spirit:interface spirit:componentRef="de2_sdram_tester_1" spirit:busRef="LEDG"/>
-			<spirit:vendorExtensions>
-				<kactus2:position x="700" y="290"/>
-				<kactus2:direction x="-1" y="0"/>
-				<kactus2:route>
-					<kactus2:position x="330" y="290"/>
-					<kactus2:position x="700" y="290"/>
-				</kactus2:route>
-			</spirit:vendorExtensions>
-		</spirit:hierConnection>
-		<spirit:hierConnection spirit:interfaceRef="LEDR">
-			<spirit:interface spirit:componentRef="de2_sdram_tester_1" spirit:busRef="LEDR"/>
-			<spirit:vendorExtensions>
-				<kactus2:position x="700" y="250"/>
-				<kactus2:direction x="-1" y="0"/>
-				<kactus2:route>
-					<kactus2:position x="330" y="250"/>
-					<kactus2:position x="700" y="250"/>
-				</kactus2:route>
-			</spirit:vendorExtensions>
-		</spirit:hierConnection>
-		<spirit:hierConnection spirit:interfaceRef="SW">
-			<spirit:interface spirit:componentRef="de2_sdram_tester_1" spirit:busRef="SW"/>
-			<spirit:vendorExtensions>
-				<kactus2:position x="60" y="240"/>
-				<kactus2:direction x="1" y="0"/>
-				<kactus2:route>
-					<kactus2:position x="170" y="240"/>
-					<kactus2:position x="160" y="240"/>
-					<kactus2:position x="160" y="240"/>
-					<kactus2:position x="60" y="240"/>
-				</kactus2:route>
-			</spirit:vendorExtensions>
-		</spirit:hierConnection>
-		<spirit:hierConnection spirit:interfaceRef="rst_n">
-			<spirit:interface spirit:componentRef="de2_sdram_1" spirit:busRef="rst_n"/>
-			<spirit:vendorExtensions>
-				<kactus2:position x="60" y="200"/>
-				<kactus2:direction x="1" y="0"/>
-				<kactus2:route>
-					<kactus2:position x="430" y="200"/>
-					<kactus2:position x="420" y="200"/>
-					<kactus2:position x="420" y="200"/>
-					<kactus2:position x="60" y="200"/>
-				</kactus2:route>
-			</spirit:vendorExtensions>
-		</spirit:hierConnection>
-		<spirit:hierConnection spirit:interfaceRef="rst_n">
-			<spirit:interface spirit:componentRef="de2_sdram_tester_1" spirit:busRef="rst_n"/>
-			<spirit:vendorExtensions>
-				<kactus2:position x="60" y="200"/>
-				<kactus2:direction x="1" y="0"/>
-				<kactus2:route>
-					<kactus2:position x="170" y="160"/>
-					<kactus2:position x="160" y="160"/>
-					<kactus2:position x="160" y="200"/>
-					<kactus2:position x="60" y="200"/>
-				</kactus2:route>
-			</spirit:vendorExtensions>
-		</spirit:hierConnection>
-		<spirit:hierConnection spirit:interfaceRef="clk">
-			<spirit:interface spirit:componentRef="de2_sdram_1" spirit:busRef="clk"/>
-			<spirit:vendorExtensions>
-				<kactus2:position x="60" y="130"/>
-				<kactus2:direction x="1" y="0"/>
-				<kactus2:route>
-					<kactus2:position x="430" y="130"/>
-					<kactus2:position x="420" y="130"/>
-					<kactus2:position x="420" y="130"/>
-					<kactus2:position x="60" y="130"/>
+					<kactus2:position x="590" y="100"/>
+					<kactus2:position x="700" y="100"/>
 				</kactus2:route>
 			</spirit:vendorExtensions>
 		</spirit:hierConnection>
@@ -174,14 +98,90 @@
 				</kactus2:route>
 			</spirit:vendorExtensions>
 		</spirit:hierConnection>
-		<spirit:hierConnection spirit:interfaceRef="Chip">
-			<spirit:interface spirit:componentRef="de2_sdram_1" spirit:busRef="Chip"/>
+		<spirit:hierConnection spirit:interfaceRef="clk">
+			<spirit:interface spirit:componentRef="de2_sdram_1" spirit:busRef="clk"/>
 			<spirit:vendorExtensions>
-				<kactus2:position x="700" y="100"/>
+				<kactus2:position x="60" y="130"/>
+				<kactus2:direction x="1" y="0"/>
+				<kactus2:route>
+					<kactus2:position x="430" y="130"/>
+					<kactus2:position x="420" y="130"/>
+					<kactus2:position x="420" y="130"/>
+					<kactus2:position x="60" y="130"/>
+				</kactus2:route>
+			</spirit:vendorExtensions>
+		</spirit:hierConnection>
+		<spirit:hierConnection spirit:interfaceRef="rst_n">
+			<spirit:interface spirit:componentRef="de2_sdram_tester_1" spirit:busRef="rst_n"/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="60" y="200"/>
+				<kactus2:direction x="1" y="0"/>
+				<kactus2:route>
+					<kactus2:position x="170" y="160"/>
+					<kactus2:position x="160" y="160"/>
+					<kactus2:position x="160" y="200"/>
+					<kactus2:position x="60" y="200"/>
+				</kactus2:route>
+			</spirit:vendorExtensions>
+		</spirit:hierConnection>
+		<spirit:hierConnection spirit:interfaceRef="rst_n">
+			<spirit:interface spirit:componentRef="de2_sdram_1" spirit:busRef="rst_n"/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="60" y="200"/>
+				<kactus2:direction x="1" y="0"/>
+				<kactus2:route>
+					<kactus2:position x="430" y="200"/>
+					<kactus2:position x="420" y="200"/>
+					<kactus2:position x="420" y="200"/>
+					<kactus2:position x="60" y="200"/>
+				</kactus2:route>
+			</spirit:vendorExtensions>
+		</spirit:hierConnection>
+		<spirit:hierConnection spirit:interfaceRef="SW">
+			<spirit:interface spirit:componentRef="de2_sdram_tester_1" spirit:busRef="SW"/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="60" y="240"/>
+				<kactus2:direction x="1" y="0"/>
+				<kactus2:route>
+					<kactus2:position x="170" y="240"/>
+					<kactus2:position x="160" y="240"/>
+					<kactus2:position x="160" y="240"/>
+					<kactus2:position x="60" y="240"/>
+				</kactus2:route>
+			</spirit:vendorExtensions>
+		</spirit:hierConnection>
+		<spirit:hierConnection spirit:interfaceRef="LEDR">
+			<spirit:interface spirit:componentRef="de2_sdram_tester_1" spirit:busRef="LEDR"/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="700" y="250"/>
 				<kactus2:direction x="-1" y="0"/>
 				<kactus2:route>
-					<kactus2:position x="590" y="100"/>
-					<kactus2:position x="700" y="100"/>
+					<kactus2:position x="330" y="250"/>
+					<kactus2:position x="700" y="250"/>
+				</kactus2:route>
+			</spirit:vendorExtensions>
+		</spirit:hierConnection>
+		<spirit:hierConnection spirit:interfaceRef="LEDG">
+			<spirit:interface spirit:componentRef="de2_sdram_tester_1" spirit:busRef="LEDG"/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="700" y="290"/>
+				<kactus2:direction x="-1" y="0"/>
+				<kactus2:route>
+					<kactus2:position x="330" y="290"/>
+					<kactus2:position x="700" y="290"/>
+				</kactus2:route>
+			</spirit:vendorExtensions>
+		</spirit:hierConnection>
+		<spirit:hierConnection spirit:interfaceRef="sdram_clk">
+			<spirit:interface spirit:componentRef="de2_sdram_tester_1" spirit:busRef="sdram_clk"/>
+			<spirit:vendorExtensions>
+				<kactus2:position x="700" y="330"/>
+				<kactus2:direction x="-1" y="0"/>
+				<kactus2:route>
+					<kactus2:position x="330" y="330"/>
+					<kactus2:position x="690" y="330"/>
+					<kactus2:position x="690" y="330"/>
+					<kactus2:position x="700" y="330"/>
 				</kactus2:route>
 			</spirit:vendorExtensions>
 		</spirit:hierConnection>

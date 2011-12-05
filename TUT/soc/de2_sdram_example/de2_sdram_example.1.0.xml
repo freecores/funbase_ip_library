@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 15:37:13 ke marras 9 2011-->
-<spirit:component>
+<!--Created by Kactus 2 document generator 16:07:40 05.12.2011-->
+<spirit:component xmlns:kactus2="http://funbase.cs.tut.fi/" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>soc</spirit:library>
 	<spirit:name>de2_sdram_example</spirit:name>
@@ -210,6 +210,21 @@
 				<spirit:name>structural</spirit:name>
 				<spirit:envIdentifier></spirit:envIdentifier>
 				<spirit:hierarchyRef spirit:vendor="TUT" spirit:library="soc" spirit:name="de2_sdram_example.designcfg" spirit:version="1.0"/>
+				<spirit:vendorExtensions>
+					<kactus2:topLevelViewRef>structural_rtl</kactus2:topLevelViewRef>
+				</spirit:vendorExtensions>
+			</spirit:view>
+			<spirit:view>
+				<spirit:name>structural_rtl</spirit:name>
+				<spirit:envIdentifier>VHDL:Kactus2:</spirit:envIdentifier>
+				<spirit:language spirit:strict="false">vhdl</spirit:language>
+				<spirit:modelName>de2_sdram_example(structural)</spirit:modelName>
+				<spirit:fileSetRef>
+					<spirit:localName>structural_vhdlSource</spirit:localName>
+				</spirit:fileSetRef>
+				<spirit:fileSetRef>
+					<spirit:localName>quartusFiles</spirit:localName>
+				</spirit:fileSetRef>
 			</spirit:view>
 		</spirit:views>
 		<spirit:ports>
@@ -225,7 +240,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>structural</spirit:viewNameRef>
+							<spirit:viewNameRef>structural_rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -242,7 +258,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>structural</spirit:viewNameRef>
+							<spirit:viewNameRef>structural_rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -255,7 +272,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>structural</spirit:viewNameRef>
+							<spirit:viewNameRef>structural_rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -268,7 +286,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>structural</spirit:viewNameRef>
+							<spirit:viewNameRef>structural_rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -281,7 +300,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>structural</spirit:viewNameRef>
+							<spirit:viewNameRef>structural_rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -298,7 +318,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>structural</spirit:viewNameRef>
+							<spirit:viewNameRef>structural_rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -315,7 +336,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>structural</spirit:viewNameRef>
+							<spirit:viewNameRef>structural_rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -328,7 +350,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>structural</spirit:viewNameRef>
+							<spirit:viewNameRef>structural_rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -341,7 +364,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>structural</spirit:viewNameRef>
+							<spirit:viewNameRef>structural_rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -358,7 +382,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>structural</spirit:viewNameRef>
+							<spirit:viewNameRef>structural_rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -375,7 +400,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>structural</spirit:viewNameRef>
+							<spirit:viewNameRef>structural_rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -392,7 +418,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic_vector</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>structural</spirit:viewNameRef>
+							<spirit:viewNameRef>structural_rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -409,7 +436,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>structural</spirit:viewNameRef>
+							<spirit:viewNameRef>structural_rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -422,7 +450,8 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>structural</spirit:viewNameRef>
+							<spirit:viewNameRef>structural_rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -435,13 +464,42 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName spirit:constrained="false">std_logic</spirit:typeName>
 							<spirit:typeDefinition>IEEE.std_logic_1164.all</spirit:typeDefinition>
-							<spirit:viewNameRef></spirit:viewNameRef>
+							<spirit:viewNameRef>structural</spirit:viewNameRef>
+							<spirit:viewNameRef>structural_rtl</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
 			</spirit:port>
 		</spirit:ports>
 	</spirit:model>
+	<spirit:fileSets>
+		<spirit:fileSet>
+			<spirit:name>structural_vhdlSource</spirit:name>
+			<spirit:group>sourceFiles</spirit:group>
+			<spirit:file>
+				<spirit:name>vhd/de2_sdram_example.structural.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">true</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">work</spirit:logicalName>
+				<spirit:buildCommand>
+					<spirit:command>vcom</spirit:command>
+					<spirit:flags>-quiet -check_synthesis -work work</spirit:flags>
+					<spirit:replaceDefaultFlags>true</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+		</spirit:fileSet>
+		<spirit:fileSet>
+			<spirit:name>quartusFiles</spirit:name>
+			<spirit:file>
+				<spirit:name>quartus/de2_sdram_example_template.qsf</spirit:name>
+				<spirit:userFileType>quartusPinmap</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+		</spirit:fileSet>
+	</spirit:fileSets>
 	<spirit:vendorExtensions>
 		<kactus2:extensions>
 			<kactus2:kts_attributes>
