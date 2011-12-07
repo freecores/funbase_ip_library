@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 13:13:32 05.12.2011-->
+<!--Created by Kactus 2 document generator 13:55:50 05.12.2011-->
 <spirit:component xmlns:kactus2="http://funbase.cs.tut.fi/" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>soc</spirit:library>
@@ -278,6 +278,33 @@
 					<spirit:command>vcom</spirit:command>
 					<spirit:flags>-quiet -check_synthesis -work work</spirit:flags>
 					<spirit:replaceDefaultFlags>true</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+		</spirit:fileSet>
+		<spirit:fileSet>
+			<spirit:name>modelsimScripts</spirit:name>
+			<spirit:file>
+				<spirit:name>sim/sim.do</spirit:name>
+				<spirit:userFileType>Modelsim's do-file</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>sim/all_waves.do</spirit:name>
+				<spirit:userFileType>Modelsim's do-file</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+				</spirit:buildCommand>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>sim/create_makefile</spirit:name>
+				<spirit:userFileType>Modelsim's do-file</spirit:userFileType>
+				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:buildCommand>
+					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
 				</spirit:buildCommand>
 			</spirit:file>
 		</spirit:fileSet>
