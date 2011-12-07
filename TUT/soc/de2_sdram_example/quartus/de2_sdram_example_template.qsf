@@ -1,7 +1,7 @@
 # ----------------------------------------------------------- #
 
-# Template for Quartus project
-# Date create 2011-12-05 
+# Template for Quartus project. This will be copied into actual qsf
+# Date created 2011-12-05 
 # Erno Salminen
 
 # ----------------------------------------------------------- #
