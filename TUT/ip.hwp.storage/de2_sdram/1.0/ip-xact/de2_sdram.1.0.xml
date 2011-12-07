@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Created by Kactus 2 document generator 13:29:46 02.12.2011-->
+<!--Created by Kactus 2 document generator 15:32:35 05.12.2011-->
 <spirit:component xmlns:kactus2="http://funbase.cs.tut.fi/" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5/index.xsd">
 	<spirit:vendor>TUT</spirit:vendor>
 	<spirit:library>ip.hwp.storage</spirit:library>
@@ -822,10 +822,17 @@
 				<spirit:name>../vhd/de2_sdram.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
 				<spirit:isIncludeFile spirit:externalDeclarations="false">false</spirit:isIncludeFile>
+				<spirit:logicalName spirit:default="false">work</spirit:logicalName>
 				<spirit:buildCommand>
 					<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
 				</spirit:buildCommand>
 			</spirit:file>
+			<spirit:defaultFileBuilder>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:command>vcom</spirit:command>
+				<spirit:flags>-quiet -check_synthesis</spirit:flags>
+				<spirit:replaceDefaultFlags>false</spirit:replaceDefaultFlags>
+			</spirit:defaultFileBuilder>
 		</spirit:fileSet>
 	</spirit:fileSets>
 	<spirit:description>SDRAM controller for A2V64S40CTP and compatible (e.g. Altera DE2 board) with interface optimized for simple HW applications.</spirit:description>
