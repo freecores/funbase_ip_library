@@ -1,36 +1,43 @@
 -------------------------------------------------------------------------------
+-- Funbase IP library Copyright (C) 2011 TUT Department of Computer Systems
+--
+-- This source file may be used and distributed without
+-- restriction provided that this copyright statement is not
+-- removed from the file and that any derivative work contains
+-- the original copyright notice and the associated disclaimer.
+--
+-- This source file is free software; you can redistribute it
+-- and/or modify it under the terms of the GNU Lesser General
+-- Public License as published by the Free Software Foundation;
+-- either version 2.1 of the License, or (at your option) any
+-- later version.
+--
+-- This source is distributed in the hope that it will be
+-- useful, but WITHOUT ANY WARRANTY; without even the implied
+-- warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+-- PURPOSE.  See the GNU Lesser General Public License for more
+-- details.
+--
+-- You should have received a copy of the GNU Lesser General
+-- Public License along with this source; if not, download it
+-- from http://www.opencores.org/lgpl.shtml
+-------------------------------------------------------------------------------
 -- Title      : HIBI interface
 -- Project    : Funbase
 -------------------------------------------------------------------------------
 -- File       : hibi_if.vhd
 -- Author     : Juha Arvio
--- Company    : TTY
--- Last update: 27.05.2011
--- Version    : 0.9
+-- Company    : TUT
+-- Last update: 05.10.2011
+-- Version    : 0.91
 -- Platform   : 
 -------------------------------------------------------------------------------
 -- Description: a HIBI interface for PCIE to HIBI adapter
---
--------------------------------------------------------------------------------
--- Copyright (c) 2011
 -------------------------------------------------------------------------------
 -- Revisions  :
 -- Date        Version  Author  Description
 -- 15.10.2010   0.1     arvio     Created
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
---  This file is a part of a free IP-block: you can redistribute it and/or modify
---  it under the terms of the Lesser GNU General Public License as published by
---  the Free Software Foundation, either version 3 of the License, or
---  (at your option) any later version.
---
---  This IP-block is distributed in the hope that it will be useful,
---  but WITHOUT ANY WARRANTY; without even the implied warranty of
---  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
---  Lesser GNU General Public License for more details.
---
---  You should have received a copy of the Lesser GNU General Public License
---  along with Transaction Generator.  If not, see <http://www.gnu.org/licenses/>.
+-- 05.10.2011   0.91    arvio
 -------------------------------------------------------------------------------
 
 library ieee;
@@ -61,7 +68,7 @@ entity hibi_if is
             PCIE_RW_LENGTH_WIDTH  : integer := 13;
             PCIE_ID_WIDTH         : integer := 16;
             PCIE_FUNC_WIDTH       : integer := 3;
---            PKT_TAG_WIDTH         : integer := 9;
+            PKT_TAG_WIDTH         : integer := 8;
             PCIE_TAG_WIDTH  : integer := 6;
             ADDR_TO_LIMIT_WIDTH : integer := 12;
             
@@ -123,7 +130,7 @@ entity hibi_if is
 --    ipkt_byte_cnt_in    : in std_logic_vector(PCIE_RW_LENGTH_WIDTH-1 downto 0);
     ipkt_req_id_in      : in std_logic_vector(PCIE_ID_WIDTH-1 downto 0);
 --    ipkt_cmp_id_in      : in std_logic_vector(PCIE_ID_WIDTH-1 downto 0);
-    ipkt_tag_in         : in std_logic_vector(PCIE_TAG_WIDTH-1 downto 0);
+    ipkt_tag_in         : in std_logic_vector(PKT_TAG_WIDTH-1 downto 0);
     
     ipkt_valid_in      : in std_logic;
 --    ipkt_one_d_in      : in std_logic;
@@ -143,7 +150,7 @@ entity hibi_if is
     opkt_req_id_out      : out std_logic_vector(PCIE_ID_WIDTH-1 downto 0);
 --    opkt_cmp_id_out      : out std_logic_vector(PCIE_ID_WIDTH-1 downto 0);
 --    opkt_func_id_out     : out std_logic_vector(PCIE_FUNC_WIDTH-1 downto 0);
-    opkt_tag_out         : out std_logic_vector(PCIE_TAG_WIDTH-1 downto 0);
+    opkt_tag_out         : out std_logic_vector(PKT_TAG_WIDTH-1 downto 0);
     
 --    opkt_wdata_req_in    : in std_logic;
     
@@ -297,7 +304,7 @@ architecture rtl of hibi_if is
   constant P2H_REQ_ID_L : integer := P2H_PARTS_LEFT_U + 1;
   constant P2H_REQ_ID_U : integer := P2H_REQ_ID_L + PCIE_ID_WIDTH - 1;
   constant P2H_TAG_L : integer := P2H_REQ_ID_U + 1;
-  constant P2H_TAG_U : integer := P2H_TAG_L + PCIE_TAG_WIDTH - 1;
+  constant P2H_TAG_U : integer := P2H_TAG_L + PKT_TAG_WIDTH - 1;
   
   constant P2H_RCONF_WIDTH : integer := P2H_TAG_U+1;
   
@@ -514,7 +521,7 @@ architecture rtl of hibi_if is
   signal opkt_tx_packets_left_r : std_logic_vector(HIBI_RW_LENGTH_WIDTH-PCIE_LOWER_ADDR_WIDTH-1 downto 0);
   signal opkt_tx_req_id_r : std_logic_vector(PCIE_ID_WIDTH-1 downto 0);
 --  signal opkt_tx_cpl_id_r : std_logic_vector(PCIE_ID_WIDTH-1 downto 0);
-  signal opkt_tx_tag_r : std_logic_vector(PCIE_TAG_WIDTH-1 downto 0);
+  signal opkt_tx_tag_r : std_logic_vector(PKT_TAG_WIDTH-1 downto 0);
   
   signal opkt_tx_is_write_r : std_logic;
   signal opkt_tx_is_read_req_r : std_logic;
@@ -539,13 +546,15 @@ architecture rtl of hibi_if is
   signal p2h_rconf_total_amount_rv : std_logic_vector(HIBI_RW_LENGTH_WIDTH-1 downto 0);
   signal p2h_rconf_packets_left_rv : std_logic_vector(HIBI_RW_LENGTH_WIDTH-PCIE_LOWER_ADDR_WIDTH-1 downto 0);
   signal p2h_rconf_req_id_rv : std_logic_vector(PCIE_ID_WIDTH-1 downto 0);
-  signal p2h_rconf_tag_rv : std_logic_vector(PCIE_TAG_WIDTH-1 downto 0);
+  signal p2h_rconf_tag_rv : std_logic_vector(PKT_TAG_WIDTH-1 downto 0);
   
   signal p2h_rconf_upd_we_r : std_logic;
   
   signal p2h_rconf_wdata : std_logic_vector(P2H_RCONF_WIDTH-1 downto 0);
   signal p2h_rconf_upd_wdata : std_logic_vector(P2H_RCONF_WIDTH-1 downto 0);
   signal p2h_rconf_upd_rdata : std_logic_vector(P2H_RCONF_WIDTH-1 downto 0);
+  
+  signal ipkt_packets : std_logic_vector(HIBI_RW_LENGTH_WIDTH-PCIE_CPL_LENGTH_MIN_WIDTH-1 downto 0);
   
 --   signal p2h_tx_lower_addr : std_logic_vector(PCIE_LOWER_ADDR_WIDTH-1 downto 0);
 --   signal p2h_tx_length_total : std_logic_vector(HIBI_RW_LENGTH_WIDTH-1 downto 0);
@@ -563,6 +572,28 @@ architecture rtl of hibi_if is
   signal init_done : std_logic;
   
 begin
+  --synthesis translate_off
+--   debug_gen_0 : if DEBUG = 1 generate
+   process
+     variable DEBUG : integer;
+   begin
+     DEBUG := 1;
+     report "---------------------------------------------------";
+     report "";
+     report "HIBI_DATA_WIDTH: " & str(HIBI_DATA_WIDTH);
+     report "HIBI_COM_WIDTH:  " & str(HIBI_COM_WIDTH);
+     report "HIBI_COM_WR:     " & str(HIBI_COM_WR);
+     report "HIBI_COM_RD:     " & str(HIBI_COM_RD);
+     report "HIBI_COM_MSG_WR: " & str(HIBI_COM_MSG_WR);
+     report "HIBI_IF_ADDR:    " & str(HIBI_IF_ADDR);
+     report "H2P_WR_CHANS:    " & str(H2P_WR_CHANS);
+     report "H2P_RD_CHANS:    " & str(H2P_RD_CHANS);
+     report "---------------------------------------------------";
+     wait until DEBUG = 0;
+   end process;
+--   end generate;
+  --synthesis translate_on
+  
   init_done <= h2p_conf_state_init_done_r and p2h_req_init_done and opkt_buf_init_done;
   init_done_out <= init_done;
   
@@ -872,7 +903,8 @@ begin
                 hibi_msg_wdata_r(HIBI_RW_LENGTH_WIDTH-1 downto 0) <= ipkt_length_in;
                 hibi_msg_wdata_r(HIBI_DATA_BYTE_WIDTH+HDMA_RW_AMOUNT_WIDTH-1 downto HDMA_RW_AMOUNT_WIDTH) <= (others => '1');
               when "01" =>
-                hibi_msg_wdata_r <= HIBI_IF_ADDR(HIBI_DATA_WIDTH-1 downto HIBI_ADDR_SPACE_WIDTH) & P2H_RD_RET_ADDR_BASE_OFFSET(HIBI_ADDR_SPACE_WIDTH-1 downto OPKT_BUFFERS_WIDTH) & p2h_buf_index_r;
+                hibi_msg_wdata_r <= HIBI_IF_ADDR(HIBI_DATA_WIDTH-1 downto HIBI_ADDR_SPACE_WIDTH)
+                                    & P2H_RD_RET_ADDR_BASE_OFFSET(HIBI_ADDR_SPACE_WIDTH-1 downto OPKT_BUFFERS_WIDTH) & p2h_buf_index_r;
               when "10" =>
                 hibi_msg_wdata_r(HIBI_DATA_WIDTH-1 downto 1) <= (others => '0');
                 hibi_msg_wdata_r(0) <= '1';
@@ -1481,7 +1513,7 @@ begin
 ------------------------------------------------------------------------------------------
 -- H2P read/write configuration state memory
 ------------------------------------------------------------------------------------------
-  h2p_conf_state_mem : entity work.onchip_mem_sc
+  h2p_conf_state_mem : entity work.alt_mem_sc
   generic map ( DATA_WIDTH => H2P_CONF_STATE_WIDTH,
                 ADDR_WIDTH => H2P_CHANS_WIDTH + 1,
                 MEM_SIZE   => H2P_CHANS*2 )
@@ -1580,7 +1612,8 @@ begin
   p2h_ack_rx_hibi_dma_comp <= hibi_msg_addr_in(P2H_HDMA_ADDR_SPACES_WIDTH downto 0);
   p2h_ack_rx_hibi_dma_offset <= hibi_msg_data_in(HDMA_CHANNELS_WIDTH-1 downto 0);
   
-  process (hibi_msg_re_r, hibi_msg_empty_in, hibi_msg_addr_in(10 downto 8), hibi_msg_data_in, p2h_req_tx_we_r, hibi_msg_we_r, hibi_msg_full_in)
+  process (hibi_msg_re_r, hibi_msg_empty_in, hibi_msg_addr_in(10 downto 8), hibi_msg_data_in, p2h_req_tx_we_r, hibi_msg_we_r, hibi_msg_full_in,
+           ipkt_length_in)
   begin
     if ((p2h_req_tx_we_r = '1') and (hibi_msg_we_r = '0') and (hibi_msg_full_in = '0')) then
       p2h_req_tx_ready <= '1';
@@ -1600,12 +1633,18 @@ begin
     else
       p2h_ack_rx_valid <= '0';
     end if;
+    
+    if (ipkt_length_in(PCIE_CPL_LENGTH_MIN_WIDTH-1 downto 0) = 0) then
+      ipkt_packets <= ipkt_length_in(HIBI_RW_LENGTH_WIDTH-1 downto PCIE_CPL_LENGTH_MIN_WIDTH) - 1;
+    else
+      ipkt_packets <= ipkt_length_in(HIBI_RW_LENGTH_WIDTH-1 downto PCIE_CPL_LENGTH_MIN_WIDTH);
+    end if;
   end process;
   
 ------------------------------------------------------------------------------------------
 -- PC to HIBI output packet conf memory
 ------------------------------------------------------------------------------------------
-  p2h_opkt_conf_mem : entity work.onchip_mem_sc
+  p2h_opkt_conf_mem : entity work.alt_mem_sc
   generic map ( DATA_WIDTH => P2H_RCONF_WIDTH,
                 ADDR_WIDTH => P2H_RD_CHANS_WIDTH,
                 MEM_SIZE   => P2H_RD_CHANS )
@@ -1630,7 +1669,7 @@ begin
   
   p2h_rconf_wdata(P2H_LOWER_ADDR_U downto P2H_LOWER_ADDR_L) <= ipkt_addr_in(PCIE_LOWER_ADDR_WIDTH-1 downto 0);
   p2h_rconf_wdata(P2H_TOTAL_AMOUNT_U downto P2H_TOTAL_AMOUNT_L) <= ipkt_length_in;
-  p2h_rconf_wdata(P2H_PARTS_LEFT_U downto P2H_PARTS_LEFT_L) <= ipkt_length_in(HIBI_RW_LENGTH_WIDTH-1 downto PCIE_CPL_LENGTH_MIN_WIDTH);
+  p2h_rconf_wdata(P2H_PARTS_LEFT_U downto P2H_PARTS_LEFT_L) <= ipkt_packets;
   p2h_rconf_wdata(P2H_REQ_ID_U downto P2H_REQ_ID_L) <= ipkt_req_id_in;
   p2h_rconf_wdata(P2H_TAG_U downto P2H_TAG_L) <= ipkt_tag_in;
   
@@ -1667,7 +1706,7 @@ begin
 ------------------------------------------------------------------------------------------
 -- H2P read configuration memory
 ------------------------------------------------------------------------------------------
-  h2p_rd_conf_mem : entity work.onchip_mem_sc
+  h2p_rd_conf_mem : entity work.alt_mem_sc
   generic map ( DATA_WIDTH => H2P_RCONF_WIDTH,
                 ADDR_WIDTH => H2P_RD_CHANS_WIDTH,
                 MEM_SIZE   => H2P_RD_CHANS )
@@ -1708,7 +1747,7 @@ begin
     end if;
   end process;
   
-  h2p_rd_res_fifo : entity work.fifo_sc
+  h2p_rd_res_fifo : entity work.alt_fifo_sc
 	generic map ( DATA_WIDTH => H2P_RD_CHANS_WIDTH,
                 FIFO_LENGTH => H2P_RD_CHANS,
                 CNT_WIDTH => H2P_RD_CHANS_WIDTH )
@@ -1723,7 +1762,7 @@ begin
   
   h2p_rd_cfg_wdata <= (others => '0');
 
-  h2p_rd_cfg_fifo : entity work.fifo_sc
+  h2p_rd_cfg_fifo : entity work.alt_fifo_sc
 	generic map ( DATA_WIDTH => H2P_RD_CHANS_WIDTH,
                 FIFO_LENGTH => H2P_RD_CHANS,
                 CNT_WIDTH => H2P_RD_CHANS_WIDTH )
@@ -1739,7 +1778,7 @@ begin
 ------------------------------------------------------------------------------------------
 -- HIBI to PC write conf memory
 ------------------------------------------------------------------------------------------
-  h2p_opkt_conf_mem : entity work.onchip_mem_sc
+  h2p_opkt_conf_mem : entity work.alt_mem_sc
   generic map ( DATA_WIDTH => H2P_WCONF_WIDTH,
                 ADDR_WIDTH => H2P_WR_CHANS_WIDTH,
                 MEM_SIZE   => H2P_WR_CHANS )

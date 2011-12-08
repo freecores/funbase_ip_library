@@ -224,7 +224,7 @@ architecture rtl of pcie_to_hibi_test_app is
   constant MEM_DATA_WIDTH : integer := 256;
   constant MEM_BE_WIDTH   : integer := MEM_DATA_WIDTH/8;
   
-  component a2_ddr2_dimm_1GB
+  component alt_ddr2_agx2
     port (
       local_address : in std_logic_vector(MEM_ADDR_WIDTH-1 downto 0);
       local_write_req : in std_logic;
@@ -268,7 +268,7 @@ architecture rtl of pcie_to_hibi_test_app is
   
   
   --synthesis translate_off
-  component a2_ddr2_dimm_1GB_full_mem_model
+  component alt_ddr2_agx2_full_mem_model
     port (
       global_reset_n : out std_logic;
       mem_dq : inout std_logic_vector(63 downto 0);
@@ -664,7 +664,7 @@ begin
   mem_be(MEM_BE_WIDTH-1 downto 4) <= (others => '1');
   
   gen_1 : if ENABLE_SIM = 1 generate
-  mem_ctrl : a2_ddr2_dimm_1GB
+  mem_ctrl : alt_ddr2_agx2
   port map (
     pll_ref_clk  => clk_ref,
     phy_clk      => clk,
@@ -702,7 +702,7 @@ begin
   end generate;
   
   gen_2 : if ENABLE_SIM = 0 generate
-  mem_ctrl : a2_ddr2_dimm_1GB
+  mem_ctrl : alt_ddr2_agx2
   port map (
     pll_ref_clk  => clk_ref,
     phy_clk      => clk,
@@ -739,7 +739,7 @@ begin
   end generate;
   
   --synthesis translate_off
-  a2_ddr2_dimm_1GB_0 : a2_ddr2_dimm_1GB_full_mem_model
+  a2_ddr2_dimm_1GB_0 : alt_ddr2_agx2_full_mem_model
   port map (
     mem_clk   => ddr2_clk_0(0),
     mem_clk_n => ddr2_clk_n_0(0),

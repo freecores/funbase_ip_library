@@ -1,36 +1,45 @@
 -------------------------------------------------------------------------------
+-- Funbase IP library Copyright (C) 2011 TUT Department of Computer Systems
+--
+-- This source file may be used and distributed without
+-- restriction provided that this copyright statement is not
+-- removed from the file and that any derivative work contains
+-- the original copyright notice and the associated disclaimer.
+--
+-- This source file is free software; you can redistribute it
+-- and/or modify it under the terms of the GNU Lesser General
+-- Public License as published by the Free Software Foundation;
+-- either version 2.1 of the License, or (at your option) any
+-- later version.
+--
+-- This source is distributed in the hope that it will be
+-- useful, but WITHOUT ANY WARRANTY; without even the implied
+-- warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+-- PURPOSE.  See the GNU Lesser General Public License for more
+-- details.
+--
+-- You should have received a copy of the GNU Lesser General
+-- Public License along with this source; if not, download it
+-- from http://www.opencores.org/lgpl.shtml
+-------------------------------------------------------------------------------
 -- Title      : PCIe TX
--- Project    : 
+-- Project    : Funbase
 -------------------------------------------------------------------------------
 -- File       : pcie_tx.vhd
--- Author     : 
--- Company    : 
--- Last update: 15.03.2011
--- Version    : 0.1
+-- Author     : Juha Arvio
+-- Company    : TUT
+-- Last update: 05.10.2011
+-- Version    : 0.91
 -- Platform   : 
 -------------------------------------------------------------------------------
 -- Description:
---
--------------------------------------------------------------------------------
--- Copyright (c) 2011
+-- converts a packet interface into a
+-- PCIe TX interface (Altera PCIe compiler's Avalon ST interface)
 -------------------------------------------------------------------------------
 -- Revisions  :
 -- Date        Version  Author  Description
 -- 11.11.2010   0.1     arvio     Created
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
---  This file is a part of a free IP-block: you can redistribute it and/or modify
---  it under the terms of the Lesser GNU General Public License as published by
---  the Free Software Foundation, either version 3 of the License, or
---  (at your option) any later version.
---
---  This IP-block is distributed in the hope that it will be useful,
---  but WITHOUT ANY WARRANTY; without even the implied warranty of
---  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
---  Lesser GNU General Public License for more details.
---
---  You should have received a copy of the Lesser GNU General Public License
---  along with Transaction Generator.  If not, see <http://www.gnu.org/licenses/>.
+-- 05.10.2011   0.91    arvio
 -------------------------------------------------------------------------------
 
 library ieee;
@@ -49,13 +58,14 @@ entity pcie_tx is
             PCIE_RW_LENGTH_WIDTH  : integer := 13;
             PCIE_ID_WIDTH : integer := 16;
             PCIE_TAG_WIDTH : integer := 6;
---            PKT_TAG_WIDTH  : integer := 9;
+            PKT_TAG_WIDTH  : integer := 8;
             PCIE_CRED_WIDTH : integer := 66;
             
             PCIE_DATA_WIDTH : integer := 128;
             PCIE_ADDR_WIDTH : integer := 32;
             PCIE_FORCE_MAX_RW_LENGTH : integer := 0;
             PCIE_MAX_RW_LENGTH : integer := 256;
+            PCIE_RD_LENGTH_WIDTH : integer := 9;
             BURST_LATENCY : integer := 2;
             PCIE_IRQ_WIDTH : integer := 5;
             PCIE_TC_WIDTH : integer := 3 );
@@ -73,7 +83,6 @@ entity pcie_tx is
     pcie_tx_cred_in   : in std_logic_vector(PCIE_CRED_WIDTH-1 downto 0);
 	  pcie_tx_ready_in  : in std_logic;
     
-    
     opkt_is_write_in    : in std_logic;
     opkt_is_read_req_in : in std_logic;
     opkt_is_rdata_in    : in std_logic;
@@ -84,7 +93,7 @@ entity pcie_tx is
 --    opkt_byte_cnt_in    : in std_logic_vector(PCIE_RW_LENGTH_WIDTH-1 downto 0);
     opkt_req_id_in      : in std_logic_vector(PCIE_ID_WIDTH-1 downto 0);
 --    opkt_cmp_id_in      : in std_logic_vector(PCIE_ID_WIDTH-1 downto 0);
-    opkt_tag_in         : in std_logic_vector(PCIE_TAG_WIDTH-1 downto 0);
+    opkt_tag_in         : in std_logic_vector(PKT_TAG_WIDTH-1 downto 0);
 --    opkt_first_be_in    : in std_logic_vector(3 downto 0);
 --    opkt_last_be_in     : in std_logic_vector(3 downto 0);
     
@@ -118,12 +127,15 @@ entity pcie_tx is
     lmi_we_out   : out std_logic;
     lmi_ack_in   : in  std_logic;
     lmi_addr_out : out std_logic_vector(11 downto 0);
-    lmi_data_out : out std_logic_vector(31 downto 0)
+    lmi_data_out : out std_logic_vector(31 downto 0);
     
---    tag_fifo_we_out : out std_logic;
---    tag_fifo_full_in : in std_logic;
---    tag_fifo_data_out : out std_logic_vector(PKT_TAG_WIDTH-1 downto 0)
-    );
+    debug_ready_error_out   : out std_logic;
+    
+    tag_reserve_out : out std_logic;
+    tag_reserve_ready_in : in std_logic;
+    tag_reserve_res_in : in std_logic_vector(PCIE_TAG_WIDTH-1 downto 0);
+    tag_reserve_amount_out : out std_logic_vector(PCIE_RD_LENGTH_WIDTH-1 downto 0);
+    tag_reserve_data_out : out std_logic_vector(PKT_TAG_WIDTH-1 downto 0) );
 
 end pcie_tx;
 
@@ -198,7 +210,7 @@ architecture rtl of pcie_tx is
   constant TLP_HDR_LENGTH_L : integer := 0;
   constant TLP_HDR_LENGTH_U : integer := TLP_HDR_LENGTH_L + PCIE_RW_LENGTH_WIDTH - 1;
   constant TLP_HDR_TAG_L   : integer := TLP_HDR_LENGTH_U + 1;
-  constant TLP_HDR_TAG_U   : integer := TLP_HDR_TAG_L + PCIE_TAG_WIDTH - 1;
+  constant TLP_HDR_TAG_U   : integer := TLP_HDR_TAG_L + PKT_TAG_WIDTH - 1;
   constant TLP_HDR_IS_WRITE_L   : integer := TLP_HDR_TAG_U + 1;
   constant TLP_HDR_IS_WRITE_U   : integer := TLP_HDR_IS_WRITE_L;
   constant TLP_HDR_IS_READ_REQ_L : integer := TLP_HDR_IS_WRITE_U + 1;
@@ -241,7 +253,7 @@ architecture rtl of pcie_tx is
   signal tlp_hdro_length : std_logic_vector(PCIE_RW_LENGTH_WIDTH-1 downto 0);
   signal tlp_hdro_word_length : std_logic_vector(PCIE_RW_LENGTH_WIDTH-3 downto 0);
   signal tlp_hdro_byte_cnt : std_logic_vector(11 downto 0);
-  signal tlp_hdro_tag : std_logic_vector(PCIE_TAG_WIDTH-1 downto 0);
+  signal tlp_hdro_tag : std_logic_vector(PKT_TAG_WIDTH-1 downto 0);
   signal tlp_hdro_req_id : std_logic_vector(PCIE_ID_WIDTH-1 downto 0);
 --  signal tlp_hdro_cmp_id : std_logic_vector(PCIE_ID_WIDTH-1 downto 0);
   signal tlp_hdro_addr_size : std_logic;
@@ -258,7 +270,7 @@ architecture rtl of pcie_tx is
   signal tlp_hdri_addr_size_r : std_logic;
   signal tlp_hdri_not_qword_aligned : std_logic;
   signal tlp_hdri_not_qword_aligned_r : std_logic;
-  signal tlp_hdri_tag_r : std_logic_vector(PCIE_TAG_WIDTH-1 downto 0);
+  signal tlp_hdri_tag_r : std_logic_vector(PKT_TAG_WIDTH-1 downto 0);
   signal tlp_hdri_req_id_r : std_logic_vector(PCIE_ID_WIDTH-1 downto 0);
   signal tlp_hdri_is_write_r : std_logic;
   signal tlp_hdri_is_read_req_r : std_logic;
@@ -266,6 +278,7 @@ architecture rtl of pcie_tx is
   
   signal tl_cfg_ctl_wr_d1_r : std_logic;
   signal tl_cfg_ctl_wr_d1_0_r : std_logic;
+  signal tl_cfg_ctl_wr_d2_0_r : std_logic;
   
   signal tlp_header_fifo_wdata : std_logic_vector(TLP_HEADER_FIFO_DATA_WIDTH-1 downto 0);
   signal tlp_header_fifo_rdata : std_logic_vector(TLP_HEADER_FIFO_DATA_WIDTH-1 downto 0);
@@ -277,10 +290,10 @@ architecture rtl of pcie_tx is
   type tlp_part_state_t is (WAIT_OPKT, BURST_DELAY, WRITE_FIRST_EMPTY_PARTS, WRITE_LAST_EMPTY_PARTS, FIRST_PART, MIDDLE_PART, LAST_PART);
   signal tlp_part_state_r : tlp_part_state_t;
   
-  type pcie_tx_state_t is (WAIT_TX, WRITE_TX_DATA);
+  type pcie_tx_state_t is (WAIT_TX, READ_REQ, WRITE_TX_DATA);
   signal pcie_tx_state_r : pcie_tx_state_t;
   
-  type pcie_irq_state_t is (WAIT_IRQ, WAIT_ACK);
+  type pcie_irq_state_t is (WAIT_IRQ, WAIT_ACK, IRQ_FIFO_DELAY);
   signal pcie_irq_state_r : pcie_irq_state_t;
   
   signal pcie_length_r : std_logic_vector(PCIE_RW_LENGTH_WIDTH-1 downto 0);
@@ -303,10 +316,10 @@ architecture rtl of pcie_tx is
   signal pcie_tx_empty_r : std_logic;
 --  signal tag_fifo_we_r : std_logic;
   
-  signal pcie_tag : std_logic_vector(PCIE_TAG_WIDTH-3 downto 0);
-  signal pcie_wr_req_tag_r : std_logic_vector(PCIE_TAG_WIDTH-3 downto 0);
-  signal pcie_rd_req_tag_r : std_logic_vector(PCIE_TAG_WIDTH-3 downto 0);
-  signal pcie_rd_cpl_tag_r : std_logic_vector(PCIE_TAG_WIDTH-3 downto 0);
+  signal pcie_tag : std_logic_vector(PCIE_TAG_WIDTH-1 downto 0);
+--  signal pcie_wr_req_tag_r : std_logic_vector(PCIE_TAG_WIDTH-3 downto 0);
+  signal pcie_rd_req_tag_r : std_logic_vector(PCIE_TAG_WIDTH-1 downto 0);
+--  signal pcie_rd_cpl_tag_r : std_logic_vector(PCIE_TAG_WIDTH-1 downto 0);
   
   signal pcie_tx_ready : std_logic;
   signal pcie_tx_data_half_r : std_logic;
@@ -383,8 +396,14 @@ architecture rtl of pcie_tx is
   signal hdr_done_r : std_logic;
   signal data_done_r : std_logic;
   
+  signal tag_reserve_r : std_logic;
+  signal tag_reserve_ready_r : std_logic;
+  
 --  signal debug_0_r : std_logic_vector(7 downto 0);
 --  signal debug_1_r : std_logic;
+  
+  signal debug_ready_cnt_r : std_logic_vector(6 downto 0);
+  signal debug_ready_error_r : std_logic;
 begin
   tlp_hdri_has_data <= opkt_is_write_in or opkt_is_rdata_in;
   tlp_hdro_has_data <= tlp_hdro_is_write or tlp_hdro_is_rdata;
@@ -426,6 +445,35 @@ begin
   lmi_we_out  <= '0';
   lmi_addr_out <= (others => '0');
   lmi_data_out <= (others => '0');
+  
+  tag_reserve_out <= tag_reserve_r;
+  tag_reserve_amount_out <= tlp_hdro_length(PCIE_RD_LENGTH_WIDTH-1 downto 0);
+  tag_reserve_data_out <= tlp_hdro_tag;
+--  tag_reserve_res_out <= tlp_hdro_tag(PCIE_TAG_WIDTH-1 downto PCIE_TAG_WIDTH-2) & pcie_rd_req_tag_r;
+  
+  debug_ready_error_out <= debug_ready_error_r;
+  
+  process (clk_pcie, rst_n)
+  begin
+    if (rst_n = '0') then
+      debug_ready_cnt_r <= (others => '0');
+      debug_ready_error_r <= '0';
+      
+    elsif (clk_pcie'event and clk_pcie = '1') then
+      if (pcie_tx_ready_in = '0') then
+        debug_ready_cnt_r <= debug_ready_cnt_r + 1;
+      else
+        debug_ready_cnt_r <= (others => '0');
+      end if;
+      
+      if (debug_ready_cnt_r > 64) then
+        debug_ready_error_r <= '1';
+      else
+        debug_ready_error_r <= '0';
+      end if;
+    end if;
+  end process;
+  
   
   pcie_data_128 : if (PCIE_DATA_WIDTH = 128) generate
   process (pcie_tx_data, pcie_tx_ready_in, pcie_tx_sop_r, pcie_tx_eop_r) --, debug_1_r)
@@ -497,8 +545,8 @@ begin
   
   process (opkt_addr_in, tlp_data_fifo_rdata, tlp_hdro_length, tlp_hdro_extra_data, tlp_hdro_type, tlp_hdro_addr_size, tlp_hdro_has_data, pcie_id_r, tlp_hdro_is_rdata,
            tlp_hdro_first_be, tlp_hdro_last_be, tlp_hdro_tag, tlp_hdro_req_id, pcie_tx_sop_r, tlp_hdro_not_qword_aligned, opkt_length_left_r, tlp_hdro_word_length, opkt_addr_r,
-           opkt_is_rdata_in, opkt_is_read_req_in, opkt_ready_r, opkt_ready_d1_r, opkt_burst_we_in, tlp_data_fifo_we_r, tlp_data_fifo_burst_we_r, pcie_wr_req_tag_r, pcie_rd_req_tag_r,
-           pcie_rd_cpl_tag_r, tlp_hdro_is_write, tlp_hdro_is_read_req, pcie_tag)
+           opkt_is_rdata_in, opkt_is_read_req_in, opkt_ready_r, opkt_ready_d1_r, opkt_burst_we_in, tlp_data_fifo_we_r, tlp_data_fifo_burst_we_r, pcie_rd_req_tag_r,
+           tlp_hdro_is_write, tlp_hdro_is_read_req, pcie_tag)
   begin
     if (tlp_hdro_length = 0) then
       tlp_hdro_first_be <= "0000";
@@ -624,7 +672,7 @@ begin
         pcie_tx_data(35 downto 32) <= tlp_hdro_first_be;
         pcie_tx_data(39 downto 36) <= tlp_hdro_last_be;
         pcie_tx_data(47 downto 40) <= (others => '0');
-        pcie_tx_data(39 + PCIE_TAG_WIDTH downto 40) <= tlp_hdro_tag(PCIE_TAG_WIDTH-1 downto PCIE_TAG_WIDTH-2) & pcie_tag;
+        pcie_tx_data(39 + PCIE_TAG_WIDTH downto 40) <= pcie_tag;
         if (tlp_hdro_addr_size = '0') then
           pcie_tx_data(95 downto 64) <= tlp_hdro_extra_data(31 downto 2) & "00";
           if ((tlp_hdro_has_data = '1') and (tlp_hdro_not_qword_aligned = '1')) then
@@ -683,12 +731,12 @@ begin
       opkt_ready_0 <= opkt_ready_r;
     end if;
     
-    if (tlp_hdro_is_write = '1') then
-      pcie_tag <= pcie_wr_req_tag_r;
-    elsif (tlp_hdro_is_read_req = '1') then
+--    if (tlp_hdro_is_write = '1') then
+--      pcie_tag <= pcie_wr_req_tag_r;
+    if (tlp_hdro_is_read_req = '1') then
       pcie_tag <= pcie_rd_req_tag_r;
     else
-      pcie_tag <= pcie_rd_cpl_tag_r;
+      pcie_tag <= (others => '0');
     end if;
     
   end process;
@@ -804,14 +852,16 @@ begin
     if (rst_n = '0') then
       pcie_id_r <= (others => '0');
       tl_cfg_ctl_wr_d1_0_r <= '0';
+      tl_cfg_ctl_wr_d2_0_r <= '0';
       app_msi_req_r <= '0';
       pcie_irq_re_r <= '0';
       pcie_irq_state_r <= WAIT_IRQ;
       
     elsif (clk_pcie'event and clk_pcie = '1') then
       tl_cfg_ctl_wr_d1_0_r <= tl_cfg_ctl_wr;
+      tl_cfg_ctl_wr_d2_0_r <= tl_cfg_ctl_wr_d1_0_r;
       
-      if (tl_cfg_ctl_wr_d1_0_r /= tl_cfg_ctl_wr) then
+      if (tl_cfg_ctl_wr_d2_0_r /= tl_cfg_ctl_wr_d1_0_r) then
         if (tl_cfg_add = 15) then
           pcie_id_r <= tl_cfg_ctl(12 downto 0) & "000";
         end if;
@@ -819,17 +869,20 @@ begin
       
       case pcie_irq_state_r is
         when WAIT_IRQ =>
+--          pcie_irq_re_r <= '0';
           if (pcie_irq_empty = '0') then
-            pcie_irq_re_r <= '1';
             app_msi_req_r <= '1';
             pcie_irq_state_r <= WAIT_ACK;
           end if;
         when WAIT_ACK =>
-          pcie_irq_re_r <= '0';
           if (app_msi_ack_in = '1') then
+            pcie_irq_re_r <= '1';
             app_msi_req_r <= '0';
-            pcie_irq_state_r <= WAIT_IRQ;
+            pcie_irq_state_r <= IRQ_FIFO_DELAY;
           end if;
+        when IRQ_FIFO_DELAY =>
+          pcie_irq_re_r <= '0';
+          pcie_irq_state_r <= WAIT_IRQ;
       end case;
       
 --       if (app_msi_req_t_d1_r /= app_msi_req_t_r) then
@@ -899,9 +952,12 @@ begin
       pcie_tx_empty_r <= '0';
 --      tag_fifo_we_r <= '0';
       
-      pcie_wr_req_tag_r <= (others => '0');
+--      pcie_wr_req_tag_r <= (others => '0');
       pcie_rd_req_tag_r <= (others => '0');
-      pcie_rd_cpl_tag_r <= (others => '0');
+--      pcie_rd_cpl_tag_r <= (others => '0');
+      
+      tag_reserve_r <= '0';
+      tag_reserve_ready_r <= '0';
       
     elsif (clk_pcie'event and clk_pcie = '1') then
       pcie_tx_valid_r <= '0';
@@ -918,32 +974,24 @@ begin
       
       case pcie_tx_state_r is
         when WAIT_TX =>
-          if ( not((tlp_header_fifo_two_d = '1') and (tlp_header_fifo_re_r = '1')) ) then
-            if ( (pcie_tx_ready = '1') and (tlp_header_fifo_empty = '0') and (tlp_hdro_is_read_req = '1') and (cred_np_hdr >= 1) ) then --tlp_hdro_length) ) then
-              pcie_tx_sop_r <= '1';
-              pcie_tx_eop_r <= '1';
-              pcie_tx_valid_r <= '1';
-              
-              pcie_rd_req_tag_r <= pcie_rd_req_tag_r + 1;
-              
---              tag_fifo_we_r <= '1';
-              tlp_header_fifo_re_r <= '1';
+          if ( not((tlp_header_fifo_two_d = '1') and (tlp_header_fifo_re_r = '1')) and (tlp_header_fifo_re_r = '0') ) then
+            if ((tlp_header_fifo_empty = '0') and (tlp_hdro_is_read_req = '1')) then --tlp_hdro_length) ) then
+              tag_reserve_r <= '1';
+              pcie_tx_state_r <= READ_REQ;
             
---             if ((pcie_tx_ready = '0') or (pcie_tx_valid_r = '0')) then
---               pcie_tx_state_r <= READ_REQ;
---             end if;
-            
-            elsif ( (pcie_tx_ready = '1') and (tlp_header_fifo_empty = '0') and (tlp_data_fifo_empty = '0') and not((tlp_data_fifo_one_d = '1') and (tlp_data_fifo_re_r = '1'))
-                    and ( ((tlp_hdro_is_rdata = '1') and (cred_cpl_data >= tlp_hdro_word_length)) or ((tlp_hdro_is_write = '1') and (cred_p_data >= tlp_hdro_word_length)) ) ) then
+            elsif ( (pcie_tx_ready = '1') and (tlp_header_fifo_empty = '0') and (tlp_data_fifo_empty = '0') and not((tlp_data_fifo_rcnt <= 2) and (tlp_data_fifo_re_r = '1'))
+                    and ( ((tlp_hdro_is_rdata = '1') and (cred_cpl_data >= tlp_hdro_word_length)) or ((tlp_hdro_is_write = '1') and (cred_p_data >= tlp_hdro_word_length)) )
+                    and ( (tlp_data_fifo_rcnt > tlp_hdro_word_length(PCIE_RW_LENGTH_WIDTH-3 downto 2)) or
+                          ((tlp_data_fifo_rcnt = tlp_hdro_word_length(PCIE_RW_LENGTH_WIDTH-3 downto 2)) and (tlp_hdro_word_length(1 downto 0) = "00")) ) ) then
               pcie_tx_sop_r <= '1';
               pcie_tx_eop_r <= '0';
               pcie_tx_valid_r <= '1';
               
-              if (tlp_hdro_is_rdata = '1') then
-                pcie_rd_cpl_tag_r <= pcie_rd_cpl_tag_r + 1;
-              else
-                pcie_wr_req_tag_r <= pcie_wr_req_tag_r + 1;
-              end if;
+--              if (tlp_hdro_is_rdata = '1') then
+--                pcie_rd_cpl_tag_r <= pcie_rd_cpl_tag_r + 1;
+--              else
+--                pcie_wr_req_tag_r <= pcie_wr_req_tag_r + 1;
+--              end if;
               
               if (tlp_hdro_not_qword_aligned = '1') then
                 tlp_data_fifo_re_r <= '1';
@@ -961,14 +1009,24 @@ begin
               tlp_header_fifo_re_r <= '1';
             end if;
           end if;
+         
+         when READ_REQ =>
+           if (tag_reserve_ready_in = '1') then
+             pcie_rd_req_tag_r <= tag_reserve_res_in;
+             tag_reserve_r <= '0';
+             tag_reserve_ready_r <= '1';
+           end if;
            
---         when READ_REQ =>
---           pcie_tx_valid_r <= '1';
---           
---           if (pcie_tx_ready = '1') then
---             pcie_tx_valid_r <= '0';
---             pcie_tx_state_r <= WAIT_TX;
---           end if;
+           if ( ((tag_reserve_ready_in = '1') or (tag_reserve_ready_r = '1')) and ((pcie_tx_ready = '1') and (cred_np_hdr >= 1)) ) then
+             tlp_header_fifo_re_r <= '1';
+             tag_reserve_ready_r <= '0';
+             pcie_tx_sop_r <= '1';
+             pcie_tx_eop_r <= '1';
+             pcie_tx_valid_r <= '1';
+             
+--             pcie_rd_req_tag_r <= pcie_rd_req_tag_r + 1;
+             pcie_tx_state_r <= WAIT_TX;
+           end if;
           
         when WRITE_TX_DATA =>
           pcie_tx_sop_r <= '0';
@@ -977,12 +1035,13 @@ begin
             pcie_tx_valid_r <= '1';
             tlp_data_fifo_re_r <= '1';
             
+            if ( ((pcie_tx_sop_r = '1') and (tlp_hdro_word_length <= 2)) or (((pcie_tx_sop_r = '0')) and (pcie_data_part_cnt_r <= (PCIE_DATA_BYTE_WIDTH/2))) ) then
+              pcie_tx_empty_r <= '1';
+            end if;
+            
             if (pcie_data_part_cnt_r <= PCIE_DATA_BYTE_WIDTH) then
               pcie_packet_cnt_r <= pcie_packet_cnt_r - 1;
               
-              if (pcie_data_part_cnt_r <= (PCIE_DATA_BYTE_WIDTH/2)) then
-                pcie_tx_empty_r <= '1';
-              end if;
               if (pcie_packet_cnt_r = 0) then
                 pcie_tx_eop_r <= '1';
                 pcie_tx_state_r <= WAIT_TX;
@@ -1483,7 +1542,7 @@ begin
     end if;
   end process;
   
-  irq_fifo : entity work.fifo_dc_dw
+  irq_fifo : entity work.alt_fifo_dc_dw
 	generic map ( DATA_WIDTH => PCIE_IRQ_WIDTH+PCIE_TC_WIDTH,
                 FIFO_LENGTH => 2,
                 CNT_WIDTH => 1,
@@ -1518,7 +1577,7 @@ begin
   -- output read: tlp_header_fifo_re
   -----------------------------------------------------------------------------------------
   
-  tlp_header_fifo : entity work.fifo_dc_dw
+  tlp_header_fifo : entity work.alt_fifo_dc_dw
 	generic map ( DATA_WIDTH => TLP_HEADER_FIFO_DATA_WIDTH,
                 FIFO_LENGTH => TLP_HEADER_FIFO_SIZE,
                 CNT_WIDTH => TLP_HEADER_FIFO_CNT_WIDTH,
@@ -1573,7 +1632,7 @@ begin
   -- output read: tlp_header_fifo_re
   -----------------------------------------------------------------------------------------
   
-  tlp_data_fifo : entity work.fifo_dc_dw
+  tlp_data_fifo : entity work.alt_fifo_dc_dw
 	generic map ( DATA_WIDTH => HIBI_DATA_WIDTH,
                 FIFO_LENGTH => TLP_DATA_FIFO_SIZE,
                 CNT_WIDTH => TLP_DATA_FIFO_CNT_WIDTH,

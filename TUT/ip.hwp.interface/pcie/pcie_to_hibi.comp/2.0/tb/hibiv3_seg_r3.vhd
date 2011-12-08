@@ -447,131 +447,131 @@ begin  -- structural
     end generate wrappers;
 
 
-    bridge_needed : if seg > 0 generate
-
-      i_bridge : entity work.hibi_bridge
-        generic map (
-          a_id_g                =>
-          id_a(seg-1, n_segments_g, wrappers_per_segment_c),
-          a_addr_g              => bridge_a_addr_base_c(seg-1),
-          a_inv_addr_en_g       => bridge_a_inv_addr_c(seg-1),
-          a_id_width_g          => id_width_g,
-          a_addr_width_g        => addr_width_g,
-          a_data_width_g        => data_width_g+separate_addr_g*addr_width_g,
-          a_separate_addr_g     => separate_addr_g,
-          a_comm_width_g        => comm_width_g,
-          a_counter_width_g     => counter_width_g,
-          a_rx_fifo_depth_g     => rx_fifo_depth_g,
-          a_tx_fifo_depth_g     => tx_fifo_depth_g,
-          a_rx_msg_fifo_depth_g => rx_msg_fifo_depth_g,
-          a_tx_msg_fifo_depth_g => tx_msg_fifo_depth_g,
-          a_arb_type_g          => arb_type_g,
-          a_fifo_sel_g          => fifo_sel_g,
-
-          a_debug_width_g       => debug_width_g,
-          a_prior_g             =>
-          priority_a(seg-1, n_segments_g, wrappers_per_segment_c),
-          a_max_send_g          => max_send_g,
-          a_n_agents_g          =>
-          n_agents_in_segment(seg-1, n_segments_g, wrappers_per_segment_c),
-          a_n_cfg_pages_g       => n_cfg_pages_g,
-          a_n_time_slots_g      => n_time_slots_g,
-          a_n_extra_params_g    => n_extra_params_g,
-          a_cfg_re_g            => cfg_re_g,
-          a_cfg_we_g            => cfg_we_g,
-
-          b_id_g                =>
-          id_b(seg, n_segments_g, wrappers_per_segment_c),
-          b_addr_g              => bridge_b_addr_base_c(seg-1),
-          b_inv_addr_en_g       => bridge_b_inv_addr_c(seg-1),
-          b_id_width_g          => id_width_g,
-          b_addr_width_g        => addr_width_g,
-          b_data_width_g        => data_width_g+separate_addr_g*addr_width_g,
-          b_separate_addr_g     => separate_addr_g,
-          b_comm_width_g        => comm_width_g,
-          b_counter_width_g     => counter_width_g,
-          b_rx_fifo_depth_g     => rx_fifo_depth_g,
-          b_tx_fifo_depth_g     => tx_fifo_depth_g,
-          b_rx_msg_fifo_depth_g => rx_msg_fifo_depth_g,
-          b_tx_msg_fifo_depth_g => tx_msg_fifo_depth_g,
-          b_arb_type_g          => arb_type_g,
-          b_fifo_sel_g          => fifo_sel_g,
-
-          b_debug_width_g       => debug_width_g,
-          b_prior_g             =>
-          priority_b(seg, n_segments_g, wrappers_per_segment_c),
-          b_max_send_g          => max_send_g,
-          b_n_agents_g          =>
-          n_agents_in_segment(seg, n_segments_g, wrappers_per_segment_c),
-          b_n_cfg_pages_g       => n_cfg_pages_g,
-          b_n_time_slots_g      => n_time_slots_g,
-          b_n_extra_params_g    => n_extra_params_g,
-          b_cfg_re_g            => cfg_re_g,
-          b_cfg_we_g            => cfg_we_g,
-
-          a_id_min_g     => bridge_a_id_min_c(seg-1),
-          a_id_max_g     => bridge_a_id_max_c(seg-1),
-          a_addr_limit_g => bridge_a_addr_limit_c(seg-1),
-
-          b_id_min_g     => bridge_b_id_min_c(seg-1),
-          b_id_max_g     => bridge_b_id_max_c(seg-1),
-          b_addr_limit_g => bridge_b_addr_limit_c(seg-1)
-
-          )
-        port map (
-          a_clk          => clk_noc,
-          a_rst_n        => rst_n,
-          b_clk          => clk_noc,
-          b_rst_n        => rst_n,
-          a_bus_av_in    => bus_wra_av(seg-1),
-          a_bus_data_in  => bus_wra_data(seg-1),
-          a_bus_comm_in  => bus_wra_comm(seg-1),
-          a_bus_full_in  => bus_wra_full(seg-1),
-          a_bus_lock_in  => bus_wra_lock(seg-1),
-          b_bus_av_in    => bus_wra_av(seg),
-          b_bus_data_in  => bus_wra_data(seg),
-          b_bus_comm_in  => bus_wra_comm(seg),
-          b_bus_full_in  => bus_wra_full(seg),
-          b_bus_lock_in  => bus_wra_lock(seg),
-          a_bus_av_out   => wra_bus_av(seg-1)(wrappers_per_segment_c),
-          a_bus_data_out => wra_bus_data(seg-1)(wrappers_per_segment_c),
-          a_bus_comm_out => wra_bus_comm(seg-1)(wrappers_per_segment_c),
-          a_bus_lock_out => wra_bus_lock(seg-1)(wrappers_per_segment_c),
-          a_bus_full_out => wra_bus_full(seg-1)(wrappers_per_segment_c),
-          b_bus_av_out   => wra_bus_av(seg)(wrappers_per_segment_c+1),
-          b_bus_data_out => wra_bus_data(seg)(wrappers_per_segment_c+1),
-          b_bus_comm_out => wra_bus_comm(seg)(wrappers_per_segment_c+1),
-          b_bus_lock_out => wra_bus_lock(seg)(wrappers_per_segment_c+1),
-          b_bus_full_out => wra_bus_full(seg)(wrappers_per_segment_c+1)
-			-- synthesis translate_off
-          ,
-          a_debug_out    => open,
-          a_debug_in     => (others => '0'),
-          b_debug_out    => open,
-          b_debug_in     => (others => '0')
-          -- synthesis translate_on
-          );
-
-      -- nullify extra signals
-      nullify_first_seg : if seg = 1 generate
-        -- no b-side on the first segment
-        wra_bus_av(seg-1)(wrappers_per_segment_c+1)   <= '0';
-        wra_bus_full(seg-1)(wrappers_per_segment_c+1) <= '0';
-        wra_bus_lock(seg-1)(wrappers_per_segment_c+1) <= '0';
-        wra_bus_comm(seg-1)(wrappers_per_segment_c+1) <= (others => '0');
-        wra_bus_data(seg-1)(wrappers_per_segment_c+1) <= (others => '0');
-      end generate nullify_first_seg;
-
-      nullify_last_seg : if seg = n_segments_g-1 generate
-        -- no a-side here
-        wra_bus_av(seg)(wrappers_per_segment_c)   <= '0';
-        wra_bus_full(seg)(wrappers_per_segment_c) <= '0';
-        wra_bus_lock(seg)(wrappers_per_segment_c) <= '0';
-        wra_bus_comm(seg)(wrappers_per_segment_c) <= (others => '0');
-        wra_bus_data(seg)(wrappers_per_segment_c) <= (others => '0');
-      end generate nullify_last_seg;
-      
-    end generate bridge_needed;
+--     bridge_needed : if seg > 0 generate
+-- 
+--       i_bridge : entity work.hibi_bridge
+--         generic map (
+--           a_id_g                =>
+--           id_a(seg-1, n_segments_g, wrappers_per_segment_c),
+--           a_addr_g              => bridge_a_addr_base_c(seg-1),
+--           a_inv_addr_en_g       => bridge_a_inv_addr_c(seg-1),
+--           a_id_width_g          => id_width_g,
+--           a_addr_width_g        => addr_width_g,
+--           a_data_width_g        => data_width_g+separate_addr_g*addr_width_g,
+--           a_separate_addr_g     => separate_addr_g,
+--           a_comm_width_g        => comm_width_g,
+--           a_counter_width_g     => counter_width_g,
+--           a_rx_fifo_depth_g     => rx_fifo_depth_g,
+--           a_tx_fifo_depth_g     => tx_fifo_depth_g,
+--           a_rx_msg_fifo_depth_g => rx_msg_fifo_depth_g,
+--           a_tx_msg_fifo_depth_g => tx_msg_fifo_depth_g,
+--           a_arb_type_g          => arb_type_g,
+--           a_fifo_sel_g          => fifo_sel_g,
+-- 
+--           a_debug_width_g       => debug_width_g,
+--           a_prior_g             =>
+--           priority_a(seg-1, n_segments_g, wrappers_per_segment_c),
+--           a_max_send_g          => max_send_g,
+--           a_n_agents_g          =>
+--           n_agents_in_segment(seg-1, n_segments_g, wrappers_per_segment_c),
+--           a_n_cfg_pages_g       => n_cfg_pages_g,
+--           a_n_time_slots_g      => n_time_slots_g,
+--           a_n_extra_params_g    => n_extra_params_g,
+--           a_cfg_re_g            => cfg_re_g,
+--           a_cfg_we_g            => cfg_we_g,
+-- 
+--           b_id_g                =>
+--           id_b(seg, n_segments_g, wrappers_per_segment_c),
+--           b_addr_g              => bridge_b_addr_base_c(seg-1),
+--           b_inv_addr_en_g       => bridge_b_inv_addr_c(seg-1),
+--           b_id_width_g          => id_width_g,
+--           b_addr_width_g        => addr_width_g,
+--           b_data_width_g        => data_width_g+separate_addr_g*addr_width_g,
+--           b_separate_addr_g     => separate_addr_g,
+--           b_comm_width_g        => comm_width_g,
+--           b_counter_width_g     => counter_width_g,
+--           b_rx_fifo_depth_g     => rx_fifo_depth_g,
+--           b_tx_fifo_depth_g     => tx_fifo_depth_g,
+--           b_rx_msg_fifo_depth_g => rx_msg_fifo_depth_g,
+--           b_tx_msg_fifo_depth_g => tx_msg_fifo_depth_g,
+--           b_arb_type_g          => arb_type_g,
+--           b_fifo_sel_g          => fifo_sel_g,
+-- 
+--           b_debug_width_g       => debug_width_g,
+--           b_prior_g             =>
+--           priority_b(seg, n_segments_g, wrappers_per_segment_c),
+--           b_max_send_g          => max_send_g,
+--           b_n_agents_g          =>
+--           n_agents_in_segment(seg, n_segments_g, wrappers_per_segment_c),
+--           b_n_cfg_pages_g       => n_cfg_pages_g,
+--           b_n_time_slots_g      => n_time_slots_g,
+--           b_n_extra_params_g    => n_extra_params_g,
+--           b_cfg_re_g            => cfg_re_g,
+--           b_cfg_we_g            => cfg_we_g,
+-- 
+--           a_id_min_g     => bridge_a_id_min_c(seg-1),
+--           a_id_max_g     => bridge_a_id_max_c(seg-1),
+--           a_addr_limit_g => bridge_a_addr_limit_c(seg-1),
+-- 
+--           b_id_min_g     => bridge_b_id_min_c(seg-1),
+--           b_id_max_g     => bridge_b_id_max_c(seg-1),
+--           b_addr_limit_g => bridge_b_addr_limit_c(seg-1)
+-- 
+--           )
+--         port map (
+--           a_clk          => clk_noc,
+--           a_rst_n        => rst_n,
+--           b_clk          => clk_noc,
+--           b_rst_n        => rst_n,
+--           a_bus_av_in    => bus_wra_av(seg-1),
+--           a_bus_data_in  => bus_wra_data(seg-1),
+--           a_bus_comm_in  => bus_wra_comm(seg-1),
+--           a_bus_full_in  => bus_wra_full(seg-1),
+--           a_bus_lock_in  => bus_wra_lock(seg-1),
+--           b_bus_av_in    => bus_wra_av(seg),
+--           b_bus_data_in  => bus_wra_data(seg),
+--           b_bus_comm_in  => bus_wra_comm(seg),
+--           b_bus_full_in  => bus_wra_full(seg),
+--           b_bus_lock_in  => bus_wra_lock(seg),
+--           a_bus_av_out   => wra_bus_av(seg-1)(wrappers_per_segment_c),
+--           a_bus_data_out => wra_bus_data(seg-1)(wrappers_per_segment_c),
+--           a_bus_comm_out => wra_bus_comm(seg-1)(wrappers_per_segment_c),
+--           a_bus_lock_out => wra_bus_lock(seg-1)(wrappers_per_segment_c),
+--           a_bus_full_out => wra_bus_full(seg-1)(wrappers_per_segment_c),
+--           b_bus_av_out   => wra_bus_av(seg)(wrappers_per_segment_c+1),
+--           b_bus_data_out => wra_bus_data(seg)(wrappers_per_segment_c+1),
+--           b_bus_comm_out => wra_bus_comm(seg)(wrappers_per_segment_c+1),
+--           b_bus_lock_out => wra_bus_lock(seg)(wrappers_per_segment_c+1),
+--           b_bus_full_out => wra_bus_full(seg)(wrappers_per_segment_c+1)
+-- 			-- synthesis translate_off
+--           ,
+--           a_debug_out    => open,
+--           a_debug_in     => (others => '0'),
+--           b_debug_out    => open,
+--           b_debug_in     => (others => '0')
+--           -- synthesis translate_on
+--           );
+-- 
+--       -- nullify extra signals
+--       nullify_first_seg : if seg = 1 generate
+--         -- no b-side on the first segment
+--         wra_bus_av(seg-1)(wrappers_per_segment_c+1)   <= '0';
+--         wra_bus_full(seg-1)(wrappers_per_segment_c+1) <= '0';
+--         wra_bus_lock(seg-1)(wrappers_per_segment_c+1) <= '0';
+--         wra_bus_comm(seg-1)(wrappers_per_segment_c+1) <= (others => '0');
+--         wra_bus_data(seg-1)(wrappers_per_segment_c+1) <= (others => '0');
+--       end generate nullify_first_seg;
+-- 
+--       nullify_last_seg : if seg = n_segments_g-1 generate
+--         -- no a-side here
+--         wra_bus_av(seg)(wrappers_per_segment_c)   <= '0';
+--         wra_bus_full(seg)(wrappers_per_segment_c) <= '0';
+--         wra_bus_lock(seg)(wrappers_per_segment_c) <= '0';
+--         wra_bus_comm(seg)(wrappers_per_segment_c) <= (others => '0');
+--         wra_bus_data(seg)(wrappers_per_segment_c) <= (others => '0');
+--       end generate nullify_last_seg;
+--       
+--     end generate bridge_needed;
 
 
     no_bridges : if n_segments_g = 1 generate

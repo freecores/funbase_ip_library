@@ -1,36 +1,43 @@
 -------------------------------------------------------------------------------
+-- Funbase IP library Copyright (C) 2011 TUT Department of Computer Systems
+--
+-- This source file may be used and distributed without
+-- restriction provided that this copyright statement is not
+-- removed from the file and that any derivative work contains
+-- the original copyright notice and the associated disclaimer.
+--
+-- This source file is free software; you can redistribute it
+-- and/or modify it under the terms of the GNU Lesser General
+-- Public License as published by the Free Software Foundation;
+-- either version 2.1 of the License, or (at your option) any
+-- later version.
+--
+-- This source is distributed in the hope that it will be
+-- useful, but WITHOUT ANY WARRANTY; without even the implied
+-- warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+-- PURPOSE.  See the GNU Lesser General Public License for more
+-- details.
+--
+-- You should have received a copy of the GNU Lesser General
+-- Public License along with this source; if not, download it
+-- from http://www.opencores.org/lgpl.shtml
+-------------------------------------------------------------------------------
 -- Title      : Generic packet buffer
--- Project    : 
+-- Project    : Funbase
 -------------------------------------------------------------------------------
 -- File       : pkt_buf.vhd
--- Author     : 
--- Company    : 
--- Last update: 27.05.2011
--- Version    : 0.6
+-- Author     : Juha Arvio
+-- Company    : TUT
+-- Last update: 05.10.2011
+-- Version    : 0.91
 -- Platform   : 
 -------------------------------------------------------------------------------
 -- Description:
---
--------------------------------------------------------------------------------
--- Copyright (c) 2011
 -------------------------------------------------------------------------------
 -- Revisions  :
 -- Date        Version  Author  Description
 -- 25.11.2010   0.1     arvio     Created
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
---  This file is a part of a free IP-block: you can redistribute it and/or modify
---  it under the terms of the Lesser GNU General Public License as published by
---  the Free Software Foundation, either version 3 of the License, or
---  (at your option) any later version.
---
---  This IP-block is distributed in the hope that it will be useful,
---  but WITHOUT ANY WARRANTY; without even the implied warranty of
---  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
---  Lesser GNU General Public License for more details.
---
---  You should have received a copy of the Lesser GNU General Public License
---  along with Transaction Generator.  If not, see <http://www.gnu.org/licenses/>.
+-- 05.10.2011   0.91    arvio
 -------------------------------------------------------------------------------
 
 library ieee;
@@ -295,7 +302,7 @@ begin
   end process;
   
   
-  free_pkt_buf_fifo : entity work.fifo_sc
+  free_pkt_buf_fifo : entity work.alt_fifo_sc
 	generic map ( DATA_WIDTH => BUFFERS_WIDTH,
                 FIFO_LENGTH => BUFFERS,
                 CNT_WIDTH => log2_ceil(BUFFERS-1) )
@@ -313,7 +320,7 @@ begin
   buf_filled_we <= buf_part_filled or buf_filled;
   buf_filled_wdata <= buf_part_filled_size & buf_part_filled_index & buf_part_filled_type;
   
-  pkt_buf_filled_fifo : entity work.fifo_sc
+  pkt_buf_filled_fifo : entity work.alt_fifo_sc
 	generic map ( DATA_WIDTH => BUF_PART_SIZE_WIDTH+1+BUFFERS_WIDTH+BUF_TYPE_WIDTH,
                 FIFO_LENGTH => BUFFERS*BUF_PARTS,
                 CNT_WIDTH => log2_ceil(BUFFERS*BUF_PARTS-1) )
@@ -383,7 +390,7 @@ begin
 ------------------------------------------------------------------------------------------
 -- packet buffer memory
 ------------------------------------------------------------------------------------------
-  pkt_buf_mem : entity work.onchip_mem_sc --work.onchip_mem_dc_dw
+  pkt_buf_mem : entity work.alt_mem_sc --work.alt_mem_dc_dw
   generic map ( --MEM_PORTS  => 2,
                 DATA_WIDTH => DATA_WIDTH,
                 --DATA_1_WIDTH => RDATA_WIDTH,

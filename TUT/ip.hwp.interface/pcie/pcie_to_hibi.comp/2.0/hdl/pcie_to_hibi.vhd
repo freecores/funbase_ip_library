@@ -1,36 +1,44 @@
 -------------------------------------------------------------------------------
+-- Funbase IP library Copyright (C) 2011 TUT Department of Computer Systems
+--
+-- This source file may be used and distributed without
+-- restriction provided that this copyright statement is not
+-- removed from the file and that any derivative work contains
+-- the original copyright notice and the associated disclaimer.
+--
+-- This source file is free software; you can redistribute it
+-- and/or modify it under the terms of the GNU Lesser General
+-- Public License as published by the Free Software Foundation;
+-- either version 2.1 of the License, or (at your option) any
+-- later version.
+--
+-- This source is distributed in the hope that it will be
+-- useful, but WITHOUT ANY WARRANTY; without even the implied
+-- warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+-- PURPOSE.  See the GNU Lesser General Public License for more
+-- details.
+--
+-- You should have received a copy of the GNU Lesser General
+-- Public License along with this source; if not, download it
+-- from http://www.opencores.org/lgpl.shtml
+-------------------------------------------------------------------------------
 -- Title      : PCIe to HIBI
--- Project    : 
+-- Project    : Funbase
 -------------------------------------------------------------------------------
 -- File       : pcie_to_hibi.vhd
--- Author     : 
--- Company    : 
--- Last update: 27.05.2011
--- Version    : 0.9
+-- Author     : Juha Arvio
+-- Company    : TUT
+-- Last update: 05.10.2011
+-- Version    : 0.91
 -- Platform   : 
 -------------------------------------------------------------------------------
 -- Description:
---
 -------------------------------------------------------------------------------
 -- Revisions  :
 -- Date        Version  Author  Description
 -- 13.10.2010   0.1     arvio     Created
+-- 05.10.2011   0.91    arvio
 -------------------------------------------------------------------------------
--------------------------------------------------------------------------------
---  This file is a part of a free IP-block: you can redistribute it and/or modify
---  it under the terms of the Lesser GNU General Public License as published by
---  the Free Software Foundation, either version 3 of the License, or
---  (at your option) any later version.
---
---  This IP-block is distributed in the hope that it will be useful,
---  but WITHOUT ANY WARRANTY; without even the implied warranty of
---  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
---  Lesser GNU General Public License for more details.
---
---  You should have received a copy of the Lesser GNU General Public License
---  along with Transaction Generator.  If not, see <http://www.gnu.org/licenses/>.
--------------------------------------------------------------------------------
-
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -61,7 +69,7 @@ entity pcie_to_hibi is
             PCIE_ID_WIDTH         : integer := 16;
             PCIE_FUNC_WIDTH       : integer := 3;
             PCIE_TAG_WIDTH        : integer := 6;
---            PKT_TAG_WIDTH         : integer := 9;
+            PKT_TAG_WIDTH         : integer := 8;
             PCIE_CRED_WIDTH       : integer := 66;
             
             PCIE_CPL_LENGTH_MIN : integer := 128;
@@ -110,7 +118,8 @@ entity pcie_to_hibi is
             H2P_RD_CHANS : integer := 128;
             P2H_WR_CHANS : integer := 128;
             P2H_RD_CHANS : integer := 32;
-            USE_PCIE_DMA : integer := 1 );
+            USE_PCIE_DMA : integer := 1;
+            USE_PERF_REGS : integer := 1 );
 
   port (
     clk   : in std_logic;
@@ -180,6 +189,8 @@ entity pcie_to_hibi is
     hibi_msg_comm_out : out std_logic_vector(HIBI_COM_WIDTH-1 downto 0);
     hibi_msg_full_in  : in  std_logic;
     hibi_msg_we_out   : out std_logic;
+    
+    dummy_debug_out   : out std_logic;
     debug_out         : out std_logic );
 
 end pcie_to_hibi;
@@ -213,12 +224,25 @@ architecture rtl of pcie_to_hibi is
     end if;
   end;
   
+  constant ENABLE_SIM : integer := 0
+  -- synthesis translate_off
+  + 1
+  -- synthesis translate_on
+  ;
+  
   constant HCOM_WR : std_logic_vector(HIBI_COM_WIDTH-1 downto 0) := HIBI_COM_WR(HIBI_COM_WIDTH-1 downto 0);
   constant HCOM_RD : std_logic_vector(HIBI_COM_WIDTH-1 downto 0) := HIBI_COM_RD(HIBI_COM_WIDTH-1 downto 0);
   constant HCOM_MSG_WR : std_logic_vector(HIBI_COM_WIDTH-1 downto 0) := HIBI_COM_MSG_WR(HIBI_COM_WIDTH-1 downto 0);
 --  constant HCOM_MSG_RD : std_logic_vector(HIBI_COM_WIDTH-1 downto 0) := HIBI_COM_MSG_RD(HIBI_COM_WIDTH-1 downto 0);
   
   constant PCIE_TAGS : integer := 2**PCIE_TAG_WIDTH;
+  constant PCIE_RD_LENGTH_WIDTH : integer := log2_ceil(256);
+  
+  constant CYCLES_IN_SEC : integer := 100000000;
+  constant CYCLES_IN_SEC_WIDTH : integer := log2_ceil(CYCLES_IN_SEC);
+  
+  constant IN_SYS_PROBE_WIDTH  : integer := CYCLES_IN_SEC_WIDTH*2;
+  constant IN_SYS_SOURCE_WIDTH : integer := 0;
   
   signal hibi_if_init_done : std_logic;
   
@@ -229,7 +253,7 @@ architecture rtl of pcie_to_hibi is
   signal ipkt_addr : std_logic_vector(HIBI_DATA_WIDTH-1 downto 0);
   signal ipkt_dma_addr_to_limit : std_logic_vector(ADDR_TO_LIMIT_WIDTH-1 downto 0);
   signal ipkt_length : std_logic_vector(PCIE_RW_LENGTH_WIDTH-1 downto 0);
-  signal ipkt_tag : std_logic_vector(PCIE_TAG_WIDTH-1 downto 0);
+  signal ipkt_tag : std_logic_vector(PKT_TAG_WIDTH-1 downto 0);
   signal ipkt_bar : std_logic_vector(2 downto 0);
   signal ipkt_req_id : std_logic_vector(PCIE_ID_WIDTH-1 downto 0);
   signal ipkt_valid : std_logic;
@@ -241,7 +265,7 @@ architecture rtl of pcie_to_hibi is
   signal ipkt_dma_is_rdata : std_logic;
   signal ipkt_dma_addr : std_logic_vector(HIBI_DATA_WIDTH-1 downto 0);
   signal ipkt_dma_length : std_logic_vector(PCIE_RW_LENGTH_WIDTH-1 downto 0);
-  signal ipkt_dma_tag : std_logic_vector(PCIE_TAG_WIDTH-1 downto 0);
+  signal ipkt_dma_tag : std_logic_vector(PKT_TAG_WIDTH-1 downto 0);
   signal ipkt_dma_req_id : std_logic_vector(PCIE_ID_WIDTH-1 downto 0);
   signal ipkt_dma_valid : std_logic;
   signal ipkt_dma_re : std_logic;
@@ -252,7 +276,7 @@ architecture rtl of pcie_to_hibi is
   signal opkt_is_rdata : std_logic;
   signal opkt_addr : std_logic_vector(PCIE_ADDR_WIDTH-1 downto 0);
   signal opkt_length : std_logic_vector(PCIE_RW_LENGTH_WIDTH-1 downto 0);
-  signal opkt_tag : std_logic_vector(PCIE_TAG_WIDTH-1 downto 0);
+  signal opkt_tag : std_logic_vector(PKT_TAG_WIDTH-1 downto 0);
   signal opkt_req_id : std_logic_vector(PCIE_ID_WIDTH-1 downto 0);
   signal opkt_ready : std_logic;
   signal opkt_wdata_req : std_logic;
@@ -265,7 +289,7 @@ architecture rtl of pcie_to_hibi is
   signal opkt_dma_is_rdata : std_logic;
   signal opkt_dma_addr : std_logic_vector(PCIE_ADDR_WIDTH-1 downto 0);
   signal opkt_dma_length : std_logic_vector(PCIE_RW_LENGTH_WIDTH-1 downto 0);
-  signal opkt_dma_tag : std_logic_vector(PCIE_TAG_WIDTH-1 downto 0);
+  signal opkt_dma_tag : std_logic_vector(PKT_TAG_WIDTH-1 downto 0);
   signal opkt_dma_req_id : std_logic_vector(PCIE_ID_WIDTH-1 downto 0);
   signal opkt_dma_ready : std_logic;
   signal opkt_dma_wdata_req : std_logic;
@@ -290,14 +314,23 @@ architecture rtl of pcie_to_hibi is
   signal debug_ena_r : std_logic;
   --synthesis translate_on
   
+  signal tag_reserve : std_logic;
+  signal tag_reserve_ready : std_logic;
+  signal tag_reserve_res : std_logic_vector(PCIE_TAG_WIDTH-1 downto 0);
+  signal tag_reserve_amount : std_logic_vector(PCIE_RD_LENGTH_WIDTH-1 downto 0);
+  signal tag_reserve_data : std_logic_vector(PKT_TAG_WIDTH-1 downto 0);
   
---  signal tag_fifo_we : std_logic;
---  signal tag_fifo_re : std_logic;
---  signal tag_fifo_empty : std_logic;
---  signal tag_fifo_full : std_logic;
---  signal tag_fifo_wdata : std_logic_vector(PKT_TAG_WIDTH-1 downto 0);
---  signal tag_fifo_rdata : std_logic_vector(PKT_TAG_WIDTH-1 downto 0);
+  signal tag_release : std_logic;
+  signal tag_release_ready : std_logic;
+  signal tag_release_res : std_logic_vector(PCIE_TAG_WIDTH-1 downto 0);
+  signal tag_release_amount : std_logic_vector(PCIE_RD_LENGTH_WIDTH-1 downto 0);
+  signal tag_release_data : std_logic_vector(PKT_TAG_WIDTH-1 downto 0);
   
+  signal in_sys_probe  : std_logic_vector(CYCLES_IN_SEC_WIDTH*3-1 downto 0);
+--  signal in_sys_source : std_logic_vector(CYCLES_IN_SEC_WIDTH-1 downto 0);
+  signal dma_writes_in_sec : std_logic_vector(CYCLES_IN_SEC_WIDTH-1 downto 0);
+  signal dma_reads_in_sec : std_logic_vector(CYCLES_IN_SEC_WIDTH-1 downto 0);
+  signal dma_write_to_read_cycles : std_logic_vector(CYCLES_IN_SEC_WIDTH-1 downto 0);
 begin
   
   --synthesis translate_off
@@ -314,6 +347,19 @@ begin
 --   end process;
 --   end generate;
   --synthesis translate_on
+  
+  gen_in_sys_sp : if ((USE_PCIE_DMA = 1) and (ENABLE_SIM = 0)) generate
+  in_sys_probe <= dma_write_to_read_cycles & dma_reads_in_sec & dma_writes_in_sec;
+  
+  alt_in_sys_sp_0 : entity work.alt_in_sys_sp 
+  generic map (
+	  INSTANCE_INDEX => 1,
+    PROBE_WIDTH    => CYCLES_IN_SEC_WIDTH*3,
+    SOURCE_WIDTH   => 0 )
+  port map (
+    probe => in_sys_probe );
+--    source => in_sys_source );
+  end generate;
   
   --synthesis translate_off
   process (clk_pcie, rst_n)
@@ -346,7 +392,9 @@ begin
   generic map ( HIBI_DATA_WIDTH => HIBI_DATA_WIDTH,
                 PCIE_DATA_WIDTH => PCIE_DATA_WIDTH,
                 PCIE_ADDR_WIDTH => PCIE_ADDR_WIDTH,
-                PCIE_RW_LENGTH_WIDTH => PCIE_RW_LENGTH_WIDTH )
+                PKT_TAG_WIDTH => PKT_TAG_WIDTH,
+                PCIE_RW_LENGTH_WIDTH => PCIE_RW_LENGTH_WIDTH,
+                PCIE_RD_LENGTH_WIDTH => PCIE_RD_LENGTH_WIDTH )
 
   port map (
     clk_pcie => clk_pcie,
@@ -377,7 +425,13 @@ begin
     ipkt_bar_out => ipkt_bar,
     ipkt_valid_out => ipkt_valid,
     ipkt_re_in => ipkt_dma_re,
-    ipkt_data_out => ipkt_data );
+    ipkt_data_out => ipkt_data,
+    
+    tag_release_out => tag_release,
+    tag_release_ready_in => tag_release_ready,
+    tag_release_res_out => tag_release_res,
+    tag_release_amount_out => tag_release_amount,
+    tag_release_data_in => tag_release_data );
 --    debug_out => debug_out );
   
   pcie_tx_0 : entity work.pcie_tx
@@ -385,9 +439,11 @@ begin
                 PCIE_DATA_WIDTH => PCIE_DATA_WIDTH,
                 PCIE_ADDR_WIDTH => PCIE_ADDR_WIDTH,
                 PCIE_CRED_WIDTH => PCIE_CRED_WIDTH,
+                PKT_TAG_WIDTH => PKT_TAG_WIDTH,
                 PCIE_RW_LENGTH_WIDTH => PCIE_RW_LENGTH_WIDTH,
                 PCIE_FORCE_MAX_RW_LENGTH => PCIE_FORCE_MAX_RW_LENGTH,
-                PCIE_MAX_RW_LENGTH => PCIE_MAX_RW_LENGTH )
+                PCIE_MAX_RW_LENGTH => PCIE_MAX_RW_LENGTH,
+                PCIE_RD_LENGTH_WIDTH => PCIE_RD_LENGTH_WIDTH )
   
   port map (
     clk_pcie => clk_pcie,
@@ -444,7 +500,13 @@ begin
     lmi_we_out => lmi_we_out,
     lmi_ack_in => lmi_ack_in,
     lmi_addr_out => lmi_addr_out,
-    lmi_data_out => lmi_data_out );
+    lmi_data_out => lmi_data_out,
+    
+    tag_reserve_out => tag_reserve,
+    tag_reserve_ready_in => tag_reserve_ready,
+    tag_reserve_res_in => tag_reserve_res,
+    tag_reserve_amount_out => tag_reserve_amount,
+    tag_reserve_data_out => tag_reserve_data );
   
   gen_0 : if (USE_PCIE_DMA = 0) generate
   ipkt_dma_is_write <= ipkt_is_write;
@@ -480,11 +542,16 @@ begin
                 PCIE_RW_LENGTH_WIDTH => PCIE_RW_LENGTH_WIDTH,
                 PCIE_ID_WIDTH => PCIE_ID_WIDTH,
                 PCIE_TAG_WIDTH => PCIE_TAG_WIDTH,
-            
+                PKT_TAG_WIDTH => PKT_TAG_WIDTH,
+                
                 PCIE_DATA_WIDTH => PCIE_DATA_WIDTH,
                 PCIE_ADDR_WIDTH => PCIE_ADDR_WIDTH,
                 PCIE_LOWER_ADDR_WIDTH => PCIE_LOWER_ADDR_WIDTH,
-                DMA_BAR => 2 )
+                DMA_BAR => 2,
+                
+                CYCLES_IN_SEC => CYCLES_IN_SEC,
+                CYCLES_IN_SEC_WIDTH => CYCLES_IN_SEC_WIDTH,
+                PERF_REGS => USE_PERF_REGS )
   
   port map ( clk => clk,
     rst_n => rst_n,
@@ -549,7 +616,12 @@ begin
     dma_irq_info_out => pcie_dma_irq_tc,
     irq_full_in => pcie_irq_full,
     
-    debug_out => debug_out );
+    dummy_debug_out => dummy_debug_out,
+    debug_out => debug_out,
+    
+    dma_writes_in_sec_out => dma_writes_in_sec,
+    dma_reads_in_sec_out => dma_reads_in_sec,
+    dma_write_to_read_cycles_out => dma_write_to_read_cycles );
 --    dma_irq_ack_out => pcie_dma_irq_ack );
   end generate;
   
@@ -571,6 +643,7 @@ begin
                 PCIE_ID_WIDTH         => PCIE_ID_WIDTH,
                 PCIE_FUNC_WIDTH       => PCIE_FUNC_WIDTH,
                 PCIE_TAG_WIDTH        => PCIE_TAG_WIDTH,
+                PKT_TAG_WIDTH => PKT_TAG_WIDTH,
                 
                 ADDR_TO_LIMIT_WIDTH => ADDR_TO_LIMIT_WIDTH,
                 
@@ -673,19 +746,27 @@ begin
     hibi_msg_comm_out => hibi_msg_comm_out,
     hibi_msg_full_in => hibi_msg_full_in,
     hibi_msg_we_out => hibi_msg_we_out );
-
---   tag_fifo : entity work.fifo_sc
--- 	generic map ( DATA_WIDTH => PKT_TAG_WIDTH,
---                 FIFO_LENGTH => PCIE_TAGS,
---                 CNT_WIDTH => PCIE_TAG_WIDTH )
---             
---   port map ( clk => clk_pcie,
--- 		         rst_n => rst_n,
---              wdata_in => tag_fifo_wdata,
--- 		         rdata_out => tag_fifo_rdata,
---              re_in => tag_fifo_re,
--- 		         we_in => tag_fifo_we,
--- 		         empty_out => tag_fifo_empty,
---              full_out => tag_fifo_full );
+  
+  tag_mutex : entity work.multi_mutex
+ 	generic map ( RESOURCES => PCIE_TAGS,
+                RESOURCES_WIDTH => PCIE_TAG_WIDTH,
+                RES_DATA_WIDTH => PKT_TAG_WIDTH,
+                RES_AMOUNT_WIDTH => PCIE_RD_LENGTH_WIDTH )
+  
+  port map ( clk_rsv => clk_pcie,
+ 	           clk_rls => clk,
+             rst_n => rst_n,
+             
+             reserve_in => tag_reserve,
+             reserve_ready_out => tag_reserve_ready,
+             reserve_res_out => tag_reserve_res,
+             reserve_amount_in => tag_reserve_amount,
+             reserve_data_in => tag_reserve_data,
+             
+             release_in => tag_release,
+             release_ready_out => tag_release_ready,
+             release_res_in => tag_release_res,
+             release_amount_in => tag_release_amount,
+             release_data_out => tag_release_data );
 
 end rtl;

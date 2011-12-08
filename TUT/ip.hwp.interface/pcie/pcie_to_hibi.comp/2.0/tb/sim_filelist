@@ -1,0 +1,10 @@
+../../../../../ip.hwp.support/txt_util/1.0/hdl/*.vhd
+../hdl/buf_ptr_ctrl.vhd
+../hdl/req_ctrl.vhd
+../hdl/pkt_buf.vhd
+../hdl/pcie_tx.vhd
+../hdl/pcie_rx.vhd
+../hdl/multi_mutex.vhd
+../hdl/pcie_dma.vhd
+../hdl/hibi_if.vhd
+../hdl/pcie_to_hibi.vhd

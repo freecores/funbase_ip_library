@@ -1,36 +1,43 @@
 -------------------------------------------------------------------------------
+-- Funbase IP library Copyright (C) 2011 TUT Department of Computer Systems
+--
+-- This source file may be used and distributed without
+-- restriction provided that this copyright statement is not
+-- removed from the file and that any derivative work contains
+-- the original copyright notice and the associated disclaimer.
+--
+-- This source file is free software; you can redistribute it
+-- and/or modify it under the terms of the GNU Lesser General
+-- Public License as published by the Free Software Foundation;
+-- either version 2.1 of the License, or (at your option) any
+-- later version.
+--
+-- This source is distributed in the hope that it will be
+-- useful, but WITHOUT ANY WARRANTY; without even the implied
+-- warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+-- PURPOSE.  See the GNU Lesser General Public License for more
+-- details.
+--
+-- You should have received a copy of the GNU Lesser General
+-- Public License along with this source; if not, download it
+-- from http://www.opencores.org/lgpl.shtml
+-------------------------------------------------------------------------------
 -- Title      : PCIe DMA
--- Project    : 
+-- Project    : Funbase
 -------------------------------------------------------------------------------
 -- File       : pcie_dma.vhd
--- Author     : 
--- Company    : 
--- Last update: 07.02.2011
--- Version    : 0.1
+-- Author     : Juha Arvio
+-- Company    : TUT
+-- Last update: 05.10.2011
+-- Version    : 0.91
 -- Platform   : 
 -------------------------------------------------------------------------------
 -- Description:
---
--------------------------------------------------------------------------------
--- Copyright (c) 2011
 -------------------------------------------------------------------------------
 -- Revisions  :
 -- Date        Version  Author  Description
--- 07.02.2010   0.1     arvio     Created
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
---  This file is a part of a free IP-block: you can redistribute it and/or modify
---  it under the terms of the Lesser GNU General Public License as published by
---  the Free Software Foundation, either version 3 of the License, or
---  (at your option) any later version.
---
---  This IP-block is distributed in the hope that it will be useful,
---  but WITHOUT ANY WARRANTY; without even the implied warranty of
---  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
---  Lesser GNU General Public License for more details.
---
---  You should have received a copy of the Lesser GNU General Public License
---  along with Transaction Generator.  If not, see <http://www.gnu.org/licenses/>.
+-- 07.02.2011   0.1     arvio     Created
+-- 05.10.2011   0.91    arvio
 -------------------------------------------------------------------------------
 
 library ieee;
@@ -49,7 +56,7 @@ entity pcie_dma is
             HIBI_RW_LENGTH_WIDTH  : integer := 16;
             PCIE_RW_LENGTH_WIDTH  : integer := 13;
             PCIE_ID_WIDTH   : integer := 16;
---            PKT_TAG_WIDTH  : integer := 9;
+            PKT_TAG_WIDTH  : integer := 8;
             PCIE_TAG_WIDTH : integer := 6;
             
             PCIE_DATA_WIDTH : integer := 128;
@@ -57,10 +64,15 @@ entity pcie_dma is
             PCIE_LOWER_ADDR_WIDTH : integer := 7;
             DMA_BAR : integer := 2;
             BURST_LATENCY : integer := 2;
+            DMA_DESC_REQ_FREE_LOW_LIMIT : integer := 16;
             
             ADDR_TO_LIMIT_WIDTH : integer := 12;
             IRQ_WIDTH : integer := 5;
-            INFO_WIDTH : integer := 3 ); -- traffic class number width on pcie
+            INFO_WIDTH : integer := 3; -- traffic class number width on pcie
+            
+            CYCLES_IN_SEC : integer := 100000000;
+            CYCLES_IN_SEC_WIDTH : integer := 32;
+            PERF_REGS : integer := 1 );
   
   port (
     clk : in std_logic;
@@ -75,7 +87,7 @@ entity pcie_dma is
 --    ipkt_addr_size_in   : in std_logic;
     ipkt_length_in      : in std_logic_vector(PCIE_RW_LENGTH_WIDTH-1 downto 0);
     ipkt_req_id_in      : in std_logic_vector(PCIE_ID_WIDTH-1 downto 0);
-    ipkt_tag_in         : in std_logic_vector(PCIE_TAG_WIDTH-1 downto 0);
+    ipkt_tag_in         : in std_logic_vector(PKT_TAG_WIDTH-1 downto 0);
     ipkt_bar_in      : in std_logic_vector(2 downto 0);
     
     ipkt_re_out         : out std_logic;
@@ -90,7 +102,7 @@ entity pcie_dma is
 --    ipkt_addr_size_out   : out std_logic;
     ipkt_length_out      : out std_logic_vector(HIBI_RW_LENGTH_WIDTH-1 downto 0);
     ipkt_req_id_out      : out std_logic_vector(PCIE_ID_WIDTH-1 downto 0);
-    ipkt_tag_out         : out std_logic_vector(PCIE_TAG_WIDTH-1 downto 0);
+    ipkt_tag_out         : out std_logic_vector(PKT_TAG_WIDTH-1 downto 0);
 --    ipkt_bardec_out      : out std_logic_vector(7 downto 0);
     
     ipkt_re_in           : in std_logic;
@@ -105,7 +117,7 @@ entity pcie_dma is
 --    opkt_addr_size_in   : in std_logic;
     opkt_length_in      : in std_logic_vector(PCIE_RW_LENGTH_WIDTH-1 downto 0);
     opkt_req_id_in      : in std_logic_vector(PCIE_ID_WIDTH-1 downto 0);
-    opkt_tag_in         : in std_logic_vector(PCIE_TAG_WIDTH-1 downto 0);
+    opkt_tag_in         : in std_logic_vector(PKT_TAG_WIDTH-1 downto 0);
     
     opkt_we_in          : in std_logic;
     opkt_burst_we_in    : in std_logic;
@@ -120,7 +132,7 @@ entity pcie_dma is
 --    opkt_addr_size_out   : out std_logic;
     opkt_length_out      : out std_logic_vector(PCIE_RW_LENGTH_WIDTH-1 downto 0);
     opkt_req_id_out      : out std_logic_vector(PCIE_ID_WIDTH-1 downto 0);
-    opkt_tag_out         : out std_logic_vector(PCIE_TAG_WIDTH-1 downto 0);
+    opkt_tag_out         : out std_logic_vector(PKT_TAG_WIDTH-1 downto 0);
     
     opkt_we_out          : out std_logic;
     opkt_burst_we_out    : out std_logic;
@@ -132,6 +144,11 @@ entity pcie_dma is
     irq_full_in : in std_logic;
     dma_irq_full_out : out std_logic;
     
+    dma_writes_in_sec_out : out std_logic_vector(CYCLES_IN_SEC_WIDTH-1 downto 0);
+    dma_reads_in_sec_out : out std_logic_vector(CYCLES_IN_SEC_WIDTH-1 downto 0);
+    dma_write_to_read_cycles_out : out std_logic_vector(CYCLES_IN_SEC_WIDTH-1 downto 0);
+    
+    dummy_debug_out     : out std_logic;
     debug_out           : out std_logic );
 
 end pcie_dma;
@@ -219,13 +236,15 @@ architecture rtl of pcie_dma is
   constant DMA_DESC_FIFO_MAX_DESCS : integer := DMA_DESC_FIFO_LENGTH/4;
   constant DMA_DESC_FIFO_MAX_DESCS_WIDTH : integer := log2_ceil(DMA_DESC_FIFO_MAX_DESCS);
   
+--  constant CYCLES_IN_SEC_WIDTH : integer := log2_ceil(CYCLES_IN_SEC);
+  
 --  constant DMA_TAG : std_logic_vector(PKT_TAG_WIDTH-PCIE_LOWER_TAG_WIDTH downto 0) := i2s(1, PKT_TAG_WIDTH-PCIE_LOWER_TAG_WIDTH+1);
   constant DMA_DESC_TAG : std_logic_vector(1 downto 0) := (others => '0');
   constant DMA_RDATA_TAG : std_logic_vector(1 downto 0) := DMA_DESC_TAG + 1;
   constant DMA_P2H_RDATA_TAG : std_logic_vector(1 downto 0) := DMA_RDATA_TAG + 1;
   constant H2P_RDATA_TAG : std_logic_vector(1 downto 0) := DMA_P2H_RDATA_TAG + 1;
   
-  type dma_state_t is (DMA_WAIT, DMA_DESC_WAIT, DMA_DELAY, DMA_WAIT_EPLAST, DMA_SEND_EPLAST, DMA_SEND_IRQ, DMA_WRITE, DMA_WDATA_WAIT, DMA_READ, DMA_RDATA_WAIT);
+  type dma_state_t is (DMA_WAIT, DMA_DESC_WAIT, DMA_DELAY, DMA_WAIT_EPLAST, DMA_SEND_EPLAST, DMA_SEND_IRQ, DMA_WAIT_WRITE, DMA_WRITE, DMA_WDATA_WAIT, DMA_READ, DMA_RDATA_WAIT);
   signal dma_state_r : dma_state_t;
   
   type dma_cfg_rd_state_t is (DMA_CFG_READ_WAIT, DMA_CFG_READ);
@@ -278,7 +297,7 @@ architecture rtl of pcie_dma is
   signal dma_cfg_raddr_r : std_logic_vector(4 downto 0);
   signal dma_cfg_rdata : std_logic_vector(31 downto 0);
   signal dma_cfg_req_id_r : std_logic_vector(PCIE_ID_WIDTH-1 downto 0);
-  signal dma_cfg_tag_r : std_logic_vector(PCIE_TAG_WIDTH-1 downto 0);
+  signal dma_cfg_tag_r : std_logic_vector(PKT_TAG_WIDTH-1 downto 0);
   signal dma_ep_addr_r : std_logic_vector(HIBI_DATA_WIDTH-1 downto 0);
   signal dma_rc_addr_r : std_logic_vector(PCIE_ADDR_WIDTH-1 downto 0);
   signal dma_rw_length_r : std_logic_vector(15 downto 0);
@@ -331,11 +350,22 @@ architecture rtl of pcie_dma is
 --  signal opkt_burst_we : std_logic;
   signal opkt_is_write : std_logic;
   signal opkt_is_dma_rdata_0 : std_logic;
+  signal opkt_we : std_logic;
   
   signal debug_start_r : std_logic;
   signal debug_started_r : std_logic;
-begin
   
+  signal debug_desc_fifo_rw : std_logic;
+  
+  signal sec_pulse_r : std_logic;
+  signal intra_sec_cnt_r : std_logic_vector(CYCLES_IN_SEC_WIDTH-1 downto 0);
+  signal dma_write_sec_cnt_r : std_logic_vector(CYCLES_IN_SEC_WIDTH-1 downto 0);
+  signal dma_read_sec_cnt_r : std_logic_vector(CYCLES_IN_SEC_WIDTH-1 downto 0);
+  signal dma_write_sec_val_r : std_logic_vector(CYCLES_IN_SEC_WIDTH-1 downto 0);
+  signal dma_read_sec_val_r : std_logic_vector(CYCLES_IN_SEC_WIDTH-1 downto 0);
+  signal dma_write_to_read_cycles_r : std_logic_vector(CYCLES_IN_SEC_WIDTH-1 downto 0);
+  signal dma_write_to_read_on_r : std_logic;
+begin
   debug_out <= debug_start_r;
   
   process (clk, rst_n)
@@ -357,10 +387,68 @@ begin
     end if;
   end process;
   
-  dma_cfg_rd_ready  <= opkt_ready_in and not(burst_active);
-  dma_desc_rd_ready <= dma_cfg_rd_ready  and not(opkt_dma_cfg_rdata_r);
-  dma_desc_wr_ready <= dma_desc_rd_ready and not(dma_desc_re_r);
-  dma_h2p_rd_ready  <= dma_desc_wr_ready and not(dma_desc_we_r);
+  ------------------------------------------------------------------------------
+  -- Performance registers:
+  ------------------------------------------------------------------------------
+  gen_perf_regs : if (PERF_REGS = 1) generate
+  dma_writes_in_sec_out <= dma_write_sec_val_r;
+  dma_reads_in_sec_out <= dma_read_sec_val_r;
+  dma_write_to_read_cycles_out <= dma_write_to_read_cycles_r;
+  
+  process (clk, rst_n)
+  begin
+    if (rst_n = '0') then
+      intra_sec_cnt_r <= (others => '0');
+      sec_pulse_r <= '0';
+      dma_write_sec_cnt_r <= (others => '0');
+      dma_read_sec_cnt_r <= (others => '0');
+      dma_write_sec_val_r <= (others => '0');
+      dma_read_sec_val_r <= (others => '0');
+      
+      dma_write_to_read_cycles_r <= (others => '0');
+      dma_write_to_read_on_r <= '0';
+      
+    elsif (clk'event and clk = '1') then
+      if (intra_sec_cnt_r = (CYCLES_IN_SEC-1)) then
+        intra_sec_cnt_r <= (others => '0');
+        sec_pulse_r <= '1';
+      else
+        intra_sec_cnt_r <= intra_sec_cnt_r + 1;
+        sec_pulse_r <= '0';
+      end if;
+      
+      if (wdma_start_r = '1') then
+        dma_write_to_read_on_r <= '1';
+      elsif (rdma_start_r = '1') then
+        dma_write_to_read_on_r <= '0';
+      end if;
+      
+      if (wdma_start_r = '1') then
+        dma_write_to_read_cycles_r <= (others => '0');
+      elsif (dma_write_to_read_on_r = '1') then
+        dma_write_to_read_cycles_r <= dma_write_to_read_cycles_r + 1;
+      end if;
+        
+      if (sec_pulse_r = '1') then
+        dma_write_sec_val_r <= dma_write_sec_cnt_r;
+        dma_write_sec_cnt_r <= (others => '0');
+      elsif ((ipkt_is_dma_rdata = '1') and (ipkt_valid = '1') and (ipkt_re_in = '1')) then
+        dma_write_sec_cnt_r <= dma_write_sec_cnt_r + 1;
+      else
+        dma_write_sec_cnt_r <= dma_write_sec_cnt_r;
+      end if;
+      
+      if (sec_pulse_r = '1') then
+        dma_read_sec_val_r <= dma_read_sec_cnt_r;
+        dma_read_sec_cnt_r <= (others => '0');
+      elsif ((opkt_is_dma_rdata_0 = '1') and (opkt_burst_we_in = '1')) then
+        dma_read_sec_cnt_r <= dma_read_sec_cnt_r + 1;
+      else
+        dma_read_sec_cnt_r <= dma_read_sec_cnt_r;
+      end if;
+    end if;
+  end process;
+  end generate;
   
   opkt_ready_out    <= opkt_ready_in and not(opkt_dma_cfg_rdata_r) and not(dma_desc_re_r) and not(dma_desc_we_r) and not(dma_p2h_re_r);
   
@@ -378,7 +466,13 @@ begin
 --  ipkt_re_out <= ipkt_re_in and not(ipkt_re_stall);
   ipkt_valid_out <= ipkt_valid or dma_p2h_re_r;
   
-  opkt_we_out <= not(burst_active) and (opkt_we_in or opkt_dma_cfg_rdata_r or dma_desc_re_r or dma_desc_we_r or dma_h2p_re_r);
+--  opkt_we_dma_desc_re <= not(burst_active) and (opkt_we_in or opkt_dma_cfg_rdata_r or dma_desc_we_r or dma_h2p_re_r);
+--  opkt_we_dma_desc_we <= not(burst_active) and (opkt_we_in or opkt_dma_cfg_rdata_r or dma_desc_re_r or dma_h2p_re_r);
+--  opkt_we_dma_cfg_rdata <= not(burst_active) and (opkt_we_in or dma_desc_re_r or dma_desc_we_r or dma_h2p_re_r);
+--  opkt_we_dma_h2p_re <= not(burst_active) and (opkt_we_in or opkt_dma_cfg_rdata_r or dma_desc_re_r or dma_desc_we_r or dma_h2p_re_r);
+  
+  opkt_we <= not(burst_active) and (opkt_we_in or opkt_dma_cfg_rdata_r or dma_desc_re_r or dma_desc_we_r or dma_h2p_re_r);
+  opkt_we_out <= opkt_we;
   opkt_burst_we_out <= opkt_burst_we_in;
   
   ipkt_addr_to_limit_out <= addr_to_limit_r(ADDR_TO_LIMIT_WIDTH-1 downto 0);
@@ -392,7 +486,8 @@ begin
            dma_cfg_rdata, dma_cfg_req_id_r, dma_cfg_tag_r, dma_desc_re_r, dma_desc_addr_r, dma_desc_length_r, ipkt_data_in, ipkt_re_in, ipkt_is_write_in, dma_h2p_re_r,
            ipkt_is_read_req_in, ipkt_is_rdata_in, ipkt_addr_in, ipkt_length_in, ipkt_req_id_in, ipkt_tag_in, ipkt_is_dma_cfg_rdata, ipkt_valid_in, dma_p2h_re_r, ipkt_bar_in,
            dma_rw_length_r, dma_rc_addr_r, is_dma_bar, ipkt_re_r, opkt_is_dma_rdata, dma_desc_we_r, dma_desc_cnt_r, ipkt_is_dma_rdata, wdma_start_r, opkt_burst_we_in,
-           opkt_dma_cfg_rdata_r, rdma_desc_last_r, dma_ep_addr_r, opkt_is_write_r, opkt_is_dma_rdata_r, opkt_is_dma_rdata_0, burst_active_r)
+           opkt_dma_cfg_rdata_r, rdma_desc_last_r, dma_ep_addr_r, opkt_is_write_r, opkt_is_dma_rdata_r, opkt_is_dma_rdata_0, burst_active_r, burst_active,
+           dma_cfg_rd_ready, dma_desc_rd_ready, dma_desc_wr_ready, opkt_ready_in)
 --     variable opkt_burst_we_v : std_logic;
 --     variable opkt_is_write_v : std_logic;
 --     variable opkt_is_dma_rdata_v : std_logic;
@@ -466,11 +561,19 @@ begin
     opkt_is_read_req_out <= opkt_is_read_req_in;
     opkt_is_rdata_out <= opkt_is_rdata_in;
     opkt_length_out <= opkt_length_in;
-    opkt_tag_out <= opkt_tag_in(PCIE_TAG_WIDTH-1 downto 0);
+    opkt_tag_out <= opkt_tag_in(PKT_TAG_WIDTH-1 downto 0);
     opkt_data_out <= opkt_data_in;
     opkt_addr_out <= opkt_addr_in;
     opkt_req_id_out <= opkt_req_id_in;
     
+    ---------------------------------------------------------------------------
+    -- the order of these two blocks should be the same
+    ---------------------------------------------------------------------------
+    dma_cfg_rd_ready  <= opkt_ready_in and not(burst_active);
+    dma_desc_rd_ready <= dma_cfg_rd_ready  and not(opkt_dma_cfg_rdata_r);
+    dma_desc_wr_ready <= dma_desc_rd_ready and not(dma_desc_re_r);
+    dma_h2p_rd_ready  <= dma_desc_wr_ready and not(dma_desc_we_r);
+    ---------------------------------------------------------------------------
     if (opkt_is_dma_rdata_0 = '1') then
       opkt_is_write_out <= '1';
       opkt_is_read_req_out <= '0';
@@ -494,7 +597,8 @@ begin
       opkt_is_rdata_out <= '0';
       opkt_addr_out <= dma_desc_addr_r;
       opkt_length_out <= dma_desc_length_r;
-      opkt_tag_out <= DMA_DESC_TAG & "0000";
+      opkt_tag_out <= (others => '0');
+      opkt_tag_out(PKT_TAG_WIDTH-1 downto PKT_TAG_WIDTH-2) <= DMA_DESC_TAG;
     
     elsif (dma_desc_we_r = '1') then
       opkt_is_write_out <= '1';
@@ -516,8 +620,11 @@ begin
       opkt_is_rdata_out <= '0';
       opkt_addr_out <= dma_rc_addr_r;
       opkt_length_out <= dma_rw_length_r(PCIE_RW_LENGTH_WIDTH-3 downto 0) & "00";
-      opkt_tag_out <= DMA_RDATA_TAG & "0000";
+      opkt_tag_out <= (others => '0');
+      opkt_tag_out(PKT_TAG_WIDTH-1 downto PKT_TAG_WIDTH-2) <= DMA_RDATA_TAG;
     end if;
+    ---------------------------------------------------------------------------
+    
     
     ipkt_data_out <= ipkt_data_in;
     ipkt_is_write_out <= ipkt_is_write_in;
@@ -536,7 +643,8 @@ begin
       ipkt_is_rdata_out <= '0';
       ipkt_addr_out <= dma_ep_addr_r; --(HIBI_DATA_WIDTH-3 downto 0) & "00";
       ipkt_length_out <= dma_rw_length_r(HIBI_RW_LENGTH_WIDTH-3 downto 0) & "00";
-      ipkt_tag_out <= DMA_P2H_RDATA_TAG & "0000";
+      ipkt_tag_out <= (others => '0');
+      ipkt_tag_out(PKT_TAG_WIDTH-1 downto PKT_TAG_WIDTH-2) <= DMA_P2H_RDATA_TAG;
       ipkt_valid <= '1';
       ipkt_re_out <= '0';
     
@@ -560,11 +668,11 @@ begin
       is_dma_bar <= '0';
     end if;
     
-    if (ipkt_tag_in(PCIE_TAG_WIDTH-1 downto PCIE_TAG_WIDTH-2) = DMA_DESC_TAG) then
+    if (ipkt_tag_in(PKT_TAG_WIDTH-1 downto PKT_TAG_WIDTH-2) = DMA_DESC_TAG) then
       is_dma_desc_tag <= '1';
       is_dma_rdata_tag <= '0';
       is_h2p_rdata_tag <= '0';
-    elsif (ipkt_tag_in(PCIE_TAG_WIDTH-1 downto PCIE_TAG_WIDTH-2) = DMA_RDATA_TAG) then
+    elsif (ipkt_tag_in(PKT_TAG_WIDTH-1 downto PKT_TAG_WIDTH-2) = DMA_RDATA_TAG) then
       is_dma_desc_tag <= '0';
       is_dma_rdata_tag <= '1';
       is_h2p_rdata_tag <= '0';
@@ -574,7 +682,7 @@ begin
       is_h2p_rdata_tag <= '1';
     end if;
     
-    if ((opkt_tag_in(PCIE_TAG_WIDTH-1) = '1') and (opkt_is_rdata_in = '1')) then
+    if ((opkt_tag_in(PKT_TAG_WIDTH-1) = '1') and (opkt_is_rdata_in = '1')) then
       opkt_is_dma_rdata <= '1';
     else
       opkt_is_dma_rdata <= '0';
@@ -740,7 +848,7 @@ begin
           
         when DMA_READ_DESC_WAIT =>
           if (dma_desc_fetch_amount_r > 0) then
-            if (dma_desc_req_free_amount_r > 0) then
+            if ((dma_desc_req_free_amount_r > DMA_DESC_REQ_FREE_LOW_LIMIT) and (opkt_we = '0')) then
               dma_desc_re_r <= '1';
               
               if (dma_desc_fetch_amount_r > dma_desc_req_free_amount_r) then
@@ -802,6 +910,8 @@ begin
           if (((wdma_started_r = '1') and (dma_desc_cnt_r > wdma_desc_last_r)) or ((rdma_started_r = '1') and (dma_desc_cnt_r > rdma_desc_last_r))) then
 --            wdma_start_r <= wdma_start_r and not(wdma_started_r);
 --            rdma_start_r <= rdma_start_r and not(rdma_started_r);
+            wdma_started_r <= '0';
+            rdma_started_r <= '0';
             dma_state_r <= DMA_WAIT;
           else
             if (dma_desc_fifo_empty = '0') then
@@ -821,10 +931,11 @@ begin
                 when others => --DMA_DESC_RC_LOWER_ADDR_WORD =>
                   dma_rc_addr_r(31 downto 0) <= dma_desc_fifo_rdata;
                   addr_to_limit_r <= "1000000000000" - dma_desc_fifo_rdata(11 downto 0);
+                  dma_desc_req_free_inc_v := '1';
+                  
                   if (wdma_started_r = '1') then
-                    dma_desc_req_free_inc_v := '1';
-                    dma_h2p_re_r <= '1';
-                    dma_state_r <= DMA_WRITE;
+--                    dma_h2p_re_r <= '1';
+                    dma_state_r <= DMA_WAIT_WRITE;
                   else
                     dma_p2h_re_r <= '1';
                     dma_state_r <= DMA_READ;
@@ -838,14 +949,17 @@ begin
           end if;
         
         when DMA_DELAY =>
-          if (dma_delay_r = (BURST_LATENCY-1)) then
+          if ((dma_delay_r = (BURST_LATENCY-1)) and (opkt_we = '0')) then
             dma_desc_we_r <= '1';
             dma_state_r <= DMA_SEND_EPLAST;
           end if;
-          dma_delay_r <= dma_delay_r + 1;
-        
+          
+          if (dma_delay_r < (BURST_LATENCY-1)) then
+            dma_delay_r <= dma_delay_r + 1;
+          end if;
+          
         when DMA_WAIT_EPLAST =>
-          if (burst_active = '0') then
+          if ((burst_active = '0') and (opkt_we = '0')) then
             dma_desc_we_r <= '1';
             dma_state_r <= DMA_SEND_EPLAST;
           end if;
@@ -868,6 +982,12 @@ begin
           if (irq_full_in = '0') then
             dma_irq_r <= '0';
             dma_state_r <= DMA_DESC_WAIT;
+          end if;
+        
+        when DMA_WAIT_WRITE =>
+          if (opkt_we = '0') then
+            dma_h2p_re_r <= '1';
+            dma_state_r <= DMA_WRITE;
           end if;
         
         when DMA_WRITE =>
@@ -908,7 +1028,7 @@ begin
           if ((opkt_is_dma_rdata_0 = '1') and (opkt_ready_in = '1') and (opkt_burst_we_in = '1')) then
             if (dma_rw_length_r = 1) then
               if ((dma_eplast_ena_r = '1') or (rdma_eplast_ena_r = '1')) then
-                dma_desc_we_r <= '1';
+--                dma_desc_we_r <= '1';
                 dma_state_r <= DMA_WAIT_EPLAST;
               elsif ((dma_msi_ena_r = '1') or (rdma_msi_ena_r = '1')) then
                 dma_desc_cnt_r <= dma_desc_cnt_r + 1;
@@ -967,7 +1087,7 @@ begin
     end if;
   end process;
   
-  dma_desc_fifo : entity work.fifo_sc
+  dma_desc_fifo : entity work.alt_fifo_sc
 	generic map ( DATA_WIDTH => HIBI_DATA_WIDTH,
                 FIFO_LENGTH => DMA_DESC_FIFO_LENGTH,
                 CNT_WIDTH => log2_ceil(DMA_DESC_FIFO_LENGTH-1) )
@@ -979,6 +1099,9 @@ begin
              re_in => dma_desc_fifo_re_r,
 		         we_in => dma_desc_fifo_we_r,
 		         empty_out => dma_desc_fifo_empty );
-    
+  
+  debug_desc_fifo_rw <= dma_desc_fifo_re_r or dma_desc_fifo_we_r;
+  
+  dummy_debug_out <= debug_desc_fifo_rw;
   
 end rtl;

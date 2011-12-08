@@ -1,36 +1,43 @@
 -------------------------------------------------------------------------------
+-- Funbase IP library Copyright (C) 2011 TUT Department of Computer Systems
+--
+-- This source file may be used and distributed without
+-- restriction provided that this copyright statement is not
+-- removed from the file and that any derivative work contains
+-- the original copyright notice and the associated disclaimer.
+--
+-- This source file is free software; you can redistribute it
+-- and/or modify it under the terms of the GNU Lesser General
+-- Public License as published by the Free Software Foundation;
+-- either version 2.1 of the License, or (at your option) any
+-- later version.
+--
+-- This source is distributed in the hope that it will be
+-- useful, but WITHOUT ANY WARRANTY; without even the implied
+-- warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+-- PURPOSE.  See the GNU Lesser General Public License for more
+-- details.
+--
+-- You should have received a copy of the GNU Lesser General
+-- Public License along with this source; if not, download it
+-- from http://www.opencores.org/lgpl.shtml
+-------------------------------------------------------------------------------
 -- Title      : Buffer pointer control
--- Project    : 
+-- Project    : Funbase
 -------------------------------------------------------------------------------
 -- File       : buf_ptr_ctrl.vhd
--- Author     : 
--- Company    : 
--- Last update: 27.05.2011
--- Version    : 0.9
+-- Author     : Juha Arvio
+-- Company    : TUT
+-- Last update: 05.10.2011
+-- Version    : 0.91
 -- Platform   : 
 -------------------------------------------------------------------------------
 -- Description:
---
--------------------------------------------------------------------------------
--- Copyright (c) 2011
 -------------------------------------------------------------------------------
 -- Revisions  :
 -- Date        Version  Author  Description
 -- 30.11.2010   0.1     arvio     Created
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
---  This file is a part of a free IP-block: you can redistribute it and/or modify
---  it under the terms of the Lesser GNU General Public License as published by
---  the Free Software Foundation, either version 3 of the License, or
---  (at your option) any later version.
---
---  This IP-block is distributed in the hope that it will be useful,
---  but WITHOUT ANY WARRANTY; without even the implied warranty of
---  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
---  Lesser GNU General Public License for more details.
---
---  You should have received a copy of the Lesser GNU General Public License
---  along with Transaction Generator.  If not, see <http://www.gnu.org/licenses/>.
+-- 05.10.2011   0.91    arvio
 -------------------------------------------------------------------------------
 
 library ieee;
@@ -585,7 +592,7 @@ begin
   buf_rpart_p1 <= cnt_rdata_p1(BUFFER_RPART_U downto BUFFER_RPART_L);
   addr_to_limit_p1 <= cnt_rdata_p1(ADDR_TO_LIMIT_U downto ADDR_TO_LIMIT_L);
   
-  cnt_mem_0 : entity work.onchip_mem_sc
+  cnt_mem_0 : entity work.alt_mem_sc
   generic map ( DATA_WIDTH => COUNT_DATA_WIDTH,
                 ADDR_WIDTH => BUFFERS_WIDTH,
                 MEM_SIZE   => BUFFERS )

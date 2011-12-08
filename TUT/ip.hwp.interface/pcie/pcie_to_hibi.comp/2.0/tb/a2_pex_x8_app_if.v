@@ -23,13 +23,13 @@
 //*/
 module a2_pex_x8_example_chaining_pipen1b (
                                             // inputs:
-                                             free_100MHz,
                                              local_rstn,
                                              pcie_rstn,
                                              pclk_in,
                                              phystatus_ext,
                                              pipe_mode,
                                              pld_clk,
+                                             reconfig_clk,
                                              refclk,
                                              rx_in0,
                                              rx_in1,
@@ -86,7 +86,7 @@ module a2_pex_x8_example_chaining_pipen1b (
                                              clk500_out,
                                              core_clk_out,
                                              lane_width_code,
-                                             pcie_reconfig_busy,
+                                             pcie_reconfig_rstn,
                                              phy_sel_code,
                                              powerdown_ext,
                                              rate_ext,
@@ -149,7 +149,7 @@ module a2_pex_x8_example_chaining_pipen1b (
   output           clk500_out;
   output           core_clk_out;
   output  [  3: 0] lane_width_code;
-  output           pcie_reconfig_busy;
+  output           pcie_reconfig_rstn;
   output  [  3: 0] phy_sel_code;
   output  [  1: 0] powerdown_ext;
   output           rate_ext;
@@ -205,14 +205,13 @@ module a2_pex_x8_example_chaining_pipen1b (
   output           txelecidle5_ext;
   output           txelecidle6_ext;
   output           txelecidle7_ext;
-  input            free_100MHz;
   input            local_rstn;
   input            pcie_rstn;
   input            pclk_in;
   input            phystatus_ext;
   input            pipe_mode;
   input            pld_clk;
-
+  input            reconfig_clk;
   input            refclk;
   input            rx_in0;
   input            rx_in1;
@@ -286,7 +285,6 @@ module a2_pex_x8_example_chaining_pipen1b (
   wire             cpl_pending_icm;
   wire    [  4: 0] dl_ltssm;
   wire    [127: 0] err_desc;
-  wire             fixedclk_serdes;
   wire    [ 23: 0] gnd_cfg_tcvcmap_icm;
   wire             gnd_msi_stream_ready0;
   wire    [  9: 0] gnd_pm_data;
@@ -307,17 +305,13 @@ module a2_pex_x8_example_chaining_pipen1b (
   wire             open_msi_stream_valid0;
   wire    [  9: 0] open_pm_data;
   wire             open_rx_st_err0;
-  wire             otb0;
-  wire             otb1;
-  wire             pcie_reconfig_busy;
+  wire             pcie_reconfig_rstn;
   wire    [  4: 0] pex_msi_num_icm;
   wire    [  3: 0] phy_sel_code;
   wire             pme_to_sr;
   wire    [  1: 0] powerdown_ext;
   wire             rate_ext;
   wire             rc_pll_locked;
-  wire             reconfig_clk;
-  wire             reconfig_clk_locked;
   wire    [  3: 0] ref_clk_sel_code;
   wire             rx_mask0;
   wire    [  7: 0] rx_st_bardec0;
@@ -340,7 +334,7 @@ module a2_pex_x8_example_chaining_pipen1b (
   wire             rxpolarity7_ext;
   wire             srstn;
   wire    [  8: 0] test_out_icm;
-  wire    [  8: 0] test_out_int;
+  wire    [ 63: 0] test_out_int;
   wire    [  3: 0] tl_cfg_add;
   wire    [ 31: 0] tl_cfg_ctl;
   wire             tl_cfg_ctl_wr;
@@ -401,11 +395,9 @@ module a2_pex_x8_example_chaining_pipen1b (
   assign ref_clk_sel_code = 0;
   assign lane_width_code = 3;
   assign phy_sel_code = 6;
-  assign otb0 = 1'b0;
-  assign otb1 = 1'b1;
   assign gnd_pm_data = 0;
-  assign ko_cpl_spc_vc0[7 : 0] = 8'd4;
-  assign ko_cpl_spc_vc0[19 : 8] = 12'd16;
+  assign ko_cpl_spc_vc0[7 : 0] = 8'd28;
+  assign ko_cpl_spc_vc0[19 : 8] = 12'd112;
   assign gnd_cfg_tcvcmap_icm = 0;
   assign tx_st_sop0 = tx_stream_data0[73];
   assign tx_st_err0 = tx_stream_data0[74];
@@ -414,8 +406,8 @@ module a2_pex_x8_example_chaining_pipen1b (
   assign tx_st_data0 = {tx_stream_data0_1[63 : 0],tx_stream_data0[63 : 0]};
   assign tx_st_eop0 = tx_stream_data0_1[72];
   assign tx_st_empty0 = tx_stream_data0[72];
-  assign test_out_icm = test_out_int;
-  assign pcie_reconfig_busy = 1'b1;
+  assign test_out_icm = {lane_act,dl_ltssm};
+  assign pcie_reconfig_rstn = 1'b1;
   assign gnd_tx_stream_mask0 = 1'b0;
   assign gnd_msi_stream_ready0 = 1'b0;
   a2_pex_x8_plus ep_plus
@@ -431,7 +423,6 @@ module a2_pex_x8_example_chaining_pipen1b (
       .core_clk_out (core_clk_out),
       .cpl_err (cpl_err_icm),
       .cpl_pending (cpl_pending_icm),
-      .fixedclk_serdes (fixedclk_serdes),
       .lane_act (lane_act),
       .lmi_ack (lmi_ack),
       .lmi_addr (lmi_addr),
@@ -456,7 +447,6 @@ module a2_pex_x8_example_chaining_pipen1b (
       .rate_ext (rate_ext),
       .rc_pll_locked (rc_pll_locked),
       .reconfig_clk (reconfig_clk),
-      .reconfig_clk_locked (reconfig_clk_locked),
       .refclk (refclk),
       .rx_in0 (rx_in0),
       .rx_in1 (rx_in1),
@@ -585,15 +575,6 @@ module a2_pex_x8_example_chaining_pipen1b (
     );
 
 
-  altpcierd_reconfig_clk_pll reconfig_pll
-    (
-      .c0 (reconfig_clk),
-      .c1 (fixedclk_serdes),
-      .inclk0 (free_100MHz),
-      .locked (reconfig_clk_locked)
-    );
-
-
   altpcierd_tl_cfg_sample cfgbus
     (
       .cfg_busdev (cfg_busdev_icm),
@@ -631,7 +612,6 @@ module a2_pex_x8_example_chaining_pipen1b (
       .rstn (srstn)
     );
 
-  
   pcie_to_hibi_test_app
     #( .HIBI_DATA_WIDTH(32),
        .HIBI_ADDR_SPACE_WIDTH(11),
@@ -714,58 +694,58 @@ module a2_pex_x8_example_chaining_pipen1b (
        .lmi_ack_in(lmi_ack),
        .lmi_addr_out(lmi_addr),
        .lmi_data_out(lmi_din) );
-  
-//   altpcierd_example_app_chaining app
-//     (
-//       .aer_msi_num (open_aer_msi_num),
-//       .app_int_ack (app_int_ack_icm),
-//       .app_int_sts (app_int_sts_icm),
-//       .app_msi_ack (app_msi_ack),
-//       .app_msi_num (app_msi_num),
-//       .app_msi_req (app_msi_req),
-//       .app_msi_tc (app_msi_tc),
-//       .cfg_busdev (cfg_busdev_icm),
-//       .cfg_devcsr (cfg_devcsr_icm),
-//       .cfg_linkcsr (cfg_linkcsr_icm),
-//       .cfg_msicsr (cfg_msicsr),
-//       .cfg_prmcsr (cfg_prmcsr_icm),
-//       .cfg_tcvcmap (gnd_cfg_tcvcmap_icm),
-//       .clk_in (pld_clk),
-//       .cpl_err (cpl_err_in),
-//       .cpl_pending (cpl_pending_icm),
-//       .err_desc (err_desc),
-//       .ko_cpl_spc_vc0 (ko_cpl_spc_vc0),
-//       .msi_stream_data0 (open_msi_stream_data0),
-//       .msi_stream_ready0 (gnd_msi_stream_ready0),
-//       .msi_stream_valid0 (open_msi_stream_valid0),
-//       .pex_msi_num (pex_msi_num_icm),
-//       .pm_data (open_pm_data),
-//       .rstn (srstn),
-//       .rx_stream_data0_0 (rx_stream_data0),
-//       .rx_stream_data0_1 (rx_stream_data0_1),
-//       .rx_stream_mask0 (rx_mask0),
-//       .rx_stream_ready0 (rx_stream_ready0),
-//       .rx_stream_valid0 (rx_stream_valid0),
-//       .test_sim (test_in[0]),
-//       .tx_stream_cred0 (tx_stream_cred0),
-//       .tx_stream_data0_0 (tx_stream_data0),
-//       .tx_stream_data0_1 (tx_stream_data0_1),
-//       .tx_stream_fifo_empty0 (tx_fifo_empty0),
-//       .tx_stream_mask0 (gnd_tx_stream_mask0),
-//       .tx_stream_ready0 (tx_stream_ready0),
-//       .tx_stream_valid0 (tx_stream_valid0)
-//     );
-// 
-//   defparam app.AVALON_WADDR = 12,
-//            app.CHECK_BUS_MASTER_ENA = 1,
-//            app.CHECK_RX_BUFFER_CPL = 1,
-//            app.CLK_250_APP = 0,
-//            app.ECRC_FORWARD_CHECK = 0,
-//            app.ECRC_FORWARD_GENER = 0,
-//            app.MAX_NUMTAG = 32,
-//            app.MAX_PAYLOAD_SIZE_BYTE = 256,
-//            app.TL_SELECTION = 7,
-//            app.TXCRED_WIDTH = 36;
+       
+/*  altpcierd_example_app_chaining app
+    (
+      .aer_msi_num (open_aer_msi_num),
+      .app_int_ack (app_int_ack_icm),
+      .app_int_sts (app_int_sts_icm),
+      .app_msi_ack (app_msi_ack),
+      .app_msi_num (app_msi_num),
+      .app_msi_req (app_msi_req),
+      .app_msi_tc (app_msi_tc),
+      .cfg_busdev (cfg_busdev_icm),
+      .cfg_devcsr (cfg_devcsr_icm),
+      .cfg_linkcsr (cfg_linkcsr_icm),
+      .cfg_msicsr (cfg_msicsr),
+      .cfg_prmcsr (cfg_prmcsr_icm),
+      .cfg_tcvcmap (gnd_cfg_tcvcmap_icm),
+      .clk_in (pld_clk),
+      .cpl_err (cpl_err_in),
+      .cpl_pending (cpl_pending_icm),
+      .err_desc (err_desc),
+      .ko_cpl_spc_vc0 (ko_cpl_spc_vc0),
+      .msi_stream_data0 (open_msi_stream_data0),
+      .msi_stream_ready0 (gnd_msi_stream_ready0),
+      .msi_stream_valid0 (open_msi_stream_valid0),
+      .pex_msi_num (pex_msi_num_icm),
+      .pm_data (open_pm_data),
+      .rstn (srstn),
+      .rx_stream_data0_0 (rx_stream_data0),
+      .rx_stream_data0_1 (rx_stream_data0_1),
+      .rx_stream_mask0 (rx_mask0),
+      .rx_stream_ready0 (rx_stream_ready0),
+      .rx_stream_valid0 (rx_stream_valid0),
+      .test_sim (test_in[0]),
+      .tx_stream_cred0 (tx_stream_cred0),
+      .tx_stream_data0_0 (tx_stream_data0),
+      .tx_stream_data0_1 (tx_stream_data0_1),
+      .tx_stream_fifo_empty0 (tx_fifo_empty0),
+      .tx_stream_mask0 (gnd_tx_stream_mask0),
+      .tx_stream_ready0 (tx_stream_ready0),
+      .tx_stream_valid0 (tx_stream_valid0)
+    );
+
+  defparam app.AVALON_WADDR = 12,
+           app.CHECK_BUS_MASTER_ENA = 1,
+           app.CHECK_RX_BUFFER_CPL = 1,
+           app.CLK_250_APP = 0,
+           app.ECRC_FORWARD_CHECK = 0,
+           app.ECRC_FORWARD_GENER = 0,
+           app.MAX_NUMTAG = 64,
+           app.MAX_PAYLOAD_SIZE_BYTE = 256,
+           app.TL_SELECTION = 7,
+           app.TXCRED_WIDTH = 36;*/
 
 
 endmodule

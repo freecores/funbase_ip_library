@@ -24,6 +24,8 @@ set QUARTUS_ROOTDIR "c:/altera/11.0/quartus"
 set PHY_TYPE_STRATIXVGX 0
 set MSIM_AE ""
 set NOIMMEDCA ""
+set QUIET_COMP -nologo
+#-quiet
 
 alias comp_alt {
      # Using non-OEM Version, compile all of the libraries
@@ -35,7 +37,12 @@ alias comp_alt {
      vlib altera_mf_ver
      vmap altera_mf_ver altera_mf_ver
      vlog -work altera_mf_ver $QUARTUS_ROOTDIR/eda/sim_lib/altera_mf.v
-  
+     
+     vlib altera_mfr
+     vmap altera_mf altera_mf
+     vcom -work altera_mf $QUARTUS_ROOTDIR/eda/sim_lib/altera_mf_components.vhd
+     vcom -work altera_mf $QUARTUS_ROOTDIR/eda/sim_lib/altera_mf.vhd
+     
      vlib sgate_ver
      vmap sgate_ver sgate_ver
      vlog -work sgate_ver $QUARTUS_ROOTDIR/eda/sim_lib/sgate.v
@@ -115,6 +122,7 @@ alias comp_alt {
         }
      }
 }
+
 
 # Create the work library
 vlib work
@@ -229,10 +237,48 @@ alias simu_debug {
   run 140us
 }
 
+proc comp_list {comp_dir} {
+  set simlist_file [open $comp_dir/sim_filelist r]
+  if { [ file exists $comp_dir/incdir_list ] } {
+    set incdirlist_file [open $comp_dir/incdir_list r]
+    while {[gets $incdirlist_file temp_str] >= 0} {
+      append incdirlist "+$comp_dir/$temp_str"
+    }
+  } else {
+    set incdirlist ""
+  }
+  
+  while {[gets $simlist_file vfile] >= 0} {
+    if { [ regexp {\.v$} $vfile ] || [ regexp {\.vo$} $vfile ] } {
+      regexp {.*/} $vfile inc_dir
+      vlog -reportprogress 300 +incdir+$comp_dir/$inc_dir$incdirlist -work work $comp_dir/$vfile
+    } else {
+      vcom -work work -check_synthesis -error 1400 $comp_dir/$vfile
+    }
+  }
+  close $simlist_file
+}
+
+
 alias comp_p2h {
-  vcom -work work -check_synthesis -error 1400 ../hdl/*.vhd
-  vcom -work work -check_synthesis -error 1400 ../tb/pcie_to_hibi_test_app.vhd
-  vlog -reportprogress 300 -work work ../tb/a2_pex_x8_app_if.v
+  vcom -work work -check_synthesis -error 1400 ../../../../../ip.hwp.support/txt_util/1.0/hdl/*.vhd $QUIET_COMP
+  vcom -work work -check_synthesis -error 1400 ../../../../../ip.hwp.storage/onchip_mem/alt_mem_dc_dw.comp/1.0/hdl/*.vhd $QUIET_COMP
+  vcom -work work -check_synthesis -error 1400 ../../../../../ip.hwp.storage/onchip_mem/alt_mem_sc.comp/1.0/hdl/*.vhd $QUIET_COMP
+  vcom -work work -check_synthesis -error 1400 ../../../../../ip.hwp.storage/onchip_fifo/alt_fifo_dc_dw.comp/1.0/hdl/*.vhd $QUIET_COMP
+  vcom -work work -check_synthesis -error 1400 ../../../../../ip.hwp.storage/onchip_fifo/alt_fifo_sc.comp/1.0/hdl/*.vhd $QUIET_COMP
+  comp_list ./
+  vcom -work work -check_synthesis -error 1400 ../tb/hibiv3_seg_r3.vhd $QUIET_COMP
+  vcom -work work -check_synthesis -error 1400 ../tb/pcie_to_hibi_test_app.vhd $QUIET_COMP
+  vlog -reportprogress 300 -work work ../tb/a2_pex_x8_app_if.v $QUIET_COMP
+}
+
+alias comp {
+  comp_alt
+  comp_list ../../../../../ip.hwp.communication/hibi/hibi_segment_small/3.0/tb
+  comp_list ../../../../../ip.hwp.storage/ddrx/alt_ddr2_agx2.comp/2.0/tb
+  comp_list ../../../../../ip.hwp.storage/ddrx/hibi_mem_dma.comp/2.0/tb
+  comp_list ../../../../../ip.hwp.interface/pcie/alt_pcie_a2gx.comp/1.0/tb
+  comp_p2h
 }
 
 alias comp_sim {
@@ -244,3 +290,11 @@ alias comp_sim_adv {
   comp_p2h
   simulate_adv
 }
+
+echo "--------------------------------------------------------------------------------------------------------------"
+echo " command 'comp' compiles all the necessary files for running the testbench"
+echo "  - this command has to be run only once"
+echo ""
+echo " command 'comp_sim' compiles only the pcie_to_hibi and starts the simulation"
+echo " - use this command each time you have made changes to the pcie_to_hibi and want to verify it's functionality"
+echo "--------------------------------------------------------------------------------------------------------------"

@@ -1,36 +1,43 @@
 -------------------------------------------------------------------------------
+-- Funbase IP library Copyright (C) 2011 TUT Department of Computer Systems
+--
+-- This source file may be used and distributed without
+-- restriction provided that this copyright statement is not
+-- removed from the file and that any derivative work contains
+-- the original copyright notice and the associated disclaimer.
+--
+-- This source file is free software; you can redistribute it
+-- and/or modify it under the terms of the GNU Lesser General
+-- Public License as published by the Free Software Foundation;
+-- either version 2.1 of the License, or (at your option) any
+-- later version.
+--
+-- This source is distributed in the hope that it will be
+-- useful, but WITHOUT ANY WARRANTY; without even the implied
+-- warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+-- PURPOSE.  See the GNU Lesser General Public License for more
+-- details.
+--
+-- You should have received a copy of the GNU Lesser General
+-- Public License along with this source; if not, download it
+-- from http://www.opencores.org/lgpl.shtml
+-------------------------------------------------------------------------------
 -- Title      : Generic request controller
--- Project    : 
+-- Project    : Funbase
 -------------------------------------------------------------------------------
 -- File       : req_ctrl.vhd
--- Author     : 
--- Company    : 
--- Last update: 04.02.2011
--- Version    : 0.6
+-- Author     : Juha Arvio
+-- Company    : TUT
+-- Last update: 05.10.2011
+-- Version    : 0.91
 -- Platform   : 
 -------------------------------------------------------------------------------
 -- Description:
---
--------------------------------------------------------------------------------
--- Copyright (c) 2010
 -------------------------------------------------------------------------------
 -- Revisions  :
 -- Date        Version  Author  Description
 -- 20.10.2010   0.1     arvio     Created
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
---  This file is a part of a free IP-block: you can redistribute it and/or modify
---  it under the terms of the Lesser GNU General Public License as published by
---  the Free Software Foundation, either version 3 of the License, or
---  (at your option) any later version.
---
---  This IP-block is distributed in the hope that it will be useful,
---  but WITHOUT ANY WARRANTY; without even the implied warranty of
---  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
---  Lesser GNU General Public License for more details.
---
---  You should have received a copy of the Lesser GNU General Public License
---  along with Transaction Generator.  If not, see <http://www.gnu.org/licenses/>.
+-- 05.10.2011   0.91    arvio
 -------------------------------------------------------------------------------
 
 library ieee;
@@ -499,7 +506,7 @@ begin
 --    - use 1: write req count
 --      - write enable: req_cnt_we_p3_r
 
-  req_cnt_mem : entity work.onchip_mem_sc
+  req_cnt_mem : entity work.alt_mem_sc
   generic map ( DATA_WIDTH => MIN_COMP_REQS_WIDTH+1,
                 ADDR_WIDTH => COMPONENTS_WIDTH,
                 MEM_SIZE   => COMPONENTS )
@@ -530,7 +537,7 @@ begin
 --  - use 1: write valid ack count for the corresponding released ack
 --    - write enable: req_cnt_we_p3_r
 
-  valid_ack_cnt_mem : entity work.onchip_mem_sc
+  valid_ack_cnt_mem : entity work.alt_mem_sc
   generic map ( DATA_WIDTH => MIN_COMP_REQS_WIDTH+1,
                 ADDR_WIDTH => COMPONENTS_WIDTH,
                 MEM_SIZE   => COMPONENTS )
@@ -555,7 +562,7 @@ begin
   valid_ack_data_addr_1 <= ack_rx_comp_p2_r & valid_ack_cnt_p2_r(MIN_COMP_REQS_WIDTH-1 downto 0);
   valid_ack_we_1 <= ack_rx_valid_p2_r and ack_rx_p2_r;
   
-  valid_ack_data_mem : entity work.onchip_mem_sc
+  valid_ack_data_mem : entity work.alt_mem_sc
   generic map ( DATA_WIDTH => DATA_WIDTH,
                 ADDR_WIDTH => COMPONENTS_WIDTH + MIN_COMP_REQS_WIDTH,
                 MEM_SIZE   => COMPONENTS*MIN_COMP_REQS )
@@ -573,7 +580,7 @@ begin
 --             rdata_1_out => req_cnt_rdata_p2_1 );
   
   
-  valid_ack_release_fifo : entity work.fifo_sc
+  valid_ack_release_fifo : entity work.alt_fifo_sc
 	generic map ( DATA_WIDTH => COMPONENTS_WIDTH,
                 FIFO_LENGTH => TOTAL_REQS,
                 CNT_WIDTH => log2_ceil(TOTAL_REQS-1) )
