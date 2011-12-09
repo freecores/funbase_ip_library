@@ -1,0 +1,450 @@
+<optimization_record_list>
+
+<optimization_record>
+<recommendation_key>
+PCI_INST
+</recommendation_key>
+<recommendation>
+&lt;variation_name&gt;_chaining_dma_example
+</recommendation>
+<recommendation_description>
+Follow the recommendations to configure your core.
+</recommendation_description>
+<description>
+megacore variation
+</description>
+<more_info_link>
+NA
+</more_info_link>
+<effect_list>
+	<fmax_effect>
+	NA
+	</fmax_effect>
+	<resource_effect>
+	NA
+	</resource_effect>
+	<compilation_effect>
+	NA
+	</compilation_effect>
+</effect_list>
+<action>
+	<action_description>
+	NA
+	</action_description>
+	<action_link>
+	NA
+	</action_link>
+	<acf_variable_list>
+		<acf_variable name="NA">
+		
+		</acf_variable>
+	</acf_variable_list>
+</action>
+<device_family_list>
+	<device_family exclude="">
+	ALL
+	</device_family>
+</device_family_list>
+<conditions>
+</conditions>
+<image_path>
+
+</image_path>
+<parent_list>
+	<parent priority="100">
+	PCIE
+	</parent>
+</parent_list>
+<logic_algorithm>
+NA
+</logic_algorithm>
+<tcl_script button_name="Edit Megafunction" quartus_exe="">
+dummy.tcl
+</tcl_script>
+</optimization_record>
+
+<optimization_record>
+<recommendation_key>
+DEE
+</recommendation_key>
+<recommendation>
+Return to your Quartus II project (&lt;quartus_project_name&gt;)
+</recommendation>
+<recommendation_description>
+Return to your Quartus II project (&lt;quartus_project_name&gt;)
+   <!-- NEED this remove redundant description --> 
+</recommendation_description>
+<description>
+NA
+   <!-- NEED this remove redundant description --> 
+</description>
+<more_info_link>
+NA
+</more_info_link>
+<effect_list>
+	<fmax_effect>
+	NA
+	</fmax_effect>
+	<resource_effect>
+	NA
+	</resource_effect>
+	<compilation_effect>
+	NA
+	</compilation_effect>
+</effect_list>
+<action>
+	<action_description>
+      Click Open Main Project below to return to your project in the Quartus II software (&lt;quartus_project_name&gt;)
+	</action_description>
+	<action_link>
+   <!-- NEED to change the button label to RETURN to INITIAL QUARTUS II PROJECT -->
+	RETURN_TO_INITIAL_PROJECT
+	</action_link>
+	<acf_variable_list>
+		<acf_variable name="NA">
+		
+		</acf_variable>
+	</acf_variable_list>
+</action>
+<device_family_list>
+	<device_family exclude="">
+	ALL
+	</device_family>
+</device_family_list>
+<conditions>
+</conditions>
+<image_path>
+
+</image_path>
+<parent_list>
+	<parent priority="90">
+	PCI_INST
+	</parent>
+</parent_list>
+<logic_algorithm>
+NA
+</logic_algorithm>
+<tcl_script button_name="Open Main Project" quartus_exe="">
+../../&lt;quartus_project_name&gt;
+</tcl_script>
+</optimization_record>
+
+<optimization_record>
+<recommendation_key>
+INFOIC
+</recommendation_key>
+<recommendation>
+Information about using Quartus II Incremental Compilation
+</recommendation>
+<recommendation_description>
+You can use Quartus II incremental compilation to help you to meet your performance goals while reducing compilation time.
+</recommendation_description>
+<description>
+Please see the Quartus II documentation that describes the incremental compilation flow. For PCI Express, Altera recommends that you use a MegaCore variant with an Avalon-ST application interface. You can use either the top-down or bottom-up incremental compilation methodology. If your MegaCore variant uses the recommended Avalon-ST interface, the partition boundary should be set to the top level of the variant. If your variant uses the descriptor/data application interface, you should set the partition boundary at the clear text ICM module located under the &lt;incremental_compile_module_location&gt; subdirectory.
+</description>
+<more_info_link>
+comp.chm::/increment/comp_view_qid.htm
+</more_info_link>
+<effect_list>
+	<fmax_effect>
+	NA
+	</fmax_effect>
+	<resource_effect>
+	NA
+	</resource_effect>
+	<compilation_effect>
+	NA
+	</compilation_effect>
+</effect_list>
+<action>
+	<action_description>
+	NA
+	</action_description>
+	<acf_variable_list>
+	</acf_variable_list>
+</action>
+<device_family_list>
+	<device_family exclude="">
+	ALL
+	</device_family>
+</device_family_list>
+<conditions>
+</conditions>
+<image_path>
+
+</image_path>
+<parent_list>
+	<parent priority="100">
+	PCI_INST
+	</parent>
+</parent_list>
+<logic_algorithm>
+NA
+</logic_algorithm>
+<tcl_script button_name="" quartus_exe="">
+
+</tcl_script>
+</optimization_record>
+
+
+
+<optimization_record>
+<recommendation_key>
+AS
+</recommendation_key>
+<recommendation>
+Run Analysis &amp; Synthesis
+</recommendation>
+<recommendation_description>
+Run Analysis &amp; Synthesis.
+</recommendation_description>
+<description>
+You can run analysis and synthesis on the chaining DMA Design example to estimate resource requirements.
+</description>
+<more_info_link>
+NA
+</more_info_link>
+<effect_list>
+	<fmax_effect>
+	NA
+	</fmax_effect>
+	<resource_effect>
+	NA
+	</resource_effect>
+	<compilation_effect>
+	NA
+	</compilation_effect>
+</effect_list>
+<action>
+	<action_description>
+	
+	</action_description>
+	<action_link>
+	NA
+	</action_link>
+	<acf_variable_list>
+		<acf_variable name="NA">
+		
+		</acf_variable>
+	</acf_variable_list>
+</action>
+<device_family_list>
+	<device_family exclude="">
+	ALL
+	</device_family>
+</device_family_list>
+<conditions>
+</conditions>
+<image_path>
+
+</image_path>
+<parent_list>
+	<parent priority="130">
+	PCI_INST
+	</parent>
+</parent_list>
+<logic_algorithm>
+NA
+</logic_algorithm>
+<tcl_script button_name="Start Analysis &amp;&amp; Synthesis " quartus_exe="">
+dummy.tcl
+</tcl_script>
+</optimization_record>
+
+
+
+<optimization_record>
+<recommendation_key>
+VERDEV
+</recommendation_key>
+<recommendation>
+Verify that you have chosen a recommended device
+</recommendation>
+<recommendation_description>
+Altera recommends devices and speed-grades depending on the variation you specify.
+</recommendation_description>
+<description>
+Produce a warning or error message based upon variation settings and device selection.
+</description>
+<more_info_link>
+NA
+</more_info_link>
+<effect_list>
+	<fmax_effect>
+	NA
+	</fmax_effect>
+	<resource_effect>
+	NA
+	</resource_effect>
+	<compilation_effect>
+	NA
+	</compilation_effect>
+</effect_list>
+<action>
+	<action_description>
+	NA
+	</action_description>
+	<action_link>
+	NA
+	</action_link>
+	<acf_variable_list>
+		<acf_variable name="NA">
+		
+		</acf_variable>
+	</acf_variable_list>
+</action>
+<device_family_list>
+	<device_family exclude="">
+	ALL
+	</device_family>
+</device_family_list>
+<conditions>
+		<acf_variable name="HIDE">
+		
+		</acf_variable>
+</conditions>
+<image_path>
+
+</image_path>
+<parent_list>
+	<parent priority="150">
+	PCI_INST
+	</parent>
+</parent_list>
+<logic_algorithm>
+NA
+</logic_algorithm>
+<tcl_script button_name="Verify Valid Device" quartus_exe="">
+dummy.tcl
+</tcl_script>
+</optimization_record>
+
+<optimization_record>
+<recommendation_key>
+CHECKSETTING
+</recommendation_key>
+<recommendation>
+Check Quartus II Settings File settings
+</recommendation>
+<recommendation_description>
+Check Quartus II Settings File (.qsf) settings made in step 8.  
+</recommendation_description>
+<description>
+Produce a warning describing potential negative impact if the current settings are not recommended.
+</description>
+<more_info_link>
+NA
+</more_info_link>
+<effect_list>
+	<fmax_effect>
+	NA
+	</fmax_effect>
+	<resource_effect>
+	NA
+	</resource_effect>
+	<compilation_effect>
+	NA
+	</compilation_effect>
+</effect_list>
+<action>
+	<action_description>
+	Click Modify QSF Settings below to let the IP Advisor verify the contents of the Quartus II settings file.
+	</action_description>
+	<action_link>
+	NA
+	</action_link>
+	<acf_variable_list>
+		<acf_variable name="NA">
+		
+		</acf_variable>
+	</acf_variable_list>
+</action>
+<device_family_list>
+	<device_family exclude="">
+	ALL
+	</device_family>
+</device_family_list>
+<conditions>
+		<acf_variable name=" HIDE">
+		
+		</acf_variable>
+</conditions>
+<image_path>
+
+</image_path>
+<parent_list>
+	<parent priority="170">
+	PCI_INST
+	</parent>
+</parent_list>
+<logic_algorithm>
+NA
+</logic_algorithm>
+<tcl_script button_name="Check Settings" quartus_exe="">
+pcie_check_qsf_settings.tcl
+</tcl_script>
+</optimization_record>
+
+<optimization_record>
+<recommendation_key>
+COMPILE
+</recommendation_key>
+<recommendation>
+Compile your design
+</recommendation>
+<recommendation_description>
+Compile your design
+</recommendation_description>
+<description>
+Compile your design
+</description>
+<more_info_link>
+NA
+</more_info_link>
+<effect_list>
+	<fmax_effect>
+	NA
+	</fmax_effect>
+	<resource_effect>
+	NA
+	</resource_effect>
+	<compilation_effect>
+	NA
+	</compilation_effect>
+</effect_list>
+<action>
+	<action_description>
+	Click Start Compilation below to compile your design.
+	</action_description>
+	<action_link>
+	NA
+	</action_link>
+	<acf_variable_list>
+		<acf_variable name="NA">
+		
+		</acf_variable>
+	</acf_variable_list>
+</action>
+<device_family_list>
+	<device_family exclude="">
+	ALL
+	</device_family>
+</device_family_list>
+<conditions>
+</conditions>
+<image_path>
+
+</image_path>
+<parent_list>
+	<parent priority="180">
+	PCI_INST
+	</parent>
+</parent_list>
+<logic_algorithm>
+NA
+</logic_algorithm>
+<tcl_script button_name="Start Compilation" quartus_exe="">
+dummy.tcl
+</tcl_script>
+</optimization_record>
+</optimization_record_list>

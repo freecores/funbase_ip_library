@@ -1,0 +1,2 @@
+<?xml version="1.0"?>
+<pinplan blockname="pcie_block" fileref="./a2_pex_x8.ppx" variation_name="a2_pex_x8" megafunction_name="PCI Express Compiler" />
