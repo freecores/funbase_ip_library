@@ -42,12 +42,13 @@ use altera_mf.all;
 entity alt_mem_dc_dw is
 	generic ( MEM_PORTS  : integer := 1;
             DATA_0_WIDTH : integer := 8;
-            DATA_1_WIDTH : integer := 8; -- DATA_1_WIDTH must be greater than DATA_0_WIDTH
+            DATA_1_WIDTH : integer := 8; -- DATA_1_WIDTH must be greater or equal than DATA_0_WIDTH
             ADDR_0_WIDTH : integer := 6;
             ADDR_1_WIDTH : integer := 6;
             MEM_SIZE   : integer := 64 );
   
-  port ( clk         : in std_logic;
+  port ( clk_0       : in std_logic;
+         clk_1       : in std_logic;
          
          addr_0_in   : in  std_logic_vector(ADDR_0_WIDTH-1 downto 0);
          addr_1_in   : in  std_logic_vector(ADDR_1_WIDTH-1 downto 0);
@@ -119,7 +120,7 @@ architecture rtl of alt_mem_dc_dw is
 		read_during_write_mode_mixed_ports	:	string := "DONT_CARE";
 		read_during_write_mode_port_a	:	string := "NEW_DATA_NO_NBE_READ";
 		read_during_write_mode_port_b	:	string := "NEW_DATA_NO_NBE_READ";
-		stratixiv_m144k_allow_dual_clocks	:	string := "ON";
+--		stratixiv_m144k_allow_dual_clocks	:	string := "ON";
 		width_a	:	natural;
 		width_b	:	natural := 1;
 		width_byteena_a	:	natural := 1;
@@ -192,8 +193,8 @@ begin
                 width_byteena_a => 1,
                 width_byteena_b => 1,
                 wrcontrol_wraddress_reg_b => "CLOCK1" )
-  port map ( clock0 => clk,
-             clock1 => clk,
+  port map ( clock0 => clk_0,
+             clock1 => clk_1,
              
              wren_a => we_0_in,
              address_a => addr_0_in,

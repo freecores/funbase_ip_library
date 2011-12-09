@@ -68,44 +68,46 @@ end alt_fifo_dc_dw;
 
 
 architecture rtl of alt_fifo_dc_dw is
+  
   component dcfifo_mixed_widths
-	generic (
-		add_ram_output_register	:	string := "OFF";
-		add_usedw_msb_bit	:	string := "OFF";
-		clocks_are_synchronized	:	string := "FALSE";
-		delay_rdusedw	:	natural := 1;
-		delay_wrusedw	:	natural := 1;
-		intended_device_family	:	string := "unused";
-		lpm_numwords	:	natural;
-		lpm_showahead	:	string := "OFF";
-		lpm_width	:	natural;
-		lpm_width_r	:	natural := 0;
-		lpm_widthu	:	natural := 1;
-		lpm_widthu_r	:	natural := 1;
-		overflow_checking	:	string := "ON";
-		rdsync_delaypipe	:	natural := 0;
-		underflow_checking	:	string := "ON";
-		use_eab	:	string := "ON";
-		write_aclr_synch	:	string := "OFF";
-		wrsync_delaypipe	:	natural := 0;
-		lpm_hint	:	string := "UNUSED";
-		lpm_type	:	string := "dcfifo_mixed_widths"
-	);
-	port(
-		aclr	:	in std_logic := '0';
-		data	:	in std_logic_vector(lpm_width-1 downto 0);
-		q	:	out std_logic_vector(lpm_width_r-1 downto 0);
-		rdclk	:	in std_logic;
-		rdempty	:	out std_logic;
-		rdfull	:	out std_logic;
-		rdreq	:	in std_logic;
-		rdusedw	:	out std_logic_vector(lpm_widthu_r-1 downto 0);
-		wrclk	:	in std_logic;
-		wrempty	:	out std_logic;
-		wrfull	:	out std_logic;
-		wrreq	:	in std_logic;
-		wrusedw	:	out std_logic_vector(lpm_widthu-1 downto 0)
-	);
+    generic (
+    lpm_width               : natural;
+    lpm_widthu              : natural;
+    lpm_width_r             : natural := 0;
+    lpm_widthu_r            : natural := 0;
+    lpm_numwords            : natural;
+    delay_rdusedw           : natural := 1;
+    delay_wrusedw           : natural := 1;
+    rdsync_delaypipe        : natural := 0;
+    wrsync_delaypipe        : natural := 0;
+    intended_device_family  : string := "Stratix";
+    lpm_showahead           : string := "OFF";
+    underflow_checking      : string := "ON";
+    overflow_checking       : string := "ON";
+    clocks_are_synchronized : string := "FALSE";
+    use_eab                 : string := "ON";
+    add_ram_output_register : string := "OFF";
+    add_width               : natural := 1;
+    ram_block_type          : string := "AUTO";
+    add_usedw_msb_bit       : string := "OFF";
+    write_aclr_synch        : string := "OFF";
+    lpm_hint                : string := "USE_EAB=ON";
+    lpm_type                : string := "dcfifo_mixed_widths");
+    port (
+    data    : in std_logic_vector(lpm_width-1 downto 0);
+    rdclk   : in std_logic;
+    wrclk   : in std_logic;
+    aclr    : in std_logic := '0';
+    rdreq   : in std_logic;
+    wrreq   : in std_logic;
+
+    rdfull  : out std_logic;
+    wrfull  : out std_logic;
+    rdempty : out std_logic;
+    wrempty : out std_logic;
+    rdusedw : out std_logic_vector(lpm_widthu_r-1 downto 0);
+    wrusedw : out std_logic_vector(lpm_widthu-1 downto 0);
+    q       : out std_logic_vector(lpm_width_r-1 downto 0));
   end component;
   
   signal aclr : std_logic;
