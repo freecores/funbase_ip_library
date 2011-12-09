@@ -28,6 +28,12 @@ set QUIET_COMP -nologo
 #-quiet
 
 alias comp_alt {
+     vlog -reportprogress 300 -work work $QUARTUS_ROOTDIR/eda/sim_lib/220model.v $QUIET_COMP
+     vlog -reportprogress 300 -work work $QUARTUS_ROOTDIR/eda/sim_lib/altera_primitives.v $QUIET_COMP
+     vlog -reportprogress 300 -work work $QUARTUS_ROOTDIR/eda/sim_lib/arriaii_atoms.v $QUIET_COMP
+     vlog -reportprogress 300 -work work $QUARTUS_ROOTDIR/eda/sim_lib/arriaii_hssi_atoms.v $QUIET_COMP
+     vlog -reportprogress 300 -work work $QUARTUS_ROOTDIR/eda/sim_lib/arriaii_pcie_hip_atoms.v $QUIET_COMP
+     
      # Using non-OEM Version, compile all of the libraries
      set NOIMMEDCA "-noimmedca"
      vlib lpm_ver
@@ -38,7 +44,7 @@ alias comp_alt {
      vmap altera_mf_ver altera_mf_ver
      vlog -work altera_mf_ver $QUARTUS_ROOTDIR/eda/sim_lib/altera_mf.v
      
-     vlib altera_mfr
+     vlib altera_mf
      vmap altera_mf altera_mf
      vcom -work altera_mf $QUARTUS_ROOTDIR/eda/sim_lib/altera_mf_components.vhd
      vcom -work altera_mf $QUARTUS_ROOTDIR/eda/sim_lib/altera_mf.vhd
@@ -262,6 +268,7 @@ proc comp_list {comp_dir} {
 
 alias comp_p2h {
   vcom -work work -check_synthesis -error 1400 ../../../../../ip.hwp.support/txt_util/1.0/hdl/*.vhd $QUIET_COMP
+  vcom -work work -check_synthesis -error 1400 ../../../../../ip.hwp.support/alt_in_sys_sp.comp/1.0/hdl/*.vhd $QUIET_COMP
   vcom -work work -check_synthesis -error 1400 ../../../../../ip.hwp.storage/onchip_mem/alt_mem_dc_dw.comp/1.0/hdl/*.vhd $QUIET_COMP
   vcom -work work -check_synthesis -error 1400 ../../../../../ip.hwp.storage/onchip_mem/alt_mem_sc.comp/1.0/hdl/*.vhd $QUIET_COMP
   vcom -work work -check_synthesis -error 1400 ../../../../../ip.hwp.storage/onchip_fifo/alt_fifo_dc_dw.comp/1.0/hdl/*.vhd $QUIET_COMP
