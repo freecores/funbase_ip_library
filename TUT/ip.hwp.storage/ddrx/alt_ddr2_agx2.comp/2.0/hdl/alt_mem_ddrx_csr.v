@@ -1030,14 +1030,14 @@ generate
         reg [3 : 0] csr_al;
         reg [3 : 0] csr_cwl;
         reg [3 : 0] csr_twr;
-        reg [3 : 0] csr_bl;
+        reg [7 : 0] csr_bl;
         
         // assign value back to top
         assign cfg_tcl          = csr_tcl [TCL_BUS_WIDTH        - 1 : 0];
         assign cfg_add_lat      = csr_al  [ADD_LAT_BUS_WIDTH    - 1 : 0];
         assign cfg_cas_wr_lat   = csr_cwl [CAS_WR_LAT_BUS_WIDTH - 1 : 0];
         assign cfg_twr          = csr_twr [TWR_BUS_WIDTH        - 1 : 0];
-        assign cfg_burst_length = {{(BL_BUS_WIDTH - 4){1'b0}}, csr_bl};
+        assign cfg_burst_length = csr_bl  [BL_BUS_WIDTH         - 1 : 0];
         
         // register arrays to store CSR informations
         always @ (posedge ctl_clk or negedge ctl_rst_n)
@@ -1069,7 +1069,7 @@ generate
 
                     if (int_be [2])
                     begin
-                        csr_bl  <= int_wdata [19 : 16];
+                        csr_bl  <= int_wdata [23 : 16];
                     end
                 end
             end
@@ -1086,7 +1086,7 @@ generate
             read_csr_register_126 [7  : 4 ] = csr_al;
             read_csr_register_126 [11 : 8 ] = csr_cwl;
             read_csr_register_126 [15 : 12] = csr_twr;
-            read_csr_register_126 [19 : 16] = csr_bl;
+            read_csr_register_126 [23 : 16] = csr_bl;
         end
     end
     

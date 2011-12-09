@@ -6,24 +6,24 @@
 `timescale 1 ps / 1 ps
 module alt_mem_ddrx_burst_gen #
     ( parameter
-        CFG_DWIDTH_RATIO                =   4,
-        CFG_CTL_ARBITER_TYPE            =   "ROWCOL",
-        CFG_REG_GRANT                   =   0,
-        CFG_MEM_IF_CHIP                 =   1,
-        CFG_MEM_IF_CS_WIDTH             =   1,
-        CFG_MEM_IF_BA_WIDTH             =   3,
-        CFG_MEM_IF_ROW_WIDTH            =   13,
-        CFG_MEM_IF_COL_WIDTH            =   10,
-        CFG_LOCAL_ID_WIDTH              =   10,
-        CFG_DATA_ID_WIDTH               =   10,
-        CFG_INT_SIZE_WIDTH              =   4,
-        CFG_AFI_INTF_PHASE_NUM          =   2,
-        CFG_ENABLE_BURST_INTERRUPT      =   0,
-        CFG_ENABLE_BURST_TERMINATE      =   0,
-        CFG_PORT_WIDTH_TYPE             =   3,
-        CFG_PORT_WIDTH_BURST_LENGTH     =   5,
-        CFG_PORT_WIDTH_TCCD             =   4,
-        CFG_ENABLE_BURST_GEN_OUTPUT_REG =   0
+        CFG_DWIDTH_RATIO                        =   4,
+        CFG_CTL_ARBITER_TYPE                    =   "ROWCOL",
+        CFG_REG_GRANT                           =   0,
+        CFG_MEM_IF_CHIP                         =   1,
+        CFG_MEM_IF_CS_WIDTH                     =   1,
+        CFG_MEM_IF_BA_WIDTH                     =   3,
+        CFG_MEM_IF_ROW_WIDTH                    =   13,
+        CFG_MEM_IF_COL_WIDTH                    =   10,
+        CFG_LOCAL_ID_WIDTH                      =   10,
+        CFG_DATA_ID_WIDTH                       =   10,
+        CFG_INT_SIZE_WIDTH                      =   4,
+        CFG_AFI_INTF_PHASE_NUM                  =   2,
+        CFG_PORT_WIDTH_TYPE                     =   3,
+        CFG_PORT_WIDTH_BURST_LENGTH             =   5,
+        CFG_PORT_WIDTH_TCCD                     =   4,
+        CFG_PORT_WIDTH_ENABLE_BURST_INTERRUPT   =   1,
+        CFG_PORT_WIDTH_ENABLE_BURST_TERMINATE   =   1,
+        CFG_ENABLE_BURST_GEN_OUTPUT_REG         =   0
     )
     (
         ctl_clk,
@@ -33,6 +33,8 @@ module alt_mem_ddrx_burst_gen #
         cfg_type,
         cfg_burst_length,
         cfg_tccd,
+        cfg_enable_burst_interrupt,
+        cfg_enable_burst_terminate,
         
         // Arbiter Interface
         arb_do_write,
@@ -112,6 +114,8 @@ input                                                            ctl_reset_n;
 input  [CFG_PORT_WIDTH_TYPE                             - 1 : 0] cfg_type;
 input  [CFG_PORT_WIDTH_BURST_LENGTH                     - 1 : 0] cfg_burst_length;
 input  [CFG_PORT_WIDTH_TCCD                             - 1 : 0] cfg_tccd;
+input  [CFG_PORT_WIDTH_ENABLE_BURST_INTERRUPT           - 1 : 0] cfg_enable_burst_interrupt;
+input  [CFG_PORT_WIDTH_ENABLE_BURST_TERMINATE           - 1 : 0] cfg_enable_burst_terminate;
 
 // Arbiter Interface
 input  [CFG_AFI_INTF_PHASE_NUM                          - 1 : 0] arb_do_write;
@@ -261,7 +265,8 @@ output [CFG_INT_SIZE_WIDTH                              - 1 : 0] bg_effective_si
     // Burst interrupt logic
     reg [CFG_PORT_WIDTH_TCCD - 2 : 0] n_prefetch;
     reg                               int_allow_interrupt;
-    reg                               int_interrupt_ready;
+    reg                               int_interrupt_enable_ready;
+    reg                               int_interrupt_disable_ready;
     reg                               int_interrupt_gate;
     
     // Burst terminate logic
@@ -1019,124 +1024,117 @@ output [CFG_INT_SIZE_WIDTH                              - 1 : 0] bg_effective_si
 //  Interrupt Ready (tCCD = 2)     /   HIGH  \_____/      HIGH       \_____/      HIGH       \_________________/     \_________________/     
 //
 //--------------------------------------------------------------------------------------------------------
-    generate
+    // n-prefetch architecture, related tCCD value (only support 1, 2 and 4)
+    // if tCCD is set to 1, command can be interrupted / terminated at every 2 memory burst boundary (1 memory clock cycle)
+    // if tCCD is set to 2, command can be interrupted / terminated at every 4 memory burst boundary (2 memory clock cycle)
+    // if tCCD is set to 4, command can be interrupted / terminated at every 8 memory burst boundary (4 memory clock cycle)
+    always @ (posedge ctl_clk or negedge ctl_reset_n)
     begin
-        if (CFG_ENABLE_BURST_INTERRUPT || CFG_ENABLE_BURST_TERMINATE)
+        if (!ctl_reset_n)
         begin
-            // n-prefetch architecture, related tCCD value (only support 1, 2 and 4)
-            // if tCCD is set to 1, command can be interrupted / terminated at every 2 memory burst boundary (1 memory clock cycle)
-            // if tCCD is set to 2, command can be interrupted / terminated at every 4 memory burst boundary (2 memory clock cycle)
-            // if tCCD is set to 4, command can be interrupted / terminated at every 8 memory burst boundary (4 memory clock cycle)
-            always @ (posedge ctl_clk or negedge ctl_reset_n)
-            begin
-                if (!ctl_reset_n)
-                begin
-                    n_prefetch <= 0;
-                end
-                else
-                begin
-                    n_prefetch <= cfg_tccd / (CFG_DWIDTH_RATIO / 2);
-                end
-            end
-        end
-    end
-    endgenerate
-    
-    generate
-    begin
-        if (CFG_ENABLE_BURST_INTERRUPT)
-        begin
-            // For n_prefetch of 0 and 1, we will allow interrupt at any controller clock cycles
-            // for n_prefetch of n, we will allow interrupt at any n controller clock cycles interval
-            always @ (posedge ctl_clk or negedge ctl_reset_n)
-            begin
-                if (!ctl_reset_n)
-                begin
-                    int_allow_interrupt <= 1'b1;
-                end
-                else
-                begin
-                    if (cfg_type == `MMR_TYPE_DDR3) // DDR3 specific, interrupt masking is handled by setting read-to-read and write-to-write to BL/2
-                        int_allow_interrupt <= 1'b1;
-                    else
-                    begin
-                        if (n_prefetch <= 1) // allow interrupt at any clock cycle
-                        begin
-                            if (do_col_req && ((col_address == 0 && size > 1) || col_address != 0))
-                                int_allow_interrupt <= 1'b0;
-                            else if (address_left == 0 && burst_left == 0)
-                                int_allow_interrupt <= 1'b1;
-                        end
-                        else if (n_prefetch == 2)
-                        begin
-                            if (do_col_req)
-                                int_allow_interrupt <= 1'b0;
-                            else if (address_left == 0 && burst_left == 0 && max_burst_left [0] == 0)
-                                int_allow_interrupt <= 1'b1;
-                        end
-                        else if (n_prefetch == 4)
-                        begin
-                            if (do_col_req)
-                                int_allow_interrupt <= 1'b0;
-                            else if (address_left == 0 && burst_left == 0 && max_burst_left [1 : 0] == 0)
-                                int_allow_interrupt <= 1'b1;
-                        end
-                    end
-                end
-            end
-            
-            always @ (*)
-            begin
-                int_interrupt_ready = int_allow_interrupt;
-            end
+            n_prefetch <= 0;
         end
         else
         begin
-            always @ (posedge ctl_clk or negedge ctl_reset_n)
+            n_prefetch <= cfg_tccd / (CFG_DWIDTH_RATIO / 2);
+        end
+    end
+    
+    // For n_prefetch of 0 and 1, we will allow interrupt at any controller clock cycles
+    // for n_prefetch of n, we will allow interrupt at any n controller clock cycles interval
+    always @ (posedge ctl_clk or negedge ctl_reset_n)
+    begin
+        if (!ctl_reset_n)
+        begin
+            int_allow_interrupt <= 1'b1;
+        end
+        else
+        begin
+            if (cfg_type == `MMR_TYPE_DDR3) // DDR3 specific, interrupt masking is handled by setting read-to-read and write-to-write to BL/2
+                int_allow_interrupt <= 1'b1;
+            else
             begin
-                if (!ctl_reset_n)
+                if (n_prefetch <= 1) // allow interrupt at any clock cycle
                 begin
-                    int_interrupt_ready <= 0;
+                    if (do_col_req && ((col_address == 0 && size > 1) || col_address != 0))
+                        int_allow_interrupt <= 1'b0;
+                    else if (address_left == 0 && burst_left == 0)
+                        int_allow_interrupt <= 1'b1;
                 end
-                else
+                else if (n_prefetch == 2)
                 begin
                     if (do_col_req)
-                    begin
-                        if (CFG_REG_GRANT)
-                        begin
-                            if (max_local_burst_size <= 2'd2)   //do not generate int_interrupt_ready
-                                int_interrupt_ready <= 1'b0;
-                            else if (do_burst_chop && max_local_burst_size <= 3'd4)
-                                int_interrupt_ready <= 1'b0;
-                            else
-                                int_interrupt_ready <= 1'b1;
-                        end
-                        else
-                        begin
-                            if (max_local_burst_size <= 1'b1)   //do not generate int_interrupt_ready if max burst count is 1
-                                int_interrupt_ready <= 1'b0;
-                            else if (do_burst_chop && max_local_burst_size <= 2'd2)
-                                int_interrupt_ready <= 1'b0;
-                            else
-                                int_interrupt_ready <= 1'b1;
-                        end
-                    end
-                    else if (!CFG_REG_GRANT && max_burst_left > 0)
-                        int_interrupt_ready <= 1'b1;
-                    else if ( CFG_REG_GRANT && max_burst_left > 1'b1)
-                        int_interrupt_ready <= 1'b1;
-                    else
-                        int_interrupt_ready <= 1'b0;
+                        int_allow_interrupt <= 1'b0;
+                    else if (address_left == 0 && burst_left == 0 && max_burst_left [0] == 0)
+                        int_allow_interrupt <= 1'b1;
+                end
+                else if (n_prefetch == 4)
+                begin
+                    if (do_col_req)
+                        int_allow_interrupt <= 1'b0;
+                    else if (address_left == 0 && burst_left == 0 && max_burst_left [1 : 0] == 0)
+                        int_allow_interrupt <= 1'b1;
                 end
             end
         end
     end
-    endgenerate
+    
+    // Interrupt info when interrupt feature is enabled
+    always @ (*)
+    begin
+        int_interrupt_enable_ready = int_allow_interrupt;
+    end
+    
+    // Interrupt info when interrupt feature is disabled
+    always @ (posedge ctl_clk or negedge ctl_reset_n)
+    begin
+        if (!ctl_reset_n)
+        begin
+            int_interrupt_disable_ready <= 0;
+        end
+        else
+        begin
+            if (do_col_req)
+            begin
+                if (CFG_REG_GRANT)
+                begin
+                    if (max_local_burst_size <= 2'd2)   //do not generate int_interrupt_ready
+                        int_interrupt_disable_ready <= 1'b0;
+                    else if (do_burst_chop && max_local_burst_size <= 3'd4)
+                        int_interrupt_disable_ready <= 1'b0;
+                    else
+                        int_interrupt_disable_ready <= 1'b1;
+                end
+                else
+                begin
+                    if (max_local_burst_size <= 1'b1)   //do not generate int_interrupt_ready if max burst count is 1
+                        int_interrupt_disable_ready <= 1'b0;
+                    else if (do_burst_chop && max_local_burst_size <= 2'd2)
+                        int_interrupt_disable_ready <= 1'b0;
+                    else
+                        int_interrupt_disable_ready <= 1'b1;
+                end
+            end
+            else if (!CFG_REG_GRANT && max_burst_left > 0)
+                int_interrupt_disable_ready <= 1'b1;
+            else if ( CFG_REG_GRANT && max_burst_left > 1'b1)
+                int_interrupt_disable_ready <= 1'b1;
+            else
+                int_interrupt_disable_ready <= 1'b0;
+        end
+    end
     
     // Assign to output ports
     always @ (*)
     begin
-        interrupt_ready = ~int_interrupt_ready;
+        if (cfg_enable_burst_interrupt)
+        begin
+            interrupt_ready = ~int_interrupt_enable_ready;
+        end
+        else
+        begin
+            interrupt_ready = ~int_interrupt_disable_ready;
+        end
     end
     
 //--------------------------------------------------------------------------------------------------------
@@ -1152,137 +1150,118 @@ output [CFG_INT_SIZE_WIDTH                              - 1 : 0] bg_effective_si
 //  LPDDR1 and LPDDR2 specific only
 //
 //--------------------------------------------------------------------------------------------------------
-    generate
+    // For n_prefetch of 0 and 1, we will allow terminate at any controller clock cycles
+    // for n_prefetch of n, we will allow terminate at any n controller clock cycles interval
+    always @ (posedge ctl_clk or negedge ctl_reset_n)
     begin
-        if (CFG_ENABLE_BURST_TERMINATE)
+        if (!ctl_reset_n)
         begin
-            // For n_prefetch of 0 and 1, we will allow terminate at any controller clock cycles
-            // for n_prefetch of n, we will allow terminate at any n controller clock cycles interval
-            always @ (posedge ctl_clk or negedge ctl_reset_n)
-            begin
-                if (!ctl_reset_n)
-                begin
-                    int_allow_terminate    <= 1'b0;
-                    int_do_burst_terminate <= 1'b0;
-                end
-                else
-                begin
-                    if (cfg_type == `MMR_TYPE_LPDDR1 || cfg_type == `MMR_TYPE_LPDDR2) // LPDDR1 and LPDDR2 only
-                    begin
-                        if (n_prefetch <= 1) // allow terminate at any clock cycle
-                        begin
-                            if (do_col_req && col_address != 0)
-                            begin
-                                int_allow_terminate    <= 1'b0;
-                                int_do_burst_terminate <= 1'b0;
-                            end
-                            else if (do_col_req && col_address == 0 && size == 1'b1)
-                            begin
-                                int_allow_terminate    <= 1'b1;
-                                
-                                if (!int_allow_terminate)
-                                    int_do_burst_terminate <= 1'b1;
-                                else
-                                    int_do_burst_terminate <= 1'b0;
-                            end
-                            else if (address_left == 0 && burst_left == 0 && max_burst_left > 0)
-                            begin
-                                int_allow_terminate <= 1'b1;
-                                
-                                if (!int_allow_terminate)
-                                    int_do_burst_terminate <= 1'b1;
-                                else
-                                    int_do_burst_terminate <= 1'b0;
-                            end
-                            else
-                            begin
-                                int_allow_terminate    <= 1'b0;
-                                int_do_burst_terminate <= 1'b0;
-                            end
-                        end
-                        else if (n_prefetch == 2)
-                        begin
-                            if (do_col_req)
-                            begin
-                                int_allow_terminate    <= 1'b0;
-                                int_do_burst_terminate <= 1'b0;
-                            end
-                            else if (address_left == 0 && burst_left == 0 && max_burst_left > 0 && (max_burst_left [0] == 0 || int_allow_terminate == 1'b1))
-                            begin
-                                int_allow_terminate <= 1'b1;
-                                
-                                if (!int_allow_terminate)
-                                    int_do_burst_terminate <= 1'b1;
-                                else
-                                    int_do_burst_terminate <= 1'b0;
-                            end
-                            else
-                            begin
-                                int_allow_terminate    <= 1'b0;
-                                int_do_burst_terminate <= 1'b0;
-                            end
-                        end
-                        else if (n_prefetch == 4)
-                        begin
-                            if (do_col_req)
-                            begin
-                                int_allow_terminate    <= 1'b0;
-                                int_do_burst_terminate <= 1'b0;
-                            end
-                            else if (address_left == 0 && burst_left == 0 && max_burst_left > 0 && (max_burst_left [1 : 0] == 0 || int_allow_terminate == 1'b1))
-                            begin
-                                int_allow_terminate <= 1'b1;
-                                
-                                if (!int_allow_terminate)
-                                    int_do_burst_terminate <= 1'b1;
-                                else
-                                    int_do_burst_terminate <= 1'b0;
-                            end
-                            else
-                            begin
-                                int_allow_terminate    <= 1'b0;
-                                int_do_burst_terminate <= 1'b0;
-                            end
-                        end
-                    end
-                    else
-                    begin
-                        int_allow_terminate <= 1'b0;
-                    end
-                end
-            end
-            
-            // Effective size, actual issued size migh be smaller that maximum local burst size
-            // we need to inform rank timer about this information for efficient DQ bus turnaround operation
-            always @ (posedge ctl_clk or negedge ctl_reset_n)
-            begin
-                if (!ctl_reset_n)
-                begin
-                    int_effective_size <= 0;
-                end
-                else
-                begin
-                    if (do_col_req)
-                        int_effective_size <= 1'b1;
-                    else if (int_effective_size != {CFG_INT_SIZE_WIDTH{1'b1}})
-                        int_effective_size <= int_effective_size + 1'b1;
-                end
-            end
+            int_allow_terminate    <= 1'b0;
+            int_do_burst_terminate <= 1'b0;
         end
         else
         begin
-            always @ (*)
+            if (cfg_type == `MMR_TYPE_LPDDR1 || cfg_type == `MMR_TYPE_LPDDR2) // LPDDR1 and LPDDR2 only
             begin
-                int_do_burst_terminate = zero;
+                if (n_prefetch <= 1) // allow terminate at any clock cycle
+                begin
+                    if (do_col_req && col_address != 0)
+                    begin
+                        int_allow_terminate    <= 1'b0;
+                        int_do_burst_terminate <= 1'b0;
+                    end
+                    else if (do_col_req && col_address == 0 && size == 1'b1)
+                    begin
+                        int_allow_terminate    <= 1'b1;
+                        
+                        if (!int_allow_terminate)
+                            int_do_burst_terminate <= 1'b1;
+                        else
+                            int_do_burst_terminate <= 1'b0;
+                    end
+                    else if (address_left == 0 && burst_left == 0 && max_burst_left > 0)
+                    begin
+                        int_allow_terminate <= 1'b1;
+                        
+                        if (!int_allow_terminate)
+                            int_do_burst_terminate <= 1'b1;
+                        else
+                            int_do_burst_terminate <= 1'b0;
+                    end
+                    else
+                    begin
+                        int_allow_terminate    <= 1'b0;
+                        int_do_burst_terminate <= 1'b0;
+                    end
+                end
+                else if (n_prefetch == 2)
+                begin
+                    if (do_col_req)
+                    begin
+                        int_allow_terminate    <= 1'b0;
+                        int_do_burst_terminate <= 1'b0;
+                    end
+                    else if (address_left == 0 && burst_left == 0 && max_burst_left > 0 && (max_burst_left [0] == 0 || int_allow_terminate == 1'b1))
+                    begin
+                        int_allow_terminate <= 1'b1;
+                        
+                        if (!int_allow_terminate)
+                            int_do_burst_terminate <= 1'b1;
+                        else
+                            int_do_burst_terminate <= 1'b0;
+                    end
+                    else
+                    begin
+                        int_allow_terminate    <= 1'b0;
+                        int_do_burst_terminate <= 1'b0;
+                    end
+                end
+                else if (n_prefetch == 4)
+                begin
+                    if (do_col_req)
+                    begin
+                        int_allow_terminate    <= 1'b0;
+                        int_do_burst_terminate <= 1'b0;
+                    end
+                    else if (address_left == 0 && burst_left == 0 && max_burst_left > 0 && (max_burst_left [1 : 0] == 0 || int_allow_terminate == 1'b1))
+                    begin
+                        int_allow_terminate <= 1'b1;
+                        
+                        if (!int_allow_terminate)
+                            int_do_burst_terminate <= 1'b1;
+                        else
+                            int_do_burst_terminate <= 1'b0;
+                    end
+                    else
+                    begin
+                        int_allow_terminate    <= 1'b0;
+                        int_do_burst_terminate <= 1'b0;
+                    end
+                end
             end
-            
-            always @ (*)
+            else
             begin
-                int_effective_size = {CFG_INT_SIZE_WIDTH{zero}};
+                int_allow_terminate <= 1'b0;
             end
         end
     end
-    endgenerate
+    
+    // Effective size, actual issued size migh be smaller that maximum local burst size
+    // we need to inform rank timer about this information for efficient DQ bus turnaround operation
+    always @ (posedge ctl_clk or negedge ctl_reset_n)
+    begin
+        if (!ctl_reset_n)
+        begin
+            int_effective_size <= 0;
+        end
+        else
+        begin
+            if (do_col_req)
+                int_effective_size <= 1'b1;
+            else if (int_effective_size != {CFG_INT_SIZE_WIDTH{1'b1}})
+                int_effective_size <= int_effective_size + 1'b1;
+        end
+    end
     
     // Terminate doing signal, this signal will be used to mask off doing_read or doing_write signal
     // when we issue a burst terminate signal, we should also terminate doing_read and doing_write signal
@@ -1304,7 +1283,14 @@ output [CFG_INT_SIZE_WIDTH                              - 1 : 0] bg_effective_si
     
     always @ (*)
     begin
-        terminate_doing = (|do_burst_terminate) | doing_burst_terminate;
+        if (cfg_enable_burst_terminate)
+        begin
+            terminate_doing = (|do_burst_terminate) | doing_burst_terminate;
+        end
+        else
+        begin
+            terminate_doing = zero;
+        end
     end
     
     // Burst terminate output ports
@@ -1327,10 +1313,21 @@ output [CFG_INT_SIZE_WIDTH                              - 1 : 0] bg_effective_si
             begin
                 do_burst_terminate = 0;
                 
-                if (int_do_req)
-                    do_burst_terminate [AFI_INTF_HIGH_PHASE] = 0;
+                if (cfg_enable_burst_terminate)
+                begin
+                    if (int_do_req)
+                    begin
+                        do_burst_terminate [AFI_INTF_HIGH_PHASE] = 0;
+                    end
+                    else
+                    begin
+                        do_burst_terminate [AFI_INTF_HIGH_PHASE] = int_do_burst_terminate;
+                    end
+                end
                 else
-                    do_burst_terminate [AFI_INTF_HIGH_PHASE] = int_do_burst_terminate;
+                begin
+                    do_burst_terminate [AFI_INTF_HIGH_PHASE] = 0;
+                end
             end
         end
         else if (CFG_CTL_ARBITER_TYPE == "COLROW")
@@ -1339,10 +1336,21 @@ output [CFG_INT_SIZE_WIDTH                              - 1 : 0] bg_effective_si
             begin
                 do_burst_terminate = 0;
                 
-                if (int_do_req)
-                    do_burst_terminate [AFI_INTF_LOW_PHASE] = 0;
+                if (cfg_enable_burst_terminate)
+                begin
+                    if (int_do_req)
+                    begin
+                        do_burst_terminate [AFI_INTF_LOW_PHASE] = 0;
+                    end
+                    else
+                    begin
+                        do_burst_terminate [AFI_INTF_LOW_PHASE] = int_do_burst_terminate;
+                    end
+                end
                 else
-                    do_burst_terminate [AFI_INTF_LOW_PHASE] = int_do_burst_terminate;
+                begin
+                    do_burst_terminate [AFI_INTF_LOW_PHASE] = 0;
+                end
             end
         end
     end
@@ -1351,7 +1359,14 @@ output [CFG_INT_SIZE_WIDTH                              - 1 : 0] bg_effective_si
     // Effective size output ports
     always @ (*)
     begin
-        effective_size = int_effective_size;
+        if (cfg_enable_burst_terminate)
+        begin
+            effective_size = int_effective_size;
+        end
+        else
+        begin
+            effective_size = {CFG_INT_SIZE_WIDTH{zero}};
+        end
     end
     
 //--------------------------------------------------------------------------------------------------------

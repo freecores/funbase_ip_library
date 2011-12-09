@@ -1,6 +1,5 @@
 
 //altera message_off 10230
-//altera message_off 10762
 
 `include "alt_mem_ddrx_define.iv"
 
@@ -26,14 +25,13 @@ module alt_mem_ddrx_sideband
         T_PARAM_SRF_TO_ZQ_CAL_WIDTH             =   10,
         T_PARAM_PDN_TO_VALID_WIDTH              =   6,
         BANK_TIMER_COUNTER_OFFSET               =   2, //used to be 4
-        T_PARAM_PDN_PERIOD_WIDTH                =   16          // temporary
-        
+        T_PARAM_PDN_PERIOD_WIDTH                =   16,// temporary
+        T_PARAM_POWER_SAVING_EXIT_WIDTH         =   6
     )
     (
     
         ctl_clk,
         ctl_reset_n,
-        ctl_cal_success,
         
         // local interface
         rfsh_req,
@@ -58,7 +56,11 @@ module alt_mem_ddrx_sideband
         sb_do_deep_pdown,
         sb_do_zq_cal,
         sb_tbp_precharge_all,
+        
+        // PHY interface
         ctl_mem_clk_disable,
+        ctl_init_req,
+        ctl_cal_success,
         
         // tbp & cmd gen
         cmd_gen_chipsel,
@@ -73,6 +75,7 @@ module alt_mem_ddrx_sideband
         t_param_srf_to_zq_cal,
         t_param_pdn_to_valid,
         t_param_pdn_period,
+        t_param_power_saving_exit,
         
         // block status
         tbp_empty,
@@ -111,30 +114,30 @@ module alt_mem_ddrx_sideband
     localparam DQSTRK       = 32'h6471746b;
     localparam DQSLONG      = 32'h64716c6e;
     
-    localparam POWER_SAVING_COUNTER_WIDTH = T_PARAM_SRF_TO_VALID_WIDTH;
-    localparam ARF_COUNTER_WIDTH          = T_PARAM_ARF_PERIOD_WIDTH;
-    localparam PDN_COUNTER_WIDTH          = T_PARAM_PDN_PERIOD_WIDTH;
+    localparam POWER_SAVING_COUNTER_WIDTH      = T_PARAM_SRF_TO_VALID_WIDTH;
+    localparam POWER_SAVING_EXIT_COUNTER_WIDTH = T_PARAM_POWER_SAVING_EXIT_WIDTH;
+    localparam ARF_COUNTER_WIDTH               = T_PARAM_ARF_PERIOD_WIDTH;
+    localparam PDN_COUNTER_WIDTH               = T_PARAM_PDN_PERIOD_WIDTH;
     
     localparam integer CFG_MEM_IF_BA_WIDTH_SQRD = 2**CFG_MEM_IF_BA_WIDTH;
     localparam integer CFG_PORT_WIDTH_TCL_SQRD = 2**CFG_PORT_WIDTH_TCL;
     
     input   ctl_clk;
     input   ctl_reset_n;
-    input   ctl_cal_success;
     
-    input                       rfsh_req;
+    input                           rfsh_req;
     input   [CFG_MEM_IF_CHIP-1:0]   rfsh_chip;
-    output                      rfsh_ack;
-    input                       self_rfsh_req;
+    output                          rfsh_ack;
+    input                           self_rfsh_req;
     input   [CFG_MEM_IF_CHIP-1:0]   self_rfsh_chip;
-    output                      self_rfsh_ack;
-    input                       deep_powerdn_req;
+    output                          self_rfsh_ack;
+    input                           deep_powerdn_req;
     input   [CFG_MEM_IF_CHIP-1:0]   deep_powerdn_chip;
-    output                      deep_powerdn_ack;
-    output                      power_down_ack;
+    output                          deep_powerdn_ack;
+    output                          power_down_ack;
     
-    output                      stall_row_arbiter;
-    output                      stall_col_arbiter;
+    output                          stall_row_arbiter;
+    output                          stall_col_arbiter;
     output  [CFG_MEM_IF_CHIP-1:0]   stall_chip;
     output  [CFG_MEM_IF_CHIP-1:0]   sb_do_precharge_all;
     output  [CFG_MEM_IF_CHIP-1:0]   sb_do_refresh;
@@ -143,7 +146,10 @@ module alt_mem_ddrx_sideband
     output  [CFG_MEM_IF_CHIP-1:0]   sb_do_deep_pdown;
     output  [CFG_MEM_IF_CHIP-1:0]   sb_do_zq_cal;
     output  [CFG_CTL_TBP_NUM-1:0]   sb_tbp_precharge_all;
+    
     output  [CFG_MEM_IF_CLK_PAIR_COUNT-1:0] ctl_mem_clk_disable;
+    output                                  ctl_init_req;
+    input                                   ctl_cal_success;
     
     input   [CFG_MEM_IF_CS_WIDTH-1:0]                   cmd_gen_chipsel;
     input   [(CFG_CTL_TBP_NUM*CFG_MEM_IF_CS_WIDTH)-1:0] tbp_chipsel;
@@ -156,6 +162,7 @@ module alt_mem_ddrx_sideband
     input   [T_PARAM_SRF_TO_ZQ_CAL_WIDTH        - 1 : 0] t_param_srf_to_zq_cal;
     input   [T_PARAM_PDN_TO_VALID_WIDTH         - 1 : 0] t_param_pdn_to_valid;
     input   [T_PARAM_PDN_PERIOD_WIDTH           - 1 : 0] t_param_pdn_period;
+    input   [T_PARAM_POWER_SAVING_EXIT_WIDTH    - 1 : 0] t_param_power_saving_exit;
     
     input   tbp_empty;
     input   [CFG_MEM_IF_CHIP-1:0] tbp_bank_active;
@@ -180,6 +187,7 @@ module alt_mem_ddrx_sideband
     wire    power_down_ack;
     
     wire [CFG_MEM_IF_CLK_PAIR_COUNT-1:0] ctl_mem_clk_disable;
+    wire                                 ctl_init_req;
     
     reg  [CFG_MEM_IF_CHIP-1:0] sb_do_precharge_all;
     reg  [CFG_MEM_IF_CHIP-1:0] sb_do_refresh;
@@ -612,20 +620,21 @@ module alt_mem_ddrx_sideband
         genvar u_cs;
         for (u_cs = 0;u_cs < CFG_MEM_IF_CHIP;u_cs = u_cs + 1)
         begin : power_saving_logic_per_chip
-            reg  [POWER_SAVING_COUNTER_WIDTH - 1 : 0] power_saving_cnt;
-            reg     [31:0] state;
-            reg  [31                             : 0] sideband_state;
-            reg                                       int_enter_power_saving_ready;
-            reg                                       int_exit_power_saving_ready;
-            reg                                       registered_reset;
-            reg                                       int_zq_cal_req;
-            reg                                       int_do_power_down;
-            reg                                       int_do_power_down_r1;
-            reg                                       int_do_power_down_r2;
-            reg                                       int_do_self_refresh;
-            reg                                       int_do_self_refresh_r1;
-            reg                                       int_do_self_refresh_r2;
-            reg                                       int_do_self_refresh_r3;
+            reg  [POWER_SAVING_COUNTER_WIDTH      - 1 : 0] power_saving_cnt;
+            reg  [POWER_SAVING_EXIT_COUNTER_WIDTH - 1 : 0] power_saving_exit_cnt;
+            reg  [31                                  : 0] state;
+            reg  [31                                  : 0] sideband_state;
+            reg                                            int_enter_power_saving_ready;
+            reg                                            int_exit_power_saving_ready;
+            reg                                            registered_reset;
+            reg                                            int_zq_cal_req;
+            reg                                            int_do_power_down;
+            reg                                            int_do_power_down_r1;
+            reg                                            int_do_power_down_r2;
+            reg                                            int_do_self_refresh;
+            reg                                            int_do_self_refresh_r1;
+            reg                                            int_do_self_refresh_r2;
+            reg                                            int_do_self_refresh_r3;
             
             // assignment
             assign power_saving_enter_ready [u_cs] = int_enter_power_saving_ready;
@@ -691,12 +700,22 @@ module alt_mem_ddrx_sideband
             always @ (posedge ctl_clk or negedge ctl_reset_n)
             begin
                 if (!ctl_reset_n)
-                    registered_reset    <=  0;
+                begin
+                    power_saving_exit_cnt <= 0;
+                end
                 else
-                    registered_reset    <=  1;
+                begin
+                    if ((int_do_power_down & !int_do_power_down_r1) || (int_do_self_refresh & !int_do_self_refresh_r1))
+                    begin
+                        power_saving_exit_cnt <= BANK_TIMER_COUNTER_OFFSET;
+                    end
+                    else if (power_saving_exit_cnt != {POWER_SAVING_EXIT_COUNTER_WIDTH{1'b1}})
+                    begin
+                        power_saving_exit_cnt = power_saving_exit_cnt + 1'b1;
+                    end
+                end
             end
-                    
-            // exit power saving mode, power down and self refresh need to be at least 3 clock cycle before exiting
+            
             always @ (posedge ctl_clk or negedge ctl_reset_n)
             begin
                 if (!ctl_reset_n)
@@ -705,18 +724,22 @@ module alt_mem_ddrx_sideband
                 end
                 else
                 begin
-                    if (!registered_reset) // we want to reset to high
-                        int_exit_power_saving_ready <= 1'b1;
-                    else if (( int_do_power_down) && (!int_do_power_down_r1)) // positive edge detector but late by one clock cycle
+                    if (( int_do_power_down) && (!int_do_power_down_r1)) // positive edge detector but late by one clock cycle
+                    begin
                         int_exit_power_saving_ready <= 1'b0;
-                    else if (( int_do_power_down_r1) && (!int_do_power_down_r2))
-                        int_exit_power_saving_ready <= 1'b1;
+                    end
                     else if (( int_do_self_refresh ) && (!int_do_self_refresh_r1 )) // positive edge detector
+                    begin
                         int_exit_power_saving_ready <= 1'b0;
-                    else if (( int_do_self_refresh_r1 ) && (!int_do_self_refresh_r2 ))
-                        int_exit_power_saving_ready <= 1'b0;
-                    else if (( int_do_self_refresh_r2 ) && (!int_do_self_refresh_r3 ))
+                    end
+                    else if (power_saving_exit_cnt >= t_param_power_saving_exit)
+                    begin
                         int_exit_power_saving_ready <= 1'b1;
+                    end
+                    else
+                    begin
+                        int_exit_power_saving_ready <= 1'b0;
+                    end
                 end
             end
             
@@ -1161,10 +1184,10 @@ module alt_mem_ddrx_sideband
                 end
                 else
                 begin
-                    if (do_refresh[s_cs])
-                        refresh_cnt <= 3;
-                    else if (self_rfsh_req && |self_rfsh_chip && !self_rfsh_req_r)
+                    if (self_rfsh_req && |self_rfsh_chip && !self_rfsh_req_r)
                         refresh_cnt <= {ARF_COUNTER_WIDTH{1'b1}};
+                    else if (do_refresh[s_cs])
+                        refresh_cnt <= 3;
                     else if (refresh_cnt != {ARF_COUNTER_WIDTH{1'b1}})
                         refresh_cnt <= refresh_cnt + 1'b1;
                 end
@@ -1179,11 +1202,11 @@ module alt_mem_ddrx_sideband
                 end
                 else
                 begin
-                    if (do_refresh[s_cs] || do_self_rfsh[s_cs])
+                    if (self_rfsh_req && |self_rfsh_chip && !self_rfsh_req_r)
+                        cs_refresh_req [s_cs] <= 1'b1;
+                    else if (do_refresh[s_cs] || do_self_rfsh[s_cs])
                         cs_refresh_req [s_cs] <= 1'b0;
                     else if (refresh_cnt >= t_param_arf_period)
-                        cs_refresh_req [s_cs] <= 1'b1;
-                    else if (self_rfsh_req && |self_rfsh_chip && !self_rfsh_req_r)
                         cs_refresh_req [s_cs] <= 1'b1;
                     else
                         cs_refresh_req [s_cs] <= 1'b0;

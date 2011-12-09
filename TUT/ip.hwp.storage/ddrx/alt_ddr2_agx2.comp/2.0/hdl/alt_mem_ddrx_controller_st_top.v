@@ -55,6 +55,7 @@ module alt_mem_ddrx_controller_st_top(
     afi_cal_success,
     afi_cal_fail,
     afi_cal_req,
+    afi_init_req,
     afi_mem_clk_disable,
     afi_cal_byte_lane_sel_n,
     afi_ctl_refresh_done,
@@ -64,12 +65,14 @@ module alt_mem_ddrx_controller_st_top(
     local_refresh_ack,
     local_powerdn_ack,
     local_self_rfsh_ack,
-    local_autopch_req,
+	local_deep_powerdn_ack,
     local_refresh_req,
     local_refresh_chip,
     local_powerdn_req,
     local_self_rfsh_req,
     local_self_rfsh_chip,
+	local_deep_powerdn_req,
+	local_deep_powerdn_chip,
     local_multicast,
     local_priority,
     ecc_interrupt,
@@ -146,6 +149,8 @@ parameter CFG_TCCD                                  = "";
 parameter MEM_AUTO_PD_CYCLES                        = "";
 parameter CFG_SELF_RFSH_EXIT_CYCLES                 = "";
 parameter CFG_PDN_EXIT_CYCLES                       = "";
+parameter CFG_POWER_SAVING_EXIT_CYCLES              = "";
+parameter CFG_MEM_CLK_ENTRY_CYCLES                  = "";
 parameter MEM_TMRD_CK                               = "";
 parameter CTL_ECC_ENABLED                           = "";
 parameter CTL_ECC_RMW_ENABLED                       = "";
@@ -159,6 +164,8 @@ parameter CFG_MASK_CORRDROP_INTR                    = 0;
 parameter CFG_CLR_INTR                              = "";
 parameter CTL_USR_REFRESH                           = "";
 parameter CTL_REGDIMM_ENABLED                       = "";
+parameter CTL_ENABLE_BURST_INTERRUPT				= "";
+parameter CTL_ENABLE_BURST_TERMINATE				= "";
 parameter CFG_WRITE_ODT_CHIP                        = "";
 parameter CFG_READ_ODT_CHIP                         = "";
 parameter CFG_PORT_WIDTH_WRITE_ODT_CHIP             = "";
@@ -175,6 +182,7 @@ parameter CFG_RLAT_BUS_WIDTH                        = 6;
 
 parameter MEM_IF_RD_TO_WR_TURNAROUND_OCT            = "";
 parameter MEM_IF_WR_TO_RD_TURNAROUND_OCT            = "";
+parameter CTL_RD_TO_PCH_EXTRA_CLK                   = 0;
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -234,7 +242,7 @@ localparam CFG_EXTRA_CTL_CLK_RD_TO_RD_DIFF_CHIP                 = 0;
 localparam CFG_EXTRA_CTL_CLK_RD_TO_WR                           = 0 + ((MEM_IF_RD_TO_WR_TURNAROUND_OCT / (DWIDTH_RATIO / 2)) + ((MEM_IF_RD_TO_WR_TURNAROUND_OCT % (DWIDTH_RATIO / 2)) > 0 ? 1 : 0)); // Please do not remove the latter calculation
 localparam CFG_EXTRA_CTL_CLK_RD_TO_WR_BC                        = 0 + ((MEM_IF_RD_TO_WR_TURNAROUND_OCT / (DWIDTH_RATIO / 2)) + ((MEM_IF_RD_TO_WR_TURNAROUND_OCT % (DWIDTH_RATIO / 2)) > 0 ? 1 : 0)); // Please do not remove the latter calculation
 localparam CFG_EXTRA_CTL_CLK_RD_TO_WR_DIFF_CHIP                 = 0 + ((MEM_IF_RD_TO_WR_TURNAROUND_OCT / (DWIDTH_RATIO / 2)) + ((MEM_IF_RD_TO_WR_TURNAROUND_OCT % (DWIDTH_RATIO / 2)) > 0 ? 1 : 0)); // Please do not remove the latter calculation
-localparam CFG_EXTRA_CTL_CLK_RD_TO_PCH                          = 0;
+localparam CFG_EXTRA_CTL_CLK_RD_TO_PCH                          = 0 + CTL_RD_TO_PCH_EXTRA_CLK;
 localparam CFG_EXTRA_CTL_CLK_RD_AP_TO_VALID                     = 0;
 localparam CFG_EXTRA_CTL_CLK_WR_TO_WR                           = 0;
 localparam CFG_EXTRA_CTL_CLK_WR_TO_WR_DIFF_CHIP                 = 0;
@@ -257,6 +265,8 @@ localparam CFG_OUTPUT_REGD                                      = CTL_OUTPUT_REG
 localparam CFG_MASK_CORR_DROPPED_INTR                           = 0;
 localparam CFG_USER_RFSH                                        = CTL_USR_REFRESH;
 localparam CFG_REGDIMM_ENABLE                                   = CTL_REGDIMM_ENABLED;
+localparam CFG_ENABLE_BURST_INTERRUPT                           = CTL_ENABLE_BURST_INTERRUPT;
+localparam CFG_ENABLE_BURST_TERMINATE                           = CTL_ENABLE_BURST_TERMINATE;
 
 localparam CFG_PORT_WIDTH_TYPE                                  = 3;
 localparam CFG_PORT_WIDTH_INTERFACE_WIDTH                       = 8;
@@ -288,6 +298,8 @@ localparam CFG_PORT_WIDTH_TCCD                                  = 4;
 localparam CFG_PORT_WIDTH_TMRD                                  = 3;
 localparam CFG_PORT_WIDTH_SELF_RFSH_EXIT_CYCLES                 = 10;
 localparam CFG_PORT_WIDTH_PDN_EXIT_CYCLES                       = 4;
+localparam CFG_PORT_WIDTH_POWER_SAVING_EXIT_CYCLES              = 4;
+localparam CFG_PORT_WIDTH_MEM_CLK_ENTRY_CYCLES                  = 4;
 localparam CFG_PORT_WIDTH_AUTO_PD_CYCLES                        = 16;
 localparam CFG_PORT_WIDTH_EXTRA_CTL_CLK_ACT_TO_RDWR             = 4;
 localparam CFG_PORT_WIDTH_EXTRA_CTL_CLK_ACT_TO_PCH              = 4;
@@ -327,6 +339,8 @@ localparam CFG_PORT_WIDTH_CLR_INTR                              = 1;
 localparam CFG_PORT_WIDTH_USER_RFSH                             = 1;
 localparam CFG_PORT_WIDTH_SELF_RFSH                             = 1;
 localparam CFG_PORT_WIDTH_REGDIMM_ENABLE                        = 1;
+localparam CFG_PORT_WIDTH_ENABLE_BURST_INTERRUPT                = 1;
+localparam CFG_PORT_WIDTH_ENABLE_BURST_TERMINATE                = 1;
 localparam CFG_RDATA_RETURN_MODE                                = (CFG_REORDER_DATA == 1) ? "INORDER" : "PASSTHROUGH";
 
 localparam CFG_LPDDR2_ENABLED                                   = (CFG_TYPE == `MMR_TYPE_LPDDR2) ? 1 : 0;
@@ -428,6 +442,7 @@ input   [AFI_RLAT_WIDTH                                    - 1 : 0]    afi_rlat;
 input                                                                  afi_cal_success;
 input                                                                  afi_cal_fail;
 output                                                                 afi_cal_req;
+output                                                                 afi_init_req;
 output  [AFI_MEM_CLK_DISABLE_WIDTH                         - 1 : 0]    afi_mem_clk_disable;
 output  [AFI_CAL_BYTE_LANE_SEL_N_WIDTH                     - 1 : 0]    afi_cal_byte_lane_sel_n;
 output  [CFG_MEM_IF_CHIP                                   - 1 : 0]    afi_ctl_refresh_done;
@@ -439,12 +454,14 @@ output                                                                 local_ini
 output                                                                 local_refresh_ack;
 output                                                                 local_powerdn_ack;
 output                                                                 local_self_rfsh_ack;
-input                                                                  local_autopch_req;
+output  															   local_deep_powerdn_ack;
 input                                                                  local_refresh_req;
 input   [CFG_MEM_IF_CHIP                                   - 1 : 0]    local_refresh_chip;
 input                                                                  local_powerdn_req;
 input                                                                  local_self_rfsh_req;
 input   [CFG_MEM_IF_CHIP                                   - 1 : 0]    local_self_rfsh_chip;
+input																   local_deep_powerdn_req;
+input   [CFG_MEM_IF_CHIP                                   - 1 : 0]    local_deep_powerdn_chip;
 input                                                                  local_multicast;
 input                                                                  local_priority;
 
@@ -474,6 +491,8 @@ wire                                                                   cfg_gen_d
 wire                                                                   cfg_reorder_data;
 wire                                                                   cfg_user_rfsh;
 wire                                                                   cfg_regdimm_enable;
+wire                                                                   cfg_enable_burst_interrupt;
+wire                                                                   cfg_enable_burst_terminate;
 wire                                                                   cfg_enable_dqs_tracking;
 wire                                                                   cfg_output_regd;
 wire                                                                   cfg_enable_no_dm;
@@ -495,6 +514,8 @@ wire    [CFG_PORT_WIDTH_TRC                                - 1 : 0]    cfg_trc;
 wire    [CFG_PORT_WIDTH_AUTO_PD_CYCLES                     - 1 : 0]    cfg_auto_pd_cycles;
 wire    [CFG_PORT_WIDTH_SELF_RFSH_EXIT_CYCLES              - 1 : 0]    cfg_self_rfsh_exit_cycles;
 wire    [CFG_PORT_WIDTH_PDN_EXIT_CYCLES                    - 1 : 0]    cfg_pdn_exit_cycles;
+wire    [CFG_PORT_WIDTH_POWER_SAVING_EXIT_CYCLES           - 1 : 0]    cfg_power_saving_exit_cycles;
+wire    [CFG_PORT_WIDTH_MEM_CLK_ENTRY_CYCLES               - 1 : 0]    cfg_mem_clk_entry_cycles;
 wire    [CFG_PORT_WIDTH_TMRD                               - 1 : 0]    cfg_tmrd;
 wire    [CFG_PORT_WIDTH_COL_ADDR_WIDTH                     - 1 : 0]    cfg_col_addr_width;
 wire    [CFG_PORT_WIDTH_ROW_ADDR_WIDTH                     - 1 : 0]    cfg_row_addr_width;
@@ -576,6 +597,8 @@ wire    [CFG_LOCAL_ADDR_WIDTH                              - 1 : 0]    sts_corr_
        assign   cfg_enable_no_dm                        = CFG_ENABLE_NO_DM;
        assign   cfg_output_regd                         = CFG_OUTPUT_REGD;
        assign   cfg_pdn_exit_cycles                     = CFG_PDN_EXIT_CYCLES;
+       assign   cfg_power_saving_exit_cycles            = CFG_POWER_SAVING_EXIT_CYCLES;
+       assign   cfg_mem_clk_entry_cycles                = CFG_MEM_CLK_ENTRY_CYCLES;
        assign   cfg_self_rfsh_exit_cycles               = CFG_SELF_RFSH_EXIT_CYCLES;
        assign   cfg_tccd                                = CFG_TCCD;
        assign   cfg_tmrd                                = CFG_TMRD;
@@ -583,6 +606,8 @@ wire    [CFG_LOCAL_ADDR_WIDTH                              - 1 : 0]    sts_corr_
        assign   cfg_write_odt_chip                      = CFG_WRITE_ODT_CHIP;
        assign   cfg_read_odt_chip                       = CFG_READ_ODT_CHIP;
        assign   cfg_enable_dqs_tracking                 = CFG_ENABLE_DQS_TRACKING;
+       assign   cfg_enable_burst_interrupt              = CFG_ENABLE_BURST_INTERRUPT;
+       assign   cfg_enable_burst_terminate              = CFG_ENABLE_BURST_TERMINATE;
        assign   cfg_extra_ctl_clk_act_to_rdwr           = CFG_EXTRA_CTL_CLK_ACT_TO_RDWR;
        assign   cfg_extra_ctl_clk_act_to_pch            = CFG_EXTRA_CTL_CLK_ACT_TO_PCH;
        assign   cfg_extra_ctl_clk_act_to_act            = CFG_EXTRA_CTL_CLK_ACT_TO_ACT;
@@ -770,7 +795,10 @@ generate
             .cfg_starve_limit                                   ( csr_cfg_starve_limit                               ),
             .cfg_mask_corr_dropped_intr                         ( csr_cfg_mask_corr_dropped_intr                     ),
             .cfg_cal_req                                        ( csr_cfg_cal_req                                    ),
-
+            
+            .local_power_down_ack                               ( local_powerdn_ack                                  ),
+            .local_self_rfsh_ack                                ( local_self_rfsh_ack                                ),
+            
             .sts_cal_success                                    ( afi_cal_success                                    ),
             .sts_cal_fail                                       ( afi_cal_fail                                       ),
             .sts_sbe_error                                      ( sts_sbe_error                                      ),
@@ -889,6 +917,8 @@ alt_mem_ddrx_controller # (
     .CFG_PORT_WIDTH_SELF_RFSH_EXIT_CYCLES               ( CFG_PORT_WIDTH_SELF_RFSH_EXIT_CYCLES               ),
     .CFG_PORT_WIDTH_PDN_EXIT_CYCLES                     ( CFG_PORT_WIDTH_PDN_EXIT_CYCLES                     ),
     .CFG_PORT_WIDTH_AUTO_PD_CYCLES                      ( CFG_PORT_WIDTH_AUTO_PD_CYCLES                      ),
+    .CFG_PORT_WIDTH_POWER_SAVING_EXIT_CYCLES            ( CFG_PORT_WIDTH_POWER_SAVING_EXIT_CYCLES            ),
+    .CFG_PORT_WIDTH_MEM_CLK_ENTRY_CYCLES                ( CFG_PORT_WIDTH_MEM_CLK_ENTRY_CYCLES                ),
     .CFG_PORT_WIDTH_EXTRA_CTL_CLK_ACT_TO_RDWR           ( CFG_PORT_WIDTH_EXTRA_CTL_CLK_ACT_TO_RDWR           ),
     .CFG_PORT_WIDTH_EXTRA_CTL_CLK_ACT_TO_PCH            ( CFG_PORT_WIDTH_EXTRA_CTL_CLK_ACT_TO_PCH            ),
     .CFG_PORT_WIDTH_EXTRA_CTL_CLK_ACT_TO_ACT            ( CFG_PORT_WIDTH_EXTRA_CTL_CLK_ACT_TO_ACT            ),
@@ -927,6 +957,8 @@ alt_mem_ddrx_controller # (
     .CFG_PORT_WIDTH_USER_RFSH                           ( CFG_PORT_WIDTH_USER_RFSH                           ),
     .CFG_PORT_WIDTH_SELF_RFSH                           ( CFG_PORT_WIDTH_SELF_RFSH                           ),
     .CFG_PORT_WIDTH_REGDIMM_ENABLE                      ( CFG_PORT_WIDTH_REGDIMM_ENABLE                      ),
+    .CFG_PORT_WIDTH_ENABLE_BURST_INTERRUPT              ( CFG_PORT_WIDTH_ENABLE_BURST_INTERRUPT              ),
+    .CFG_PORT_WIDTH_ENABLE_BURST_TERMINATE              ( CFG_PORT_WIDTH_ENABLE_BURST_TERMINATE              ),
     .CFG_PORT_WIDTH_WRITE_ODT_CHIP                      ( CFG_PORT_WIDTH_WRITE_ODT_CHIP                      ),
     .CFG_PORT_WIDTH_READ_ODT_CHIP                       ( CFG_PORT_WIDTH_READ_ODT_CHIP                       ),
     .CFG_WLAT_BUS_WIDTH                                 ( CFG_WLAT_BUS_WIDTH                                 ),
@@ -964,11 +996,12 @@ alt_mem_ddrx_controller # (
 
     .local_refresh_req                                  ( local_refresh_req                                  ),
     .local_refresh_chip                                 ( local_refresh_chip                                 ),
-    .local_deep_powerdn_req                             (                                                    ),
+    .local_deep_powerdn_req                             ( local_deep_powerdn_req                             ),
+	.local_deep_powerdn_chip                            ( local_deep_powerdn_chip                            ),
     .local_self_rfsh_req                                ( local_self_rfsh_req                                ),
     .local_self_rfsh_chip                               ( local_self_rfsh_chip                               ),
     .local_refresh_ack                                  ( local_refresh_ack                                  ),
-    .local_deep_powerdn_ack                             (                                                    ),
+    .local_deep_powerdn_ack                             ( local_deep_powerdn_ack	                         ),
     .local_power_down_ack                               ( local_powerdn_ack                                  ),
     .local_self_rfsh_ack                                ( local_self_rfsh_ack                                ),
     .local_init_done                                    ( local_init_done                                    ),
@@ -995,6 +1028,7 @@ alt_mem_ddrx_controller # (
     .ctl_cal_success                                    ( afi_cal_success                                    ),
     .ctl_cal_fail                                       ( afi_cal_fail                                       ),
     .ctl_cal_req                                        ( afi_cal_req                                        ),
+    .ctl_init_req                                       ( afi_init_req                                       ),
     .ctl_mem_clk_disable                                ( afi_mem_clk_disable                                ),
     .ctl_cal_byte_lane_sel_n                            ( afi_cal_byte_lane_sel_n                            ),
 
@@ -1029,6 +1063,8 @@ alt_mem_ddrx_controller # (
     .cfg_auto_pd_cycles                                 ( cfg_auto_pd_cycles                                 ),
     .cfg_self_rfsh_exit_cycles                          ( cfg_self_rfsh_exit_cycles                          ),
     .cfg_pdn_exit_cycles                                ( cfg_pdn_exit_cycles                                ),
+    .cfg_power_saving_exit_cycles                       ( cfg_power_saving_exit_cycles                       ),
+    .cfg_mem_clk_entry_cycles                           ( cfg_mem_clk_entry_cycles                           ),
     .cfg_tmrd                                           ( cfg_tmrd                                           ),
     .cfg_enable_ecc                                     ( cfg_enable_ecc                                     ),
     .cfg_enable_auto_corr                               ( cfg_enable_auto_corr                               ),
@@ -1045,6 +1081,8 @@ alt_mem_ddrx_controller # (
     .cfg_clr_intr                                       ( cfg_clr_intr                                       ),
     .cfg_user_rfsh                                      ( cfg_user_rfsh                                      ),
     .cfg_regdimm_enable                                 ( cfg_regdimm_enable                                 ),
+    .cfg_enable_burst_interrupt                         ( cfg_enable_burst_interrupt                         ),
+    .cfg_enable_burst_terminate                         ( cfg_enable_burst_terminate                         ),
     .cfg_write_odt_chip                                 ( cfg_write_odt_chip                                 ),
     .cfg_read_odt_chip                                  ( cfg_read_odt_chip                                  ),
     .cfg_extra_ctl_clk_act_to_rdwr                      ( cfg_extra_ctl_clk_act_to_rdwr                      ),

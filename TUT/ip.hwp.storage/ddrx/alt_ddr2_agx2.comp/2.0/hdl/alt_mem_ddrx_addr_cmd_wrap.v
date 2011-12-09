@@ -1,6 +1,5 @@
 
 //altera message_off 10036
-//altera message_off 10230
 
 `include "alt_mem_ddrx_define.iv"
 

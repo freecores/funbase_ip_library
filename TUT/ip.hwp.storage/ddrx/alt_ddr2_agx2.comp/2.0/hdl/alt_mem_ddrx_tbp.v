@@ -386,6 +386,7 @@ module alt_mem_ddrx_tbp
     reg     [TRC_TIMER_WIDTH-1:0] trc_timer           [CFG_CTL_TBP_NUM-1:0];
     reg     [CFG_CTL_TBP_NUM-1:0] trc_timer_ready;
     reg     [CFG_CTL_TBP_NUM-1:0] trc_timer_pre_ready;
+    reg     [CFG_CTL_TBP_NUM-1:0] trc_timer_pre_ready_combi;
     
     reg     [CFG_CTL_TBP_NUM-1:0] pch_ready;
     
@@ -950,7 +951,7 @@ module alt_mem_ddrx_tbp
         begin
             for (i = 0;i < CFG_CTL_TBP_NUM;i = i + 1)
                 begin
-                    act_req[i] = nor_rpv[i] & nor_sbv[i] & nor_sbvt[i] & nor_wrt[i] & can_act[i];
+                    act_req[i] = nor_rpv[i] & nor_sbv[i] & nor_sbvt[i] & ~or_wrt[i] & can_act[i];
                     pch_req[i] = require_pch[i] & pch_ready[i]  & can_pch[i];
                     
                     rd_req [i] = nor_cpv[i] & can_rd[i] & complete_rd[i];
@@ -2858,6 +2859,21 @@ module alt_mem_ddrx_tbp
         end
     
     // Row timer logic
+    always @ (*)
+        begin
+            for (i=0; i<CFG_CTL_TBP_NUM; i=i+1)
+                begin
+                    if (trc_timer[i] <= 1)
+                        begin
+                            trc_timer_pre_ready_combi[i] = 1'b1;
+                        end
+                    else
+                        begin
+                            trc_timer_pre_ready_combi[i] = 1'b0;
+                        end
+                end
+        end
+    
     always @ (posedge ctl_clk or negedge ctl_reset_n)
         begin
             if (!ctl_reset_n)
@@ -2888,7 +2904,7 @@ module alt_mem_ddrx_tbp
                                     (CFG_REG_GRANT == 1 && open_row_pass_r[i])
                                 )
                                 begin
-                                    if (CFG_REG_GRANT == 0 && !trc_timer_pre_ready[log2_open_row_pass_flush[i]])
+                                    if (CFG_REG_GRANT == 0 && !trc_timer_pre_ready_combi[log2_open_row_pass_flush[i]])
                                         begin
                                             trc_timer          [i] <= trc_timer[log2_open_row_pass_flush[i]] - 1'b1;
                                             trc_timer_ready    [i] <= 1'b0;

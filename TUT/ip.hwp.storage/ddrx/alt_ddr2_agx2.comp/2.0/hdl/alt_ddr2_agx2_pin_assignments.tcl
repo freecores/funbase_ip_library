@@ -1,6 +1,6 @@
 # -------------------------------------------------------------------------
 #
-# ALTMEMPHY v11.0 DDR2 SDRAM pin constraints script for alt_ddr2_agx2
+# ALTMEMPHY v11.1 DDR2 SDRAM pin constraints script for alt_ddr2_agx2
 #
 # Please run this script before compiling your design
 #

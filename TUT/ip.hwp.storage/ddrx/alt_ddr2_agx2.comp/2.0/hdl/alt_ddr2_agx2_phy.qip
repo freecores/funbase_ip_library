@@ -1,5 +1,5 @@
 set_global_assignment -name IP_TOOL_NAME "altmemphy"
-set_global_assignment -name IP_TOOL_VERSION "11.0"
+set_global_assignment -name IP_TOOL_VERSION "11.1"
 set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "alt_ddr2_agx2_phy_alt_mem_phy_seq_wrapper.v"]
 set_global_assignment -name VHDL_FILE [file join $::quartus(qip_path) "alt_ddr2_agx2_phy_alt_mem_phy_seq.vhd"]
 set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "alt_ddr2_agx2_phy_alt_mem_phy_dq_dqs.v"]

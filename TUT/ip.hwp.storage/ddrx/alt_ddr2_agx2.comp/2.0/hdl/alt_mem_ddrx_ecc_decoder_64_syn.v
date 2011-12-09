@@ -380,11 +380,13 @@ module  alt_mem_ddrx_ecc_decoder_64_altecc_decoder
 	err_corrected,
 	err_detected,
 	err_fatal,
+	err_sbe,
 	q) /* synthesis synthesis_clearbox=1 */;
 	input   [71:0]  data;
 	output   err_corrected;
 	output   err_detected;
 	output   err_fatal;
+	output   err_sbe;
 	output   [63:0]  q;
 
 	wire  [127:0]   wire_error_bit_decoder_eq;
@@ -554,6 +556,7 @@ module  alt_mem_ddrx_ecc_decoder_64_altecc_decoder
 		err_detected = err_detected_wire,
 		err_detected_wire = (syn_bit & (~ (syn_e & parity_bit))),
 		err_fatal = err_fatal_wire,
+		err_sbe = syn_e,
 		err_fatal_wire = (err_detected_wire & (~ err_corrected_wire)),
 		parity_01_wire = {(data_wire[63] ^ parity_01_wire[34]), (data_wire[61] ^ parity_01_wire[33]), (data_wire[59] ^ parity_01_wire[32]), (data_wire[57] ^ parity_01_wire[31]), (data_wire[56] ^ parity_01_wire[30]), (data_wire[54] ^ parity_01_wire[29]), (data_wire[52] ^ parity_01_wire[28]), (data_wire[50] ^ parity_01_wire[27]), (data_wire[48] ^ parity_01_wire[26]), (data_wire[46] ^ parity_01_wire[25]), (data_wire[44] ^ parity_01_wire[24]), (data_wire[42] ^ parity_01_wire[23]), (data_wire[40] ^ parity_01_wire[22]), (data_wire[38] ^ parity_01_wire[21]), (data_wire[36] ^ parity_01_wire[20]), (data_wire[34] ^ parity_01_wire[19]), (data_wire[32] ^ parity_01_wire[18]), (data_wire[30] ^ parity_01_wire[17]), (data_wire[28] ^ parity_01_wire[16]), (data_wire[26] ^ parity_01_wire[15]), (data_wire[25] ^ parity_01_wire[14]), (data_wire[23] ^ parity_01_wire[13]), (data_wire[21] ^ parity_01_wire[12]), (data_wire[19] ^ parity_01_wire[11]), (data_wire[17] ^ parity_01_wire[10]), (data_wire[15] ^ parity_01_wire[9]), (data_wire[13] ^ parity_01_wire[8]), (data_wire[11] ^ parity_01_wire[7]), (data_wire[10] ^ parity_01_wire[6]), (data_wire[8] ^ parity_01_wire[5]), (data_wire[6] ^ parity_01_wire[4]), (data_wire[4] ^ parity_01_wire[3]), (data_wire[3] ^ parity_01_wire[2]), (data_wire[1] ^ parity_01_wire[1]), (data_wire[0] ^ parity_01_wire[0]), data_wire[64]},
 		parity_02_wire = {((data_wire[62] ^ data_wire[63]) ^ parity_02_wire[16]), ((data_wire[58] ^ data_wire[59]) ^ parity_02_wire[15]), ((data_wire[55] ^ data_wire[56]) ^ parity_02_wire[14]), ((data_wire[51] ^ data_wire[52]) ^ parity_02_wire[13]), ((data_wire[47] ^ data_wire[48]) ^ parity_02_wire[12]), ((data_wire[43] ^ data_wire[44]) ^ parity_02_wire[11]), ((data_wire[39] ^ data_wire[40]) ^ parity_02_wire[10]), ((data_wire[35] ^ data_wire[36]) ^ parity_02_wire[9]), ((data_wire[31] ^ data_wire[32]) ^ parity_02_wire[8]), ((data_wire[27] ^ data_wire[28]) ^ parity_02_wire[7]), ((data_wire[24] ^ data_wire[25]) ^ parity_02_wire[6]), ((data_wire[20] ^ data_wire[21]) ^ parity_02_wire[5]), ((data_wire[16] ^ data_wire[17]) ^ parity_02_wire[4]), ((data_wire[12] ^ data_wire[13]) ^ parity_02_wire[3]), ((data_wire[9] ^ data_wire[10]) ^ parity_02_wire[2]), ((data_wire[5] ^ data_wire[6]) ^ parity_02_wire[1]), ((data_wire[2] ^ data_wire[3]) ^ parity_02_wire[0]), (data_wire[65] ^ data_wire[0])},
@@ -584,21 +587,25 @@ module alt_mem_ddrx_ecc_decoder_64 (
 	err_corrected,
 	err_detected,
 	err_fatal,
+	err_sbe,
 	q)/* synthesis synthesis_clearbox = 1 */;
 
 	input	[71:0]  data;
 	output	  err_corrected;
 	output	  err_detected;
 	output	  err_fatal;
+	output	  err_sbe;
 	output	[63:0]  q;
 
 	wire  sub_wire0;
 	wire  sub_wire1;
 	wire  sub_wire2;
+	wire  sub_wire4;
 	wire [63:0] sub_wire3;
 	wire  err_detected = sub_wire0;
 	wire  err_fatal = sub_wire1;
 	wire  err_corrected = sub_wire2;
+	wire  err_sbe = sub_wire4;
 	wire [63:0] q = sub_wire3[63:0];
 
 	alt_mem_ddrx_ecc_decoder_64_altecc_decoder	alt_mem_ddrx_ecc_decoder_64_altecc_decoder_component (
@@ -606,6 +613,7 @@ module alt_mem_ddrx_ecc_decoder_64 (
 				.err_detected (sub_wire0),
 				.err_fatal (sub_wire1),
 				.err_corrected (sub_wire2),
+				.err_sbe (sub_wire4),
 				.q (sub_wire3));
 
 endmodule

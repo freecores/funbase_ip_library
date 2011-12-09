@@ -127,6 +127,7 @@ module alt_ddr2_agx2_alt_mem_ddrx_controller_top(
    localparam MEM_AUTO_PD_CYCLES             = 0;
    localparam MEM_IF_RD_TO_WR_TURNAROUND_OCT = 3;
    localparam MEM_IF_WR_TO_RD_TURNAROUND_OCT = 0;
+   localparam CTL_RD_TO_PCH_EXTRA_CLK        = 0;
    localparam CTL_ECC_MULTIPLES_16_24_40_72  = 1;
    localparam CTL_USR_REFRESH                = 0;
    localparam CTL_REGDIMM_ENABLED            = 0;
@@ -139,7 +140,7 @@ module alt_ddr2_agx2_alt_mem_ddrx_controller_top(
    localparam LOCAL_CS_WIDTH                 = 0;
    localparam CTL_TBP_NUM                    = 4;
    localparam WRBUFFER_ADDR_WIDTH            = 6;
-   localparam RDBUFFER_ADDR_WIDTH            = 6;
+   localparam RDBUFFER_ADDR_WIDTH            = 7;
    localparam MEM_IF_CHIP                    = 1;
    localparam MEM_IF_BANKADDR_WIDTH          = 3;
    localparam MEM_IF_DWIDTH                  = 64;
@@ -164,6 +165,10 @@ module alt_ddr2_agx2_alt_mem_ddrx_controller_top(
    localparam CFG_TCCD                       = 2;
    localparam CFG_SELF_RFSH_EXIT_CYCLES      = 200;
    localparam CFG_PDN_EXIT_CYCLES            = 3;
+   localparam CFG_POWER_SAVING_EXIT_CYCLES   = 5;
+   localparam CFG_MEM_CLK_ENTRY_CYCLES       = 10;
+   localparam CTL_ENABLE_BURST_INTERRUPT     = 0;
+   localparam CTL_ENABLE_BURST_TERMINATE     = 0;
    localparam MEM_TMRD_CK                    = 5;
    localparam CFG_GEN_SBE                    = 0;
    localparam CFG_GEN_DBE                    = 0;
@@ -344,7 +349,7 @@ localparam STS_PORT_WIDTH_SBE_COUNT                             = 8;
 localparam STS_PORT_WIDTH_DBE_COUNT                             = 8;
 localparam STS_PORT_WIDTH_CORR_DROP_COUNT                       = 8;
 
-// We are supposed to use these parameters when the CSR is enabled
+// KALEN HACK: We are supposed to use these parameters when the CSR is enabled
 // but the MAX_ parameters are not defined
 //localparam AFI_CS_WIDTH                                         = (MAX_MEM_IF_CHIP * (CFG_DWIDTH_RATIO / 2));
 //localparam AFI_CKE_WIDTH                                        = (MAX_CFG_MEM_IF_CHIP * (CFG_DWIDTH_RATIO / 2));
@@ -595,6 +600,8 @@ alt_mem_ddrx_controller_st_top #(
 	.MEM_AUTO_PD_CYCLES(MEM_AUTO_PD_CYCLES),
 	.CFG_SELF_RFSH_EXIT_CYCLES(CFG_SELF_RFSH_EXIT_CYCLES),
 	.CFG_PDN_EXIT_CYCLES(CFG_PDN_EXIT_CYCLES),
+	.CFG_POWER_SAVING_EXIT_CYCLES(CFG_POWER_SAVING_EXIT_CYCLES),
+	.CFG_MEM_CLK_ENTRY_CYCLES(CFG_MEM_CLK_ENTRY_CYCLES),
 	.MEM_TMRD_CK(MEM_TMRD_CK),
 	.CTL_ECC_ENABLED(CTL_ECC_ENABLED),
 	.CTL_ECC_RMW_ENABLED(CTL_ECC_RMW_ENABLED),
@@ -621,7 +628,8 @@ alt_mem_ddrx_controller_st_top #(
 	.CFG_WLAT_BUS_WIDTH(AFI_WLAT_WIDTH),
 	.CFG_RLAT_BUS_WIDTH(AFI_RLAT_WIDTH),
 	.MEM_IF_RD_TO_WR_TURNAROUND_OCT(MEM_IF_RD_TO_WR_TURNAROUND_OCT),
-	.MEM_IF_WR_TO_RD_TURNAROUND_OCT(MEM_IF_WR_TO_RD_TURNAROUND_OCT)
+	.MEM_IF_WR_TO_RD_TURNAROUND_OCT(MEM_IF_WR_TO_RD_TURNAROUND_OCT),
+	.CTL_RD_TO_PCH_EXTRA_CLK(CTL_RD_TO_PCH_EXTRA_CLK)
 ) controller_inst (
 	.clk(clk),
 	.half_clk(half_clk),
@@ -680,7 +688,6 @@ alt_mem_ddrx_controller_st_top #(
 	.local_refresh_ack(local_refresh_ack),
 	.local_powerdn_ack(local_powerdn_ack),
 	.local_self_rfsh_ack(local_self_rfsh_ack),
-	.local_autopch_req(local_autopch_req),
 	.local_refresh_req(local_refresh_req),
 	.local_refresh_chip(local_refresh_chip),
 	.local_powerdn_req(local_powerdn_req),

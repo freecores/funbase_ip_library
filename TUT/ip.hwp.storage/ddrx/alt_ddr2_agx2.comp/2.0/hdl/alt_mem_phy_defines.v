@@ -17,7 +17,7 @@
 
   File:  $RCSfile : alt_mem_phy_defines.v,v $
 
-  Last Modified   : $Date: 2011/04/07 $
+  Last Modified   : $Date: 2011/08/15 $
 
   Revision        : $Revision: #1 $
 

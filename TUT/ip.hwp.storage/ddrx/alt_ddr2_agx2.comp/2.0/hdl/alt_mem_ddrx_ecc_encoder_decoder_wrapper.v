@@ -728,6 +728,7 @@ output [CFG_LOCAL_ADDR_WIDTH            - 1 : 0] sts_corr_dropped_addr;
             wire err_corrected;
             wire err_detected;
             wire err_fatal;
+            wire err_sbe;
             
             wire [CFG_DECODER_DATA_WIDTH - 1 : 0] input_data  = {{CFG_DECODER_DATA_WIDTH - CFG_ECC_DATA_PER_WORD_WIDTH{1'b0}}, int_decoder_input_data [(n_drate + 1) * CFG_ECC_DATA_PER_WORD_WIDTH - 1 : n_drate * CFG_ECC_DATA_PER_WORD_WIDTH]};
             wire                                  input_data_valid = int_decoder_input_data_valid;
@@ -763,15 +764,16 @@ output [CFG_LOCAL_ADDR_WIDTH            - 1 : 0] sts_corr_dropped_addr;
                 .output_ecc_code               (output_ecc_code               ),
                 .err_corrected                 (err_corrected                 ),
                 .err_detected                  (err_detected                  ),
-                .err_fatal                     (err_fatal                     )
+                .err_fatal                     (err_fatal                     ),
+                .err_sbe                       (err_sbe                       )
             );
             
             // Error detection
             always @ (*)
             begin
-                if (err_detected)
+                if (err_detected || err_sbe)
                 begin
-                    if (err_corrected)
+                    if (err_corrected || err_sbe)
                     begin
                         int_sbe [n_drate] = 1'b1;
                         int_dbe [n_drate] = 1'b0;

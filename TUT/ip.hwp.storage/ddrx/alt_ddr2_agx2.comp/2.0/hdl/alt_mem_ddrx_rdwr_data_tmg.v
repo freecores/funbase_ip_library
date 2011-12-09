@@ -9,6 +9,15 @@
 // Abstract      : AFi block
 ///////////////////////////////////////////////////////////////////////////////
 
+//Things to check
+//1. Does afi_wlat need to be registered?
+//2. Does ecc_wdata_fifo_read generation changes with ECC
+//3. Why in ddrx controller int_dqs_burst and int_wdata_valid signals are registered when CFG_OUTPUT_REGD is 1. Why complex logic instead of simple registering??
+//4. We need rdwr_data_valid signal from arbiter to determine how many datas are valid within one dram burst
+//5. Do we need to end rdwr_data_valid with doing_write to generate ecc_wdata_fifo_read? Yes
+//6. Look at all comments and SPRs for old ddrx afi block
+//7. Currently additive_latency, ECC, HR features are not supported
+
 `timescale 1 ps / 1 ps
 module alt_mem_ddrx_rdwr_data_tmg
     # (parameter
@@ -1945,7 +1954,7 @@ module alt_mem_ddrx_rdwr_data_tmg
         end
         else
         begin
-            if (doing_write_pipe[smallest_afi_wlat [CFG_DRAM_WLAT_GROUP-1]])
+            if (smallest_doing_write_pipe_eq_afi_wlat_minus_0)
             begin
                 int_dqs_burst_half_rate = 1'b1;
             end
@@ -2632,3 +2641,4 @@ module alt_mem_ddrx_rdwr_data_tmg
     endgenerate
     
 endmodule
+

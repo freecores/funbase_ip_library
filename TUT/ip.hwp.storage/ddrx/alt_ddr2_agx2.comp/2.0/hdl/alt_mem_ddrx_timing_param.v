@@ -33,6 +33,7 @@ module alt_mem_ddrx_timing_param #
         CFG_PORT_WIDTH_SELF_RFSH_EXIT_CYCLES                =   10,         // max will be 512 in DDR3
         CFG_PORT_WIDTH_PDN_EXIT_CYCLES                      =   4,          // 3 - ?        enough?
         CFG_PORT_WIDTH_AUTO_PD_CYCLES                       =   16,         // enough?
+        CFG_PORT_WIDTH_POWER_SAVING_EXIT_CYCLES             =   4,          // enough?
         
         // cfg: extra timing parameters
         CFG_PORT_WIDTH_EXTRA_CTL_CLK_ACT_TO_RDWR            =   4,
@@ -90,7 +91,8 @@ module alt_mem_ddrx_timing_param #
         T_PARAM_SRF_TO_VALID_WIDTH                          =   10,         // temporary
         T_PARAM_SRF_TO_ZQ_CAL_WIDTH                         =   10,         // temporary
         T_PARAM_ARF_PERIOD_WIDTH                            =   13,         // temporary
-        T_PARAM_PDN_PERIOD_WIDTH                            =   16          // temporary
+        T_PARAM_PDN_PERIOD_WIDTH                            =   16,         // temporary
+        T_PARAM_POWER_SAVING_EXIT_WIDTH                     =   6           // temporary
     )
     (
         ctl_clk,
@@ -120,6 +122,7 @@ module alt_mem_ddrx_timing_param #
         cfg_self_rfsh_exit_cycles,
         cfg_pdn_exit_cycles,
         cfg_auto_pd_cycles,
+        cfg_power_saving_exit_cycles,
         
         // Input - extra derived timing parameter
         cfg_extra_ctl_clk_act_to_rdwr,
@@ -177,7 +180,8 @@ module alt_mem_ddrx_timing_param #
         t_param_srf_to_valid,
         t_param_srf_to_zq_cal,
         t_param_arf_period,
-        t_param_pdn_period
+        t_param_pdn_period,
+        t_param_power_saving_exit
     );
 
 input  ctl_clk;
@@ -207,6 +211,7 @@ input  [CFG_PORT_WIDTH_TMRD                               - 1 : 0] cfg_tmrd;
 input  [CFG_PORT_WIDTH_SELF_RFSH_EXIT_CYCLES              - 1 : 0] cfg_self_rfsh_exit_cycles;
 input  [CFG_PORT_WIDTH_PDN_EXIT_CYCLES                    - 1 : 0] cfg_pdn_exit_cycles;
 input  [CFG_PORT_WIDTH_AUTO_PD_CYCLES                     - 1 : 0] cfg_auto_pd_cycles;
+input  [CFG_PORT_WIDTH_POWER_SAVING_EXIT_CYCLES           - 1 : 0] cfg_power_saving_exit_cycles;
 
 input  [CFG_PORT_WIDTH_EXTRA_CTL_CLK_ACT_TO_RDWR          - 1 : 0] cfg_extra_ctl_clk_act_to_rdwr;
 input  [CFG_PORT_WIDTH_EXTRA_CTL_CLK_ACT_TO_PCH           - 1 : 0] cfg_extra_ctl_clk_act_to_pch;
@@ -264,6 +269,7 @@ output [T_PARAM_SRF_TO_VALID_WIDTH                        - 1 : 0] t_param_srf_t
 output [T_PARAM_SRF_TO_ZQ_CAL_WIDTH                       - 1 : 0] t_param_srf_to_zq_cal;
 output [T_PARAM_ARF_PERIOD_WIDTH                          - 1 : 0] t_param_arf_period;
 output [T_PARAM_PDN_PERIOD_WIDTH                          - 1 : 0] t_param_pdn_period;
+output [T_PARAM_POWER_SAVING_EXIT_WIDTH                   - 1 : 0] t_param_power_saving_exit;
 
 //--------------------------------------------------------------------------------------------------------
 //
@@ -298,6 +304,7 @@ output [T_PARAM_PDN_PERIOD_WIDTH                          - 1 : 0] t_param_pdn_p
     reg  [T_PARAM_SRF_TO_ZQ_CAL_WIDTH                 - 1 : 0] t_param_srf_to_zq_cal;
     reg  [T_PARAM_ARF_PERIOD_WIDTH                    - 1 : 0] t_param_arf_period;
     reg  [T_PARAM_PDN_PERIOD_WIDTH                    - 1 : 0] t_param_pdn_period;
+    reg  [T_PARAM_POWER_SAVING_EXIT_WIDTH             - 1 : 0] t_param_power_saving_exit;
 //--------------------------------------------------------------------------------------------------------
 //
 //  [END] Register & Wires
@@ -455,29 +462,32 @@ output [T_PARAM_PDN_PERIOD_WIDTH                          - 1 : 0] t_param_pdn_p
             t_param_srf_to_valid         <= 0;
             t_param_arf_period           <= 0;
             t_param_pdn_period           <= 0;
+            t_param_power_saving_exit    <= 0;
         end
         else
         begin
             // Set act_to_rdwr to '0' when additive latency is enabled
             if (cfg_add_lat >= (cfg_trcd - 1))
-                t_param_act_to_rdwr      <= 0                                                                                                                  + ROW_TO_COL_OFFSET + cfg_extra_ctl_clk_act_to_rdwr         ;
+                t_param_act_to_rdwr      <= 0                                                                                                                        + ROW_TO_COL_OFFSET + cfg_extra_ctl_clk_act_to_rdwr         ;
             else
-                t_param_act_to_rdwr      <= ((cfg_trcd - cfg_add_lat)  / DIV) + (((cfg_trcd - cfg_add_lat)  % DIV_ROW_TO_COL) > DIV_ROW_TO_COL_OFFSET ? 1 : 0) + ROW_TO_COL_OFFSET + cfg_extra_ctl_clk_act_to_rdwr         ;          // ACT to RD/WR                         - tRCD
+                t_param_act_to_rdwr      <= ((cfg_trcd - cfg_add_lat)     / DIV) + (((cfg_trcd - cfg_add_lat)     % DIV_ROW_TO_COL) > DIV_ROW_TO_COL_OFFSET ? 1 : 0) + ROW_TO_COL_OFFSET + cfg_extra_ctl_clk_act_to_rdwr         ;          // ACT to RD/WR                         - tRCD
             
-            t_param_act_to_pch           <= (cfg_tras                  / DIV) + ((cfg_tras                  % DIV_ROW_TO_ROW) > DIV_ROW_TO_ROW_OFFSET ? 1 : 0) + ROW_TO_ROW_OFFSET + cfg_extra_ctl_clk_act_to_pch          ;          // ACT to PCH                           - tRAS
-            t_param_act_to_act           <= (cfg_trc                   / DIV) + ((cfg_trc                   % DIV_ROW_TO_ROW) > DIV_ROW_TO_ROW_OFFSET ? 1 : 0) + ROW_TO_ROW_OFFSET + cfg_extra_ctl_clk_act_to_act          ;          // ACT to ACT (same bank)               - tRC
+            t_param_act_to_pch           <= (cfg_tras                     / DIV) + ((cfg_tras                     % DIV_ROW_TO_ROW) > DIV_ROW_TO_ROW_OFFSET ? 1 : 0) + ROW_TO_ROW_OFFSET + cfg_extra_ctl_clk_act_to_pch          ;          // ACT to PCH                           - tRAS
+            t_param_act_to_act           <= (cfg_trc                      / DIV) + ((cfg_trc                      % DIV_ROW_TO_ROW) > DIV_ROW_TO_ROW_OFFSET ? 1 : 0) + ROW_TO_ROW_OFFSET + cfg_extra_ctl_clk_act_to_act          ;          // ACT to ACT (same bank)               - tRC
             
-            t_param_pch_to_valid         <= (cfg_trp                   / DIV) + ((cfg_trp                   % DIV_ROW_TO_ROW) > DIV_ROW_TO_ROW_OFFSET ? 1 : 0) + ROW_TO_ROW_OFFSET + cfg_extra_ctl_clk_pch_to_valid        ;          // PCH to ACT                           - tRP
+            t_param_pch_to_valid         <= (cfg_trp                      / DIV) + ((cfg_trp                      % DIV_ROW_TO_ROW) > DIV_ROW_TO_ROW_OFFSET ? 1 : 0) + ROW_TO_ROW_OFFSET + cfg_extra_ctl_clk_pch_to_valid        ;          // PCH to ACT                           - tRP
             
-            t_param_act_to_act_diff_bank <= (cfg_trrd                  / DIV) + ((cfg_trrd                  % DIV_ROW_TO_ROW) > DIV_ROW_TO_ROW_OFFSET ? 1 : 0) + ROW_TO_ROW_OFFSET + cfg_extra_ctl_clk_act_to_act_diff_bank;          // ACT to ACT (diff banks)              - tRRD
-            t_param_four_act_to_act      <= (cfg_tfaw                  / DIV) + ((cfg_tfaw                  % DIV_ROW_TO_ROW) > DIV_ROW_TO_ROW_OFFSET ? 1 : 0) + ROW_TO_ROW_OFFSET + cfg_extra_ctl_clk_four_act_to_act     ;          // Valid window for 4 ACT               - tFAW
+            t_param_act_to_act_diff_bank <= (cfg_trrd                     / DIV) + ((cfg_trrd                     % DIV_ROW_TO_ROW) > DIV_ROW_TO_ROW_OFFSET ? 1 : 0) + ROW_TO_ROW_OFFSET + cfg_extra_ctl_clk_act_to_act_diff_bank;          // ACT to ACT (diff banks)              - tRRD
+            t_param_four_act_to_act      <= (cfg_tfaw                     / DIV) + ((cfg_tfaw                     % DIV_ROW_TO_ROW) > DIV_ROW_TO_ROW_OFFSET ? 1 : 0) + ROW_TO_ROW_OFFSET + cfg_extra_ctl_clk_four_act_to_act     ;          // Valid window for 4 ACT               - tFAW
             
-            t_param_arf_to_valid         <= (cfg_trfc                  / DIV) + ((cfg_trfc                  % DIV_SB_TO_ROW ) > DIV_ROW_TO_ROW_OFFSET ? 1 : 0) +  SB_TO_ROW_OFFSET + cfg_extra_ctl_clk_arf_to_valid        ;          // ARF to VALID                         - tRFC
-            t_param_pdn_to_valid         <= (cfg_pdn_exit_cycles       / DIV) + ((cfg_pdn_exit_cycles       % DIV_SB_TO_ROW ) > DIV_ROW_TO_ROW_OFFSET ? 1 : 0) +  SB_TO_ROW_OFFSET + cfg_extra_ctl_clk_pdn_to_valid        ;          // PDN to VALID                         - normally 3 clock cycles
-            t_param_srf_to_valid         <= (cfg_self_rfsh_exit_cycles / DIV) + ((cfg_self_rfsh_exit_cycles % DIV_SB_TO_ROW ) > DIV_ROW_TO_ROW_OFFSET ? 1 : 0) +  SB_TO_ROW_OFFSET + cfg_extra_ctl_clk_srf_to_valid        ;          // SRF to VALID                         - normally 200 clock cycles
+            t_param_arf_to_valid         <= (cfg_trfc                     / DIV) + ((cfg_trfc                     % DIV_SB_TO_ROW ) > DIV_ROW_TO_ROW_OFFSET ? 1 : 0) +  SB_TO_ROW_OFFSET + cfg_extra_ctl_clk_arf_to_valid        ;          // ARF to VALID                         - tRFC
+            t_param_pdn_to_valid         <= (cfg_pdn_exit_cycles          / DIV) + ((cfg_pdn_exit_cycles          % DIV_SB_TO_ROW ) > DIV_ROW_TO_ROW_OFFSET ? 1 : 0) +  SB_TO_ROW_OFFSET + cfg_extra_ctl_clk_pdn_to_valid        ;          // PDN to VALID                         - normally 3 clock cycles
+            t_param_srf_to_valid         <= (cfg_self_rfsh_exit_cycles    / DIV) + ((cfg_self_rfsh_exit_cycles    % DIV_SB_TO_ROW ) > DIV_ROW_TO_ROW_OFFSET ? 1 : 0) +  SB_TO_ROW_OFFSET + cfg_extra_ctl_clk_srf_to_valid        ;          // SRF to VALID                         - normally 200 clock cycles
             
-            t_param_arf_period           <= (cfg_trefi                 / DIV) + ((cfg_trefi                 % DIV_SB_TO_SB  ) > DIV_SB_TO_SB_OFFSET   ? 1 : 0) +   SB_TO_SB_OFFSET + cfg_extra_ctl_clk_arf_period          ;          // ARF period                           - tREFI
-            t_param_pdn_period           <= cfg_auto_pd_cycles                                                                                                 +   SB_TO_SB_OFFSET + cfg_extra_ctl_clk_pdn_period          ;          // PDN count after TBP is empty         - specified by user
+            t_param_arf_period           <= (cfg_trefi                    / DIV) + ((cfg_trefi                    % DIV_SB_TO_SB  ) > DIV_SB_TO_SB_OFFSET   ? 1 : 0) +   SB_TO_SB_OFFSET + cfg_extra_ctl_clk_arf_period          ;          // ARF period                           - tREFI
+            t_param_pdn_period           <= cfg_auto_pd_cycles                                                                                                       +   SB_TO_SB_OFFSET + cfg_extra_ctl_clk_pdn_period          ;          // PDN count after TBP is empty         - specified by user
+            
+            t_param_power_saving_exit    <= (cfg_power_saving_exit_cycles / DIV) + ((cfg_power_saving_exit_cycles % DIV_SB_TO_SB  ) > DIV_SB_TO_SB_OFFSET   ? 1 : 0) +   SB_TO_SB_OFFSET                                         ;          // SRF and PDN exit cycles
         end
     end
     
@@ -586,6 +596,33 @@ output [T_PARAM_PDN_PERIOD_WIDTH                          - 1 : 0] t_param_pdn_p
                 t_param_pch_all_to_valid    <= (cfg_trp / DIV)                                                                     + ((cfg_trp % DIV_SB_TO_ROW )                                                                     > DIV_SB_TO_ROW_OFFSET  ? 1 : 0) + SB_TO_ROW_OFFSET  + cfg_extra_ctl_clk_pch_all_to_valid  ;       // PCHALL to VALID      - tRP
                 
                 t_param_srf_to_zq_cal       <= ((cfg_self_rfsh_exit_cycles / 2) / DIV)                                                                                                                                                                                + SB_TO_SB_OFFSET   + cfg_extra_ctl_clk_srf_to_zq_cal     ;       // SRF to ZQ CAL        - SRF exit time divided by 2
+            end
+            else if (cfg_type == `MMR_TYPE_LPDDR1)
+            begin
+                // LPDDR
+                // ******************************
+                // Note, if the below formulas are changed then the formulas in the report_timing_core.tcl files need to be changed
+                // to remain consistent with the controller
+                // ******************************
+                t_param_rd_to_rd            <= (cfg_tccd / DIV)                                         + ((cfg_tccd % DIV_COL_TO_COL)                                         > DIV_COL_TO_COL_OFFSET ? 1 : 0) + COL_TO_COL_OFFSET + cfg_extra_ctl_clk_rd_to_rd          ;      // RD to RD             - tCCD
+                t_param_rd_to_rd_diff_chip  <= (((cfg_burst_length / 2) + 2) / DIV)                                                                                                                             + COL_TO_COL_OFFSET + cfg_extra_ctl_clk_rd_to_rd_diff_chip;      // RD to RD diff rank   - (BL/2) + 2 (dead cycle), should be set to tCCD for burst interrupt support
+                t_param_rd_to_wr            <= (((cfg_burst_length / 2) + cfg_tcl) / DIV)               + ((((cfg_burst_length / 2) + cfg_tcl) % DIV_COL_TO_COL)               > DIV_COL_TO_COL_OFFSET ? 1 : 0) + COL_TO_COL_OFFSET + cfg_extra_ctl_clk_rd_to_wr          ;      // RD to WR             - RL + (BL/2)
+                t_param_rd_to_wr_bc         <= 0                                                                                                                                                                + COL_TO_COL_OFFSET + cfg_extra_ctl_clk_rd_to_wr_bc       ;      // RDBC to WR           - 0, DDR3 specific only
+                t_param_rd_to_wr_diff_chip  <= (((cfg_burst_length / 2) + 2) / DIV)                     + ((((cfg_burst_length / 2) + 2) % DIV_COL_TO_COL)                     > DIV_COL_TO_COL_OFFSET ? 1 : 0) + COL_TO_COL_OFFSET + cfg_extra_ctl_clk_rd_to_wr_diff_chip;      // RD to WR diff rank   - Same as RD to WR
+                t_param_rd_to_pch           <= ((cfg_burst_length / 2) / DIV)                           + (((cfg_burst_length / 2) % DIV_COL_TO_ROW)                           > DIV_COL_TO_ROW_OFFSET ? 1 : 0) + COL_TO_ROW_OFFSET + cfg_extra_ctl_clk_rd_to_pch         ;      // RD to PCH            - (BL/2)
+                t_param_rd_ap_to_valid      <= (((cfg_burst_length / 2) + cfg_trp) / DIV)               + ((((cfg_burst_length / 2) + cfg_trp) % DIV_COL_TO_ROW)               > DIV_COL_TO_ROW_OFFSET ? 1 : 0) + COL_TO_ROW_OFFSET + cfg_extra_ctl_clk_rd_ap_to_valid    ;      // RDAP to VALID        - RD to PCH + PCH to VALID
+                
+                t_param_wr_to_wr            <= (cfg_tccd / DIV)                                         + ((cfg_tccd % DIV_COL_TO_COL)                                         > DIV_COL_TO_COL_OFFSET ? 1 : 0) + COL_TO_COL_OFFSET + cfg_extra_ctl_clk_wr_to_wr          ;      // WR to WR             - tCCD
+                t_param_wr_to_wr_diff_chip  <= (((cfg_burst_length / 2) + 2) / DIV)                                                                                                                             + COL_TO_COL_OFFSET + cfg_extra_ctl_clk_wr_to_wr_diff_chip;      // WR to WR diff rank   - (BL/2) + 2 (dead cycle), should be set to tCCD for burst interrupt support
+                t_param_wr_to_rd            <= ((1 + (cfg_burst_length / 2) + cfg_twtr) / DIV)          + (((1 + (cfg_burst_length / 2) + cfg_twtr) % DIV_COL_TO_COL)          > DIV_COL_TO_COL_OFFSET ? 1 : 0) + COL_TO_COL_OFFSET + cfg_extra_ctl_clk_wr_to_rd          ;      // WR to RD             - WL + (BL/2) + tWTR, WL always 1
+                t_param_wr_to_rd_bc         <= 0                                                                                                                                                                + COL_TO_COL_OFFSET + cfg_extra_ctl_clk_wr_to_rd_bc       ;      // WRBC to RD           - 0, DDR3 specific only
+                t_param_wr_to_rd_diff_chip  <= (((cfg_burst_length / 2) + 3) / DIV)                     + ((((cfg_burst_length / 2) + 3) % DIV_COL_TO_COL)                     > DIV_COL_TO_COL_OFFSET ? 1 : 0) + COL_TO_COL_OFFSET + cfg_extra_ctl_clk_wr_to_rd_diff_chip;      // WR to RD diff rank   - 1 + (BL/2) + 2, extra 2 dead cycles for DQS post and preamble
+                t_param_wr_to_pch           <= ((1 + (cfg_burst_length / 2) + cfg_twr) / DIV)           + (((1 + (cfg_burst_length / 2) + cfg_twr) % DIV_COL_TO_ROW)           > DIV_COL_TO_ROW_OFFSET ? 1 : 0) + COL_TO_ROW_OFFSET + cfg_extra_ctl_clk_wr_to_pch         ;      // WR to PCH            - WL + (BL/2) + tWR
+                t_param_wr_ap_to_valid      <= ((1 + (cfg_burst_length / 2) + cfg_twr + cfg_trp) / DIV) + (((1 + (cfg_burst_length / 2) + cfg_twr + cfg_trp) % DIV_COL_TO_ROW) > DIV_COL_TO_ROW_OFFSET ? 1 : 0) + COL_TO_ROW_OFFSET + cfg_extra_ctl_clk_wr_ap_to_valid    ;      // WRAP to VALID        - WR to PCH + PCH to VALID
+                
+                t_param_pch_all_to_valid    <= ((cfg_trp + 1) / DIV)                                    + (((cfg_trp + 1) % DIV_SB_TO_ROW )                                    > DIV_SB_TO_ROW_OFFSET  ? 1 : 0) + SB_TO_ROW_OFFSET  + cfg_extra_ctl_clk_pch_all_to_valid  ;      // PCHALL to VALID      - tRPA = tRP + 1
+                
+                t_param_srf_to_zq_cal       <= 0                                                                                                                                                                + SB_TO_SB_OFFSET   + cfg_extra_ctl_clk_srf_to_zq_cal     ;      // SRF to ZQ CAL        - 0, DDR3 specific only
             end
             else if (cfg_type == `MMR_TYPE_LPDDR2)
             begin

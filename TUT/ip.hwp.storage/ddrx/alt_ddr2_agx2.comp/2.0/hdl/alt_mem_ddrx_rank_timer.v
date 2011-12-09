@@ -1,8 +1,9 @@
 
 //altera message_off 10230 10036
-//altera message_off 10762
 
 `timescale 1 ps / 1 ps
+
+(* altera_attribute = "-name AUTO_SHIFT_REGISTER_RECOGNITION OFF" *)
 module alt_mem_ddrx_rank_timer #
     ( parameter
         CFG_DWIDTH_RATIO                        =   2,
@@ -12,8 +13,6 @@ module alt_mem_ddrx_rank_timer #
         CFG_MEM_IF_CS_WIDTH                     =   1,
         CFG_INT_SIZE_WIDTH                      =   4,
         CFG_AFI_INTF_PHASE_NUM                  =   2,
-        CFG_ENABLE_BURST_INTERRUPT              =   0,
-        CFG_ENABLE_BURST_TERMINATE              =   0,
         CFG_REG_GRANT                           =   0,
         CFG_RANK_TIMER_OUTPUT_REG               =   0,
         CFG_PORT_WIDTH_BURST_LENGTH             =   5,
@@ -127,7 +126,7 @@ output [CFG_CTL_TBP_NUM                            - 1 : 0] can_write;
     localparam RANK_TIMER_COUNTER_OFFSET = (CFG_RANK_TIMER_OUTPUT_REG) ? ((CFG_REG_GRANT) ? 4 : 3) : ((CFG_REG_GRANT) ? 3 : 2);
     localparam RANK_TIMER_TFAW_OFFSET    = (CFG_RANK_TIMER_OUTPUT_REG) ? ((CFG_REG_GRANT) ? 2 : 1) : ((CFG_REG_GRANT) ? 1 : 0);
     
-    localparam ENABLE_BETTER_TRRD_EFFICIENCY = 0; // ONLY set to '1' when CFG_RANK_TIMER_OUTPUT_REG is enabled, else it will fail
+    localparam ENABLE_BETTER_TRRD_EFFICIENCY = 1; // ONLY set to '1' when CFG_RANK_TIMER_OUTPUT_REG is enabled, else it will fail
     
     wire one  = 1'b1;
     wire zero = 1'b0;
@@ -2758,3 +2757,4 @@ output [CFG_CTL_TBP_NUM                            - 1 : 0] can_write;
 
 
 endmodule
+

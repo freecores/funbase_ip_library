@@ -238,15 +238,10 @@ module alt_mem_ddrx_input_if
     // commmand generator
     assign cmd_priority                 = itf_cmd_priority;
     assign cmd_address                  = itf_cmd_address;
-    assign cmd_read                     = ~itf_cmd & itf_cmd_valid;
-    assign cmd_write                    = itf_cmd & itf_cmd_valid;
     assign cmd_multicast                = itf_cmd_multicast;
     assign cmd_size                     = itf_cmd_burstlen;
-    assign cmd_valid                    = itf_cmd_valid;
-    assign itf_cmd_ready                = ~cmd_gen_full;
     assign cmd_autoprecharge            = itf_cmd_autopercharge;
     assign cmd_id                       = itf_cmd_id;
-    
     
     // side band    
     assign rfsh_req                     = local_refresh_req;
@@ -264,10 +259,8 @@ module alt_mem_ddrx_input_if
     //write data path
     assign write_data                   = itf_wr_data;
     assign byte_en                      = itf_wr_data_byte_en;
-    assign itf_wr_data_ready            = ~wr_data_mem_full;
     assign write_data_valid             = itf_wr_data_valid;
     assign write_data_id                = itf_wr_data_id;
-
     
     // read data path
     assign itf_rd_data_id               = read_data_localid;
@@ -277,6 +270,14 @@ module alt_mem_ddrx_input_if
     assign itf_rd_data_last             = read_data_last;
     assign itf_rd_data                  = read_data;
     assign itf_rd_data_id_early         = (itf_rd_data_id_early_valid) ? bg_localid : {CFG_LOCAL_ID_WIDTH{1'b0}};
+	
+	//==============================================================================
+	// Logic below is to tie low itf_cmd_ready, itf_cmd_valid and itf_wr_data_ready when local_init_done is low
+	assign itf_cmd_ready      = ~cmd_gen_full & local_init_done;
+	assign itf_wr_data_ready  = ~wr_data_mem_full & local_init_done;
+	assign cmd_read           = ~itf_cmd & itf_cmd_valid & local_init_done;
+    assign cmd_write          = itf_cmd & itf_cmd_valid & local_init_done;
+	assign cmd_valid          = itf_cmd_valid & local_init_done;
 
     generate
     begin : gen_rd_data_id_early_valid

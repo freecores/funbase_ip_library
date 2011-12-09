@@ -22,7 +22,7 @@
 //
 // File         : alt_ddr2_agx2_example_top_tb.v
 //
-// Revision     : V11.0
+// Revision     : V11.1
 //
 // Abstract:
 // Automatically generated testbench for the example top level design to allow
@@ -62,7 +62,7 @@
 // Data_Width_Ratio                   : 4
 // << END MEGAWIZARD INSERT PARAMETER_LIST
 //----------------------------------------------------------------------------------
-// << MEGAWIZARD PARSE FILE DDR11.0
+// << MEGAWIZARD PARSE FILE DDR11.1
 
 
 `timescale 1 ps/1 ps

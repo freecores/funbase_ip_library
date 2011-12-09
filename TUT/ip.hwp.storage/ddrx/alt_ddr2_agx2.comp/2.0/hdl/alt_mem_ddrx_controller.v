@@ -1,6 +1,3 @@
-
-//altera message_off 13410
-
 module alt_mem_ddrx_controller #
 	( parameter
         // Local interface parameters
@@ -72,6 +69,8 @@ module alt_mem_ddrx_controller #
         CFG_PORT_WIDTH_SELF_RFSH_EXIT_CYCLES                =   10,         // max will be 512 in DDR3
         CFG_PORT_WIDTH_PDN_EXIT_CYCLES                      =   4,          // 3 - ?        enough?
         CFG_PORT_WIDTH_AUTO_PD_CYCLES                       =   16,         // enough?
+        CFG_PORT_WIDTH_POWER_SAVING_EXIT_CYCLES             =   4,          // enough?
+        CFG_PORT_WIDTH_MEM_CLK_ENTRY_CYCLES                 =   4,          // enough?
         
         // cfg: extra timing parameters
         CFG_PORT_WIDTH_EXTRA_CTL_CLK_ACT_TO_RDWR            =   4,
@@ -108,6 +107,8 @@ module alt_mem_ddrx_controller #
         CFG_PORT_WIDTH_USER_RFSH                            =   1,
         CFG_PORT_WIDTH_SELF_RFSH                            =   1,
         CFG_PORT_WIDTH_REGDIMM_ENABLE                       =   1,
+        CFG_PORT_WIDTH_ENABLE_BURST_INTERRUPT               =   1,
+        CFG_PORT_WIDTH_ENABLE_BURST_TERMINATE               =   1,
         CFG_ENABLE_CMD_SPLIT                                = 1'b1, // disable this (set to 0) when using the controller with hard MPFE
         
         // cfg: ecc signals
@@ -216,6 +217,7 @@ module alt_mem_ddrx_controller #
         ctl_cal_success,
         ctl_cal_fail,
         ctl_cal_req,
+        ctl_init_req,
         ctl_mem_clk_disable,
         ctl_cal_byte_lane_sel_n,
         
@@ -252,6 +254,8 @@ module alt_mem_ddrx_controller #
         cfg_auto_pd_cycles,
         cfg_self_rfsh_exit_cycles,
         cfg_pdn_exit_cycles,
+        cfg_power_saving_exit_cycles,
+        cfg_mem_clk_entry_cycles,
         cfg_tmrd,
         
         // cfg: extra timing parameters
@@ -288,6 +292,8 @@ module alt_mem_ddrx_controller #
         cfg_starve_limit,       // starvation counter limit
         cfg_user_rfsh,
         cfg_regdimm_enable,
+        cfg_enable_burst_interrupt,
+        cfg_enable_burst_terminate,
         
         // cfg: ecc signals
         cfg_enable_ecc,
@@ -341,8 +347,6 @@ localparam CFG_CTL_ARBITER_TYPE                            = "ROWCOL";
 localparam CFG_AFI_INTF_PHASE_NUM                          = 2;
 localparam CFG_ECC_DATA_WIDTH                              = CFG_MEM_IF_DQ_WIDTH  * CFG_DWIDTH_RATIO;
 localparam CFG_ECC_DM_WIDTH                                = CFG_ECC_DATA_WIDTH / CFG_MEM_IF_DQ_PER_DQS;
-localparam CFG_ENABLE_BURST_INTERRUPT                      = 0;
-localparam CFG_ENABLE_BURST_TERMINATE                      = 0;
 localparam CFG_ECC_CODE_WIDTH                              = 8;
 localparam CFG_ECC_MULTIPLES                               = CFG_DWIDTH_RATIO * CFG_ECC_MULTIPLES_16_24_40_72;
 localparam CFG_PARTIAL_BE_PER_WORD_ENABLE                  = 1;
@@ -406,6 +410,7 @@ localparam T_PARAM_SRF_TO_VALID_WIDTH                                 = 10;     
 localparam T_PARAM_SRF_TO_ZQ_CAL_WIDTH                                = 10;       // temporary
 localparam T_PARAM_ARF_PERIOD_WIDTH                                   = 13;       // temporary
 localparam T_PARAM_PDN_PERIOD_WIDTH                                   = 16;       // temporary
+localparam T_PARAM_POWER_SAVING_EXIT_WIDTH                            = 6;        // temporary
 
 localparam integer CFG_DATAID_ARRAY_DEPTH                             = 2**CFG_DATA_ID_WIDTH;
 localparam integer CFG_WRDATA_ID_WIDTH_SQRD                           = 2**CFG_WRDATA_ID_WIDTH;
@@ -484,7 +489,8 @@ input  [CFG_DWIDTH_RATIO / 2                          - 1 : 0] afi_rdata_valid;
 input                                                     ctl_cal_success;
 input                                                     ctl_cal_fail;
 output                                                    ctl_cal_req;
-output [CFG_MEM_IF_DQS_WIDTH * CFG_MEM_IF_CHIP - 1 : 0] ctl_cal_byte_lane_sel_n ;
+output                                                    ctl_init_req;
+output [CFG_MEM_IF_DQS_WIDTH * CFG_MEM_IF_CHIP   - 1 : 0] ctl_cal_byte_lane_sel_n ;
 output [CFG_MEM_IF_CLK_PAIR_COUNT                - 1 : 0] ctl_mem_clk_disable;
 
 // cfg: general
@@ -492,7 +498,7 @@ input  [CFG_PORT_WIDTH_TYPE            - 1 : 0] cfg_type;
 input  [CFG_PORT_WIDTH_INTERFACE_WIDTH - 1 : 0] cfg_interface_width;
 input  [CFG_PORT_WIDTH_BURST_LENGTH    - 1 : 0] cfg_burst_length;
 input  [CFG_PORT_WIDTH_DEVICE_WIDTH    - 1 : 0] cfg_device_width;
-input  [CFG_PORT_WIDTH_OUTPUT_REGD-1 : 0] cfg_output_regd;
+input  [CFG_PORT_WIDTH_OUTPUT_REGD     - 1 : 0] cfg_output_regd;
 
 // cfg: address mapping signals
 input  [CFG_PORT_WIDTH_ADDR_ORDER      - 1 : 0] cfg_addr_order;
@@ -502,25 +508,27 @@ input  [CFG_PORT_WIDTH_BANK_ADDR_WIDTH - 1 : 0] cfg_bank_addr_width;
 input  [CFG_PORT_WIDTH_CS_ADDR_WIDTH   - 1 : 0] cfg_cs_addr_width;
 
 // cfg: timing parameters
-input  [CFG_PORT_WIDTH_CAS_WR_LAT            - 1 : 0] cfg_cas_wr_lat;
-input  [CFG_PORT_WIDTH_ADD_LAT               - 1 : 0] cfg_add_lat;
-input  [CFG_PORT_WIDTH_TCL                   - 1 : 0] cfg_tcl;
-input  [CFG_PORT_WIDTH_TRRD                  - 1 : 0] cfg_trrd;
-input  [CFG_PORT_WIDTH_TFAW                  - 1 : 0] cfg_tfaw;
-input  [CFG_PORT_WIDTH_TRFC                  - 1 : 0] cfg_trfc;
-input  [CFG_PORT_WIDTH_TREFI                 - 1 : 0] cfg_trefi;
-input  [CFG_PORT_WIDTH_TRCD                  - 1 : 0] cfg_trcd;
-input  [CFG_PORT_WIDTH_TRP                   - 1 : 0] cfg_trp;
-input  [CFG_PORT_WIDTH_TWR                   - 1 : 0] cfg_twr;
-input  [CFG_PORT_WIDTH_TWTR                  - 1 : 0] cfg_twtr;
-input  [CFG_PORT_WIDTH_TRTP                  - 1 : 0] cfg_trtp;
-input  [CFG_PORT_WIDTH_TRAS                  - 1 : 0] cfg_tras;
-input  [CFG_PORT_WIDTH_TRC                   - 1 : 0] cfg_trc;
-input  [CFG_PORT_WIDTH_TCCD                  - 1 : 0] cfg_tccd;
-input  [CFG_PORT_WIDTH_AUTO_PD_CYCLES        - 1 : 0] cfg_auto_pd_cycles;
-input  [CFG_PORT_WIDTH_SELF_RFSH_EXIT_CYCLES - 1 : 0] cfg_self_rfsh_exit_cycles;
-input  [CFG_PORT_WIDTH_PDN_EXIT_CYCLES       - 1 : 0] cfg_pdn_exit_cycles;
-input  [CFG_PORT_WIDTH_TMRD                  - 1 : 0] cfg_tmrd;
+input  [CFG_PORT_WIDTH_CAS_WR_LAT               - 1 : 0] cfg_cas_wr_lat;
+input  [CFG_PORT_WIDTH_ADD_LAT                  - 1 : 0] cfg_add_lat;
+input  [CFG_PORT_WIDTH_TCL                      - 1 : 0] cfg_tcl;
+input  [CFG_PORT_WIDTH_TRRD                     - 1 : 0] cfg_trrd;
+input  [CFG_PORT_WIDTH_TFAW                     - 1 : 0] cfg_tfaw;
+input  [CFG_PORT_WIDTH_TRFC                     - 1 : 0] cfg_trfc;
+input  [CFG_PORT_WIDTH_TREFI                    - 1 : 0] cfg_trefi;
+input  [CFG_PORT_WIDTH_TRCD                     - 1 : 0] cfg_trcd;
+input  [CFG_PORT_WIDTH_TRP                      - 1 : 0] cfg_trp;
+input  [CFG_PORT_WIDTH_TWR                      - 1 : 0] cfg_twr;
+input  [CFG_PORT_WIDTH_TWTR                     - 1 : 0] cfg_twtr;
+input  [CFG_PORT_WIDTH_TRTP                     - 1 : 0] cfg_trtp;
+input  [CFG_PORT_WIDTH_TRAS                     - 1 : 0] cfg_tras;
+input  [CFG_PORT_WIDTH_TRC                      - 1 : 0] cfg_trc;
+input  [CFG_PORT_WIDTH_TCCD                     - 1 : 0] cfg_tccd;
+input  [CFG_PORT_WIDTH_AUTO_PD_CYCLES           - 1 : 0] cfg_auto_pd_cycles;
+input  [CFG_PORT_WIDTH_SELF_RFSH_EXIT_CYCLES    - 1 : 0] cfg_self_rfsh_exit_cycles;
+input  [CFG_PORT_WIDTH_PDN_EXIT_CYCLES          - 1 : 0] cfg_pdn_exit_cycles;
+input  [CFG_PORT_WIDTH_POWER_SAVING_EXIT_CYCLES - 1 : 0] cfg_power_saving_exit_cycles;
+input  [CFG_PORT_WIDTH_MEM_CLK_ENTRY_CYCLES     - 1 : 0] cfg_mem_clk_entry_cycles;
+input  [CFG_PORT_WIDTH_TMRD                     - 1 : 0] cfg_tmrd;
 
 // cfg: extra timing parameters
 input  [CFG_PORT_WIDTH_EXTRA_CTL_CLK_ACT_TO_RDWR          - 1 : 0] cfg_extra_ctl_clk_act_to_rdwr;
@@ -556,6 +564,8 @@ input  [CFG_PORT_WIDTH_REORDER_DATA                 - 1 : 0] cfg_reorder_data;
 input  [CFG_PORT_WIDTH_STARVE_LIMIT                 - 1 : 0] cfg_starve_limit;
 input  [CFG_PORT_WIDTH_USER_RFSH                    - 1 : 0] cfg_user_rfsh;
 input  [CFG_PORT_WIDTH_REGDIMM_ENABLE               - 1 : 0] cfg_regdimm_enable;
+input  [CFG_PORT_WIDTH_ENABLE_BURST_INTERRUPT       - 1 : 0] cfg_enable_burst_interrupt;
+input  [CFG_PORT_WIDTH_ENABLE_BURST_TERMINATE       - 1 : 0] cfg_enable_burst_terminate;
 
 // cfg: ecc signals
 input  [CFG_PORT_WIDTH_ENABLE_ECC                   - 1 : 0] cfg_enable_ecc;
@@ -607,6 +617,7 @@ output  [CFG_MEM_IF_CHIP - 1 : 0] afi_ctl_long_idle;
     wire sts_cal_success                                                         = ctl_cal_success;
     wire sts_cal_fail                                                            = ctl_cal_fail;
     wire ctl_cal_req                                                             = cfg_cal_req;
+    wire ctl_init_req;
     wire [CFG_MEM_IF_DQS_WIDTH*CFG_MEM_IF_CHIP-1: 0] ctl_cal_byte_lane_sel_n = 0;
     
     // alt_mem_ddrx_input_if
@@ -955,6 +966,7 @@ output  [CFG_MEM_IF_CHIP - 1 : 0] afi_ctl_long_idle;
     wire [T_PARAM_SRF_TO_ZQ_CAL_WIDTH        - 1 : 0] t_param_srf_to_zq_cal;
     wire [T_PARAM_ARF_PERIOD_WIDTH           - 1 : 0] t_param_arf_period;
     wire [T_PARAM_PDN_PERIOD_WIDTH           - 1 : 0] t_param_pdn_period;
+    wire [T_PARAM_POWER_SAVING_EXIT_WIDTH    - 1 : 0] t_param_power_saving_exit;
     
     // Log 2 function
     function integer log2;
@@ -966,6 +978,20 @@ output  [CFG_MEM_IF_CHIP - 1 : 0] afi_ctl_long_idle;
        log2 = i + 1;
        end
     endfunction
+	
+	// register init_done signal
+	reg  init_done_reg;
+	always @ (posedge ctl_clk or negedge ctl_reset_n)
+    begin
+        if (!ctl_reset_n)
+        begin
+            init_done_reg            <= 0;
+        end
+        else
+        begin
+            init_done_reg            <= init_done;
+        end
+    end
     
 //==============================================================================
 // alt_mem_ddrx_input_if
@@ -1061,7 +1087,7 @@ output  [CFG_MEM_IF_CHIP - 1 : 0] afi_ctl_long_idle;
         .deep_powerdn_ack          (deep_powerdn_ack           ),
         .power_down_ack            (power_down_ack             ),
         .self_rfsh_ack             (self_rfsh_ack              ),
-        .init_done                 (init_done                  )
+        .init_done                 (init_done_reg              )
     );
     
 //==============================================================================
@@ -1442,94 +1468,96 @@ output  [CFG_MEM_IF_CHIP - 1 : 0] afi_ctl_long_idle;
     
     alt_mem_ddrx_burst_gen #
     (
-        .CFG_DWIDTH_RATIO                   (CFG_DWIDTH_RATIO               ),
-        .CFG_CTL_ARBITER_TYPE               (CFG_CTL_ARBITER_TYPE           ),
-        .CFG_REG_GRANT                      (CFG_REG_GRANT                  ),
-        .CFG_MEM_IF_CHIP                    (CFG_MEM_IF_CHIP                ),
-        .CFG_MEM_IF_CS_WIDTH                (CFG_MEM_IF_CS_WIDTH            ),
-        .CFG_MEM_IF_BA_WIDTH                (CFG_MEM_IF_BA_WIDTH            ),
-        .CFG_MEM_IF_ROW_WIDTH               (CFG_MEM_IF_ROW_WIDTH           ),
-        .CFG_MEM_IF_COL_WIDTH               (CFG_MEM_IF_COL_WIDTH           ),
-        .CFG_LOCAL_ID_WIDTH                 (CFG_LOCAL_ID_WIDTH             ),
-        .CFG_DATA_ID_WIDTH                  (CFG_DATA_ID_WIDTH              ),
-        .CFG_INT_SIZE_WIDTH                 (CFG_INT_SIZE_WIDTH             ),
-        .CFG_AFI_INTF_PHASE_NUM             (CFG_AFI_INTF_PHASE_NUM         ),
-        .CFG_ENABLE_BURST_INTERRUPT         (CFG_ENABLE_BURST_INTERRUPT     ),
-        .CFG_ENABLE_BURST_TERMINATE         (CFG_ENABLE_BURST_TERMINATE     ),
-        .CFG_PORT_WIDTH_TYPE                (CFG_PORT_WIDTH_TYPE            ),
-        .CFG_PORT_WIDTH_BURST_LENGTH        (CFG_PORT_WIDTH_BURST_LENGTH    ),
-        .CFG_PORT_WIDTH_TCCD                (CFG_PORT_WIDTH_TCCD            ),
-        .CFG_ENABLE_BURST_GEN_OUTPUT_REG    (CFG_ENABLE_BURST_GEN_OUTPUT_REG)
+        .CFG_DWIDTH_RATIO                       (CFG_DWIDTH_RATIO                       ),
+        .CFG_CTL_ARBITER_TYPE                   (CFG_CTL_ARBITER_TYPE                   ),
+        .CFG_REG_GRANT                          (CFG_REG_GRANT                          ),
+        .CFG_MEM_IF_CHIP                        (CFG_MEM_IF_CHIP                        ),
+        .CFG_MEM_IF_CS_WIDTH                    (CFG_MEM_IF_CS_WIDTH                    ),
+        .CFG_MEM_IF_BA_WIDTH                    (CFG_MEM_IF_BA_WIDTH                    ),
+        .CFG_MEM_IF_ROW_WIDTH                   (CFG_MEM_IF_ROW_WIDTH                   ),
+        .CFG_MEM_IF_COL_WIDTH                   (CFG_MEM_IF_COL_WIDTH                   ),
+        .CFG_LOCAL_ID_WIDTH                     (CFG_LOCAL_ID_WIDTH                     ),
+        .CFG_DATA_ID_WIDTH                      (CFG_DATA_ID_WIDTH                      ),
+        .CFG_INT_SIZE_WIDTH                     (CFG_INT_SIZE_WIDTH                     ),
+        .CFG_AFI_INTF_PHASE_NUM                 (CFG_AFI_INTF_PHASE_NUM                 ),
+        .CFG_PORT_WIDTH_TYPE                    (CFG_PORT_WIDTH_TYPE                    ),
+        .CFG_PORT_WIDTH_BURST_LENGTH            (CFG_PORT_WIDTH_BURST_LENGTH            ),
+        .CFG_PORT_WIDTH_TCCD                    (CFG_PORT_WIDTH_TCCD                    ),
+        .CFG_PORT_WIDTH_ENABLE_BURST_INTERRUPT  (CFG_PORT_WIDTH_ENABLE_BURST_INTERRUPT  ),
+        .CFG_PORT_WIDTH_ENABLE_BURST_TERMINATE  (CFG_PORT_WIDTH_ENABLE_BURST_TERMINATE  ),
+        .CFG_ENABLE_BURST_GEN_OUTPUT_REG        (CFG_ENABLE_BURST_GEN_OUTPUT_REG        )
     )
     burst_gen_inst
     (
-        .ctl_clk                            (ctl_clk                       ),
-        .ctl_reset_n                        (ctl_reset_n                   ),
-        .cfg_type                           (cfg_type                      ),
-        .cfg_burst_length                   (cfg_burst_length              ),
-        .cfg_tccd                           (cfg_tccd                      ),
-        .arb_do_write                       (arb_do_write                  ),
-        .arb_do_read                        (arb_do_read                   ),
-        .arb_do_burst_chop                  (arb_do_burst_chop             ),
-        .arb_do_burst_terminate             (arb_do_burst_terminate        ),
-        .arb_do_auto_precharge              (arb_do_auto_precharge         ),
-        .arb_do_rmw_correct                 (arb_do_rmw_correct            ),
-        .arb_do_rmw_partial                 (arb_do_rmw_partial            ),
-        .arb_do_activate                    (arb_do_activate               ),
-        .arb_do_precharge                   (arb_do_precharge              ),
-        .arb_do_precharge_all               (arb_do_precharge_all          ),
-        .arb_do_refresh                     (arb_do_refresh                ),
-        .arb_do_self_refresh                (arb_do_self_refresh           ),
-        .arb_do_power_down                  (arb_do_power_down             ),
-        .arb_do_deep_pdown                  (arb_do_deep_pdown             ),
-        .arb_do_zq_cal                      (arb_do_zq_cal                 ),
-        .arb_do_lmr                         (arb_do_lmr                    ),
-        .arb_to_chipsel                     (arb_to_chipsel                ),
-        .arb_to_chip                        (arb_to_chip                   ),
-        .arb_to_bank                        (arb_to_bank                   ),
-        .arb_to_row                         (arb_to_row                    ),
-        .arb_to_col                         (arb_to_col                    ),
-        .arb_localid                        (arb_localid                   ),
-        .arb_dataid                         (arb_dataid                    ),
-        .arb_size                           (arb_size                      ),
-        .bg_do_write_combi                  (bg_do_write_combi             ),
-        .bg_do_read_combi                   (bg_do_read_combi              ),
-        .bg_do_burst_chop_combi             (bg_do_burst_chop_combi        ),
-        .bg_do_burst_terminate_combi        (bg_do_burst_terminate_combi   ),
-        .bg_do_activate_combi               (bg_do_activate_combi          ),
-        .bg_do_precharge_combi              (bg_do_precharge_combi         ),
-        .bg_to_chip_combi                   (bg_to_chip_combi              ),
-        .bg_effective_size_combi            (bg_effective_size_combi       ),
-        .bg_interrupt_ready_combi           (bg_interrupt_ready_combi      ),
-        .bg_do_write                        (bg_do_write                   ),
-        .bg_do_read                         (bg_do_read                    ),
-        .bg_do_burst_chop                   (bg_do_burst_chop              ),
-        .bg_do_burst_terminate              (bg_do_burst_terminate         ),
-        .bg_do_auto_precharge               (bg_do_auto_precharge          ),
-        .bg_do_rmw_correct                  (bg_do_rmw_correct             ),
-        .bg_do_rmw_partial                  (bg_do_rmw_partial             ),
-        .bg_do_activate                     (bg_do_activate                ),
-        .bg_do_precharge                    (bg_do_precharge               ),
-        .bg_do_precharge_all                (bg_do_precharge_all           ),
-        .bg_do_refresh                      (bg_do_refresh                 ),
-        .bg_do_self_refresh                 (bg_do_self_refresh            ),
-        .bg_do_power_down                   (bg_do_power_down              ),
-        .bg_do_deep_pdown                   (bg_do_deep_pdown              ),
-        .bg_do_zq_cal                       (bg_do_zq_cal                  ),
-        .bg_do_lmr                          (bg_do_lmr                     ),
-        .bg_to_chipsel                      (bg_to_chipsel                 ),
-        .bg_to_chip                         (bg_to_chip                    ),
-        .bg_to_bank                         (bg_to_bank                    ),
-        .bg_to_row                          (bg_to_row                     ),
-        .bg_to_col                          (bg_to_col                     ),
-        .bg_doing_write                     (bg_doing_write                ),
-        .bg_doing_read                      (bg_doing_read                 ),
-        .bg_rdwr_data_valid                 (bg_rdwr_data_valid            ),
-        .bg_interrupt_ready                 (bg_interrupt_ready            ),
-        .bg_localid                         (bg_localid                    ),
-        .bg_dataid                          (bg_dataid                     ),
-        .bg_size                            (bg_size                       ),
-        .bg_effective_size                  (bg_effective_size             )
+        .ctl_clk                                (ctl_clk                                ),
+        .ctl_reset_n                            (ctl_reset_n                            ),
+        .cfg_type                               (cfg_type                               ),
+        .cfg_burst_length                       (cfg_burst_length                       ),
+        .cfg_tccd                               (cfg_tccd                               ),
+        .cfg_enable_burst_interrupt             (cfg_enable_burst_interrupt             ),
+        .cfg_enable_burst_terminate             (cfg_enable_burst_terminate             ),
+        .arb_do_write                           (arb_do_write                           ),
+        .arb_do_read                            (arb_do_read                            ),
+        .arb_do_burst_chop                      (arb_do_burst_chop                      ),
+        .arb_do_burst_terminate                 (arb_do_burst_terminate                 ),
+        .arb_do_auto_precharge                  (arb_do_auto_precharge                  ),
+        .arb_do_rmw_correct                     (arb_do_rmw_correct                     ),
+        .arb_do_rmw_partial                     (arb_do_rmw_partial                     ),
+        .arb_do_activate                        (arb_do_activate                        ),
+        .arb_do_precharge                       (arb_do_precharge                       ),
+        .arb_do_precharge_all                   (arb_do_precharge_all                   ),
+        .arb_do_refresh                         (arb_do_refresh                         ),
+        .arb_do_self_refresh                    (arb_do_self_refresh                    ),
+        .arb_do_power_down                      (arb_do_power_down                      ),
+        .arb_do_deep_pdown                      (arb_do_deep_pdown                      ),
+        .arb_do_zq_cal                          (arb_do_zq_cal                          ),
+        .arb_do_lmr                             (arb_do_lmr                             ),
+        .arb_to_chipsel                         (arb_to_chipsel                         ),
+        .arb_to_chip                            (arb_to_chip                            ),
+        .arb_to_bank                            (arb_to_bank                            ),
+        .arb_to_row                             (arb_to_row                             ),
+        .arb_to_col                             (arb_to_col                             ),
+        .arb_localid                            (arb_localid                            ),
+        .arb_dataid                             (arb_dataid                             ),
+        .arb_size                               (arb_size                               ),
+        .bg_do_write_combi                      (bg_do_write_combi                      ),
+        .bg_do_read_combi                       (bg_do_read_combi                       ),
+        .bg_do_burst_chop_combi                 (bg_do_burst_chop_combi                 ),
+        .bg_do_burst_terminate_combi            (bg_do_burst_terminate_combi            ),
+        .bg_do_activate_combi                   (bg_do_activate_combi                   ),
+        .bg_do_precharge_combi                  (bg_do_precharge_combi                  ),
+        .bg_to_chip_combi                       (bg_to_chip_combi                       ),
+        .bg_effective_size_combi                (bg_effective_size_combi                ),
+        .bg_interrupt_ready_combi               (bg_interrupt_ready_combi               ),
+        .bg_do_write                            (bg_do_write                            ),
+        .bg_do_read                             (bg_do_read                             ),
+        .bg_do_burst_chop                       (bg_do_burst_chop                       ),
+        .bg_do_burst_terminate                  (bg_do_burst_terminate                  ),
+        .bg_do_auto_precharge                   (bg_do_auto_precharge                   ),
+        .bg_do_rmw_correct                      (bg_do_rmw_correct                      ),
+        .bg_do_rmw_partial                      (bg_do_rmw_partial                      ),
+        .bg_do_activate                         (bg_do_activate                         ),
+        .bg_do_precharge                        (bg_do_precharge                        ),
+        .bg_do_precharge_all                    (bg_do_precharge_all                    ),
+        .bg_do_refresh                          (bg_do_refresh                          ),
+        .bg_do_self_refresh                     (bg_do_self_refresh                     ),
+        .bg_do_power_down                       (bg_do_power_down                       ),
+        .bg_do_deep_pdown                       (bg_do_deep_pdown                       ),
+        .bg_do_zq_cal                           (bg_do_zq_cal                           ),
+        .bg_do_lmr                              (bg_do_lmr                              ),
+        .bg_to_chipsel                          (bg_to_chipsel                          ),
+        .bg_to_chip                             (bg_to_chip                             ),
+        .bg_to_bank                             (bg_to_bank                             ),
+        .bg_to_row                              (bg_to_row                              ),
+        .bg_to_col                              (bg_to_col                              ),
+        .bg_doing_write                         (bg_doing_write                         ),
+        .bg_doing_read                          (bg_doing_read                          ),
+        .bg_rdwr_data_valid                     (bg_rdwr_data_valid                     ),
+        .bg_interrupt_ready                     (bg_interrupt_ready                     ),
+        .bg_localid                             (bg_localid                             ),
+        .bg_dataid                              (bg_dataid                              ),
+        .bg_size                                (bg_size                                ),
+        .bg_effective_size                      (bg_effective_size                      )
     );
     
 //==============================================================================
@@ -2085,13 +2113,13 @@ output  [CFG_MEM_IF_CHIP - 1 : 0] afi_ctl_long_idle;
         .T_PARAM_SRF_TO_VALID_WIDTH             (T_PARAM_SRF_TO_VALID_WIDTH             ),
         .T_PARAM_SRF_TO_ZQ_CAL_WIDTH            (T_PARAM_SRF_TO_ZQ_CAL_WIDTH            ),
         .T_PARAM_PDN_TO_VALID_WIDTH             (T_PARAM_PDN_TO_VALID_WIDTH             ),
-        .T_PARAM_PDN_PERIOD_WIDTH               (T_PARAM_PDN_PERIOD_WIDTH               )
+        .T_PARAM_PDN_PERIOD_WIDTH               (T_PARAM_PDN_PERIOD_WIDTH               ),
+        .T_PARAM_POWER_SAVING_EXIT_WIDTH        (T_PARAM_POWER_SAVING_EXIT_WIDTH        )
     )
     sideband_inst
     (
         .ctl_clk                                (ctl_clk                                ),
         .ctl_reset_n                            (ctl_reset_n                            ),
-        .ctl_cal_success                        (ctl_cal_success                        ),
         .rfsh_req                               (rfsh_req                               ),
         .rfsh_chip                              (rfsh_chip                              ),
         .rfsh_ack                               (rfsh_ack                               ),
@@ -2113,6 +2141,8 @@ output  [CFG_MEM_IF_CHIP - 1 : 0] afi_ctl_long_idle;
         .sb_do_zq_cal                           (sb_do_zq_cal                           ),
         .sb_tbp_precharge_all                   (sb_tbp_precharge_all                   ),
         .ctl_mem_clk_disable                    (ctl_mem_clk_disable                    ),
+        .ctl_init_req                           (ctl_init_req                           ),
+        .ctl_cal_success                        (ctl_cal_success                        ),
         .cmd_gen_chipsel                        (cmd_gen_chipsel                        ),
         .tbp_chipsel                            (tbp_chipsel                            ),
         .tbp_load                               (tbp_load                               ),
@@ -2123,6 +2153,7 @@ output  [CFG_MEM_IF_CHIP - 1 : 0] afi_ctl_long_idle;
         .t_param_srf_to_zq_cal                  (t_param_srf_to_zq_cal                  ),
         .t_param_pdn_to_valid                   (t_param_pdn_to_valid                   ),
         .t_param_pdn_period                     (t_param_pdn_period                     ),
+        .t_param_power_saving_exit              (t_param_power_saving_exit              ),
         .tbp_empty                              (tbp_empty                              ),
         .tbp_bank_active                        (tbp_bank_active                        ),
         .tbp_timer_ready                        (tbp_timer_ready                        ),
@@ -2158,8 +2189,6 @@ output  [CFG_MEM_IF_CHIP - 1 : 0] afi_ctl_long_idle;
         .CFG_MEM_IF_CS_WIDTH                    (CFG_MEM_IF_CS_WIDTH                    ),
         .CFG_INT_SIZE_WIDTH                     (CFG_INT_SIZE_WIDTH                     ),
         .CFG_AFI_INTF_PHASE_NUM                 (CFG_AFI_INTF_PHASE_NUM                 ),
-        .CFG_ENABLE_BURST_INTERRUPT             (CFG_ENABLE_BURST_INTERRUPT             ),
-        .CFG_ENABLE_BURST_TERMINATE             (CFG_ENABLE_BURST_TERMINATE             ),
         .CFG_REG_GRANT                          (CFG_REG_GRANT                          ),
         .CFG_RANK_TIMER_OUTPUT_REG              (CFG_RANK_TIMER_OUTPUT_REG              ),
         .CFG_PORT_WIDTH_BURST_LENGTH            (CFG_PORT_WIDTH_BURST_LENGTH            ),
@@ -2248,6 +2277,7 @@ output  [CFG_MEM_IF_CHIP - 1 : 0] afi_ctl_long_idle;
         .CFG_PORT_WIDTH_SELF_RFSH_EXIT_CYCLES                   (CFG_PORT_WIDTH_SELF_RFSH_EXIT_CYCLES                   ),
         .CFG_PORT_WIDTH_PDN_EXIT_CYCLES                         (CFG_PORT_WIDTH_PDN_EXIT_CYCLES                         ),
         .CFG_PORT_WIDTH_AUTO_PD_CYCLES                          (CFG_PORT_WIDTH_AUTO_PD_CYCLES                          ),
+        .CFG_PORT_WIDTH_POWER_SAVING_EXIT_CYCLES                (CFG_PORT_WIDTH_POWER_SAVING_EXIT_CYCLES                ),
         .CFG_PORT_WIDTH_EXTRA_CTL_CLK_ACT_TO_RDWR               (CFG_PORT_WIDTH_EXTRA_CTL_CLK_ACT_TO_RDWR               ),
         .CFG_PORT_WIDTH_EXTRA_CTL_CLK_ACT_TO_PCH                (CFG_PORT_WIDTH_EXTRA_CTL_CLK_ACT_TO_PCH                ),
         .CFG_PORT_WIDTH_EXTRA_CTL_CLK_ACT_TO_ACT                (CFG_PORT_WIDTH_EXTRA_CTL_CLK_ACT_TO_ACT                ),
@@ -2301,7 +2331,8 @@ output  [CFG_MEM_IF_CHIP - 1 : 0] afi_ctl_long_idle;
         .T_PARAM_SRF_TO_VALID_WIDTH                             (T_PARAM_SRF_TO_VALID_WIDTH                             ),
         .T_PARAM_SRF_TO_ZQ_CAL_WIDTH                            (T_PARAM_SRF_TO_ZQ_CAL_WIDTH                            ),
         .T_PARAM_ARF_PERIOD_WIDTH                               (T_PARAM_ARF_PERIOD_WIDTH                               ),
-        .T_PARAM_PDN_PERIOD_WIDTH                               (T_PARAM_PDN_PERIOD_WIDTH                               )
+        .T_PARAM_PDN_PERIOD_WIDTH                               (T_PARAM_PDN_PERIOD_WIDTH                               ),
+        .T_PARAM_POWER_SAVING_EXIT_WIDTH                        (T_PARAM_POWER_SAVING_EXIT_WIDTH                        )
     )
     timing_param_inst
     (
@@ -2328,6 +2359,7 @@ output  [CFG_MEM_IF_CHIP - 1 : 0] afi_ctl_long_idle;
         .cfg_self_rfsh_exit_cycles                              (cfg_self_rfsh_exit_cycles                              ),
         .cfg_pdn_exit_cycles                                    (cfg_pdn_exit_cycles                                    ),
         .cfg_auto_pd_cycles                                     (cfg_auto_pd_cycles                                     ),
+        .cfg_power_saving_exit_cycles                           (cfg_power_saving_exit_cycles                           ),
         .cfg_extra_ctl_clk_act_to_rdwr                          (cfg_extra_ctl_clk_act_to_rdwr                          ),
         .cfg_extra_ctl_clk_act_to_pch                           (cfg_extra_ctl_clk_act_to_pch                           ),
         .cfg_extra_ctl_clk_act_to_act                           (cfg_extra_ctl_clk_act_to_act                           ),
@@ -2381,7 +2413,8 @@ output  [CFG_MEM_IF_CHIP - 1 : 0] afi_ctl_long_idle;
         .t_param_srf_to_valid                                   (t_param_srf_to_valid                                   ),
         .t_param_srf_to_zq_cal                                  (t_param_srf_to_zq_cal                                  ),
         .t_param_arf_period                                     (t_param_arf_period                                     ),
-        .t_param_pdn_period                                     (t_param_pdn_period                                     )
+        .t_param_pdn_period                                     (t_param_pdn_period                                     ),
+        .t_param_power_saving_exit                              (t_param_power_saving_exit                              )
     );
     
 endmodule

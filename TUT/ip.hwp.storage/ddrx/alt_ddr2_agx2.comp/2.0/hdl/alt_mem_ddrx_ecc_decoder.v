@@ -27,7 +27,8 @@ module alt_mem_ddrx_ecc_decoder #
         
         err_corrected,
         err_detected,
-        err_fatal
+        err_fatal,
+        err_sbe
     );
 
 localparam CFG_ECC_DATA_WIDTH = (CFG_DATA_WIDTH > 8) ? (CFG_DATA_WIDTH - CFG_ECC_CODE_WIDTH) : (CFG_DATA_WIDTH);
@@ -49,6 +50,7 @@ output [CFG_ECC_CODE_WIDTH - 1 : 0] output_ecc_code;
 output                          err_corrected;
 output                          err_detected;
 output                          err_fatal;
+output                          err_sbe;
 
 //--------------------------------------------------------------------------------------------------------
 //
@@ -68,10 +70,12 @@ output                          err_fatal;
     reg                               err_corrected;
     reg                               err_detected;
     reg                               err_fatal;
+    reg                               err_sbe;
 
     wire                              int_err_corrected;
     wire                              int_err_detected;
     wire                              int_err_fatal;
+    wire                              int_err_sbe;
     reg  [CFG_ECC_CODE_WIDTH - 1 : 0] int_output_ecc_code;
 
     wire [CFG_DATA_WIDTH     - 1 : 0] decoder_input;
@@ -83,6 +87,7 @@ output                          err_fatal;
     reg                               int_err_corrected_r;
     reg                               int_err_detected_r;
     reg                               int_err_fatal_r;
+    reg                               int_err_sbe_r;
     reg  [CFG_ECC_CODE_WIDTH - 1 : 0] int_output_ecc_code_r;
     
     wire zero = 1'b0;
@@ -169,6 +174,7 @@ output                          err_fatal;
             int_err_corrected_r     <= 1'b0;
             int_err_detected_r      <= 1'b0;
             int_err_fatal_r         <= 1'b0;
+            int_err_sbe_r           <= 1'b0;
             int_output_ecc_code_r   <= {CFG_ECC_CODE_WIDTH{1'b0}};
         end
         else
@@ -178,6 +184,7 @@ output                          err_fatal;
             int_err_corrected_r     <= int_err_corrected;
             int_err_detected_r      <= int_err_detected;
             int_err_fatal_r         <= int_err_fatal;
+            int_err_sbe_r           <= int_err_sbe;
             int_output_ecc_code_r   <= int_output_ecc_code;
         end
     end
@@ -218,6 +225,7 @@ output                          err_fatal;
                     err_corrected       = int_err_corrected_r;
                     err_detected        = int_err_detected_r;
                     err_fatal           = int_err_fatal_r;
+                    err_sbe             = int_err_sbe_r;
                     output_ecc_code     = int_output_ecc_code_r;
                 end
                 else
@@ -227,6 +235,7 @@ output                          err_fatal;
                     err_corrected       = 1'b0;
                     err_detected        = 1'b0;
                     err_fatal           = 1'b0;
+                    err_sbe             = 1'b0;
                     output_ecc_code     = int_output_ecc_code;
                 end
             end
@@ -242,6 +251,7 @@ output                          err_fatal;
                     err_corrected       = int_err_corrected;
                     err_detected        = int_err_detected;
                     err_fatal           = int_err_fatal;
+                    err_sbe             = int_err_sbe;
                     output_ecc_code     = int_output_ecc_code;
                 end
                 else
@@ -251,6 +261,7 @@ output                          err_fatal;
                     err_corrected       = 1'b0;
                     err_detected        = 1'b0;
                     err_fatal           = 1'b0;
+                    err_sbe             = 1'b0;
                     output_ecc_code     = int_output_ecc_code;
                 end
             end
@@ -290,6 +301,7 @@ output                          err_fatal;
             	    .err_corrected (int_err_corrected         ),
             	    .err_detected  (int_err_detected          ),
             	    .err_fatal     (int_err_fatal             ),
+                    .err_sbe       (int_err_sbe               ),
             	    .q             (int_decoder_output        )
                 );
         end
@@ -311,6 +323,7 @@ output                          err_fatal;
             	    .err_corrected (int_err_corrected         ),
             	    .err_detected  (int_err_detected          ),
             	    .err_fatal     (int_err_fatal             ),
+                    .err_sbe       (int_err_sbe               ),
             	    .q             (int_decoder_output        )
                 );
         end
@@ -323,6 +336,7 @@ output                          err_fatal;
             	    .err_corrected (int_err_corrected     ),
             	    .err_detected  (int_err_detected      ),
             	    .err_fatal     (int_err_fatal         ),
+                    .err_sbe       (int_err_sbe           ),
             	    .q             (decoder_output        )
                 );
         end
@@ -335,6 +349,7 @@ output                          err_fatal;
             	    .err_corrected (int_err_corrected),
             	    .err_detected  (int_err_detected ),
             	    .err_fatal     (int_err_fatal    ),
+                    .err_sbe       (int_err_sbe      ),
             	    .q             (decoder_output   )
                 );
         end

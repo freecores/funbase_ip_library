@@ -82,11 +82,13 @@ module alt_mem_ddrx_odt_gen
     wire    [CFG_MEM_IF_ODT_WIDTH-1:0]                  ddr2_odt_h;
     wire    [CFG_MEM_IF_ODT_WIDTH-1:0]                  ddr3_odt_l;
     wire    [CFG_MEM_IF_ODT_WIDTH-1:0]                  ddr3_odt_h;
-    wire    [CFG_MEM_IF_ODT_WIDTH-1:0]                  ddr3_odt_i;
+    wire    [CFG_MEM_IF_ODT_WIDTH-1:0]                  ddr3_odt_i_1;
+    wire    [CFG_MEM_IF_ODT_WIDTH-1:0]                  ddr3_odt_i_2;
     
     reg     [CFG_MEM_IF_ODT_WIDTH-1:0]                  int_odt_l;
     reg     [CFG_MEM_IF_ODT_WIDTH-1:0]                  int_odt_h;
-    reg     [CFG_MEM_IF_ODT_WIDTH-1:0]                  int_odt_i;
+    reg     [CFG_MEM_IF_ODT_WIDTH-1:0]                  int_odt_i_1;
+    reg     [CFG_MEM_IF_ODT_WIDTH-1:0]                  int_odt_i_2;
     reg     [CFG_MEM_IF_ODT_WIDTH-1:0]                  int_write_odt_chip;
     reg     [CFG_MEM_IF_ODT_WIDTH-1:0]                  int_read_odt_chip;
     
@@ -230,7 +232,8 @@ module alt_mem_ddrx_odt_gen
                 .bg_do_burst_chop           (bg_do_burst_chop),
                 .int_odt_l                  (ddr3_odt_l[c]),
                 .int_odt_h                  (ddr3_odt_h[c]),
-                .int_odt_i                  (ddr3_odt_i[c])
+                .int_odt_i_1                (ddr3_odt_i_1[c]),
+                .int_odt_i_2                (ddr3_odt_i_2[c])
             );
         end
     endgenerate
@@ -243,21 +246,24 @@ module alt_mem_ddrx_odt_gen
     begin
         if (cfg_type == `MMR_TYPE_DDR2)
         begin
-            int_odt_l = ddr2_odt_l;
-            int_odt_h = ddr2_odt_h;
-            int_odt_i = {(CFG_MEM_IF_ODT_WIDTH){1'b0}};
+            int_odt_l   = ddr2_odt_l;
+            int_odt_h   = ddr2_odt_h;
+            int_odt_i_1 = {(CFG_MEM_IF_ODT_WIDTH){1'b0}};
+            int_odt_i_2 = {(CFG_MEM_IF_ODT_WIDTH){1'b0}};
         end
         else if (cfg_type == `MMR_TYPE_DDR3)
         begin
-            int_odt_l = ddr3_odt_l;
-            int_odt_h = ddr3_odt_h;
-            int_odt_i = ddr3_odt_i;
+            int_odt_l   = ddr3_odt_l;
+            int_odt_h   = ddr3_odt_h;
+            int_odt_i_1 = ddr3_odt_i_1;
+            int_odt_i_2 = ddr3_odt_i_2;
         end
         else
         begin
-            int_odt_l = {(CFG_MEM_IF_ODT_WIDTH){1'b0}};
-            int_odt_h = {(CFG_MEM_IF_ODT_WIDTH){1'b0}};
-            int_odt_i = {(CFG_MEM_IF_ODT_WIDTH){1'b0}};
+            int_odt_l   = {(CFG_MEM_IF_ODT_WIDTH){1'b0}};
+            int_odt_h   = {(CFG_MEM_IF_ODT_WIDTH){1'b0}};
+            int_odt_i_1 = {(CFG_MEM_IF_ODT_WIDTH){1'b0}};
+            int_odt_i_2 = {(CFG_MEM_IF_ODT_WIDTH){1'b0}};
         end
     end
     
@@ -269,7 +275,7 @@ module alt_mem_ddrx_odt_gen
             else if (CFG_DWIDTH_RATIO == 4) // half rate
                 assign afi_odt = {int_odt_h,int_odt_l};
             else if (CFG_DWIDTH_RATIO == 8) // quarter rate
-                assign afi_odt = {int_odt_h,int_odt_i, int_odt_i, int_odt_l};
+                assign afi_odt = {int_odt_h,int_odt_i_2, int_odt_i_1, int_odt_l};
         end
         else
             assign afi_odt = {(CFG_MEM_IF_ODT_WIDTH * (CFG_DWIDTH_RATIO/2)){1'b0}};

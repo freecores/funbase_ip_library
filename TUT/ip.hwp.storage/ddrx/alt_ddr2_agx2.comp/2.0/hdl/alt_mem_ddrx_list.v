@@ -224,12 +224,4 @@ module alt_mem_ddrx_list
         end
     end
 
-    function integer two_pow_N;
-        input integer value;
-    begin
-        two_pow_N = 2 << (value-1);
-    end
-    endfunction
-
-
 endmodule
