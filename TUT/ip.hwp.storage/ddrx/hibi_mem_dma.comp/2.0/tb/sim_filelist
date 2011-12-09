@@ -1,0 +1,7 @@
+../../../../../ip.hwp.support/txt_util/1.0/hdl/*.vhd
+../hdl/dual_port_ram_u.vhd
+../hdl/dual_ram_async_read.vhd
+../hdl/fifo_ram.vhd
+../hdl/fifo_u.vhd
+../hdl/onchip_ram_u.vhd
+../hdl/hibi_mem_dma.vhd
